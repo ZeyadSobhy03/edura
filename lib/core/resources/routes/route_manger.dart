@@ -1,8 +1,10 @@
-import 'package:edura/core/presentation/auth/forget_password/forget_password.dart';
-import 'package:edura/core/presentation/auth/login/login.dart';
-import 'package:edura/core/presentation/auth/register/register.dart';
-import 'package:edura/core/presentation/splash_screen/splash_screen.dart';
+
 import 'package:flutter/cupertino.dart';
+
+import '../../../presentation/auth/forget_password/forget_password.dart';
+import '../../../presentation/auth/login/login.dart';
+import '../../../presentation/auth/register/register.dart';
+import '../../../presentation/splash_screen/splash_screen.dart';
 
 class RouteManger {
   static const String initialRoute = '/';

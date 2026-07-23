@@ -1,0 +1,45 @@
+{
+  "@@locale": "en",
+  "yourLearningJourney": "Your Learning Journey",
+  "edura": "Edura",
+  "welcomeBack": "Welcome back",
+  "sinInToContinue": "Sign in to continue",
+  "student": "Student",
+  "teacher": "Teacher",
+  "emailAddress": "EMAil ADDRESS",
+    "password": "PASSWORD",
+    "forgotPassword": "Forgot password?",
+      "forgotPasswordTitle": "Forgot password",
+      "forgotPasswordDescription": "Enter your email and we will send you a reset link.",
+  "enterYourEmail": "Enter your email",
+  "enterYourPassword": "Enter your password",
+  "login": "Login",
+  "or": "OR",
+  "signInWithGoogle": "Sign in with Google",
+  "dontHaveAnAccount": "Don't have an account?",
+  "register": "Register",
+  "createAnAccount": "Create an account",
+  "teacherAccountIssues": "Teacher account issues",
+  "contactAdmin": "Contact Admin",
+  "fullName": "Full Name",
+  "phoneNumber": "Phone Number",
+  "parentPhone": "Parent Phone",
+  "school": "School",
+    "grade": "Grade",
+  "confirmPassword": "Confirm Password",
+  "enterYourFullName": "Enter your full name",
+  "enterYourPhoneNumber": "Enter your phone number",
+  "enterYourParentPhone": "Enter your parent phone",
+  "enterYourSchool": "Enter your school",
+  "enterYourGrade": "Enter your grade",
+  "enterYourConfirmPassword": "Enter your confirm password",
+  "email": "Email",
+  "alreadyHaveAnAccount": "Already have an account?",
+  "resetPassword": "Reset password",
+  "backToLogin": "Back to login"
+
+
+
+
+
+}
