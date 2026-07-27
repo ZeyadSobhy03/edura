@@ -14,6 +14,8 @@ class CustomTextFormedField extends StatelessWidget {
     this.validator,
     this.isObscure = false,
     this.suffix,
+    this.onChanged,
+    this.prefix,
   });
 
   final String hintText;
@@ -23,13 +25,16 @@ class CustomTextFormedField extends StatelessWidget {
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final bool isObscure;
+  final Widget? prefix;
 
   final Widget? suffix;
+  final void Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       textInputAction: textInputAction,
+      onChanged: onChanged,
       style: TextStyle(fontSize: 14.sp, color: ColorManager.black),
       maxLines: maxLines,
       keyboardType: keyboardType,
@@ -39,6 +44,8 @@ class CustomTextFormedField extends StatelessWidget {
 
       decoration: InputDecoration(
         suffixIcon: suffix,
+        prefixIcon: prefix,
+
 
         contentPadding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),
         focusedBorder: OutlineInputBorder(

@@ -9,6 +9,13 @@ class ColorManager {
   static const Color lightBlue = Color(0xFF3B82F6);
   static const Color salatGray = Color(0xFF94A3B8);
   static const Color red= Color(0xFFEF4444);
+  // Color(0xFF8B5CF6)
+  static const Color purpleDark = Color(0xFF7C3AED);
+  // Color(0xFF8B5CF6)
+  static const Color purpleLight = Color(0xFFEDE9FE);
+  // Color(0xFF059669)
+  static const Color green = Color(0xFF10B981);
+  static const Color orange = Color(0xFFF97316);
 
   static const Color secondary = Color(0xFF60A5FA);
   static const Color accent = Color(0xFF38BDF8);
@@ -26,7 +33,7 @@ class ColorManager {
   static const Color success = Color(0xFF22C55E);
   static const Color warn = Color(0xFFF59E0B);
   static const Color error = Color(0xFFEF4444);
-
+// 4F82F6
+  static const Color blue = Color(0xFF3B82F6);
   static const Color purple = Color(0xFF7C3AED);
-  static const Color purpleLight = Color(0xFFEDE9FE);
 }

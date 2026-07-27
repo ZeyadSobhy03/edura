@@ -2,10 +2,18 @@ import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:flutter/material.dart';
 
 class CustomElevatedButton extends StatelessWidget {
-  const CustomElevatedButton({super.key, this.onPressed, required this.text});
+  const CustomElevatedButton({
+    super.key,
+    this.onPressed,
+    required this.text,
+    this.haveIcon = false,
+    this.icon = Icons.add,
+  });
 
   final VoidCallback? onPressed;
   final String text;
+  final bool haveIcon;
+  final IconData icon;
 
   @override
   Widget build(BuildContext context) {
@@ -22,16 +30,31 @@ class CustomElevatedButton extends StatelessWidget {
         ),
       ),
       onPressed: onPressed,
-      child: Center(
-        child: Text(
-          text,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
+      child: haveIcon
+          ? Row(
+              children: [
+                Icon(icon, color: Colors.white),
+                const SizedBox(width: 8),
+                Text(
+                  text,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            )
+          : Center(
+              child: Text(
+                text,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
     );
   }
 }

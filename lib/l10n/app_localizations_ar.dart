@@ -39,8 +39,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get forgotPasswordTitle => 'نسيت كلمة المرور';
 
   @override
-  String get forgotPasswordDescription =>
-      'أدخل بريدك الإلكتروني وسنرسل لك رابط إعادة التعيين.';
+  String get forgotPasswordDescription => 'أدخل بريدك الإلكتروني وسنرسل لك رابط إعادة التعيين.';
 
   @override
   String get enterYourEmail => 'أدخل بريدك الإلكتروني';
@@ -50,9 +49,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get login => 'تسجيل الدخول';
-
-  @override
-  String get resetPassword => 'إعادة تعيين كلمة المرور';
 
   @override
   String get or => 'أو';
@@ -118,5 +114,128 @@ class AppLocalizationsAr extends AppLocalizations {
   String get alreadyHaveAnAccount => 'هل لديك حساب بالفعل؟';
 
   @override
+  String get resetPassword => 'إعادة تعيين كلمة المرور';
+
+  @override
   String get backToLogin => 'العودة إلى تسجيل الدخول';
+
+  @override
+  String get home => 'الصفحة الرئيسية';
+
+  @override
+  String get profile => 'الملف الشخصي';
+
+  @override
+  String get lessons => 'الدروس';
+
+  @override
+  String get chat => 'الدردشة';
+
+  @override
+  String get exams => 'الامتحانات';
+
+  @override
+  String get goodMorning => 'صباح الخير';
+
+  @override
+  String get goodEvening => 'مساء الخير';
+
+  @override
+  String get notifications => 'الإشعارات';
+
+  @override
+  String get noNotifications => 'لا توجد إشعارات';
+
+  @override
+  String get studyTime => 'وقت الدراسة';
+
+  @override
+  String get averageScore => 'المعدل المتوسط';
+
+  @override
+  String get upToNextLesson => 'حتى الدرس التالي';
+
+  @override
+  String get min => 'دقيقة';
+
+  @override
+  String get progress => 'التقدم';
+
+  @override
+  String get continueWatch => 'استمر';
+
+  @override
+  String get overview => 'نظرة عامة';
+
+  @override
+  String get materials => 'المواد';
+
+  @override
+  String get notes => 'الملاحظات';
+
+  @override
+  String get downloadPdf => 'تحميل PDF';
+
+  @override
+  String get homework => 'الواجبات المنزلية';
+
+  @override
+  String get noMaterialsFound => 'لم يتم العثور على مواد';
+
+  @override
+  String get personalNotesHint => 'ستظهر ملاحظاتك الشخصية هنا. أضف ملاحظات أثناء مشاهدة الفيديو.';
+
+  @override
+  String get teacherNotes => 'ملاحظات المعلم';
+
+  @override
+  String get writeYourNotes => 'اكتب ملاحظاتك';
+
+  @override
+  String get pending => 'قيد الانتظار';
+
+  @override
+  String get submitted => 'تم الإرسال';
+
+  @override
+  String get graded => 'تم التقييم';
+
+  @override
+  String get takePhoto => 'التقط صورة';
+
+  @override
+  String get attachPdf => 'إرفاق PDF';
+
+  @override
+  String get noHomework => 'لا توجد واجبات منزلية متاحة';
+
+  @override
+  String get quickActions => 'إجراءات سريعة';
+
+  @override
+  String get schedule => 'الجدول ';
+
+  @override
+  String get searchLessons => 'البحث عن الدروس';
+
+  @override
+  String get noLessonsFound => 'لم يتم العثور على دروس';
+
+  @override
+  String get recentLessons => 'الدروس الأخيرة';
+
+  @override
+  String get viewAll => 'عرض الكل';
+
+  @override
+  String get pinned => 'مثبتة';
+
+  @override
+  String get noAnnouncements => 'لا توجد إعلانات';
+
+  @override
+  String get announcements => 'الإعلانات';
+
+  @override
+  String get assignments => 'المهام';
 }
