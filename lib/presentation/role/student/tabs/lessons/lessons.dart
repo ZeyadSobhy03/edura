@@ -6,7 +6,7 @@ import 'package:edura/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/model/lesson_model.dart';
-import 'section/lesson_category_filter.dart';
+import '../../../../../core/widgets/custom_category_filter.dart';
 import 'section/lesson_grid_card.dart';
 
 class Lessons extends StatefulWidget {
@@ -64,7 +64,7 @@ class _LessonsState extends State<Lessons> {
               ),
               const SizedBox(height: 12),
 
-              LessonCategoryFilter(
+              CustomCategoryFilter(
                 categories: categories,
                 selected: _selectedCategory,
                 onSelected: (category) =>

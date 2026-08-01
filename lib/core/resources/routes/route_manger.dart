@@ -1,4 +1,7 @@
+import 'package:edura/core/model/exam_attempt_arguments.dart';
 import 'package:edura/presentation/role/student/student_main_layout.dart';
+import 'package:edura/presentation/role/student/tabs/exams/exam_details/exam_details.dart';
+import 'package:edura/presentation/role/student/tabs/exams/exam_details/section/exam_attempt_screen.dart';
 import 'package:edura/presentation/role/student/tabs/home/section/announcements/announcements_screen.dart';
 import 'package:edura/presentation/role/student/tabs/home/section/notification/student_notification_screen.dart';
 import 'package:edura/presentation/role/student/tabs/lessons/lessons.dart';
@@ -26,6 +29,8 @@ class RouteManger {
   static const String homeWorkScreen = '/homeWorkScreen';
   static const String lessonsScreen = '/lessonsScreen';
   static const String announcementsScreen = '/announcementsScreen';
+  static const String examDetailsScreen = '/examDetailsScreen';
+  static const String examAttemptScreen = '/examAttemptScreen';
 
   static Route router(RouteSettings settings) {
     switch (settings.name) {
@@ -84,8 +89,21 @@ class RouteManger {
       case lessonsScreen:
         return MaterialPageRoute(builder: (context) => Lessons());
 
+      case examAttemptScreen:
+        final args = settings.arguments as ExamAttemptArguments;
+        return MaterialPageRoute(
+          builder: (context) =>
+              ExamAttemptScreen(exam: args.exam, questions: args.questions),
+        );
+
       case announcementsScreen:
         return MaterialPageRoute(builder: (context) => AnnouncementsScreen());
+
+      case examDetailsScreen:
+        return MaterialPageRoute(
+          builder: (context) => ExamDetails(),
+          settings: settings,
+        );
 
       default:
         return MaterialPageRoute(

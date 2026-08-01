@@ -219,7 +219,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get searchLessons => 'البحث عن الدروس';
 
   @override
-  String get noLessonsFound => 'لم يتم العثور على دروس';
+  String get noLessonsFound => 'لا توجد دروس';
 
   @override
   String get recentLessons => 'الدروس الأخيرة';
@@ -228,14 +228,137 @@ class AppLocalizationsAr extends AppLocalizations {
   String get viewAll => 'عرض الكل';
 
   @override
-  String get pinned => 'مثبتة';
+  String get pinned => 'مثبت';
 
   @override
-  String get noAnnouncements => 'لا توجد إعلانات';
+  String get noAnnouncements => 'لا توجد إعلانات حتى الآن';
+
+  @override
+  String get teacherName => 'اسم المعلم';
+
+  @override
+  String get online => 'متصل';
+
+  @override
+  String get typeMessage => 'اكتب رسالة...';
+
+  @override
+  String get noMessages => 'لا توجد رسائل بعد';
+
+  @override
+  String get offline => 'غير متصل';
 
   @override
   String get announcements => 'الإعلانات';
 
   @override
+  String get available => 'متاح';
+
+  @override
+  String get completed => 'مكتمل';
+
+  @override
+  String get upcoming => 'قادم';
+
+  @override
+  String get locked => 'مقفل';
+
+  @override
+  String get startExam => 'ابدأ الاختبار';
+
+  @override
+  String get submit => 'إرسال';
+
+  @override
+  String get next => 'التالي';
+
+  @override
+  String get done => 'تم';
+
+  @override
+  String get cancel => 'إلغاء';
+
+  @override
+  String get exit => 'خروج';
+
+  @override
+  String get exitExamTitle => 'الخروج من الاختبار؟';
+
+  @override
+  String get exitExamDescription => 'ستفقد تقدمك إذا خرجت الآن.';
+
+  @override
+  String questionNumberLabel(Object questionNumber) {
+    return 'السؤال $questionNumber';
+  }
+
+  @override
+  String currentQuestionProgress(Object currentQuestion, Object totalQuestions) {
+    return 'السؤال $currentQuestion من $totalQuestions';
+  }
+
+  @override
+  String correctAnswersSummary(Object correctCount, Object totalQuestions) {
+    return '$correctCount من $totalQuestions إجابة صحيحة';
+  }
+
+  @override
+  String get passed => 'ناجح';
+
+  @override
+  String get failed => 'راسب';
+
+  @override
+  String get noExamsFound => 'لا توجد اختبارات';
+
+  @override
   String get assignments => 'المهام';
+
+  @override
+  String get today => 'اليوم';
+
+  @override
+  String get daysAgo => 'منذ أيام';
+
+  @override
+  String get examDetails => 'تفاصيل الاختبار';
+
+  @override
+  String get totalScore => 'المجموع الكلي';
+
+  @override
+  String get instructions => 'التعليمات';
+
+  @override
+  String get instructionReadCarefully => 'اقرأ كل سؤال بعناية قبل الإجابة.';
+
+  @override
+  String get instructionNoGoingBack => 'لا يمكنك الرجوع بمجرد إرسال السؤال.';
+
+  @override
+  String get instructionDuration => 'مدة الاختبار 90 دقيقة.';
+
+  @override
+  String get instructionStableConnection => 'تأكد من استقرار الاتصال بالإنترنت.';
+
+  @override
+  String get instructionAcademicHonesty => 'يتم فرض الأمانة الأكاديمية بصرامة.';
+
+  @override
+  String get requirements => 'المتطلبات';
+
+  @override
+  String get requirementLessons => 'إتمام الدرس 1 و 2';
+
+  @override
+  String get requirementConnection => 'اتصال إنترنت مستقر';
+
+  @override
+  String get requirementQuietEnvironment => 'بيئة هادئة';
+
+  @override
+  String get yesterday => 'أمس';
+
+  @override
+  String get questions => 'الأسئلة';
 }

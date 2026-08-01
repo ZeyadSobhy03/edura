@@ -2,17 +2,19 @@ import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 
-class LessonCategoryFilter extends StatelessWidget {
-  const LessonCategoryFilter({
+class CustomCategoryFilter extends StatelessWidget {
+  const CustomCategoryFilter({
     super.key,
     required this.categories,
     required this.selected,
     required this.onSelected,
+    this.labelBuilder,
   });
 
   final List<String> categories;
   final String selected;
   final ValueChanged<String> onSelected;
+  final String Function(String category)? labelBuilder;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +27,8 @@ class LessonCategoryFilter extends StatelessWidget {
         itemBuilder: (context, index) {
           final category = categories[index];
           final isSelected = category == selected;
+          final displayLabel = labelBuilder?.call(category) ?? category;
+
           return GestureDetector(
             onTap: () => onSelected(category),
             child: AnimatedContainer(
@@ -38,7 +42,7 @@ class LessonCategoryFilter extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: CustomText(
-                text: category,
+                text: displayLabel,
                 style: TextStyle(
                   color: isSelected ? Colors.white : ColorManager.black,
                   fontSize: 13,

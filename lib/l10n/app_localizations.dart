@@ -545,17 +545,251 @@ abstract class AppLocalizations {
   /// **'No announcements'**
   String get noAnnouncements;
 
+  /// No description provided for @teacherName.
+  ///
+  /// In en, this message translates to:
+  /// **'Teacher Name'**
+  String get teacherName;
+
+  /// No description provided for @online.
+  ///
+  /// In en, this message translates to:
+  /// **'Online'**
+  String get online;
+
+  /// No description provided for @typeMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Type Message....'**
+  String get typeMessage;
+
+  /// No description provided for @noMessages.
+  ///
+  /// In en, this message translates to:
+  /// **'No Message'**
+  String get noMessages;
+
+  /// No description provided for @offline.
+  ///
+  /// In en, this message translates to:
+  /// **'Offline'**
+  String get offline;
+
   /// No description provided for @announcements.
   ///
   /// In en, this message translates to:
   /// **'Announcements'**
   String get announcements;
 
+  /// No description provided for @available.
+  ///
+  /// In en, this message translates to:
+  /// **'Available'**
+  String get available;
+
+  /// No description provided for @completed.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get completed;
+
+  /// No description provided for @upcoming.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming'**
+  String get upcoming;
+
+  /// No description provided for @locked.
+  ///
+  /// In en, this message translates to:
+  /// **'Locked'**
+  String get locked;
+
+  /// No description provided for @startExam.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Exam'**
+  String get startExam;
+
+  /// No description provided for @submit.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit'**
+  String get submit;
+
+  /// No description provided for @next.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
+
+  /// No description provided for @done.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @exit.
+  ///
+  /// In en, this message translates to:
+  /// **'Exit'**
+  String get exit;
+
+  /// No description provided for @exitExamTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Exit Exam?'**
+  String get exitExamTitle;
+
+  /// No description provided for @exitExamDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Your progress will be lost if you exit now.'**
+  String get exitExamDescription;
+
+  /// No description provided for @questionNumberLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Question {questionNumber}'**
+  String questionNumberLabel(Object questionNumber);
+
+  /// No description provided for @currentQuestionProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Question {currentQuestion} of {totalQuestions}'**
+  String currentQuestionProgress(Object currentQuestion, Object totalQuestions);
+
+  /// No description provided for @correctAnswersSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'{correctCount} / {totalQuestions} correct'**
+  String correctAnswersSummary(Object correctCount, Object totalQuestions);
+
+  /// No description provided for @passed.
+  ///
+  /// In en, this message translates to:
+  /// **'Passed'**
+  String get passed;
+
+  /// No description provided for @failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed'**
+  String get failed;
+
+  /// No description provided for @noExamsFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No exams found'**
+  String get noExamsFound;
+
   /// No description provided for @assignments.
   ///
   /// In en, this message translates to:
   /// **'Assignments'**
   String get assignments;
+
+  /// No description provided for @today.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get today;
+
+  /// No description provided for @daysAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'days ago'**
+  String get daysAgo;
+
+  /// No description provided for @examDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Exam Details'**
+  String get examDetails;
+
+  /// No description provided for @totalScore.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Score'**
+  String get totalScore;
+
+  /// No description provided for @instructions.
+  ///
+  /// In en, this message translates to:
+  /// **'Instructions'**
+  String get instructions;
+
+  /// No description provided for @instructionReadCarefully.
+  ///
+  /// In en, this message translates to:
+  /// **'Read each question carefully before answering.'**
+  String get instructionReadCarefully;
+
+  /// No description provided for @instructionNoGoingBack.
+  ///
+  /// In en, this message translates to:
+  /// **'You cannot go back once a question is submitted.'**
+  String get instructionNoGoingBack;
+
+  /// No description provided for @instructionDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Duration is 90 minutes.'**
+  String get instructionDuration;
+
+  /// No description provided for @instructionStableConnection.
+  ///
+  /// In en, this message translates to:
+  /// **'Ensure stable internet connection.'**
+  String get instructionStableConnection;
+
+  /// No description provided for @instructionAcademicHonesty.
+  ///
+  /// In en, this message translates to:
+  /// **'Academic honesty is strictly enforced.'**
+  String get instructionAcademicHonesty;
+
+  /// No description provided for @requirements.
+  ///
+  /// In en, this message translates to:
+  /// **'Requirements'**
+  String get requirements;
+
+  /// No description provided for @requirementLessons.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete Lesson 1 & 2'**
+  String get requirementLessons;
+
+  /// No description provided for @requirementConnection.
+  ///
+  /// In en, this message translates to:
+  /// **'Stable internet connection'**
+  String get requirementConnection;
+
+  /// No description provided for @requirementQuietEnvironment.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiet environment'**
+  String get requirementQuietEnvironment;
+
+  /// No description provided for @yesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday'**
+  String get yesterday;
+
+  /// No description provided for @questions.
+  ///
+  /// In en, this message translates to:
+  /// **'Questions'**
+  String get questions;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

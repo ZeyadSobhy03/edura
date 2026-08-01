@@ -234,8 +234,131 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noAnnouncements => 'No announcements';
 
   @override
+  String get teacherName => 'Teacher Name';
+
+  @override
+  String get online => 'Online';
+
+  @override
+  String get typeMessage => 'Type Message....';
+
+  @override
+  String get noMessages => 'No Message';
+
+  @override
+  String get offline => 'Offline';
+
+  @override
   String get announcements => 'Announcements';
 
   @override
+  String get available => 'Available';
+
+  @override
+  String get completed => 'Completed';
+
+  @override
+  String get upcoming => 'Upcoming';
+
+  @override
+  String get locked => 'Locked';
+
+  @override
+  String get startExam => 'Start Exam';
+
+  @override
+  String get submit => 'Submit';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get done => 'Done';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get exit => 'Exit';
+
+  @override
+  String get exitExamTitle => 'Exit Exam?';
+
+  @override
+  String get exitExamDescription => 'Your progress will be lost if you exit now.';
+
+  @override
+  String questionNumberLabel(Object questionNumber) {
+    return 'Question $questionNumber';
+  }
+
+  @override
+  String currentQuestionProgress(Object currentQuestion, Object totalQuestions) {
+    return 'Question $currentQuestion of $totalQuestions';
+  }
+
+  @override
+  String correctAnswersSummary(Object correctCount, Object totalQuestions) {
+    return '$correctCount / $totalQuestions correct';
+  }
+
+  @override
+  String get passed => 'Passed';
+
+  @override
+  String get failed => 'Failed';
+
+  @override
+  String get noExamsFound => 'No exams found';
+
+  @override
   String get assignments => 'Assignments';
+
+  @override
+  String get today => 'Today';
+
+  @override
+  String get daysAgo => 'days ago';
+
+  @override
+  String get examDetails => 'Exam Details';
+
+  @override
+  String get totalScore => 'Total Score';
+
+  @override
+  String get instructions => 'Instructions';
+
+  @override
+  String get instructionReadCarefully => 'Read each question carefully before answering.';
+
+  @override
+  String get instructionNoGoingBack => 'You cannot go back once a question is submitted.';
+
+  @override
+  String get instructionDuration => 'Duration is 90 minutes.';
+
+  @override
+  String get instructionStableConnection => 'Ensure stable internet connection.';
+
+  @override
+  String get instructionAcademicHonesty => 'Academic honesty is strictly enforced.';
+
+  @override
+  String get requirements => 'Requirements';
+
+  @override
+  String get requirementLessons => 'Complete Lesson 1 & 2';
+
+  @override
+  String get requirementConnection => 'Stable internet connection';
+
+  @override
+  String get requirementQuietEnvironment => 'Quiet environment';
+
+  @override
+  String get yesterday => 'Yesterday';
+
+  @override
+  String get questions => 'Questions';
 }
