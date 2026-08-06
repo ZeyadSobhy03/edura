@@ -7,9 +7,14 @@ import '../../../../../../../../core/resources/colors/color_manger.dart';
 import '../../../../../../../../l10n/app_localizations.dart';
 
 class AnnouncementCard extends StatelessWidget {
-  const AnnouncementCard({super.key, required this.announcement});
+  const AnnouncementCard({
+    super.key,
+    required this.announcement,
+    this.haveDivider = true,
+  });
 
   final AnnouncementModel announcement;
+  final bool haveDivider;
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +84,8 @@ class AnnouncementCard extends StatelessWidget {
             ),
             const SizedBox(height: 8),
 
-            Expanded(
+            Flexible(
+              fit: FlexFit.loose,
               child: CustomText(
                 text: announcement.description,
                 maxLines: 4,
@@ -92,17 +98,27 @@ class AnnouncementCard extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 8),
-            Divider(color: ColorManager.gray.withValues(alpha: 0.2), thickness: 1),
-            const SizedBox(height: 8),
-
-            CustomText(
-              text: announcement.author,
-              style: TextStyle(
-                color: ColorManager.black.withValues(alpha: 0.6),
-                fontSize: 12,
-              ),
-            ),
+            haveDivider
+                ? Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment:  CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 8),
+                      Divider(
+                        color: ColorManager.gray.withValues(alpha: 0.2),
+                        thickness: 1,
+                      ),
+                      const SizedBox(height: 8),
+                      CustomText(
+                        text: announcement.author,
+                        style: TextStyle(
+                          color: ColorManager.black.withValues(alpha: 0.6),
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  )
+                : const SizedBox.shrink(),
           ],
         ),
       ),

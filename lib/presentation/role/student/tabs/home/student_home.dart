@@ -3,13 +3,15 @@ import 'package:edura/core/resources/routes/route_manger.dart';
 import 'package:edura/core/widgets/custom_label.dart';
 import 'package:edura/core/widgets/custom_text_button.dart';
 import 'package:edura/l10n/app_localizations.dart';
+import 'package:edura/presentation/role/student/tabs/home/section/announcements/section/announcement_card.dart';
 import 'package:edura/presentation/role/student/tabs/home/section/up_next_card.dart';
 import 'package:edura/presentation/role/student/tabs/home/widgets/home_header.dart';
 import 'package:edura/presentation/role/student/tabs/home/widgets/quick_action_card.dart';
-import 'package:edura/presentation/role/student/tabs/home/widgets/stat_card.dart';
+import 'package:edura/core/widgets/stat_card.dart';
 import 'package:edura/presentation/role/student/tabs/lessons/section/lesson_grid_card.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../core/model/announcement_model.dart';
 import '../../../../../core/model/lesson_model.dart';
 
 class StudentHome extends StatelessWidget {
@@ -18,6 +20,10 @@ class StudentHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10 = AppLocalizations.of(context)!;
+    final announcements = DummyAnnouncementData.all
+        .where((element) => element.isPinned)
+        .toList();
+    final length = announcements.length;
 
     return Scaffold(
       backgroundColor: ColorManager.white,
@@ -78,7 +84,13 @@ class StudentHome extends StatelessWidget {
                       label: l10.lessons,
                       icon: Icons.menu_book,
                       color: ColorManager.primary,
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          RouteManger.studentMainLayoutRoute,
+                          arguments: 1,
+                        );
+                      },
                     ),
                   ),
                   Expanded(
@@ -86,7 +98,13 @@ class StudentHome extends StatelessWidget {
                       label: l10.exams,
                       icon: Icons.assignment,
                       color: ColorManager.purple,
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          RouteManger.studentMainLayoutRoute,
+                          arguments: 2,
+                        );
+                      },
                     ),
                   ),
                   Expanded(
@@ -94,7 +112,13 @@ class StudentHome extends StatelessWidget {
                       label: l10.chat,
                       icon: Icons.chat_bubble_outline,
                       color: ColorManager.orange,
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          RouteManger.studentMainLayoutRoute,
+                          arguments: 3,
+                        );
+                      },
                     ),
                   ),
                   Expanded(
@@ -102,7 +126,13 @@ class StudentHome extends StatelessWidget {
                       label: l10.schedule,
                       icon: Icons.schedule,
                       color: ColorManager.green,
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          RouteManger.studentMainLayoutRoute,
+                          arguments: 4,
+                        );
+                      },
                     ),
                   ),
                 ],
@@ -166,6 +196,24 @@ class StudentHome extends StatelessWidget {
                     },
                   ),
                 ],
+              ),
+              const SizedBox(height: 8),
+              ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: length,
+                itemBuilder: (context, index) {
+                  final isPinnedList = announcements;
+                  if (isPinnedList.isNotEmpty) {
+                    final pinnedAnnouncement = isPinnedList[index];
+                    return AnnouncementCard(
+                      haveDivider: false,
+                      announcement: pinnedAnnouncement,
+                    );
+                  } else {
+                    return Center(child: Text(l10.noAnnouncements));
+                  }
+                },
               ),
             ],
           ),

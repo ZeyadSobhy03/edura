@@ -29,7 +29,7 @@ class ColorManager {
 
   static const Color text = Color(0xFF0F172A);
   static const Color muted = Color(0xFF64748B);
-
+static const Color lightRed = Color(0xFFFCA5A5);
   static const Color success = Color(0xFF22C55E);
   static const Color warn = Color(0xFFF59E0B);
   static const Color error = Color(0xFFEF4444);

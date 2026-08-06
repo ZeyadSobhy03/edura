@@ -88,8 +88,12 @@
   "startExam": "Start Exam",
   "submit": "Submit",
   "next": "Next",
+  "rank": "Rank",
+  "points": "Points",
+  "leaderboard": "Leaderboard",
   "done": "Done",
   "cancel": "Cancel",
+  "achievements": "Achievements",
   "exit": "Exit",
   "exitExamTitle": "Exit Exam?",
   "exitExamDescription": "Your progress will be lost if you exit now.",
@@ -115,6 +119,106 @@
   "requirementConnection": "Stable internet connection",
   "requirementQuietEnvironment": "Quiet environment",
   "yesterday": "Yesterday",
+  "numberOfClassToday": "Number of classes today {numberOfClasses} ",
+  "@numberOfClassToday": {
+    "placeholders": {
+      "numberOfClasses": {
+        "type": "int"
+      }
+    }
+  },
+  "numberOfAchievements": "Number of achievements {numberOfAchievements} ",
+  "@numberOfAchievements": {
+    "placeholders": {
+      "numberOfAchievements": {
+        "type": "int"
+      }
+    }
+    },
 
+  "numberOfHomework": "Number of homework {numberOfHomework} ",
+  "@numberOfHomework": {
+    "placeholders": {
+      "numberOfHomework": {
+        "type": "int"
+      }
+    }
+  },
+  "personalStudyNotes": "Personal Study Notes",
+  "attendanceScore":" Attendance Score{attendanceScore}",
+  "numberOfAnnouncements": "Number of announcements {numberOfAnnouncements} ",
+  "@numberOfAnnouncements": {
+    "placeholders": {
+      "numberOfAnnouncements": {
+        "type": "int"
+      }
+    }
+  },
+  "accountSettings": "Account Settings",
+  "setting": "Settings",
+  "logout": "Logout",
+  "classLabel": "Class",
+  "lab": "Lab",
+  "todaysClasses": "Today's Classes",
+  "noClassesToday": "No classes scheduled for this day",
+  "noLeaderboardData": "No leaderboard data yet",
+  "@attendanceScore": {
+    "placeholders": {
+      "attendanceScore": {
+        "type": "int"
+      }
+    }
+  },
+  "attendance": "Attendance",
+  "pts": "pts",
+  "newNote": "New",
+  "editNote": "Edit Note",
+  "save": "Save",
+  "noteTitleHint": "Note title",
+  "noteContentHint": "Start writing...",
+  "noteTitleRequired": "Please enter a title for your note",
+  "overallAttendance": "Overall Attendance",
+  "present": "Present",
+  "absent": "Absent",
+  "late": "Late",
+  "monthlyTrend": "Monthly Trend",
+  "searchNotes": "Search notes...",
+  "folders": "Folders",
+  "recentNotes": "Recent Notes",
+
+  "settings": "Settings",
+  "editProfile": "Edit Profile",
+  "preferences": "Preferences",
+  "language": "Language",
+  "darkMode": "Dark Mode",
+  "pushNotifications": "Push Notifications",
+  "emailNotifications": "Email Notifications",
+  "account": "Account",
+  "changePassword": "Change Password",
+  "privacyPolicy": "Privacy Policy",
+  "termsOfService": "Terms of Service",
+  "support": "Support",
+  "helpCenter": "Help Center",
+  "contactSupport": "Contact Support",
+  "about": "About",
+  "logoutConfirmation": "Are you sure you want to log out?",
+  "nameRequired": "Please enter your name",
+  "currentPassword": "Current Password",
+  "newPassword": "New Password",
+  "confirmNewPassword": "Confirm New Password",
+  "updatePassword": "Update Password",
+  "fieldRequired": "This field is required",
+  "passwordTooShort": "Password must be at least 8 characters",
+  "passwordsDoNotMatch": "Passwords do not match",
+  "passwordChangedSuccessfully": "Password changed successfully",
+  "searchFaq": "Search FAQs...",
+  "noFaqFound": "No results found",
+  "howCanWeHelp": "How can we help you today?",
+  "liveChat": "Live Chat",
+  "liveChatSubtitle": "Chat with our support team",
+  "emailSupport": "Email Support",
+  "noNotesFound": "No notes found",
+  "notesCount": "{count, plural, =1{1 note} other{{count} notes}}",
+  "rankAndBadgesSummary": "Rank #{rank} · {count} badges earned",
   "questions": "Questions"
 }

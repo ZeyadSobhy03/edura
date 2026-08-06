@@ -50,18 +50,17 @@ class AnnouncementsScreen extends StatelessWidget {
                   ),
                 ),
               )
-            : GridView.builder(
-                padding: const EdgeInsets.all(16),
-                itemCount: announcements.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 12,
-                  crossAxisSpacing: 12,
-                  childAspectRatio: 0.78,
+            : SizedBox(
+                width: double.infinity,
+                height: double.infinity,
+                child: ListView.builder(
+                  itemCount: announcements.length,
+                  shrinkWrap: true,
+
+                  itemBuilder: (context, index) {
+                    return AnnouncementCard(announcement: announcements[index]);
+                  },
                 ),
-                itemBuilder: (context, index) {
-                  return AnnouncementCard(announcement: announcements[index]);
-                },
               ),
       ),
     );

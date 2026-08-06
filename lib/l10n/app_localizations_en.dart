@@ -39,7 +39,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get forgotPasswordTitle => 'Forgot password';
 
   @override
-  String get forgotPasswordDescription => 'Enter your email and we will send you a reset link.';
+  String get forgotPasswordDescription =>
+      'Enter your email and we will send you a reset link.';
 
   @override
   String get enterYourEmail => 'Enter your email';
@@ -183,7 +184,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noMaterialsFound => 'No materials found';
 
   @override
-  String get personalNotesHint => 'Your personal notes appear here. Add notes while watching the video.';
+  String get personalNotesHint =>
+      'Your personal notes appear here. Add notes while watching the video.';
 
   @override
   String get teacherNotes => 'Teacher Notes';
@@ -273,10 +275,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get next => 'Next';
 
   @override
+  String get rank => 'Rank';
+
+  @override
+  String get points => 'Points';
+
+  @override
+  String get leaderboard => 'Leaderboard';
+
+  @override
   String get done => 'Done';
 
   @override
   String get cancel => 'Cancel';
+
+  @override
+  String get achievements => 'Achievements';
 
   @override
   String get exit => 'Exit';
@@ -285,7 +299,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get exitExamTitle => 'Exit Exam?';
 
   @override
-  String get exitExamDescription => 'Your progress will be lost if you exit now.';
+  String get exitExamDescription =>
+      'Your progress will be lost if you exit now.';
 
   @override
   String questionNumberLabel(Object questionNumber) {
@@ -293,7 +308,10 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String currentQuestionProgress(Object currentQuestion, Object totalQuestions) {
+  String currentQuestionProgress(
+    Object currentQuestion,
+    Object totalQuestions,
+  ) {
     return 'Question $currentQuestion of $totalQuestions';
   }
 
@@ -330,19 +348,23 @@ class AppLocalizationsEn extends AppLocalizations {
   String get instructions => 'Instructions';
 
   @override
-  String get instructionReadCarefully => 'Read each question carefully before answering.';
+  String get instructionReadCarefully =>
+      'Read each question carefully before answering.';
 
   @override
-  String get instructionNoGoingBack => 'You cannot go back once a question is submitted.';
+  String get instructionNoGoingBack =>
+      'You cannot go back once a question is submitted.';
 
   @override
   String get instructionDuration => 'Duration is 90 minutes.';
 
   @override
-  String get instructionStableConnection => 'Ensure stable internet connection.';
+  String get instructionStableConnection =>
+      'Ensure stable internet connection.';
 
   @override
-  String get instructionAcademicHonesty => 'Academic honesty is strictly enforced.';
+  String get instructionAcademicHonesty =>
+      'Academic honesty is strictly enforced.';
 
   @override
   String get requirements => 'Requirements';
@@ -358,6 +380,218 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get yesterday => 'Yesterday';
+
+  @override
+  String numberOfClassToday(int numberOfClasses) {
+    return 'Number of classes today $numberOfClasses ';
+  }
+
+  @override
+  String numberOfAchievements(int numberOfAchievements) {
+    return 'Number of achievements $numberOfAchievements ';
+  }
+
+  @override
+  String numberOfHomework(int numberOfHomework) {
+    return 'Number of homework $numberOfHomework ';
+  }
+
+  @override
+  String get personalStudyNotes => 'Personal Study Notes';
+
+  @override
+  String attendanceScore(int attendanceScore) {
+    return ' Attendance Score$attendanceScore';
+  }
+
+  @override
+  String numberOfAnnouncements(int numberOfAnnouncements) {
+    return 'Number of announcements $numberOfAnnouncements ';
+  }
+
+  @override
+  String get accountSettings => 'Account Settings';
+
+  @override
+  String get setting => 'Settings';
+
+  @override
+  String get logout => 'Logout';
+
+  @override
+  String get classLabel => 'Class';
+
+  @override
+  String get lab => 'Lab';
+
+  @override
+  String get todaysClasses => 'Today\'s Classes';
+
+  @override
+  String get noClassesToday => 'No classes scheduled for this day';
+
+  @override
+  String get noLeaderboardData => 'No leaderboard data yet';
+
+  @override
+  String get attendance => 'Attendance';
+
+  @override
+  String get pts => 'pts';
+
+  @override
+  String get newNote => 'New';
+
+  @override
+  String get editNote => 'Edit Note';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get noteTitleHint => 'Note title';
+
+  @override
+  String get noteContentHint => 'Start writing...';
+
+  @override
+  String get noteTitleRequired => 'Please enter a title for your note';
+
+  @override
+  String get overallAttendance => 'Overall Attendance';
+
+  @override
+  String get present => 'Present';
+
+  @override
+  String get absent => 'Absent';
+
+  @override
+  String get late => 'Late';
+
+  @override
+  String get monthlyTrend => 'Monthly Trend';
+
+  @override
+  String get searchNotes => 'Search notes...';
+
+  @override
+  String get folders => 'Folders';
+
+  @override
+  String get recentNotes => 'Recent Notes';
+
+  @override
+  String get settings => 'Settings';
+
+  @override
+  String get editProfile => 'Edit Profile';
+
+  @override
+  String get preferences => 'Preferences';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get darkMode => 'Dark Mode';
+
+  @override
+  String get pushNotifications => 'Push Notifications';
+
+  @override
+  String get emailNotifications => 'Email Notifications';
+
+  @override
+  String get account => 'Account';
+
+  @override
+  String get changePassword => 'Change Password';
+
+  @override
+  String get privacyPolicy => 'Privacy Policy';
+
+  @override
+  String get termsOfService => 'Terms of Service';
+
+  @override
+  String get support => 'Support';
+
+  @override
+  String get helpCenter => 'Help Center';
+
+  @override
+  String get contactSupport => 'Contact Support';
+
+  @override
+  String get about => 'About';
+
+  @override
+  String get logoutConfirmation => 'Are you sure you want to log out?';
+
+  @override
+  String get nameRequired => 'Please enter your name';
+
+  @override
+  String get currentPassword => 'Current Password';
+
+  @override
+  String get newPassword => 'New Password';
+
+  @override
+  String get confirmNewPassword => 'Confirm New Password';
+
+  @override
+  String get updatePassword => 'Update Password';
+
+  @override
+  String get fieldRequired => 'This field is required';
+
+  @override
+  String get passwordTooShort => 'Password must be at least 8 characters';
+
+  @override
+  String get passwordsDoNotMatch => 'Passwords do not match';
+
+  @override
+  String get passwordChangedSuccessfully => 'Password changed successfully';
+
+  @override
+  String get searchFaq => 'Search FAQs...';
+
+  @override
+  String get noFaqFound => 'No results found';
+
+  @override
+  String get howCanWeHelp => 'How can we help you today?';
+
+  @override
+  String get liveChat => 'Live Chat';
+
+  @override
+  String get liveChatSubtitle => 'Chat with our support team';
+
+  @override
+  String get emailSupport => 'Email Support';
+
+  @override
+  String get noNotesFound => 'No notes found';
+
+  @override
+  String notesCount(num count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count notes',
+      one: '1 note',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String rankAndBadgesSummary(Object count, Object rank) {
+    return 'Rank #$rank · $count badges earned';
+  }
 
   @override
   String get questions => 'Questions';

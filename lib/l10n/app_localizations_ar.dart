@@ -39,7 +39,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get forgotPasswordTitle => 'نسيت كلمة المرور';
 
   @override
-  String get forgotPasswordDescription => 'أدخل بريدك الإلكتروني وسنرسل لك رابط إعادة التعيين.';
+  String get forgotPasswordDescription =>
+      'أدخل بريدك الإلكتروني وسنرسل لك رابط إعادة التعيين.';
 
   @override
   String get enterYourEmail => 'أدخل بريدك الإلكتروني';
@@ -183,7 +184,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get noMaterialsFound => 'لم يتم العثور على مواد';
 
   @override
-  String get personalNotesHint => 'ستظهر ملاحظاتك الشخصية هنا. أضف ملاحظات أثناء مشاهدة الفيديو.';
+  String get personalNotesHint =>
+      'ستظهر ملاحظاتك الشخصية هنا. أضف ملاحظات أثناء مشاهدة الفيديو.';
 
   @override
   String get teacherNotes => 'ملاحظات المعلم';
@@ -273,10 +275,22 @@ class AppLocalizationsAr extends AppLocalizations {
   String get next => 'التالي';
 
   @override
+  String get rank => 'الترتيب';
+
+  @override
+  String get points => 'النقاط';
+
+  @override
+  String get leaderboard => 'لوحة المتصدرين';
+
+  @override
   String get done => 'تم';
 
   @override
   String get cancel => 'إلغاء';
+
+  @override
+  String get achievements => 'الإنجازات';
 
   @override
   String get exit => 'خروج';
@@ -293,7 +307,10 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String currentQuestionProgress(Object currentQuestion, Object totalQuestions) {
+  String currentQuestionProgress(
+    Object currentQuestion,
+    Object totalQuestions,
+  ) {
     return 'السؤال $currentQuestion من $totalQuestions';
   }
 
@@ -339,7 +356,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get instructionDuration => 'مدة الاختبار 90 دقيقة.';
 
   @override
-  String get instructionStableConnection => 'تأكد من استقرار الاتصال بالإنترنت.';
+  String get instructionStableConnection =>
+      'تأكد من استقرار الاتصال بالإنترنت.';
 
   @override
   String get instructionAcademicHonesty => 'يتم فرض الأمانة الأكاديمية بصرامة.';
@@ -358,6 +376,221 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get yesterday => 'أمس';
+
+  @override
+  String numberOfClassToday(int numberOfClasses) {
+    return 'عدد الحصص اليوم $numberOfClasses ';
+  }
+
+  @override
+  String numberOfAchievements(int numberOfAchievements) {
+    return 'عدد الإنجازات $numberOfAchievements';
+  }
+
+  @override
+  String numberOfHomework(int numberOfHomework) {
+    return 'عدد الواجبات المنزلية $numberOfHomework';
+  }
+
+  @override
+  String get personalStudyNotes => 'ملاحظات الدراسة الشخصية';
+
+  @override
+  String attendanceScore(int attendanceScore) {
+    return 'درجة الحضور $attendanceScore';
+  }
+
+  @override
+  String numberOfAnnouncements(int numberOfAnnouncements) {
+    return 'عدد الإعلانات $numberOfAnnouncements';
+  }
+
+  @override
+  String get accountSettings => 'إعدادات الحساب';
+
+  @override
+  String get setting => 'الإعدادات';
+
+  @override
+  String get logout => 'تسجيل الخروج';
+
+  @override
+  String get classLabel => 'حصة';
+
+  @override
+  String get lab => 'معمل';
+
+  @override
+  String get todaysClasses => 'حصص اليوم';
+
+  @override
+  String get noClassesToday => 'لا توجد حصص مجدولة لهذا اليوم';
+
+  @override
+  String get noLeaderboardData => 'لا توجد بيانات للمتصدرين بعد';
+
+  @override
+  String get attendance => 'الحضور';
+
+  @override
+  String get pts => 'نقطة';
+
+  @override
+  String get newNote => 'جديد';
+
+  @override
+  String get editNote => 'تعديل الملاحظة';
+
+  @override
+  String get save => 'حفظ';
+
+  @override
+  String get noteTitleHint => 'عنوان الملاحظة';
+
+  @override
+  String get noteContentHint => 'ابدأ الكتابة...';
+
+  @override
+  String get noteTitleRequired => 'يرجى إدخال عنوان للملاحظة';
+
+  @override
+  String get overallAttendance => 'نسبة الحضور الإجمالية';
+
+  @override
+  String get present => 'حاضر';
+
+  @override
+  String get absent => 'غائب';
+
+  @override
+  String get late => 'متأخر';
+
+  @override
+  String get monthlyTrend => 'الاتجاه الشهري';
+
+  @override
+  String get searchNotes => 'ابحث في الملاحظات...';
+
+  @override
+  String get folders => 'المجلدات';
+
+  @override
+  String get recentNotes => 'الملاحظات الأخيرة';
+
+  @override
+  String get settings => 'الإعدادات';
+
+  @override
+  String get editProfile => 'تعديل الملف الشخصي';
+
+  @override
+  String get preferences => 'التفضيلات';
+
+  @override
+  String get language => 'اللغة';
+
+  @override
+  String get darkMode => 'الوضع الداكن';
+
+  @override
+  String get pushNotifications => 'الإشعارات الفورية';
+
+  @override
+  String get emailNotifications => 'إشعارات البريد الإلكتروني';
+
+  @override
+  String get account => 'الحساب';
+
+  @override
+  String get changePassword => 'تغيير كلمة المرور';
+
+  @override
+  String get privacyPolicy => 'سياسة الخصوصية';
+
+  @override
+  String get termsOfService => 'شروط الخدمة';
+
+  @override
+  String get support => 'الدعم';
+
+  @override
+  String get helpCenter => 'مركز المساعدة';
+
+  @override
+  String get contactSupport => 'تواصل مع الدعم';
+
+  @override
+  String get about => 'حول التطبيق';
+
+  @override
+  String get logoutConfirmation => 'هل أنت متأكد من تسجيل الخروج؟';
+
+  @override
+  String get nameRequired => 'يرجى إدخال اسمك';
+
+  @override
+  String get currentPassword => 'كلمة المرور الحالية';
+
+  @override
+  String get newPassword => 'كلمة المرور الجديدة';
+
+  @override
+  String get confirmNewPassword => 'تأكيد كلمة المرور الجديدة';
+
+  @override
+  String get updatePassword => 'تحديث كلمة المرور';
+
+  @override
+  String get fieldRequired => 'هذا الحقل مطلوب';
+
+  @override
+  String get passwordTooShort => 'يجب أن تتكون كلمة المرور من 8 أحرف على الأقل';
+
+  @override
+  String get passwordsDoNotMatch => 'كلمتا المرور غير متطابقتين';
+
+  @override
+  String get passwordChangedSuccessfully => 'تم تغيير كلمة المرور بنجاح';
+
+  @override
+  String get searchFaq => 'ابحث في الأسئلة الشائعة...';
+
+  @override
+  String get noFaqFound => 'لم يتم العثور على نتائج';
+
+  @override
+  String get howCanWeHelp => 'كيف يمكننا مساعدتك اليوم؟';
+
+  @override
+  String get liveChat => 'محادثة مباشرة';
+
+  @override
+  String get liveChatSubtitle => 'تحدث مع فريق الدعم لدينا';
+
+  @override
+  String get emailSupport => 'الدعم عبر البريد الإلكتروني';
+
+  @override
+  String get noNotesFound => 'لا توجد ملاحظات';
+
+  @override
+  String notesCount(num count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count ملاحظة',
+      many: '$count ملاحظة',
+      few: '$count ملاحظات',
+      two: 'ملاحظتان',
+      one: 'ملاحظة واحدة',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String rankAndBadgesSummary(Object count, Object rank) {
+    return 'الترتيب #$rank · $count شارة مكتسبة';
+  }
 
   @override
   String get questions => 'الأسئلة';

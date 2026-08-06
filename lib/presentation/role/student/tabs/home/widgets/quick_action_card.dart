@@ -25,6 +25,7 @@ class QuickActionCard extends StatelessWidget {
       onTap: onTap,
       child: Card(
         color: ColorManager.white,
+        elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
           side: BorderSide(
