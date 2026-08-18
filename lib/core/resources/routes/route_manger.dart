@@ -1,4 +1,5 @@
 import 'package:edura/core/model/exam_attempt_arguments.dart';
+import 'package:edura/core/model/student_detail_model.dart';
 import 'package:edura/presentation/role/student/student_main_layout.dart';
 import 'package:edura/presentation/role/student/tabs/exams/exam_details/exam_details.dart';
 import 'package:edura/presentation/role/student/tabs/exams/exam_details/section/exam_attempt_screen.dart';
@@ -16,6 +17,12 @@ import 'package:edura/presentation/role/student/tabs/profile/section/settings/se
 import 'package:edura/presentation/role/student/tabs/profile/section/settings/sections/help_faq_screen.dart';
 import 'package:edura/presentation/role/student/tabs/profile/section/settings/settings_screen.dart';
 import 'package:edura/presentation/role/student/tabs/profile/section/settings/sections/webview_screen.dart';
+import 'package:edura/presentation/role/teacher/tabs/dashboard/section/teacher_notification.dart';
+import 'package:edura/presentation/role/teacher/tabs/students/section/student_details.dart';
+import 'package:edura/presentation/role/teacher/tabs/students/students.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_chats/teacher_chats.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/teacher_lessons.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_profile/teacher_profile.dart';
 import 'package:flutter/material.dart';
 
 import '../../../presentation/auth/forget_password/forget_password.dart';
@@ -23,6 +30,11 @@ import '../../../presentation/auth/login/login.dart';
 import '../../../presentation/auth/register/register.dart';
 import '../../../presentation/role/student/tabs/profile/section/attendance/attendance_screen.dart';
 import '../../../presentation/role/student/tabs/profile/section/notes/notes_screen.dart';
+import '../../../presentation/role/teacher/tabs/dashboard/section/analytics_screen.dart';
+import '../../../presentation/role/teacher/tabs/dashboard/section/attendance/take_attendance_screen.dart';
+import '../../../presentation/role/teacher/tabs/dashboard/section/exams/question_builder_screen.dart';
+import '../../../presentation/role/teacher/tabs/teacher_lessons/section/add_new_lesson_screen.dart';
+import '../../../presentation/role/teacher/teacher_main_layout.dart';
 import '../../../presentation/splash_screen/splash_screen.dart';
 import '../../model/edit_profile_arguments.dart';
 import '../../model/homework_model.dart';
@@ -55,6 +67,18 @@ class RouteManger {
   static const String getSupportScreen = '/getSupportScreen';
   static const String helpAndFaqScreen = '/helpAndFaqScreen';
   static const String settingsScreen = '/settingsScreen';
+  static const String teacherMainLayoutRoute = '/teacherMainLayout';
+  static const String teacherNotificationScreen = '/teacherNotificationScreen';
+  static const String teacherStudentsScreen = '/teacherStudentsScreen';
+  static const String teacherLessonsScreen = '/teacherLessonsScreen';
+  static const String teacherChatsScreen = '/teacherChatsScreen';
+  static const String takeAttendanceScreen = '/takeAttendanceScreen';
+
+  static const String teacherProfileScreen = '/teacherProfileScreen';
+  static const String analyticsScreen = '/analyticsScreen';
+  static const String addNewLessonScreen = '/addNewLessonScreen';
+  static const String questionBuilderScreen = '/questionBuilderScreen';
+  static const String studentDetailsScreen = '/studentDetailsScreen';
 
   static Route router(RouteSettings settings) {
     switch (settings.name) {
@@ -100,6 +124,19 @@ class RouteManger {
           builder: (context) => StudentMainLayout(initialIndex: initialIndex),
         );
 
+      case studentDetailsScreen:
+        final student = settings.arguments as StudentDetailsModel;
+        return MaterialPageRoute(builder: (context) => StudentDetails(
+          student: student,
+        ));
+
+      case teacherMainLayoutRoute:
+        final initialIndex = settings.arguments as int? ?? 0;
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => TeacherMainLayout(initialIndex: initialIndex),
+        );
+
       case studentNotificationScreen:
         return MaterialPageRoute(
           builder: (context) => const StudentNotificationScreen(),
@@ -121,15 +158,26 @@ class RouteManger {
               ExamAttemptScreen(exam: args.exam, questions: args.questions),
         );
 
+      case questionBuilderScreen:
+        return MaterialPageRoute(
+          builder: (context) => const QuestionBuilderScreen(),
+        );
+
       case announcementsScreen:
         return MaterialPageRoute(builder: (context) => AnnouncementsScreen());
-
+      case addNewLessonScreen:
+        return MaterialPageRoute(
+          builder: (context) => const AddNewLessonScreen(),
+        );
       case examDetailsScreen:
         return MaterialPageRoute(
           builder: (context) => ExamDetails(),
           settings: settings,
         );
-
+      case takeAttendanceScreen:
+        return MaterialPageRoute(
+          builder: (context) => const TakeAttendanceScreen(),
+        );
       case scheduleScreen:
         return MaterialPageRoute(builder: (context) => ScheduleScreen());
 
@@ -143,6 +191,15 @@ class RouteManger {
           builder: (context) => const AttendanceScreen(),
         );
 
+      case analyticsScreen:
+        return MaterialPageRoute(builder: (context) => const AnalyticsScreen());
+
+      case teacherChatsScreen:
+        return MaterialPageRoute(builder: (context) => TeacherChats());
+
+      case teacherLessonsScreen:
+        return MaterialPageRoute(builder: (context) => TeacherLessons());
+
       case changePasswordScreen:
         return MaterialPageRoute(builder: (context) => ChangePasswordScreen());
       case editProfileScreen:
@@ -155,6 +212,9 @@ class RouteManger {
             currentEmail: currentEmail,
           ),
         );
+
+      case teacherNotificationScreen:
+        return MaterialPageRoute(builder: (context) => TeacherNotification());
 
       case webViewScreen:
         final args = settings.arguments as WebViewArguments;
@@ -170,8 +230,14 @@ class RouteManger {
       case getSupportScreen:
         return MaterialPageRoute(builder: (context) => ContactSupportScreen());
 
+      case teacherStudentsScreen:
+        return MaterialPageRoute(builder: (context) => Students());
+
       case settingsScreen:
         return MaterialPageRoute(builder: (context) => SettingsScreen());
+
+      case teacherProfileScreen:
+        return MaterialPageRoute(builder: (context) => TeacherProfile());
       default:
         return MaterialPageRoute(
           builder: (context) {

@@ -33,7 +33,15 @@ class StudentHome extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              HomeHeader(userName: "Ziyad Sobhy"),
+              HomeHeader(
+                userName: "Ziyad Sobhy",
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    RouteManger.studentNotificationScreen,
+                  );
+                },
+              ),
               const SizedBox(height: 8),
               Row(
                 children: [

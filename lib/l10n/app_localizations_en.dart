@@ -530,6 +530,373 @@ class AppLocalizationsEn extends AppLocalizations {
   String get logoutConfirmation => 'Are you sure you want to log out?';
 
   @override
+  String get sendNotification => 'Send Notification';
+
+  @override
+  String get audience => 'Audience';
+
+  @override
+  String get allStudents => 'All Students';
+
+  @override
+  String get activeOnly => 'Active Only';
+
+  @override
+  String get individual => 'Individual';
+
+  @override
+  String get selectStudents => 'Select students';
+
+  @override
+  String get notificationTitle => 'Notification Title';
+
+  @override
+  String get notificationTitleHint => 'e.g. Updated Class Schedule';
+
+  @override
+  String get messageBody => 'Message Body';
+
+  @override
+  String get messageBodyHint => 'Write your announcement...';
+
+  @override
+  String get pinAnnouncement => 'Pin Announcement';
+
+  @override
+  String get pinAnnouncementSubtitle => 'Always visible at the top';
+
+  @override
+  String get sendNotificationButton => 'Send Notification';
+
+  @override
+  String get notificationSentSuccessfully => 'Notification sent successfully';
+
+  @override
+  String get totalOfStudents => 'Total of students';
+
+  @override
+  String totalNumberOfStudents(int totalNumberOfStudents) {
+    return 'Total number of students $totalNumberOfStudents ';
+  }
+
+  @override
+  String get activeStudents => 'Active Students';
+
+  @override
+  String totalNumberOfActiveStudents(int totalNumberOfActiveStudents) {
+    return 'Total number of active students $totalNumberOfActiveStudents ';
+  }
+
+  @override
+  String get revenue => 'Revenue';
+
+  @override
+  String totalRevenue(int totalRevenue) {
+    return 'Total Revenue $totalRevenue ';
+  }
+
+  @override
+  String totalNumberOfTodaysClasses(int totalNumberOfTodaysClasses) {
+    return 'Total number of today\'s classes $totalNumberOfTodaysClasses ';
+  }
+
+  @override
+  String get studentGrowth => 'Student Growth';
+
+  @override
+  String get last7Weeks => 'Last 7 weeks';
+
+  @override
+  String get viewAnalytics => 'View Analytics';
+
+  @override
+  String get analytics => 'Analytics';
+
+  @override
+  String get week => 'Week';
+
+  @override
+  String get month => 'Month';
+
+  @override
+  String get year => 'Year';
+
+  @override
+  String get totalStudents => 'Total Students';
+
+  @override
+  String get avgScore => 'Avg Score';
+
+  @override
+  String get active => 'Active';
+
+  @override
+  String get weeklyEnrollments => 'Weekly enrollments';
+
+  @override
+  String get monthlyRevenue => 'Monthly Revenue';
+
+  @override
+  String get last4Months => 'Last 4 months';
+
+  @override
+  String get lessonCompletion => 'Lesson Completion';
+
+  @override
+  String get attendanceRate => 'Attendance Rate';
+
+  @override
+  String get dailyAttendance => 'Daily Attendance';
+
+  @override
+  String get examPerformance => 'Exam Performance';
+
+  @override
+  String get avg => 'avg';
+
+  @override
+  String get january => 'January';
+
+  @override
+  String get february => 'February';
+
+  @override
+  String get march => 'March';
+
+  @override
+  String get april => 'April';
+
+  @override
+  String get may => 'May';
+
+  @override
+  String get june => 'June';
+
+  @override
+  String get july => 'July';
+
+  @override
+  String get august => 'August';
+
+  @override
+  String get september => 'September';
+
+  @override
+  String get october => 'October';
+
+  @override
+  String get november => 'November';
+
+  @override
+  String get december => 'December';
+
+  @override
+  String get monday => 'Monday';
+
+  @override
+  String get tuesday => 'Tuesday';
+
+  @override
+  String get wednesday => 'Wednesday';
+
+  @override
+  String get thursday => 'Thursday';
+
+  @override
+  String get friday => 'Friday';
+
+  @override
+  String get saturday => 'Saturday';
+
+  @override
+  String get sunday => 'Sunday';
+
+  @override
+  String get addLesson => 'Add Lesson';
+
+  @override
+  String get createExam => 'Create Exam';
+
+  @override
+  String get notify => 'Notify';
+
+  @override
+  String get addNewLesson => 'Add New Lesson';
+
+  @override
+  String get lessonTitle => 'Lesson Title';
+
+  @override
+  String get lessonTitleHint => 'e.g. Introduction to Calculus';
+
+  @override
+  String get duration => 'Duration';
+
+  @override
+  String get durationHint => 'e.g. 45 min';
+
+  @override
+  String get subject => 'Subject';
+
+  @override
+  String get description => 'Description';
+
+  @override
+  String get descriptionHint => 'What will students learn in this lesson?';
+
+  @override
+  String get premiumContent => 'Premium Content';
+
+  @override
+  String get premiumContentSubtitle => 'Only paid subscribers can access';
+
+  @override
+  String get nextUploadVideo => 'Next: Upload Video';
+
+  @override
+  String get uploadVideo => 'Upload Video';
+
+  @override
+  String get uploadVideoSubtitle => 'MP4, MOV · Max 2GB';
+
+  @override
+  String get chooseFile => 'Choose File';
+
+  @override
+  String get processingTime => 'Processing Time';
+
+  @override
+  String get processingTimeSubtitle =>
+      'Videos are transcoded for all device qualities. Usually takes 5-20 minutes.';
+
+  @override
+  String get nextAddPdfs => 'Next: Add PDFs';
+
+  @override
+  String get uploadPdf => 'Upload PDF';
+
+  @override
+  String get uploadPdfSubtitle => 'PDF · Max 50MB';
+
+  @override
+  String get details => 'Details';
+
+  @override
+  String get video => 'Video';
+
+  @override
+  String get pdfs => 'PDFs';
+
+  @override
+  String get questionBuilder => 'Question Builder';
+
+  @override
+  String questionNumber(int number) {
+    return 'Question $number';
+  }
+
+  @override
+  String get enterYourQuestion => 'Enter your question...';
+
+  @override
+  String get optionsSelectCorrectAnswer => 'OPTIONS (select correct answer)';
+
+  @override
+  String optionHint(String label) {
+    return 'Option $label...';
+  }
+
+  @override
+  String get addQuestion => 'Add Question';
+
+  @override
+  String publishExam(int count) {
+    return 'Publish Exam ($count Questions)';
+  }
+
+  @override
+  String get completeAllQuestionsBeforePublishing =>
+      'Please complete all questions and select correct answers before publishing';
+
+  @override
+  String get examPublishedSuccessfully => 'Exam published successfully';
+
+  @override
+  String saveAttendanceCount(int count) {
+    return 'Save Attendance ($count students)';
+  }
+
+  @override
+  String get attendanceSavedSuccessfully => 'Attendance saved successfully';
+
+  @override
+  String get publishLesson => 'Publish Lesson';
+
+  @override
+  String get students => 'Students';
+
+  @override
+  String get searchStudents => 'Search students...';
+
+  @override
+  String get block => 'Block';
+
+  @override
+  String get all => 'All';
+
+  @override
+  String get inactive => 'Inactive';
+
+  @override
+  String get blocked => 'Blocked';
+
+  @override
+  String get studentDetails => 'Student Details';
+
+  @override
+  String get lessonProgress => 'Lesson Progress';
+
+  @override
+  String get contactInfo => 'Contact Info';
+
+  @override
+  String get phone => 'Phone';
+
+  @override
+  String get message => 'Message';
+
+  @override
+  String get recentActivities => 'Recent Activities';
+
+  @override
+  String get whatsappNotInstalled => 'WhatsApp is not installed on this device';
+
+  @override
+  String get alertParent => 'Alert Parent';
+
+  @override
+  String get thisMonth => 'This Month';
+
+  @override
+  String examAvgAndPassRate(String avg, String passRate) {
+    return 'Avg: $avg% · Pass rate: $passRate%';
+  }
+
+  @override
+  String get saveAsDraft => 'Save as Draft';
+
+  @override
+  String get lessonPublishedSuccessfully => 'Lesson published successfully';
+
+  @override
+  String get lessonSavedAsDraft => 'Lesson saved as draft';
+
+  @override
+  String passRate(String rate) {
+    return 'Pass rate: $rate%';
+  }
+
+  @override
   String get nameRequired => 'Please enter your name';
 
   @override

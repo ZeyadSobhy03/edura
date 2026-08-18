@@ -134,8 +134,7 @@
         "type": "int"
       }
     }
-    },
-
+  },
   "numberOfHomework": "Number of homework {numberOfHomework} ",
   "@numberOfHomework": {
     "placeholders": {
@@ -145,7 +144,7 @@
     }
   },
   "personalStudyNotes": "Personal Study Notes",
-  "attendanceScore":" Attendance Score{attendanceScore}",
+  "attendanceScore": " Attendance Score{attendanceScore}",
   "numberOfAnnouncements": "Number of announcements {numberOfAnnouncements} ",
   "@numberOfAnnouncements": {
     "placeholders": {
@@ -185,7 +184,6 @@
   "searchNotes": "Search notes...",
   "folders": "Folders",
   "recentNotes": "Recent Notes",
-
   "settings": "Settings",
   "editProfile": "Edit Profile",
   "preferences": "Preferences",
@@ -202,6 +200,176 @@
   "contactSupport": "Contact Support",
   "about": "About",
   "logoutConfirmation": "Are you sure you want to log out?",
+  "sendNotification": "Send Notification",
+  "audience": "Audience",
+  "allStudents": "All Students",
+  "activeOnly": "Active Only",
+  "individual": "Individual",
+  "selectStudents": "Select students",
+  "notificationTitle": "Notification Title",
+  "notificationTitleHint": "e.g. Updated Class Schedule",
+  "messageBody": "Message Body",
+  "messageBodyHint": "Write your announcement...",
+  "pinAnnouncement": "Pin Announcement",
+  "pinAnnouncementSubtitle": "Always visible at the top",
+  "sendNotificationButton": "Send Notification",
+  "notificationSentSuccessfully": "Notification sent successfully",
+  "totalOfStudents": "Total of students",
+  "totalNumberOfStudents": "Total number of students {totalNumberOfStudents} ",
+  "@totalNumberOfStudents": {
+    "placeholders": {
+      "totalNumberOfStudents": {
+        "type": "int"
+      }
+    }
+  },
+  "activeStudents": "Active Students",
+  "totalNumberOfActiveStudents": "Total number of active students {totalNumberOfActiveStudents} ",
+  "@totalNumberOfActiveStudents": {
+    "placeholders": {
+      "totalNumberOfActiveStudents": {
+        "type": "int"
+      }
+    }
+  },
+  "revenue": "Revenue",
+  "totalRevenue": "Total Revenue {totalRevenue} ",
+  "@totalRevenue": {
+    "placeholders": {
+      "totalRevenue": {
+        "type": "int"
+      }
+    }
+  },
+  "totalNumberOfTodaysClasses": "Total number of today's classes {totalNumberOfTodaysClasses} ",
+  "@totalNumberOfTodaysClasses": {
+    "placeholders": {
+      "totalNumberOfTodaysClasses": {
+        "type": "int"
+      }
+    }
+  },
+  "studentGrowth": "Student Growth",
+  "last7Weeks": "Last 7 weeks",
+  "viewAnalytics": "View Analytics",
+  "analytics": "Analytics",
+  "week": "Week",
+  "month": "Month",
+  "year": "Year",
+  "totalStudents": "Total Students",
+  "avgScore": "Avg Score",
+  "active": "Active",
+  "weeklyEnrollments": "Weekly enrollments",
+  "monthlyRevenue": "Monthly Revenue",
+  "last4Months": "Last 4 months",
+  "lessonCompletion": "Lesson Completion",
+  "attendanceRate": "Attendance Rate",
+  "dailyAttendance": "Daily Attendance",
+  "examPerformance": "Exam Performance",
+  "avg": "avg",
+  "@passRate": {
+    "placeholders": {
+      "rate": {
+        "type": "String"
+      }
+    }
+  },
+  "january": "January",
+  "february": "February",
+  "march": "March",
+  "april": "April",
+  "may": "May",
+  "june": "June",
+  "july": "July",
+  "august": "August",
+  "september": "September",
+  "october": "October",
+  "november": "November",
+  "december": "December",
+  "monday": "Monday",
+  "tuesday": "Tuesday",
+  "wednesday": "Wednesday",
+  "thursday": "Thursday",
+  "friday": "Friday",
+  "saturday": "Saturday",
+  "sunday": "Sunday",
+  "addLesson": "Add Lesson",
+  "createExam": "Create Exam",
+  "notify": "Notify",
+
+  "addNewLesson": "Add New Lesson",
+  "lessonTitle": "Lesson Title",
+  "lessonTitleHint": "e.g. Introduction to Calculus",
+  "duration": "Duration",
+  "durationHint": "e.g. 45 min",
+  "subject": "Subject",
+  "description": "Description",
+  "descriptionHint": "What will students learn in this lesson?",
+  "premiumContent": "Premium Content",
+  "premiumContentSubtitle": "Only paid subscribers can access",
+  "nextUploadVideo": "Next: Upload Video",
+  "uploadVideo": "Upload Video",
+  "uploadVideoSubtitle": "MP4, MOV · Max 2GB",
+  "chooseFile": "Choose File",
+  "processingTime": "Processing Time",
+  "processingTimeSubtitle": "Videos are transcoded for all device qualities. Usually takes 5-20 minutes.",
+  "nextAddPdfs": "Next: Add PDFs",
+  "uploadPdf": "Upload PDF",
+  "uploadPdfSubtitle": "PDF · Max 50MB",
+  "details": "Details",
+  "video": "Video",
+    "pdfs": "PDFs",
+  "questionBuilder": "Question Builder",
+  "questionNumber": "Question {number}",
+  "enterYourQuestion": "Enter your question...",
+  "optionsSelectCorrectAnswer": "OPTIONS (select correct answer)",
+  "optionHint": "Option {label}...",
+  "addQuestion": "Add Question",
+  "publishExam": "Publish Exam ({count} Questions)",
+  "completeAllQuestionsBeforePublishing": "Please complete all questions and select correct answers before publishing",
+  "examPublishedSuccessfully": "Exam published successfully",
+  "@questionNumber": {
+    "placeholders": { "number": { "type": "int" } }
+  },
+  "@optionHint": {
+    "placeholders": { "label": { "type": "String" } }
+  },
+  "@publishExam": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "saveAttendanceCount": "Save Attendance ({count} students)",
+  "attendanceSavedSuccessfully": "Attendance saved successfully",
+  "@saveAttendanceCount": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "publishLesson": "Publish Lesson",
+  "students": "Students",
+  "searchStudents": "Search students...",
+  "block": "Block",
+  "all": "All",
+  "inactive": "Inactive",
+  "blocked": "Blocked",
+  "studentDetails": "Student Details",
+  "lessonProgress": "Lesson Progress",
+  "contactInfo": "Contact Info",
+  "phone": "Phone",
+  "message": "Message",
+  "recentActivities": "Recent Activities",
+  "whatsappNotInstalled": "WhatsApp is not installed on this device",
+  "alertParent": "Alert Parent",
+  "thisMonth": "This Month",
+  "examAvgAndPassRate": "Avg: {avg}% · Pass rate: {passRate}%",
+  "@examAvgAndPassRate": {
+    "placeholders": {
+      "avg": { "type": "String" },
+      "passRate": { "type": "String" }
+    }
+  },
+  "saveAsDraft": "Save as Draft",
+  "lessonPublishedSuccessfully": "Lesson published successfully",
+  "lessonSavedAsDraft": "Lesson saved as draft",
+
+  "passRate": "Pass rate: {rate}%",
   "nameRequired": "Please enter your name",
   "currentPassword": "Current Password",
   "newPassword": "New Password",

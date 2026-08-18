@@ -15,7 +15,7 @@ class CustomTextFormedField extends StatelessWidget {
     this.isObscure = false,
     this.suffix,
     this.onChanged,
-    this.prefix,
+    this.prefix, this.minLines= 1, this.fillColor = ColorManager.white,
   });
 
   final String hintText;
@@ -26,6 +26,8 @@ class CustomTextFormedField extends StatelessWidget {
   final String? Function(String?)? validator;
   final bool isObscure;
   final Widget? prefix;
+  final int? minLines;
+  final Color? fillColor;
 
   final Widget? suffix;
   final void Function(String)? onChanged;
@@ -33,6 +35,7 @@ class CustomTextFormedField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      minLines: minLines,
       textInputAction: textInputAction,
       onChanged: onChanged,
       style: TextStyle(fontSize: 14.sp, color: ColorManager.black),
@@ -65,7 +68,7 @@ class CustomTextFormedField extends StatelessWidget {
           borderRadius: BorderRadius.circular(12.0),
           borderSide: BorderSide(color: ColorManager.red),
         ),
-        fillColor: ColorManager.white,
+        fillColor:fillColor,
         errorMaxLines: 2,
 
         hintText: hintText,

@@ -1,14 +1,14 @@
 import 'package:edura/core/extensions/date_ex.dart';
 import 'package:edura/core/resources/colors/color_manger.dart';
-import 'package:edura/core/resources/routes/route_manger.dart';
 import 'package:edura/core/widgets/custom_text.dart';
 import 'package:edura/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class HomeHeader extends StatelessWidget {
-  const HomeHeader({super.key, required this.userName});
+  const HomeHeader({super.key, required this.userName, this.onTap});
 
   final String userName;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -53,12 +53,7 @@ class HomeHeader extends StatelessWidget {
           radius: 20,
           backgroundColor: ColorManager.gray.withValues(alpha: 0.2),
           child: GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(
-                context,
-                RouteManger.studentNotificationScreen,
-              );
-            },
+            onTap: onTap,
             child: Icon(
               Icons.notifications_on_outlined,
               color: ColorManager.black,

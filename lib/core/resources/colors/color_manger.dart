@@ -16,7 +16,8 @@ class ColorManager {
   // Color(0xFF059669)
   static const Color green = Color(0xFF10B981);
   static const Color orange = Color(0xFFF97316);
-
+// gold
+  static const Color gold = Color(0xFFF59E0B);
   static const Color secondary = Color(0xFF60A5FA);
   static const Color accent = Color(0xFF38BDF8);
   static const Color white = Color(0xFFFFFFFF);

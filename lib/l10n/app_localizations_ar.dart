@@ -526,6 +526,373 @@ class AppLocalizationsAr extends AppLocalizations {
   String get logoutConfirmation => 'هل أنت متأكد من تسجيل الخروج؟';
 
   @override
+  String get sendNotification => 'إرسال إشعار';
+
+  @override
+  String get audience => 'الجمهور';
+
+  @override
+  String get allStudents => 'جميع الطلاب';
+
+  @override
+  String get activeOnly => 'النشطون فقط';
+
+  @override
+  String get individual => 'فردي';
+
+  @override
+  String get selectStudents => 'اختر الطلاب';
+
+  @override
+  String get notificationTitle => 'عنوان الإشعار';
+
+  @override
+  String get notificationTitleHint => 'مثال: تحديث جدول الحصص';
+
+  @override
+  String get messageBody => 'نص الرسالة';
+
+  @override
+  String get messageBodyHint => 'اكتب إعلانك...';
+
+  @override
+  String get pinAnnouncement => 'تثبيت الإعلان';
+
+  @override
+  String get pinAnnouncementSubtitle => 'يظهر دائمًا في الأعلى';
+
+  @override
+  String get sendNotificationButton => 'إرسال الإشعار';
+
+  @override
+  String get notificationSentSuccessfully => 'تم إرسال الإشعار بنجاح';
+
+  @override
+  String get totalOfStudents => 'إجمالي الطلاب';
+
+  @override
+  String totalNumberOfStudents(int totalNumberOfStudents) {
+    return 'إجمالي عدد الطلاب $totalNumberOfStudents ';
+  }
+
+  @override
+  String get activeStudents => 'الطلاب النشطون';
+
+  @override
+  String totalNumberOfActiveStudents(int totalNumberOfActiveStudents) {
+    return 'إجمالي عدد الطلاب النشطين $totalNumberOfActiveStudents ';
+  }
+
+  @override
+  String get revenue => 'الإيرادات';
+
+  @override
+  String totalRevenue(int totalRevenue) {
+    return 'إجمالي الإيرادات $totalRevenue ';
+  }
+
+  @override
+  String totalNumberOfTodaysClasses(int totalNumberOfTodaysClasses) {
+    return 'إجمالي عدد حصص اليوم $totalNumberOfTodaysClasses ';
+  }
+
+  @override
+  String get studentGrowth => 'نمو الطلاب';
+
+  @override
+  String get last7Weeks => 'آخر 7 أسابيع';
+
+  @override
+  String get viewAnalytics => 'عرض التحليلات';
+
+  @override
+  String get analytics => 'التحليلات';
+
+  @override
+  String get week => 'أسبوع';
+
+  @override
+  String get month => 'شهر';
+
+  @override
+  String get year => 'سنة';
+
+  @override
+  String get totalStudents => 'إجمالي الطلاب';
+
+  @override
+  String get avgScore => 'متوسط الدرجات';
+
+  @override
+  String get active => 'نشط';
+
+  @override
+  String get weeklyEnrollments => 'التسجيلات الأسبوعية';
+
+  @override
+  String get monthlyRevenue => 'الإيرادات الشهرية';
+
+  @override
+  String get last4Months => 'آخر 4 أشهر';
+
+  @override
+  String get lessonCompletion => 'إتمام الدروس';
+
+  @override
+  String get attendanceRate => 'نسبة الحضور';
+
+  @override
+  String get dailyAttendance => 'الحضور اليومي';
+
+  @override
+  String get examPerformance => 'أداء الاختبار';
+
+  @override
+  String get avg => 'متوسط';
+
+  @override
+  String get january => 'يناير';
+
+  @override
+  String get february => 'فبراير';
+
+  @override
+  String get march => 'مارس';
+
+  @override
+  String get april => 'أبريل';
+
+  @override
+  String get may => 'مايو';
+
+  @override
+  String get june => 'يونيو';
+
+  @override
+  String get july => 'يوليو';
+
+  @override
+  String get august => 'أغسطس';
+
+  @override
+  String get september => 'سبتمبر';
+
+  @override
+  String get october => 'أكتوبر';
+
+  @override
+  String get november => 'نوفمبر';
+
+  @override
+  String get december => 'ديسمبر';
+
+  @override
+  String get monday => 'الاثنين';
+
+  @override
+  String get tuesday => 'الثلاثاء';
+
+  @override
+  String get wednesday => 'الأربعاء';
+
+  @override
+  String get thursday => 'الخميس';
+
+  @override
+  String get friday => 'الجمعة';
+
+  @override
+  String get saturday => 'السبت';
+
+  @override
+  String get sunday => 'الأحد';
+
+  @override
+  String get addLesson => 'إضافة درس';
+
+  @override
+  String get createExam => 'إنشاء اختبار';
+
+  @override
+  String get notify => 'إشعار';
+
+  @override
+  String get addNewLesson => 'إضافة درس جديد';
+
+  @override
+  String get lessonTitle => 'عنوان الدرس';
+
+  @override
+  String get lessonTitleHint => 'مثال: مقدمة في التفاضل والتكامل';
+
+  @override
+  String get duration => 'المدة';
+
+  @override
+  String get durationHint => 'مثال: 45 دقيقة';
+
+  @override
+  String get subject => 'المادة';
+
+  @override
+  String get description => 'الوصف';
+
+  @override
+  String get descriptionHint => 'ماذا سيتعلم الطلاب في هذا الدرس؟';
+
+  @override
+  String get premiumContent => 'محتوى مميز';
+
+  @override
+  String get premiumContentSubtitle => 'متاح فقط للمشتركين المدفوعين';
+
+  @override
+  String get nextUploadVideo => 'التالي: رفع الفيديو';
+
+  @override
+  String get uploadVideo => 'رفع فيديو';
+
+  @override
+  String get uploadVideoSubtitle => 'MP4, MOV · بحد أقصى 2 جيجابايت';
+
+  @override
+  String get chooseFile => 'اختر ملف';
+
+  @override
+  String get processingTime => 'وقت المعالجة';
+
+  @override
+  String get processingTimeSubtitle =>
+      'يتم تحويل الفيديوهات لتناسب جميع جودات الأجهزة. عادةً ما يستغرق الأمر من 5 إلى 20 دقيقة.';
+
+  @override
+  String get nextAddPdfs => 'التالي: إضافة ملفات PDF';
+
+  @override
+  String get uploadPdf => 'رفع ملف PDF';
+
+  @override
+  String get uploadPdfSubtitle => 'PDF · بحد أقصى 50 ميجابايت';
+
+  @override
+  String get details => 'التفاصيل';
+
+  @override
+  String get video => 'الفيديو';
+
+  @override
+  String get pdfs => 'ملفات PDF';
+
+  @override
+  String get questionBuilder => 'منشئ الأسئلة';
+
+  @override
+  String questionNumber(int number) {
+    return 'السؤال $number';
+  }
+
+  @override
+  String get enterYourQuestion => 'أدخل سؤالك...';
+
+  @override
+  String get optionsSelectCorrectAnswer => 'الخيارات (اختر الإجابة الصحيحة)';
+
+  @override
+  String optionHint(String label) {
+    return 'الخيار $label...';
+  }
+
+  @override
+  String get addQuestion => 'إضافة سؤال';
+
+  @override
+  String publishExam(int count) {
+    return 'نشر الاختبار ($count أسئلة)';
+  }
+
+  @override
+  String get completeAllQuestionsBeforePublishing =>
+      'يرجى إكمال جميع الأسئلة واختيار الإجابات الصحيحة قبل النشر';
+
+  @override
+  String get examPublishedSuccessfully => 'تم نشر الاختبار بنجاح';
+
+  @override
+  String saveAttendanceCount(int count) {
+    return 'حفظ الحضور ($count طالب)';
+  }
+
+  @override
+  String get attendanceSavedSuccessfully => 'تم حفظ الحضور بنجاح';
+
+  @override
+  String get publishLesson => 'نشر الدرس';
+
+  @override
+  String get students => 'الطلاب';
+
+  @override
+  String get searchStudents => 'ابحث عن الطلاب...';
+
+  @override
+  String get block => 'حظر';
+
+  @override
+  String get all => 'الكل';
+
+  @override
+  String get inactive => 'غير نشط';
+
+  @override
+  String get blocked => 'محظور';
+
+  @override
+  String get studentDetails => 'بيانات الطالب';
+
+  @override
+  String get lessonProgress => 'تقدم الدروس';
+
+  @override
+  String get contactInfo => 'معلومات التواصل';
+
+  @override
+  String get phone => 'الهاتف';
+
+  @override
+  String get message => 'رسالة';
+
+  @override
+  String get recentActivities => 'الأنشطة الأخيرة';
+
+  @override
+  String get whatsappNotInstalled => 'تطبيق WhatsApp غير مثبت على جهازك';
+
+  @override
+  String get alertParent => 'تنبيه ولي الأمر';
+
+  @override
+  String get thisMonth => 'هذا الشهر';
+
+  @override
+  String examAvgAndPassRate(String avg, String passRate) {
+    return 'المتوسط: $avg% · نسبة النجاح: $passRate%';
+  }
+
+  @override
+  String get saveAsDraft => 'حفظ كمسودة';
+
+  @override
+  String get lessonPublishedSuccessfully => 'تم نشر الدرس بنجاح';
+
+  @override
+  String get lessonSavedAsDraft => 'تم حفظ الدرس كمسودة';
+
+  @override
+  String passRate(String rate) {
+    return 'نسبة النجاح: $rate%';
+  }
+
+  @override
   String get nameRequired => 'يرجى إدخال اسمك';
 
   @override

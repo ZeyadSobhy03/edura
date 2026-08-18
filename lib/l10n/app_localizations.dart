@@ -1088,6 +1088,696 @@ abstract class AppLocalizations {
   /// **'Are you sure you want to log out?'**
   String get logoutConfirmation;
 
+  /// No description provided for @sendNotification.
+  ///
+  /// In en, this message translates to:
+  /// **'Send Notification'**
+  String get sendNotification;
+
+  /// No description provided for @audience.
+  ///
+  /// In en, this message translates to:
+  /// **'Audience'**
+  String get audience;
+
+  /// No description provided for @allStudents.
+  ///
+  /// In en, this message translates to:
+  /// **'All Students'**
+  String get allStudents;
+
+  /// No description provided for @activeOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Active Only'**
+  String get activeOnly;
+
+  /// No description provided for @individual.
+  ///
+  /// In en, this message translates to:
+  /// **'Individual'**
+  String get individual;
+
+  /// No description provided for @selectStudents.
+  ///
+  /// In en, this message translates to:
+  /// **'Select students'**
+  String get selectStudents;
+
+  /// No description provided for @notificationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification Title'**
+  String get notificationTitle;
+
+  /// No description provided for @notificationTitleHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Updated Class Schedule'**
+  String get notificationTitleHint;
+
+  /// No description provided for @messageBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Message Body'**
+  String get messageBody;
+
+  /// No description provided for @messageBodyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Write your announcement...'**
+  String get messageBodyHint;
+
+  /// No description provided for @pinAnnouncement.
+  ///
+  /// In en, this message translates to:
+  /// **'Pin Announcement'**
+  String get pinAnnouncement;
+
+  /// No description provided for @pinAnnouncementSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Always visible at the top'**
+  String get pinAnnouncementSubtitle;
+
+  /// No description provided for @sendNotificationButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Send Notification'**
+  String get sendNotificationButton;
+
+  /// No description provided for @notificationSentSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification sent successfully'**
+  String get notificationSentSuccessfully;
+
+  /// No description provided for @totalOfStudents.
+  ///
+  /// In en, this message translates to:
+  /// **'Total of students'**
+  String get totalOfStudents;
+
+  /// No description provided for @totalNumberOfStudents.
+  ///
+  /// In en, this message translates to:
+  /// **'Total number of students {totalNumberOfStudents} '**
+  String totalNumberOfStudents(int totalNumberOfStudents);
+
+  /// No description provided for @activeStudents.
+  ///
+  /// In en, this message translates to:
+  /// **'Active Students'**
+  String get activeStudents;
+
+  /// No description provided for @totalNumberOfActiveStudents.
+  ///
+  /// In en, this message translates to:
+  /// **'Total number of active students {totalNumberOfActiveStudents} '**
+  String totalNumberOfActiveStudents(int totalNumberOfActiveStudents);
+
+  /// No description provided for @revenue.
+  ///
+  /// In en, this message translates to:
+  /// **'Revenue'**
+  String get revenue;
+
+  /// No description provided for @totalRevenue.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Revenue {totalRevenue} '**
+  String totalRevenue(int totalRevenue);
+
+  /// No description provided for @totalNumberOfTodaysClasses.
+  ///
+  /// In en, this message translates to:
+  /// **'Total number of today\'s classes {totalNumberOfTodaysClasses} '**
+  String totalNumberOfTodaysClasses(int totalNumberOfTodaysClasses);
+
+  /// No description provided for @studentGrowth.
+  ///
+  /// In en, this message translates to:
+  /// **'Student Growth'**
+  String get studentGrowth;
+
+  /// No description provided for @last7Weeks.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 7 weeks'**
+  String get last7Weeks;
+
+  /// No description provided for @viewAnalytics.
+  ///
+  /// In en, this message translates to:
+  /// **'View Analytics'**
+  String get viewAnalytics;
+
+  /// No description provided for @analytics.
+  ///
+  /// In en, this message translates to:
+  /// **'Analytics'**
+  String get analytics;
+
+  /// No description provided for @week.
+  ///
+  /// In en, this message translates to:
+  /// **'Week'**
+  String get week;
+
+  /// No description provided for @month.
+  ///
+  /// In en, this message translates to:
+  /// **'Month'**
+  String get month;
+
+  /// No description provided for @year.
+  ///
+  /// In en, this message translates to:
+  /// **'Year'**
+  String get year;
+
+  /// No description provided for @totalStudents.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Students'**
+  String get totalStudents;
+
+  /// No description provided for @avgScore.
+  ///
+  /// In en, this message translates to:
+  /// **'Avg Score'**
+  String get avgScore;
+
+  /// No description provided for @active.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get active;
+
+  /// No description provided for @weeklyEnrollments.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly enrollments'**
+  String get weeklyEnrollments;
+
+  /// No description provided for @monthlyRevenue.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly Revenue'**
+  String get monthlyRevenue;
+
+  /// No description provided for @last4Months.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 4 months'**
+  String get last4Months;
+
+  /// No description provided for @lessonCompletion.
+  ///
+  /// In en, this message translates to:
+  /// **'Lesson Completion'**
+  String get lessonCompletion;
+
+  /// No description provided for @attendanceRate.
+  ///
+  /// In en, this message translates to:
+  /// **'Attendance Rate'**
+  String get attendanceRate;
+
+  /// No description provided for @dailyAttendance.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Attendance'**
+  String get dailyAttendance;
+
+  /// No description provided for @examPerformance.
+  ///
+  /// In en, this message translates to:
+  /// **'Exam Performance'**
+  String get examPerformance;
+
+  /// No description provided for @avg.
+  ///
+  /// In en, this message translates to:
+  /// **'avg'**
+  String get avg;
+
+  /// No description provided for @january.
+  ///
+  /// In en, this message translates to:
+  /// **'January'**
+  String get january;
+
+  /// No description provided for @february.
+  ///
+  /// In en, this message translates to:
+  /// **'February'**
+  String get february;
+
+  /// No description provided for @march.
+  ///
+  /// In en, this message translates to:
+  /// **'March'**
+  String get march;
+
+  /// No description provided for @april.
+  ///
+  /// In en, this message translates to:
+  /// **'April'**
+  String get april;
+
+  /// No description provided for @may.
+  ///
+  /// In en, this message translates to:
+  /// **'May'**
+  String get may;
+
+  /// No description provided for @june.
+  ///
+  /// In en, this message translates to:
+  /// **'June'**
+  String get june;
+
+  /// No description provided for @july.
+  ///
+  /// In en, this message translates to:
+  /// **'July'**
+  String get july;
+
+  /// No description provided for @august.
+  ///
+  /// In en, this message translates to:
+  /// **'August'**
+  String get august;
+
+  /// No description provided for @september.
+  ///
+  /// In en, this message translates to:
+  /// **'September'**
+  String get september;
+
+  /// No description provided for @october.
+  ///
+  /// In en, this message translates to:
+  /// **'October'**
+  String get october;
+
+  /// No description provided for @november.
+  ///
+  /// In en, this message translates to:
+  /// **'November'**
+  String get november;
+
+  /// No description provided for @december.
+  ///
+  /// In en, this message translates to:
+  /// **'December'**
+  String get december;
+
+  /// No description provided for @monday.
+  ///
+  /// In en, this message translates to:
+  /// **'Monday'**
+  String get monday;
+
+  /// No description provided for @tuesday.
+  ///
+  /// In en, this message translates to:
+  /// **'Tuesday'**
+  String get tuesday;
+
+  /// No description provided for @wednesday.
+  ///
+  /// In en, this message translates to:
+  /// **'Wednesday'**
+  String get wednesday;
+
+  /// No description provided for @thursday.
+  ///
+  /// In en, this message translates to:
+  /// **'Thursday'**
+  String get thursday;
+
+  /// No description provided for @friday.
+  ///
+  /// In en, this message translates to:
+  /// **'Friday'**
+  String get friday;
+
+  /// No description provided for @saturday.
+  ///
+  /// In en, this message translates to:
+  /// **'Saturday'**
+  String get saturday;
+
+  /// No description provided for @sunday.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunday'**
+  String get sunday;
+
+  /// No description provided for @addLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Lesson'**
+  String get addLesson;
+
+  /// No description provided for @createExam.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Exam'**
+  String get createExam;
+
+  /// No description provided for @notify.
+  ///
+  /// In en, this message translates to:
+  /// **'Notify'**
+  String get notify;
+
+  /// No description provided for @addNewLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Add New Lesson'**
+  String get addNewLesson;
+
+  /// No description provided for @lessonTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Lesson Title'**
+  String get lessonTitle;
+
+  /// No description provided for @lessonTitleHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Introduction to Calculus'**
+  String get lessonTitleHint;
+
+  /// No description provided for @duration.
+  ///
+  /// In en, this message translates to:
+  /// **'Duration'**
+  String get duration;
+
+  /// No description provided for @durationHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. 45 min'**
+  String get durationHint;
+
+  /// No description provided for @subject.
+  ///
+  /// In en, this message translates to:
+  /// **'Subject'**
+  String get subject;
+
+  /// No description provided for @description.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get description;
+
+  /// No description provided for @descriptionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'What will students learn in this lesson?'**
+  String get descriptionHint;
+
+  /// No description provided for @premiumContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Premium Content'**
+  String get premiumContent;
+
+  /// No description provided for @premiumContentSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Only paid subscribers can access'**
+  String get premiumContentSubtitle;
+
+  /// No description provided for @nextUploadVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Next: Upload Video'**
+  String get nextUploadVideo;
+
+  /// No description provided for @uploadVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload Video'**
+  String get uploadVideo;
+
+  /// No description provided for @uploadVideoSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'MP4, MOV · Max 2GB'**
+  String get uploadVideoSubtitle;
+
+  /// No description provided for @chooseFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose File'**
+  String get chooseFile;
+
+  /// No description provided for @processingTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Processing Time'**
+  String get processingTime;
+
+  /// No description provided for @processingTimeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Videos are transcoded for all device qualities. Usually takes 5-20 minutes.'**
+  String get processingTimeSubtitle;
+
+  /// No description provided for @nextAddPdfs.
+  ///
+  /// In en, this message translates to:
+  /// **'Next: Add PDFs'**
+  String get nextAddPdfs;
+
+  /// No description provided for @uploadPdf.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload PDF'**
+  String get uploadPdf;
+
+  /// No description provided for @uploadPdfSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'PDF · Max 50MB'**
+  String get uploadPdfSubtitle;
+
+  /// No description provided for @details.
+  ///
+  /// In en, this message translates to:
+  /// **'Details'**
+  String get details;
+
+  /// No description provided for @video.
+  ///
+  /// In en, this message translates to:
+  /// **'Video'**
+  String get video;
+
+  /// No description provided for @pdfs.
+  ///
+  /// In en, this message translates to:
+  /// **'PDFs'**
+  String get pdfs;
+
+  /// No description provided for @questionBuilder.
+  ///
+  /// In en, this message translates to:
+  /// **'Question Builder'**
+  String get questionBuilder;
+
+  /// No description provided for @questionNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Question {number}'**
+  String questionNumber(int number);
+
+  /// No description provided for @enterYourQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your question...'**
+  String get enterYourQuestion;
+
+  /// No description provided for @optionsSelectCorrectAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'OPTIONS (select correct answer)'**
+  String get optionsSelectCorrectAnswer;
+
+  /// No description provided for @optionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Option {label}...'**
+  String optionHint(String label);
+
+  /// No description provided for @addQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Question'**
+  String get addQuestion;
+
+  /// No description provided for @publishExam.
+  ///
+  /// In en, this message translates to:
+  /// **'Publish Exam ({count} Questions)'**
+  String publishExam(int count);
+
+  /// No description provided for @completeAllQuestionsBeforePublishing.
+  ///
+  /// In en, this message translates to:
+  /// **'Please complete all questions and select correct answers before publishing'**
+  String get completeAllQuestionsBeforePublishing;
+
+  /// No description provided for @examPublishedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Exam published successfully'**
+  String get examPublishedSuccessfully;
+
+  /// No description provided for @saveAttendanceCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Attendance ({count} students)'**
+  String saveAttendanceCount(int count);
+
+  /// No description provided for @attendanceSavedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Attendance saved successfully'**
+  String get attendanceSavedSuccessfully;
+
+  /// No description provided for @publishLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Publish Lesson'**
+  String get publishLesson;
+
+  /// No description provided for @students.
+  ///
+  /// In en, this message translates to:
+  /// **'Students'**
+  String get students;
+
+  /// No description provided for @searchStudents.
+  ///
+  /// In en, this message translates to:
+  /// **'Search students...'**
+  String get searchStudents;
+
+  /// No description provided for @block.
+  ///
+  /// In en, this message translates to:
+  /// **'Block'**
+  String get block;
+
+  /// No description provided for @all.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get all;
+
+  /// No description provided for @inactive.
+  ///
+  /// In en, this message translates to:
+  /// **'Inactive'**
+  String get inactive;
+
+  /// No description provided for @blocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Blocked'**
+  String get blocked;
+
+  /// No description provided for @studentDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Student Details'**
+  String get studentDetails;
+
+  /// No description provided for @lessonProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Lesson Progress'**
+  String get lessonProgress;
+
+  /// No description provided for @contactInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Info'**
+  String get contactInfo;
+
+  /// No description provided for @phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get phone;
+
+  /// No description provided for @message.
+  ///
+  /// In en, this message translates to:
+  /// **'Message'**
+  String get message;
+
+  /// No description provided for @recentActivities.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent Activities'**
+  String get recentActivities;
+
+  /// No description provided for @whatsappNotInstalled.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp is not installed on this device'**
+  String get whatsappNotInstalled;
+
+  /// No description provided for @alertParent.
+  ///
+  /// In en, this message translates to:
+  /// **'Alert Parent'**
+  String get alertParent;
+
+  /// No description provided for @thisMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'This Month'**
+  String get thisMonth;
+
+  /// No description provided for @examAvgAndPassRate.
+  ///
+  /// In en, this message translates to:
+  /// **'Avg: {avg}% · Pass rate: {passRate}%'**
+  String examAvgAndPassRate(String avg, String passRate);
+
+  /// No description provided for @saveAsDraft.
+  ///
+  /// In en, this message translates to:
+  /// **'Save as Draft'**
+  String get saveAsDraft;
+
+  /// No description provided for @lessonPublishedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Lesson published successfully'**
+  String get lessonPublishedSuccessfully;
+
+  /// No description provided for @lessonSavedAsDraft.
+  ///
+  /// In en, this message translates to:
+  /// **'Lesson saved as draft'**
+  String get lessonSavedAsDraft;
+
+  /// No description provided for @passRate.
+  ///
+  /// In en, this message translates to:
+  /// **'Pass rate: {rate}%'**
+  String passRate(String rate);
+
   /// No description provided for @nameRequired.
   ///
   /// In en, this message translates to:

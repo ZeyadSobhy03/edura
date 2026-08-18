@@ -39,10 +39,9 @@ class _HomeWorkCardState extends State<HomeWorkCard> {
   }
 
   Future<void> _pickPdf() async {
-    final result = await FilePicker.platform.pickFiles(
+    final result = await FilePicker.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['pdf'],
-      allowMultiple: false,
     );
 
     if (result != null && result.files.isNotEmpty) {

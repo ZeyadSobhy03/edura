@@ -71,9 +71,20 @@ class _LoginSectionState extends State<LoginSection> {
               ),
             ),
             SizedBox(height: 8.h),
-            CustomElevatedButton(text: l10.login, onPressed: () {
-              Navigator.pushNamed(context, RouteManger.studentMainLayoutRoute);
-            }),
+            CustomElevatedButton(
+              text: l10.login,
+              onPressed: () {
+                widget.role == LoginRole.student
+                    ? Navigator.pushNamed(
+                        context,
+                        RouteManger.studentMainLayoutRoute,
+                      )
+                    : Navigator.pushNamed(
+                        context,
+                        RouteManger.teacherMainLayoutRoute,
+                      );
+              },
+            ),
             SizedBox(height: 8.h),
             isStudent
                 ? _loginWithGoogleAndCreateAccountSection(l10, context)
