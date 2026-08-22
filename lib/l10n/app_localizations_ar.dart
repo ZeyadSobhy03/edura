@@ -335,9 +335,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get today => 'اليوم';
 
   @override
-  String get daysAgo => 'منذ أيام';
-
-  @override
   String get examDetails => 'تفاصيل الاختبار';
 
   @override
@@ -866,6 +863,125 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get whatsappNotInstalled => 'تطبيق WhatsApp غير مثبت على جهازك';
+
+  @override
+  String get published => 'تم النشر';
+
+  @override
+  String get draft => 'مسودة';
+
+  @override
+  String get publish => 'نشر';
+
+  @override
+  String get editLesson => 'تعديل الدرس';
+
+  @override
+  String get changeThumbnail => 'تغيير الصورة المصغرة';
+
+  @override
+  String get changeVideo => 'تغيير الفيديو';
+
+  @override
+  String get changePdfs => 'تغيير ملفات PDF';
+
+  @override
+  String get enterLessonTitle => 'أدخل عنوان الدرس';
+
+  @override
+  String get lessonDescription => 'وصف الدرس';
+
+  @override
+  String get enterLessonDescription => 'أدخل وصف الدرس';
+
+  @override
+  String get reviewHomework => 'مراجعة الواجب';
+
+  @override
+  String get download => 'تحميل';
+
+  @override
+  String get pdfPreview => 'معاينة PDF';
+
+  @override
+  String get gradeOutOf100 => 'الدرجة (من 100)';
+
+  @override
+  String get feedback => 'الملاحظات';
+
+  @override
+  String get feedbackHint => 'أضف ملاحظات للطالب...';
+
+  @override
+  String get submitGrade => 'إرسال الدرجة';
+
+  @override
+  String get enterAValidGrade => 'يرجى إدخال درجة صحيحة';
+
+  @override
+  String get publishedSubtitle => 'يمكن للطلاب الوصول إلى هذا الاختبار الآن';
+
+  @override
+  String get saveChanges => 'حفظ التغييرات';
+
+  @override
+  String get deleteLesson => 'حذف الدرس';
+
+  @override
+  String get pendingReview => 'بانتظار المراجعة';
+
+  @override
+  String get submissions => 'التسليمات';
+
+  @override
+  String get tapToReviewAndGrade => 'اضغط للمراجعة والتقييم';
+
+  @override
+  String gradeValue(int grade) {
+    return 'الدرجة: $grade/100';
+  }
+
+  @override
+  String daysAgo(int count) {
+    return 'منذ $count يوم';
+  }
+
+  @override
+  String hoursAgo(int count) {
+    return 'منذ $count ساعة';
+  }
+
+  @override
+  String minutesAgo(int count) {
+    return 'منذ $count دقيقة';
+  }
+
+  @override
+  String get justNow => 'منذ قليل';
+
+  @override
+  String get noSubmissionsYet => 'لا توجد تسليمات بعد';
+
+  @override
+  String get gradeCannotExceed100 => 'لا يمكن أن تتجاوز الدرجة 100';
+
+  @override
+  String get gradeSubmittedSuccessfully => 'تم إرسال الدرجة بنجاح';
+
+  @override
+  String get views => 'المشاهدات';
+
+  @override
+  String get edit => 'تعديل';
+
+  @override
+  String get delete => 'حذف';
+
+  @override
+  String get noPublishedLessons => 'لا توجد دروس منشورة بعد';
+
+  @override
+  String get noDraftLessons => 'لا توجد دروس محفوظة كمسودة بعد';
 
   @override
   String get alertParent => 'تنبيه ولي الأمر';

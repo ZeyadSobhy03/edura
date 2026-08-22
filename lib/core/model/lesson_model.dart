@@ -1,3 +1,5 @@
+import 'package:edura/core/model/homework_submission_model.dart';
+
 class LessonMaterialModel {
   final String id;
   final String name;
@@ -16,6 +18,7 @@ class LessonMaterialModel {
   factory LessonMaterialModel.fromJson(Map<String, dynamic> json) {
     return LessonMaterialModel(
       id: json['id'].toString(),
+
       name: json['name'] ?? '',
       fileType: json['file_type'] ?? 'PDF',
       sizeLabel: json['size_label'] ?? '',
@@ -32,10 +35,13 @@ class LessonModel {
   final int durationMinutes;
   final bool isCompleted;
   final double rating;
+  final int viewCount;
+  bool isPublished;
+  final List<HomeworkSubmissionModel> homeworkSubmissions;
 
   final double progress; // 0.0 - 1.0
   final String videoThumbnailUrl;
-  final String videoUrl;
+  String videoUrl;
   final String overviewDescription;
   final String teacherNotes;
   final String pdfUrl;
@@ -54,11 +60,21 @@ class LessonModel {
     required this.overviewDescription,
     required this.teacherNotes,
     required this.pdfUrl,
-    required this.materials, required this.isCompleted,
+    required this.materials,
+    required this.isCompleted,
+    required this.viewCount,
+    required this.isPublished,
+    required this.homeworkSubmissions,
   });
 
   factory LessonModel.fromJson(Map<String, dynamic> json) {
     return LessonModel(
+      homeworkSubmissions:
+          (json['homework_submissions'] as List<dynamic>? ?? [])
+              .map((e) => HomeworkSubmissionModel.fromJson(e))
+              .toList(),
+      isPublished: json['is_published'] ?? false,
+      viewCount: json['view_count'] ?? 0,
       isCompleted: json['is_completed'] ?? false,
       id: json['id'].toString(),
       subject: json['subject'] ?? '',
@@ -78,8 +94,13 @@ class LessonModel {
     );
   }
 }
+
 class DummyLessonData {
   static LessonModel quantumMechanics = LessonModel(
+    homeworkSubmissions: DummySubmissionData.all,
+
+    isPublished: true,
+    viewCount: 1200,
     isCompleted: false,
     id: '1',
     subject: 'Physics',
@@ -89,41 +110,47 @@ class DummyLessonData {
     rating: 4.8,
     progress: 0.6,
     videoThumbnailUrl:
-    'https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?w=800',
+        'https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?w=800',
     videoUrl:
-    'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
     overviewDescription:
-    'Explore wave-particle duality, Schrödinger\'s equation, and the uncertainty principle.',
+        'Explore wave-particle duality, Schrödinger\'s equation, and the uncertainty principle.',
     teacherNotes:
-    'Focus on understanding the conceptual meaning before drilling computation. Work through each example step by step.',
-    pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+        'Focus on understanding the conceptual meaning before drilling computation. Work through each example step by step.',
+    pdfUrl:
+        'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
     materials: [
       LessonMaterialModel(
-
         id: 'm1',
         name: 'Chapter 1 Notes.pdf',
         fileType: 'PDF',
         sizeLabel: '2.3 MB',
-        url: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+        url:
+            'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
       ),
       LessonMaterialModel(
         id: 'm2',
         name: 'Practice Problems.pdf',
         fileType: 'PDF',
         sizeLabel: '2.3 MB',
-        url: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+        url:
+            'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
       ),
       LessonMaterialModel(
         id: 'm3',
         name: 'Formula Sheet.pdf',
         fileType: 'PDF',
         sizeLabel: '2.3 MB',
-        url: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+        url:
+            'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
       ),
     ],
   );
 
   static LessonModel calculusDerivatives = LessonModel(
+    homeworkSubmissions: DummySubmissionData.all,
+    isPublished: true,
+    viewCount: 850,
     isCompleted: false,
     id: '2',
     subject: 'Mathematics',
@@ -133,25 +160,30 @@ class DummyLessonData {
     rating: 4.5,
     progress: 0.3,
     videoThumbnailUrl:
-    'https://images.unsplash.com/photo-1509228468518-180dd4864904?w=800',
+        'https://images.unsplash.com/photo-1509228468518-180dd4864904?w=800',
     videoUrl:
-    'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
     overviewDescription:
-    'Learn the fundamentals of derivatives, including limits, the power rule, and the chain rule.',
+        'Learn the fundamentals of derivatives, including limits, the power rule, and the chain rule.',
     teacherNotes:
-    'Encourage students to visualize the slope of the tangent line before jumping to formulas.',
-    pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+        'Encourage students to visualize the slope of the tangent line before jumping to formulas.',
+    pdfUrl:
+        'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
     materials: [
       LessonMaterialModel(
         id: 'm4',
         name: 'Derivative Rules.pdf',
         fileType: 'PDF',
         sizeLabel: '1.8 MB',
-        url: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+        url:
+            'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
       ),
     ],
   );
   static LessonModel chemistryReactions = LessonModel(
+    homeworkSubmissions: DummySubmissionData.all,
+    isPublished: false,
+    viewCount: 950,
     isCompleted: false,
     id: '3',
     subject: 'Chemistry',
@@ -161,31 +193,38 @@ class DummyLessonData {
     rating: 4.7,
     progress: 0.5,
     videoThumbnailUrl:
-    'https://images.unsplash.com/photo-1581091215361-6f8e1b9c8f2d?w=800',
+        'https://images.unsplash.com/photo-1581091215361-6f8e1b9c8f2d?w=800',
     videoUrl:
-    'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',
+        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',
     overviewDescription:
-    'Understand the different types of chemical reactions, including synthesis, decomposition, and combustion.',
+        'Understand the different types of chemical reactions, including synthesis, decomposition, and combustion.',
     teacherNotes:
-    'Highlight the importance of balancing equations and understanding reaction mechanisms.',
-    pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+        'Highlight the importance of balancing equations and understanding reaction mechanisms.',
+    pdfUrl:
+        'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
     materials: [
       LessonMaterialModel(
         id: 'm5',
         name: 'Reaction Types.pdf',
         fileType: 'PDF',
         sizeLabel: '2.0 MB',
-        url: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+        url:
+            'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
       ),
       LessonMaterialModel(
         id: 'm6',
         name: 'Lab Safety Guidelines.pdf',
         fileType: 'PDF',
         sizeLabel: '1.5 MB',
-        url: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+        url:
+            'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
       ),
     ],
   );
 
-  static List<LessonModel> all = [quantumMechanics, calculusDerivatives, chemistryReactions];
+  static List<LessonModel> all = [
+    quantumMechanics,
+    calculusDerivatives,
+    chemistryReactions,
+  ];
 }

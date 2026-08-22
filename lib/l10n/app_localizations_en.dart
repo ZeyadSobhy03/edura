@@ -336,9 +336,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get today => 'Today';
 
   @override
-  String get daysAgo => 'days ago';
-
-  @override
   String get examDetails => 'Exam Details';
 
   @override
@@ -870,6 +867,125 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get whatsappNotInstalled => 'WhatsApp is not installed on this device';
+
+  @override
+  String get published => 'Published';
+
+  @override
+  String get draft => 'Draft';
+
+  @override
+  String get publish => 'Publish';
+
+  @override
+  String get editLesson => 'Edit Lesson';
+
+  @override
+  String get changeThumbnail => 'Change Thumbnail';
+
+  @override
+  String get changeVideo => 'Change Video';
+
+  @override
+  String get changePdfs => 'Change PDFs';
+
+  @override
+  String get enterLessonTitle => 'Enter lesson title';
+
+  @override
+  String get lessonDescription => 'Lesson Description';
+
+  @override
+  String get enterLessonDescription => 'Enter lesson description';
+
+  @override
+  String get reviewHomework => 'Review Homework';
+
+  @override
+  String get download => 'Download';
+
+  @override
+  String get pdfPreview => 'PDF Preview';
+
+  @override
+  String get gradeOutOf100 => 'GRADE (out of 100)';
+
+  @override
+  String get feedback => 'FEEDBACK';
+
+  @override
+  String get feedbackHint => 'Add feedback for the student...';
+
+  @override
+  String get submitGrade => 'Submit Grade';
+
+  @override
+  String get enterAValidGrade => 'Please enter a valid grade';
+
+  @override
+  String get publishedSubtitle => 'This lesson is visible to students';
+
+  @override
+  String get saveChanges => 'Save Changes';
+
+  @override
+  String get deleteLesson => 'Delete Lesson';
+
+  @override
+  String get pendingReview => 'Pending Review';
+
+  @override
+  String get submissions => 'Submissions';
+
+  @override
+  String get tapToReviewAndGrade => 'Tap to Review & Grade';
+
+  @override
+  String gradeValue(int grade) {
+    return 'Grade: $grade/100';
+  }
+
+  @override
+  String daysAgo(int count) {
+    return '$count days ago';
+  }
+
+  @override
+  String hoursAgo(int count) {
+    return '$count hours ago';
+  }
+
+  @override
+  String minutesAgo(int count) {
+    return '$count minutes ago';
+  }
+
+  @override
+  String get justNow => 'Just now';
+
+  @override
+  String get noSubmissionsYet => 'No submissions yet';
+
+  @override
+  String get gradeCannotExceed100 => 'Grade cannot exceed 100';
+
+  @override
+  String get gradeSubmittedSuccessfully => 'Grade submitted successfully';
+
+  @override
+  String get views => 'Views';
+
+  @override
+  String get edit => 'Edit';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get noPublishedLessons => 'No published lessons';
+
+  @override
+  String get noDraftLessons => 'No draft lessons';
 
   @override
   String get alertParent => 'Alert Parent';

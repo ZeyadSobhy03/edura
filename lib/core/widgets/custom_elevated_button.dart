@@ -8,24 +8,29 @@ class CustomElevatedButton extends StatelessWidget {
     required this.text,
     this.haveIcon = false,
     this.icon = Icons.add,
+    this.backgroundColor = ColorManager.primary,
+    this.foregroundColor = ColorManager.white,
   });
 
   final VoidCallback? onPressed;
   final String text;
   final bool haveIcon;
   final IconData icon;
+  final Color backgroundColor;
+  final Color foregroundColor;
+
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         elevation: 0,
-        foregroundColor: ColorManager.white,
+        foregroundColor: foregroundColor,
 
-        backgroundColor: ColorManager.primary,
+        backgroundColor: backgroundColor,
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
         shape: RoundedRectangleBorder(
-          side: BorderSide(color: ColorManager.primary),
+          side: BorderSide(color: backgroundColor),
           borderRadius: BorderRadius.circular(12),
         ),
       ),
@@ -37,8 +42,8 @@ class CustomElevatedButton extends StatelessWidget {
                 const SizedBox(width: 8),
                 Text(
                   text,
-                  style: const TextStyle(
-                    color: Colors.white,
+                  style:  TextStyle(
+                    color : foregroundColor,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
@@ -48,8 +53,8 @@ class CustomElevatedButton extends StatelessWidget {
           : Center(
               child: Text(
                 text,
-                style: const TextStyle(
-                  color: Colors.white,
+                style:  TextStyle(
+                  color: foregroundColor,
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),

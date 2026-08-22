@@ -105,7 +105,6 @@
   "noExamsFound": "No exams found",
   "assignments": "Assignments",
   "today": "Today",
-  "daysAgo": "days ago",
   "examDetails": "Exam Details",
   "totalScore": "Total Score",
   "instructions": "Instructions",
@@ -356,6 +355,72 @@
   "message": "Message",
   "recentActivities": "Recent Activities",
   "whatsappNotInstalled": "WhatsApp is not installed on this device",
+  "published": "Published",
+  "draft": "Draft",
+  "publish": "Publish",
+  "editLesson": "Edit Lesson",
+  "changeThumbnail": "Change Thumbnail",
+  "changeVideo": "Change Video",
+    "changePdfs": "Change PDFs",
+  "enterLessonTitle": "Enter lesson title",
+  "lessonDescription": "Lesson Description",
+  "enterLessonDescription": "Enter lesson description",
+  "reviewHomework": "Review Homework",
+  "download": "Download",
+  "pdfPreview": "PDF Preview",
+  "gradeOutOf100": "GRADE (out of 100)",
+  "feedback": "FEEDBACK",
+  "feedbackHint": "Add feedback for the student...",
+  "submitGrade": "Submit Grade",
+  "enterAValidGrade": "Please enter a valid grade",
+  "publishedSubtitle": "This lesson is visible to students",
+  "saveChanges": "Save Changes",
+  "deleteLesson": "Delete Lesson",
+  "pendingReview": "Pending Review",
+  "submissions": "Submissions",
+  "tapToReviewAndGrade": "Tap to Review & Grade",
+  "gradeValue": "Grade: {grade}/100",
+  "@gradeValue": {
+    "placeholders": { "grade": { "type": "int" } }
+  },
+
+  "daysAgo": "{count} days ago",
+  "@daysAgo": {
+    "description": "Shows how many days ago something happened",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "hoursAgo": "{count} hours ago",
+  "@hoursAgo": {
+    "description": "Shows how many hours ago something happened",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "minutesAgo": "{count} minutes ago",
+  "@minutesAgo": {
+    "description": "Shows how many minutes ago something happened",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "justNow": "Just now",
+
+  "noSubmissionsYet": "No submissions yet",
+  "gradeCannotExceed100": "Grade cannot exceed 100",
+  "gradeSubmittedSuccessfully": "Grade submitted successfully",
+  "views": "Views",
+  "edit": "Edit",
+  "delete": "Delete",
+  "noPublishedLessons": "No published lessons",
+  "noDraftLessons": "No draft lessons",
   "alertParent": "Alert Parent",
   "thisMonth": "This Month",
   "examAvgAndPassRate": "Avg: {avg}% · Pass rate: {passRate}%",

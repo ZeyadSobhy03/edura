@@ -728,12 +728,6 @@ abstract class AppLocalizations {
   /// **'Today'**
   String get today;
 
-  /// No description provided for @daysAgo.
-  ///
-  /// In en, this message translates to:
-  /// **'days ago'**
-  String get daysAgo;
-
   /// No description provided for @examDetails.
   ///
   /// In en, this message translates to:
@@ -1735,6 +1729,228 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'WhatsApp is not installed on this device'**
   String get whatsappNotInstalled;
+
+  /// No description provided for @published.
+  ///
+  /// In en, this message translates to:
+  /// **'Published'**
+  String get published;
+
+  /// No description provided for @draft.
+  ///
+  /// In en, this message translates to:
+  /// **'Draft'**
+  String get draft;
+
+  /// No description provided for @publish.
+  ///
+  /// In en, this message translates to:
+  /// **'Publish'**
+  String get publish;
+
+  /// No description provided for @editLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Lesson'**
+  String get editLesson;
+
+  /// No description provided for @changeThumbnail.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Thumbnail'**
+  String get changeThumbnail;
+
+  /// No description provided for @changeVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Video'**
+  String get changeVideo;
+
+  /// No description provided for @changePdfs.
+  ///
+  /// In en, this message translates to:
+  /// **'Change PDFs'**
+  String get changePdfs;
+
+  /// No description provided for @enterLessonTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter lesson title'**
+  String get enterLessonTitle;
+
+  /// No description provided for @lessonDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Lesson Description'**
+  String get lessonDescription;
+
+  /// No description provided for @enterLessonDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter lesson description'**
+  String get enterLessonDescription;
+
+  /// No description provided for @reviewHomework.
+  ///
+  /// In en, this message translates to:
+  /// **'Review Homework'**
+  String get reviewHomework;
+
+  /// No description provided for @download.
+  ///
+  /// In en, this message translates to:
+  /// **'Download'**
+  String get download;
+
+  /// No description provided for @pdfPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'PDF Preview'**
+  String get pdfPreview;
+
+  /// No description provided for @gradeOutOf100.
+  ///
+  /// In en, this message translates to:
+  /// **'GRADE (out of 100)'**
+  String get gradeOutOf100;
+
+  /// No description provided for @feedback.
+  ///
+  /// In en, this message translates to:
+  /// **'FEEDBACK'**
+  String get feedback;
+
+  /// No description provided for @feedbackHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Add feedback for the student...'**
+  String get feedbackHint;
+
+  /// No description provided for @submitGrade.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit Grade'**
+  String get submitGrade;
+
+  /// No description provided for @enterAValidGrade.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid grade'**
+  String get enterAValidGrade;
+
+  /// No description provided for @publishedSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This lesson is visible to students'**
+  String get publishedSubtitle;
+
+  /// No description provided for @saveChanges.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Changes'**
+  String get saveChanges;
+
+  /// No description provided for @deleteLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Lesson'**
+  String get deleteLesson;
+
+  /// No description provided for @pendingReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending Review'**
+  String get pendingReview;
+
+  /// No description provided for @submissions.
+  ///
+  /// In en, this message translates to:
+  /// **'Submissions'**
+  String get submissions;
+
+  /// No description provided for @tapToReviewAndGrade.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to Review & Grade'**
+  String get tapToReviewAndGrade;
+
+  /// No description provided for @gradeValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Grade: {grade}/100'**
+  String gradeValue(int grade);
+
+  /// Shows how many days ago something happened
+  ///
+  /// In en, this message translates to:
+  /// **'{count} days ago'**
+  String daysAgo(int count);
+
+  /// Shows how many hours ago something happened
+  ///
+  /// In en, this message translates to:
+  /// **'{count} hours ago'**
+  String hoursAgo(int count);
+
+  /// Shows how many minutes ago something happened
+  ///
+  /// In en, this message translates to:
+  /// **'{count} minutes ago'**
+  String minutesAgo(int count);
+
+  /// No description provided for @justNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Just now'**
+  String get justNow;
+
+  /// No description provided for @noSubmissionsYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No submissions yet'**
+  String get noSubmissionsYet;
+
+  /// No description provided for @gradeCannotExceed100.
+  ///
+  /// In en, this message translates to:
+  /// **'Grade cannot exceed 100'**
+  String get gradeCannotExceed100;
+
+  /// No description provided for @gradeSubmittedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Grade submitted successfully'**
+  String get gradeSubmittedSuccessfully;
+
+  /// No description provided for @views.
+  ///
+  /// In en, this message translates to:
+  /// **'Views'**
+  String get views;
+
+  /// No description provided for @edit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get edit;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @noPublishedLessons.
+  ///
+  /// In en, this message translates to:
+  /// **'No published lessons'**
+  String get noPublishedLessons;
+
+  /// No description provided for @noDraftLessons.
+  ///
+  /// In en, this message translates to:
+  /// **'No draft lessons'**
+  String get noDraftLessons;
 
   /// No description provided for @alertParent.
   ///

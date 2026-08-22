@@ -188,7 +188,7 @@ class _LessonDetailsFormState extends State<LessonDetailsForm> {
                 value: widget.draft.isPremium,
                 onChanged: (value) =>
                     setState(() => widget.draft.isPremium = value),
-                activeColor: ColorManager.primary,
+                activeThumbColor: ColorManager.primary,
               ),
             ],
           ),

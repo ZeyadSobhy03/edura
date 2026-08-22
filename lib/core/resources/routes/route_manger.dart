@@ -1,4 +1,5 @@
 import 'package:edura/core/model/exam_attempt_arguments.dart';
+import 'package:edura/core/model/homework_submission_model.dart';
 import 'package:edura/core/model/student_detail_model.dart';
 import 'package:edura/presentation/role/student/student_main_layout.dart';
 import 'package:edura/presentation/role/student/tabs/exams/exam_details/exam_details.dart';
@@ -21,6 +22,7 @@ import 'package:edura/presentation/role/teacher/tabs/dashboard/section/teacher_n
 import 'package:edura/presentation/role/teacher/tabs/students/section/student_details.dart';
 import 'package:edura/presentation/role/teacher/tabs/students/students.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_chats/teacher_chats.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/section/teacher_homework_screen.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/teacher_lessons.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/teacher_profile.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +36,8 @@ import '../../../presentation/role/teacher/tabs/dashboard/section/analytics_scre
 import '../../../presentation/role/teacher/tabs/dashboard/section/attendance/take_attendance_screen.dart';
 import '../../../presentation/role/teacher/tabs/dashboard/section/exams/question_builder_screen.dart';
 import '../../../presentation/role/teacher/tabs/teacher_lessons/section/add_new_lesson_screen.dart';
+import '../../../presentation/role/teacher/tabs/teacher_lessons/section/edit_lesson_screen.dart';
+import '../../../presentation/role/teacher/tabs/teacher_lessons/section/review_homework_screen.dart';
 import '../../../presentation/role/teacher/teacher_main_layout.dart';
 import '../../../presentation/splash_screen/splash_screen.dart';
 import '../../model/edit_profile_arguments.dart';
@@ -79,6 +83,9 @@ class RouteManger {
   static const String addNewLessonScreen = '/addNewLessonScreen';
   static const String questionBuilderScreen = '/questionBuilderScreen';
   static const String studentDetailsScreen = '/studentDetailsScreen';
+  static const String editLessonScreen = '/editLessonScreen';
+  static const String reviewHomeworkScreen = '/reviewHomeworkScreen';
+  static const String teacherHomeworkScreen = '/teacherHomeworkScreen';
 
   static Route router(RouteSettings settings) {
     switch (settings.name) {
@@ -126,9 +133,9 @@ class RouteManger {
 
       case studentDetailsScreen:
         final student = settings.arguments as StudentDetailsModel;
-        return MaterialPageRoute(builder: (context) => StudentDetails(
-          student: student,
-        ));
+        return MaterialPageRoute(
+          builder: (context) => StudentDetails(student: student),
+        );
 
       case teacherMainLayoutRoute:
         final initialIndex = settings.arguments as int? ?? 0;
@@ -162,7 +169,11 @@ class RouteManger {
         return MaterialPageRoute(
           builder: (context) => const QuestionBuilderScreen(),
         );
-
+      case teacherHomeworkScreen:
+        final submissions = settings.arguments as List<HomeworkSubmissionModel>;
+        return MaterialPageRoute(builder: (context) => TeacherHomeworkScreen(
+          submissions: submissions,
+        ));
       case announcementsScreen:
         return MaterialPageRoute(builder: (context) => AnnouncementsScreen());
       case addNewLessonScreen:
@@ -200,6 +211,12 @@ class RouteManger {
       case teacherLessonsScreen:
         return MaterialPageRoute(builder: (context) => TeacherLessons());
 
+      case editLessonScreen:
+        final lesson = settings.arguments as LessonModel;
+        return MaterialPageRoute(
+          builder: (context) => EditLessonScreen(lesson: lesson),
+        );
+
       case changePasswordScreen:
         return MaterialPageRoute(builder: (context) => ChangePasswordScreen());
       case editProfileScreen:
@@ -232,6 +249,12 @@ class RouteManger {
 
       case teacherStudentsScreen:
         return MaterialPageRoute(builder: (context) => Students());
+
+      case reviewHomeworkScreen:
+        final submission = settings.arguments as HomeworkSubmissionModel;
+        return MaterialPageRoute(
+          builder: (context) => ReviewHomeworkScreen(submission: submission),
+        );
 
       case settingsScreen:
         return MaterialPageRoute(builder: (context) => SettingsScreen());
