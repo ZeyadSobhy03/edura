@@ -1,3 +1,4 @@
+import 'package:edura/core/model/chat_args.dart';
 import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:flutter/material.dart';
 
@@ -8,17 +9,25 @@ import 'section/chat_header.dart';
 import 'section/chat_input_field.dart';
 
 class Chat extends StatefulWidget {
-  const Chat({super.key});
+  const Chat({super.key, required this.chat});
+
+  final ChatArgs chat;
 
   @override
   State<Chat> createState() => _ChatState();
 }
 
 class _ChatState extends State<Chat> {
-  final List<ChatMessageModel> _messages = List<ChatMessageModel>.from(
-    DummyChatData.all,
-  );
+  late final List<ChatMessageModel> _messages;
   final ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _messages = List<ChatMessageModel>.from(
+      widget.chat.initialMessages ?? DummyChatData.all,
+    );
+  }
 
   void _sendMessage(String text) {
     setState(() {
@@ -26,7 +35,7 @@ class _ChatState extends State<Chat> {
         ChatMessageModel(
           id: DateTime.now().millisecondsSinceEpoch.toString(),
           text: text,
-          sender: MessageSender.student,
+          sender: widget.chat.currentUserRole,
           time: DateTime.now(),
         ),
       );
@@ -56,10 +65,13 @@ class _ChatState extends State<Chat> {
     return Scaffold(
       backgroundColor: ColorManager.white,
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: true,
         backgroundColor: ColorManager.white,
         elevation: 0,
-        title: const ChatHeader(isOnline: true),
+        title: ChatHeader(
+          contactName: widget.chat.contactName,
+          isOnline: widget.chat.isOnline,
+        ),
       ),
       body: Column(
         children: [
@@ -79,7 +91,10 @@ class _ChatState extends State<Chat> {
                     ),
                     itemCount: _messages.length,
                     itemBuilder: (context, index) {
-                      return ChatBubble(message: _messages[index]);
+                      final message = _messages[index];
+                      final isMe =
+                          message.sender == widget.chat.currentUserRole;
+                      return ChatBubble(message: message, isMe: isMe);
                     },
                   ),
           ),

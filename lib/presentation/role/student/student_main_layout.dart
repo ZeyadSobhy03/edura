@@ -1,6 +1,6 @@
 import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/l10n/app_localizations.dart';
-import 'package:edura/presentation/role/student/tabs/chat/chat.dart';
+import 'package:edura/presentation/role/student/tabs/chat/student_chats_screen.dart';
 import 'package:edura/presentation/role/student/tabs/exams/exams.dart';
 import 'package:edura/presentation/role/student/tabs/home/student_home.dart';
 import 'package:edura/presentation/role/student/tabs/lessons/lessons.dart';
@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 
 class StudentMainLayout extends StatefulWidget {
   const StudentMainLayout({super.key, required this.initialIndex});
+
   final int initialIndex;
 
   @override
@@ -40,7 +41,7 @@ class _StudentMainLayoutState extends State<StudentMainLayout> {
       StudentHome(),
       Lessons(),
       Exams(),
-      Chat(),
+      StudentChatsScreen(),
       Profile(),
     ];
     return Scaffold(
@@ -66,11 +67,26 @@ class _StudentMainLayoutState extends State<StudentMainLayout> {
           );
         },
         items: [
-          BottomNavigationBarItem(icon: const Icon(Icons.home), label: l10.home),
-          BottomNavigationBarItem(icon: const Icon(Icons.menu_book), label: l10.lessons),
-          BottomNavigationBarItem(icon: const Icon(Icons.assignment_outlined), label: l10.exams),
-          BottomNavigationBarItem(icon: const Icon(Icons.messenger_outline), label: l10.chat),
-          BottomNavigationBarItem(icon: const Icon(Icons.person_outline_outlined), label: l10.profile),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.home),
+            label: l10.home,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.menu_book),
+            label: l10.lessons,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.assignment_outlined),
+            label: l10.exams,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.messenger_outline),
+            label: l10.chat,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.person_outline_outlined),
+            label: l10.profile,
+          ),
         ],
       ),
       body: PageView(

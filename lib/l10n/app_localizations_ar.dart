@@ -975,6 +975,78 @@ class AppLocalizationsAr extends AppLocalizations {
   String get edit => 'تعديل';
 
   @override
+  String get chats => 'الدردشات';
+
+  @override
+  String get searchChats => 'ابحث في الدردشات...';
+
+  @override
+  String get noConversationsYet => 'لا توجد محادثات بعد';
+
+  @override
+  String get rating => 'التقييم';
+
+  @override
+  String get years => 'سنوات';
+
+  @override
+  String get accountPreferences => 'تفضيلات الحساب';
+
+  @override
+  String get helpAndSupport => 'المساعدة والدعم';
+
+  @override
+  String get subjectRequired => 'يرجى إدخال المادة التي تدرّسها';
+
+  @override
+  String get yearsOfExperience => 'سنوات الخبرة';
+
+  @override
+  String get enterFullName => 'أدخل اسمك الكامل';
+
+  @override
+  String get enterSubject => 'أدخل المادة التي تدرّسها';
+
+  @override
+  String get enterYearsOfExperience => 'أدخل سنوات خبرتك';
+
+  @override
+  String get mySubjectsAndClasses => 'موادي وحصصي';
+
+  @override
+  String get studentMessageAlerts => 'تنبيهات رسائل الطلاب';
+
+  @override
+  String get payments => 'المدفوعات';
+
+  @override
+  String get earningsAndPayouts => 'الأرباح والمدفوعات';
+
+  @override
+  String get paymentMethods => 'طرق الدفع';
+
+  @override
+  String classSummary(int classes, int students) {
+    return '$classes حصص · $students طالب';
+  }
+
+  @override
+  String get addSubject => 'إضافة مادة';
+
+  @override
+  String get editSubject => 'تعديل المادة';
+
+  @override
+  String get subjectNameHint => 'مثال: الرياضيات';
+
+  @override
+  String get noSubjectsYet => 'لم تتم إضافة مواد بعد';
+
+  @override
+  String get studentsAndRatingAreComputed =>
+      'عدد الطلاب والتقييم يتم حسابهما تلقائيًا ولا يمكن تعديلهما هنا.';
+
+  @override
   String get delete => 'حذف';
 
   @override

@@ -295,7 +295,6 @@
   "addLesson": "Add Lesson",
   "createExam": "Create Exam",
   "notify": "Notify",
-
   "addNewLesson": "Add New Lesson",
   "lessonTitle": "Lesson Title",
   "lessonTitleHint": "e.g. Introduction to Calculus",
@@ -317,7 +316,7 @@
   "uploadPdfSubtitle": "PDF · Max 50MB",
   "details": "Details",
   "video": "Video",
-    "pdfs": "PDFs",
+  "pdfs": "PDFs",
   "questionBuilder": "Question Builder",
   "questionNumber": "Question {number}",
   "enterYourQuestion": "Enter your question...",
@@ -328,18 +327,34 @@
   "completeAllQuestionsBeforePublishing": "Please complete all questions and select correct answers before publishing",
   "examPublishedSuccessfully": "Exam published successfully",
   "@questionNumber": {
-    "placeholders": { "number": { "type": "int" } }
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
   },
   "@optionHint": {
-    "placeholders": { "label": { "type": "String" } }
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
   },
   "@publishExam": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "saveAttendanceCount": "Save Attendance ({count} students)",
   "attendanceSavedSuccessfully": "Attendance saved successfully",
   "@saveAttendanceCount": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "publishLesson": "Publish Lesson",
   "students": "Students",
@@ -361,7 +376,7 @@
   "editLesson": "Edit Lesson",
   "changeThumbnail": "Change Thumbnail",
   "changeVideo": "Change Video",
-    "changePdfs": "Change PDFs",
+  "changePdfs": "Change PDFs",
   "enterLessonTitle": "Enter lesson title",
   "lessonDescription": "Lesson Description",
   "enterLessonDescription": "Enter lesson description",
@@ -381,9 +396,12 @@
   "tapToReviewAndGrade": "Tap to Review & Grade",
   "gradeValue": "Grade: {grade}/100",
   "@gradeValue": {
-    "placeholders": { "grade": { "type": "int" } }
+    "placeholders": {
+      "grade": {
+        "type": "int"
+      }
+    }
   },
-
   "daysAgo": "{count} days ago",
   "@daysAgo": {
     "description": "Shows how many days ago something happened",
@@ -412,12 +430,39 @@
     }
   },
   "justNow": "Just now",
-
   "noSubmissionsYet": "No submissions yet",
   "gradeCannotExceed100": "Grade cannot exceed 100",
   "gradeSubmittedSuccessfully": "Grade submitted successfully",
   "views": "Views",
   "edit": "Edit",
+  "chats": "Chats",
+  "searchChats": "Search chats...",
+  "noConversationsYet": "No conversations yet",
+  "rating": "Rating",
+  "years": "Years",
+  "accountPreferences": "Account Preferences",
+  "helpAndSupport": "Help & Support",
+
+  "subjectRequired": "Please enter your subject",
+  "yearsOfExperience": "Years of Experience",
+  "enterFullName": "Enter your full name",
+  "enterSubject": "Enter your subject",
+  "enterYearsOfExperience": "Enter your years of experience",
+  "mySubjectsAndClasses": "My Subjects & Classes",
+  "studentMessageAlerts": "Student Message Alerts",
+  "payments": "Payments",
+  "earningsAndPayouts": "Earnings & Payouts",
+  "paymentMethods": "Payment Methods",
+  "classSummary": "{classes} classes · {students} students",
+  "addSubject": "Add Subject",
+  "editSubject": "Edit Subject",
+  "subjectNameHint": "e.g. Mathematics",
+  "noSubjectsYet": "No subjects added yet",
+  "@classSummary": {
+    "placeholders": { "classes": { "type": "int" }, "students": { "type": "int" } }
+  },
+  "studentsAndRatingAreComputed": "Students count and rating are calculated automatically and can't be edited here.",
+
   "delete": "Delete",
   "noPublishedLessons": "No published lessons",
   "noDraftLessons": "No draft lessons",
@@ -426,14 +471,17 @@
   "examAvgAndPassRate": "Avg: {avg}% · Pass rate: {passRate}%",
   "@examAvgAndPassRate": {
     "placeholders": {
-      "avg": { "type": "String" },
-      "passRate": { "type": "String" }
+      "avg": {
+        "type": "String"
+      },
+      "passRate": {
+        "type": "String"
+      }
     }
   },
   "saveAsDraft": "Save as Draft",
   "lessonPublishedSuccessfully": "Lesson published successfully",
   "lessonSavedAsDraft": "Lesson saved as draft",
-
   "passRate": "Pass rate: {rate}%",
   "nameRequired": "Please enter your name",
   "currentPassword": "Current Password",

@@ -979,6 +979,78 @@ class AppLocalizationsEn extends AppLocalizations {
   String get edit => 'Edit';
 
   @override
+  String get chats => 'Chats';
+
+  @override
+  String get searchChats => 'Search chats...';
+
+  @override
+  String get noConversationsYet => 'No conversations yet';
+
+  @override
+  String get rating => 'Rating';
+
+  @override
+  String get years => 'Years';
+
+  @override
+  String get accountPreferences => 'Account Preferences';
+
+  @override
+  String get helpAndSupport => 'Help & Support';
+
+  @override
+  String get subjectRequired => 'Please enter your subject';
+
+  @override
+  String get yearsOfExperience => 'Years of Experience';
+
+  @override
+  String get enterFullName => 'Enter your full name';
+
+  @override
+  String get enterSubject => 'Enter your subject';
+
+  @override
+  String get enterYearsOfExperience => 'Enter your years of experience';
+
+  @override
+  String get mySubjectsAndClasses => 'My Subjects & Classes';
+
+  @override
+  String get studentMessageAlerts => 'Student Message Alerts';
+
+  @override
+  String get payments => 'Payments';
+
+  @override
+  String get earningsAndPayouts => 'Earnings & Payouts';
+
+  @override
+  String get paymentMethods => 'Payment Methods';
+
+  @override
+  String classSummary(int classes, int students) {
+    return '$classes classes · $students students';
+  }
+
+  @override
+  String get addSubject => 'Add Subject';
+
+  @override
+  String get editSubject => 'Edit Subject';
+
+  @override
+  String get subjectNameHint => 'e.g. Mathematics';
+
+  @override
+  String get noSubjectsYet => 'No subjects added yet';
+
+  @override
+  String get studentsAndRatingAreComputed =>
+      'Students count and rating are calculated automatically and can\'t be edited here.';
+
+  @override
   String get delete => 'Delete';
 
   @override

@@ -1934,6 +1934,144 @@ abstract class AppLocalizations {
   /// **'Edit'**
   String get edit;
 
+  /// No description provided for @chats.
+  ///
+  /// In en, this message translates to:
+  /// **'Chats'**
+  String get chats;
+
+  /// No description provided for @searchChats.
+  ///
+  /// In en, this message translates to:
+  /// **'Search chats...'**
+  String get searchChats;
+
+  /// No description provided for @noConversationsYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No conversations yet'**
+  String get noConversationsYet;
+
+  /// No description provided for @rating.
+  ///
+  /// In en, this message translates to:
+  /// **'Rating'**
+  String get rating;
+
+  /// No description provided for @years.
+  ///
+  /// In en, this message translates to:
+  /// **'Years'**
+  String get years;
+
+  /// No description provided for @accountPreferences.
+  ///
+  /// In en, this message translates to:
+  /// **'Account Preferences'**
+  String get accountPreferences;
+
+  /// No description provided for @helpAndSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Help & Support'**
+  String get helpAndSupport;
+
+  /// No description provided for @subjectRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your subject'**
+  String get subjectRequired;
+
+  /// No description provided for @yearsOfExperience.
+  ///
+  /// In en, this message translates to:
+  /// **'Years of Experience'**
+  String get yearsOfExperience;
+
+  /// No description provided for @enterFullName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your full name'**
+  String get enterFullName;
+
+  /// No description provided for @enterSubject.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your subject'**
+  String get enterSubject;
+
+  /// No description provided for @enterYearsOfExperience.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your years of experience'**
+  String get enterYearsOfExperience;
+
+  /// No description provided for @mySubjectsAndClasses.
+  ///
+  /// In en, this message translates to:
+  /// **'My Subjects & Classes'**
+  String get mySubjectsAndClasses;
+
+  /// No description provided for @studentMessageAlerts.
+  ///
+  /// In en, this message translates to:
+  /// **'Student Message Alerts'**
+  String get studentMessageAlerts;
+
+  /// No description provided for @payments.
+  ///
+  /// In en, this message translates to:
+  /// **'Payments'**
+  String get payments;
+
+  /// No description provided for @earningsAndPayouts.
+  ///
+  /// In en, this message translates to:
+  /// **'Earnings & Payouts'**
+  String get earningsAndPayouts;
+
+  /// No description provided for @paymentMethods.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Methods'**
+  String get paymentMethods;
+
+  /// No description provided for @classSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'{classes} classes · {students} students'**
+  String classSummary(int classes, int students);
+
+  /// No description provided for @addSubject.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Subject'**
+  String get addSubject;
+
+  /// No description provided for @editSubject.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Subject'**
+  String get editSubject;
+
+  /// No description provided for @subjectNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Mathematics'**
+  String get subjectNameHint;
+
+  /// No description provided for @noSubjectsYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No subjects added yet'**
+  String get noSubjectsYet;
+
+  /// No description provided for @studentsAndRatingAreComputed.
+  ///
+  /// In en, this message translates to:
+  /// **'Students count and rating are calculated automatically and can\'t be edited here.'**
+  String get studentsAndRatingAreComputed;
+
   /// No description provided for @delete.
   ///
   /// In en, this message translates to:

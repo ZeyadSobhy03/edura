@@ -6,10 +6,10 @@ import '../../../../../../l10n/app_localizations.dart';
 
 
 class ChatHeader extends StatelessWidget {
-  const ChatHeader({super.key, required this.isOnline});
+  const ChatHeader({super.key, required this.isOnline, required this.contactName});
 
   final bool isOnline;
-
+  final String contactName;
   @override
   Widget build(BuildContext context) {
     final l10 = AppLocalizations.of(context)!;
@@ -31,7 +31,7 @@ class ChatHeader extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             CustomText(
-              text: l10.teacherName,
+              text: contactName,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,

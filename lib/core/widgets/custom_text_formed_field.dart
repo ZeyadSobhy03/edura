@@ -18,7 +18,7 @@ class CustomTextFormedField extends StatelessWidget {
     this.prefix,
     this.minLines = 1,
     this.fillColor = ColorManager.white,
-    this.initialValue,
+    this.initialValue,  this.filled=false,
   });
 
   final String hintText;
@@ -32,6 +32,7 @@ class CustomTextFormedField extends StatelessWidget {
   final int? minLines;
   final Color? fillColor;
   final String? initialValue;
+  final bool filled;
 
   final Widget? suffix;
   final void Function(String)? onChanged;
@@ -73,6 +74,7 @@ class CustomTextFormedField extends StatelessWidget {
           borderSide: BorderSide(color: ColorManager.red),
         ),
         fillColor: fillColor,
+        filled: filled,
         errorMaxLines: 2,
 
         hintText: hintText,

@@ -1,6 +1,8 @@
+import 'package:edura/core/model/chat_args.dart';
 import 'package:edura/core/model/exam_attempt_arguments.dart';
 import 'package:edura/core/model/homework_submission_model.dart';
 import 'package:edura/core/model/student_detail_model.dart';
+import 'package:edura/core/widgets/chat/chat.dart';
 import 'package:edura/presentation/role/student/student_main_layout.dart';
 import 'package:edura/presentation/role/student/tabs/exams/exam_details/exam_details.dart';
 import 'package:edura/presentation/role/student/tabs/exams/exam_details/section/exam_attempt_screen.dart';
@@ -24,12 +26,15 @@ import 'package:edura/presentation/role/teacher/tabs/students/students.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_chats/teacher_chats.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/section/teacher_homework_screen.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/teacher_lessons.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_profile/teacher_edit_profile/teacher_edit_profile_screen.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/teacher_profile.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_profile/teacher_setting/teacher_setting_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../presentation/auth/forget_password/forget_password.dart';
 import '../../../presentation/auth/login/login.dart';
 import '../../../presentation/auth/register/register.dart';
+import '../../../presentation/role/student/tabs/chat/student_chats_screen.dart';
 import '../../../presentation/role/student/tabs/profile/section/attendance/attendance_screen.dart';
 import '../../../presentation/role/student/tabs/profile/section/notes/notes_screen.dart';
 import '../../../presentation/role/teacher/tabs/dashboard/section/analytics_screen.dart';
@@ -38,11 +43,13 @@ import '../../../presentation/role/teacher/tabs/dashboard/section/exams/question
 import '../../../presentation/role/teacher/tabs/teacher_lessons/section/add_new_lesson_screen.dart';
 import '../../../presentation/role/teacher/tabs/teacher_lessons/section/edit_lesson_screen.dart';
 import '../../../presentation/role/teacher/tabs/teacher_lessons/section/review_homework_screen.dart';
+import '../../../presentation/role/teacher/tabs/teacher_profile/teacher_setting/section/subjects_classes_screen.dart';
 import '../../../presentation/role/teacher/teacher_main_layout.dart';
 import '../../../presentation/splash_screen/splash_screen.dart';
 import '../../model/edit_profile_arguments.dart';
 import '../../model/homework_model.dart';
 import '../../model/lesson_model.dart';
+import '../../model/teacher_profile_model.dart';
 import '../../model/web_view_arguments.dart';
 
 class RouteManger {
@@ -86,7 +93,13 @@ class RouteManger {
   static const String editLessonScreen = '/editLessonScreen';
   static const String reviewHomeworkScreen = '/reviewHomeworkScreen';
   static const String teacherHomeworkScreen = '/teacherHomeworkScreen';
+  static const String studentChatsScreen = '/studentChatsScreen';
+  static const String chat = '/chat';
+  static const String teacherEditProfileScreen = '/teacherEditProfileScreen';
+  static const String teacherSettingsScreen = '/teacherSettingsScreen';
+  static const String teacherProfileEditScreen = '/teacherProfileEditScreen';
 
+  static const String subjectsClassesScreen= '/subjectsClassesScreen';
   static Route router(RouteSettings settings) {
     switch (settings.name) {
       case registerRoute:
@@ -102,7 +115,6 @@ class RouteManger {
             return const ForgetPassword();
           },
         );
-
       case homeWorkScreen:
         final homework = settings.arguments as List<HomeworkModel>?;
         return MaterialPageRoute(
@@ -137,6 +149,27 @@ class RouteManger {
           builder: (context) => StudentDetails(student: student),
         );
 
+      case chat:
+        return MaterialPageRoute(
+          builder: (context) {
+            final chat = settings.arguments as ChatArgs;
+            return Chat(chat: chat);
+          },
+        );
+      case subjectsClassesScreen:
+        return MaterialPageRoute(
+          builder: (context) {
+            return const SubjectsClassesScreen();
+          },
+        );
+      case teacherEditProfileScreen:
+        return MaterialPageRoute(
+          builder: (context) {
+            final teacher = settings.arguments as TeacherProfileModel;
+            return TeacherEditProfileScreen(teacher: teacher);
+          },
+        );
+
       case teacherMainLayoutRoute:
         final initialIndex = settings.arguments as int? ?? 0;
         return MaterialPageRoute(
@@ -155,6 +188,11 @@ class RouteManger {
           builder: (context) => LessonDetails(lesson: lesson),
         );
 
+      case studentChatsScreen:
+        return MaterialPageRoute(
+          builder: (context) => const StudentChatsScreen(),
+        );
+
       case lessonsScreen:
         return MaterialPageRoute(builder: (context) => Lessons());
 
@@ -171,9 +209,9 @@ class RouteManger {
         );
       case teacherHomeworkScreen:
         final submissions = settings.arguments as List<HomeworkSubmissionModel>;
-        return MaterialPageRoute(builder: (context) => TeacherHomeworkScreen(
-          submissions: submissions,
-        ));
+        return MaterialPageRoute(
+          builder: (context) => TeacherHomeworkScreen(submissions: submissions),
+        );
       case announcementsScreen:
         return MaterialPageRoute(builder: (context) => AnnouncementsScreen());
       case addNewLessonScreen:
@@ -200,6 +238,22 @@ class RouteManger {
       case attendanceScreen:
         return MaterialPageRoute(
           builder: (context) => const AttendanceScreen(),
+        );
+
+      case teacherSettingsScreen:
+        final teacher = settings.arguments as TeacherProfileModel;
+        return MaterialPageRoute(
+          builder: (context) {
+            return TeacherSettingScreen(teacher: teacher);
+          },
+        );
+
+      case teacherProfileEditScreen:
+        return MaterialPageRoute(
+          builder: (context) {
+            final teacher = settings.arguments as TeacherProfileModel;
+            return TeacherEditProfileScreen(teacher: teacher);
+          },
         );
 
       case analyticsScreen:
