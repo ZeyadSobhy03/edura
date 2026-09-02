@@ -7,9 +7,10 @@ import 'package:edura/core/widgets/custom_text.dart';
 import 'package:edura/core/widgets/custom_text_button.dart';
 import 'package:edura/core/widgets/custom_text_formed_field.dart';
 import 'package:edura/l10n/app_localizations.dart';
-import 'package:edura/presentation/auth/widgets/build_label.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../register/presentation/view/widgets/build_label.dart';
 
 class ForgetPassword extends StatefulWidget {
   const ForgetPassword({super.key});

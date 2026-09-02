@@ -1149,4 +1149,173 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get questions => 'الأسئلة';
+
+  @override
+  String get invalidCredentials => 'بيانات اعتماد غير صالحة';
+
+  @override
+  String get emailNotConfirmed => 'البريد الإلكتروني غير مؤكد';
+
+  @override
+  String get emailAlreadyExists => 'البريد الإلكتروني موجود بالفعل';
+
+  @override
+  String get weakPassword => 'كلمة المرور ضعيفة';
+
+  @override
+  String get tooManyRequests => 'طلبات كثيرة جدًا';
+
+  @override
+  String get sessionExpired => 'انتهت صلاحية الجلسة';
+
+  @override
+  String get networkError => 'خطأ في الشبكة';
+
+  @override
+  String get noInternet => 'لا يوجد اتصال بالإنترنت';
+
+  @override
+  String get timeoutError => 'انتهت مهلة الاتصال';
+
+  @override
+  String get serverError => 'خطأ في الخادم';
+
+  @override
+  String get serviceUnavailable => 'الخدمة غير متوفرة';
+
+  @override
+  String get unknownServerError => 'خطأ في الخادم غير معروف';
+
+  @override
+  String get invalidEmail => 'البريد الإلكتروني غير صالح';
+
+  @override
+  String get emptyField => 'حقل فارغ';
+
+  @override
+  String get passwordMismatch => 'كلمة المرور غير متطابقة';
+
+  @override
+  String get messageLoginSuccess => 'تم تسجيل الدخول بنجاح';
+
+  @override
+  String get errorMessage => 'حدث خطأ ما. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get messageLoginLoading => 'جارٍ تسجيل الدخول...';
+
+  @override
+  String get emailRequired => 'البريد الإلكتروني مطلوب';
+
+  @override
+  String get wrongPassword => 'كلمة المرور خاطئة';
+
+  @override
+  String get fileSelectionFailed => 'فشل اختيار الملف. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get examPublishFailed => 'فشل نشر الاختبار. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get examPublishing => 'جارٍ نشر الاختبار...';
+
+  @override
+  String get examTitle => 'عنوان الاختبار';
+
+  @override
+  String get enterExamTitle => 'أدخل عنوان الاختبار';
+
+  @override
+  String get examTitleCannotBeEmpty => 'لا يمكن أن يكون عنوان الاختبار فارغًا';
+
+  @override
+  String get passwordRequired => 'كلمة المرور مطلوبة';
+
+  @override
+  String get emailInvalid => 'البريد الإلكتروني غير صالح';
+
+  @override
+  String get passwordInvalid => 'كلمة المرور غير صالحة';
+
+  @override
+  String get userNotFound => 'المستخدم غير موجود';
+
+  @override
+  String get examSubject => 'المادة';
+
+  @override
+  String get enterExamSubject => 'أدخل المادة';
+
+  @override
+  String get examSubjectCannotBeEmpty => 'لا يمكن أن تكون المادة فارغة';
+
+  @override
+  String get examDuration => 'مدة الاختبار';
+
+  @override
+  String get startDate => 'تاريخ البدء';
+
+  @override
+  String get endDate => 'تاريخ الانتهاء';
+
+  @override
+  String get selectDate => 'اختر التاريخ';
+
+  @override
+  String get pleaseEnterYourFullName => 'يرجى إدخال اسمك الكامل';
+
+  @override
+  String get pleaseEnterYourPhoneNumber => 'يرجى إدخال رقم هاتفك';
+
+  @override
+  String get pleaseEnterYourParentPhone => 'يرجى إدخال هاتف الوالد';
+
+  @override
+  String get pleaseEnterYourSchool => 'يرجى إدخال مدرستك';
+
+  @override
+  String get pleaseEnterYourGrade => 'يرجى إدخال صفك';
+
+  @override
+  String get pleaseEnterYourEmail => 'يرجى إدخال بريدك الإلكتروني';
+
+  @override
+  String get pleaseEnterYourPassword => 'يرجى إدخال كلمة المرور الخاصة بك';
+
+  @override
+  String get pleaseEnterValidEmail => 'يرجى إدخال بريد إلكتروني صالح';
+
+  @override
+  String get pleaseEnterValidPhoneNumber => 'يرجى إدخال رقم هاتف صالح';
+
+  @override
+  String get registering => 'جارٍ التسجيل...';
+
+  @override
+  String get registerSuccess => 'تم التسجيل بنجاح';
+
+  @override
+  String get registerFailed => 'فشل التسجيل. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get availabilityWindow => 'فترة الإتاحة';
+
+  @override
+  String get endDateMustBeAfterStartDate =>
+      'يجب أن يكون تاريخ الانتهاء بعد تاريخ البدء';
+
+  @override
+  String get selectStartAndEndDate => 'يرجى اختيار تاريخي البدء والانتهاء';
+
+  @override
+  String get enterExamDuration => 'أدخل مدة الاختبار';
+
+  @override
+  String get examDurationCannotBeEmpty => 'لا يمكن أن تكون مدة الاختبار فارغة';
+
+  @override
+  String get examDurationMustBeANumber => 'يجب أن تكون مدة الاختبار رقمًا';
+
+  @override
+  String get unauthorized => 'غير مصرح';
 }

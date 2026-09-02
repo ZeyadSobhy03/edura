@@ -754,7 +754,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get uploadVideo => 'Upload Video';
 
   @override
-  String get uploadVideoSubtitle => 'MP4, MOV · Max 2GB';
+  String get uploadVideoSubtitle => 'MP4, MOV Â· Max 2GB';
 
   @override
   String get chooseFile => 'Choose File';
@@ -773,7 +773,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get uploadPdf => 'Upload PDF';
 
   @override
-  String get uploadPdfSubtitle => 'PDF · Max 50MB';
+  String get uploadPdfSubtitle => 'PDF Â· Max 50MB';
 
   @override
   String get details => 'Details';
@@ -1031,7 +1031,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String classSummary(int classes, int students) {
-    return '$classes classes · $students students';
+    return '$classes classes Â· $students students';
   }
 
   @override
@@ -1067,7 +1067,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String examAvgAndPassRate(String avg, String passRate) {
-    return 'Avg: $avg% · Pass rate: $passRate%';
+    return 'Avg: $avg% Â· Pass rate: $passRate%';
   }
 
   @override
@@ -1145,9 +1145,186 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String rankAndBadgesSummary(Object count, Object rank) {
-    return 'Rank #$rank · $count badges earned';
+    return 'Rank #$rank Â· $count badges earned';
   }
 
   @override
   String get questions => 'Questions';
+
+  @override
+  String get invalidCredentials => 'Invalid email or password.';
+
+  @override
+  String get emailNotConfirmed =>
+      'Please confirm your email before logging in.';
+
+  @override
+  String get emailAlreadyExists => 'An account with this email already exists.';
+
+  @override
+  String get weakPassword =>
+      'The password is too weak. Please choose a stronger password.';
+
+  @override
+  String get tooManyRequests =>
+      'Too many login attempts. Please try again later.';
+
+  @override
+  String get sessionExpired =>
+      'Your session has expired. Please sign in again.';
+
+  @override
+  String get networkError => 'Please check your internet connection.';
+
+  @override
+  String get noInternet => 'No internet connection. Please check your network.';
+
+  @override
+  String get timeoutError => 'The request timed out. Please try again.';
+
+  @override
+  String get serverError => 'Server error. Please try again later.';
+
+  @override
+  String get serviceUnavailable =>
+      'The service is temporarily unavailable. Please try again later.';
+
+  @override
+  String get unknownServerError =>
+      'Something went wrong on the server. Please try again.';
+
+  @override
+  String get invalidEmail =>
+      'The email address is invalid. Please check it and try again.';
+
+  @override
+  String get emptyField => 'This field is required.';
+
+  @override
+  String get passwordMismatch => 'Passwords do not match.';
+
+  @override
+  String get messageLoginSuccess => 'You have successfully logged in.';
+
+  @override
+  String get errorMessage => 'An error occurred. Please try again.';
+
+  @override
+  String get messageLoginLoading => 'Logging in, please wait...';
+
+  @override
+  String get emailRequired => 'Email is required.';
+
+  @override
+  String get wrongPassword => 'The password you entered is incorrect.';
+
+  @override
+  String get fileSelectionFailed => 'Failed to select file. Please try again.';
+
+  @override
+  String get examPublishFailed =>
+      'Failed to publish exam. Please check your questions and try again.';
+
+  @override
+  String get examPublishing => 'Publishing exam, please wait...';
+
+  @override
+  String get examTitle => 'Exam Title';
+
+  @override
+  String get enterExamTitle => 'Enter your exam title';
+
+  @override
+  String get examTitleCannotBeEmpty => 'Exam title cannot be empty.';
+
+  @override
+  String get passwordRequired => 'Password is required.';
+
+  @override
+  String get emailInvalid => 'Please enter a valid email address.';
+
+  @override
+  String get passwordInvalid => 'Password must be at least 8 characters long.';
+
+  @override
+  String get userNotFound => 'No account found with this email.';
+
+  @override
+  String get examSubject => 'Exam Subject';
+
+  @override
+  String get enterExamSubject => 'Enter your exam subject';
+
+  @override
+  String get examSubjectCannotBeEmpty => 'Exam subject cannot be empty.';
+
+  @override
+  String get examDuration => 'Exam Duration';
+
+  @override
+  String get startDate => 'Start Date';
+
+  @override
+  String get endDate => 'End Date';
+
+  @override
+  String get selectDate => 'Select date';
+
+  @override
+  String get pleaseEnterYourFullName => 'Please enter your full name.';
+
+  @override
+  String get pleaseEnterYourPhoneNumber => 'Please enter your phone number.';
+
+  @override
+  String get pleaseEnterYourParentPhone => 'Please enter your parent phone.';
+
+  @override
+  String get pleaseEnterYourSchool => 'Please enter your school.';
+
+  @override
+  String get pleaseEnterYourGrade => 'Please enter your grade.';
+
+  @override
+  String get pleaseEnterYourEmail => 'Please enter your email.';
+
+  @override
+  String get pleaseEnterYourPassword => 'Please enter your password.';
+
+  @override
+  String get pleaseEnterValidEmail => 'Please enter a valid email address.';
+
+  @override
+  String get pleaseEnterValidPhoneNumber =>
+      'Please enter a valid phone number.';
+
+  @override
+  String get registering => 'Registering, please wait...';
+
+  @override
+  String get registerSuccess => 'You have successfully registered.';
+
+  @override
+  String get registerFailed => 'Registration failed. Please try again.';
+
+  @override
+  String get availabilityWindow => 'AVAILABILITY WINDOW';
+
+  @override
+  String get endDateMustBeAfterStartDate => 'End date must be after start date';
+
+  @override
+  String get selectStartAndEndDate => 'Please select both start and end dates';
+
+  @override
+  String get enterExamDuration => 'Enter exam duration in minutes';
+
+  @override
+  String get examDurationCannotBeEmpty => 'Exam duration cannot be empty.';
+
+  @override
+  String get examDurationMustBeANumber => 'Exam duration must be a number.';
+
+  @override
+  String get unauthorized => 'You are not authorized to perform this action.';
 }

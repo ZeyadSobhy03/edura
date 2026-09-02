@@ -1523,7 +1523,7 @@ abstract class AppLocalizations {
   /// No description provided for @uploadVideoSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'MP4, MOV · Max 2GB'**
+  /// **'MP4, MOV Â· Max 2GB'**
   String get uploadVideoSubtitle;
 
   /// No description provided for @chooseFile.
@@ -1559,7 +1559,7 @@ abstract class AppLocalizations {
   /// No description provided for @uploadPdfSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'PDF · Max 50MB'**
+  /// **'PDF Â· Max 50MB'**
   String get uploadPdfSubtitle;
 
   /// No description provided for @details.
@@ -2039,7 +2039,7 @@ abstract class AppLocalizations {
   /// No description provided for @classSummary.
   ///
   /// In en, this message translates to:
-  /// **'{classes} classes · {students} students'**
+  /// **'{classes} classes Â· {students} students'**
   String classSummary(int classes, int students);
 
   /// No description provided for @addSubject.
@@ -2105,7 +2105,7 @@ abstract class AppLocalizations {
   /// No description provided for @examAvgAndPassRate.
   ///
   /// In en, this message translates to:
-  /// **'Avg: {avg}% · Pass rate: {passRate}%'**
+  /// **'Avg: {avg}% Â· Pass rate: {passRate}%'**
   String examAvgAndPassRate(String avg, String passRate);
 
   /// No description provided for @saveAsDraft.
@@ -2237,7 +2237,7 @@ abstract class AppLocalizations {
   /// No description provided for @rankAndBadgesSummary.
   ///
   /// In en, this message translates to:
-  /// **'Rank #{rank} · {count} badges earned'**
+  /// **'Rank #{rank} Â· {count} badges earned'**
   String rankAndBadgesSummary(Object count, Object rank);
 
   /// No description provided for @questions.
@@ -2245,6 +2245,342 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Questions'**
   String get questions;
+
+  /// No description provided for @invalidCredentials.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid email or password.'**
+  String get invalidCredentials;
+
+  /// No description provided for @emailNotConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Please confirm your email before logging in.'**
+  String get emailNotConfirmed;
+
+  /// No description provided for @emailAlreadyExists.
+  ///
+  /// In en, this message translates to:
+  /// **'An account with this email already exists.'**
+  String get emailAlreadyExists;
+
+  /// No description provided for @weakPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'The password is too weak. Please choose a stronger password.'**
+  String get weakPassword;
+
+  /// No description provided for @tooManyRequests.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many login attempts. Please try again later.'**
+  String get tooManyRequests;
+
+  /// No description provided for @sessionExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'Your session has expired. Please sign in again.'**
+  String get sessionExpired;
+
+  /// No description provided for @networkError.
+  ///
+  /// In en, this message translates to:
+  /// **'Please check your internet connection.'**
+  String get networkError;
+
+  /// No description provided for @noInternet.
+  ///
+  /// In en, this message translates to:
+  /// **'No internet connection. Please check your network.'**
+  String get noInternet;
+
+  /// No description provided for @timeoutError.
+  ///
+  /// In en, this message translates to:
+  /// **'The request timed out. Please try again.'**
+  String get timeoutError;
+
+  /// No description provided for @serverError.
+  ///
+  /// In en, this message translates to:
+  /// **'Server error. Please try again later.'**
+  String get serverError;
+
+  /// No description provided for @serviceUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'The service is temporarily unavailable. Please try again later.'**
+  String get serviceUnavailable;
+
+  /// No description provided for @unknownServerError.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong on the server. Please try again.'**
+  String get unknownServerError;
+
+  /// No description provided for @invalidEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'The email address is invalid. Please check it and try again.'**
+  String get invalidEmail;
+
+  /// No description provided for @emptyField.
+  ///
+  /// In en, this message translates to:
+  /// **'This field is required.'**
+  String get emptyField;
+
+  /// No description provided for @passwordMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match.'**
+  String get passwordMismatch;
+
+  /// No description provided for @messageLoginSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'You have successfully logged in.'**
+  String get messageLoginSuccess;
+
+  /// No description provided for @errorMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'An error occurred. Please try again.'**
+  String get errorMessage;
+
+  /// No description provided for @messageLoginLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Logging in, please wait...'**
+  String get messageLoginLoading;
+
+  /// No description provided for @emailRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Email is required.'**
+  String get emailRequired;
+
+  /// No description provided for @wrongPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'The password you entered is incorrect.'**
+  String get wrongPassword;
+
+  /// No description provided for @fileSelectionFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to select file. Please try again.'**
+  String get fileSelectionFailed;
+
+  /// No description provided for @examPublishFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to publish exam. Please check your questions and try again.'**
+  String get examPublishFailed;
+
+  /// No description provided for @examPublishing.
+  ///
+  /// In en, this message translates to:
+  /// **'Publishing exam, please wait...'**
+  String get examPublishing;
+
+  /// No description provided for @examTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Exam Title'**
+  String get examTitle;
+
+  /// No description provided for @enterExamTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your exam title'**
+  String get enterExamTitle;
+
+  /// No description provided for @examTitleCannotBeEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Exam title cannot be empty.'**
+  String get examTitleCannotBeEmpty;
+
+  /// No description provided for @passwordRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Password is required.'**
+  String get passwordRequired;
+
+  /// No description provided for @emailInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email address.'**
+  String get emailInvalid;
+
+  /// No description provided for @passwordInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 8 characters long.'**
+  String get passwordInvalid;
+
+  /// No description provided for @userNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No account found with this email.'**
+  String get userNotFound;
+
+  /// No description provided for @examSubject.
+  ///
+  /// In en, this message translates to:
+  /// **'Exam Subject'**
+  String get examSubject;
+
+  /// No description provided for @enterExamSubject.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your exam subject'**
+  String get enterExamSubject;
+
+  /// No description provided for @examSubjectCannotBeEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Exam subject cannot be empty.'**
+  String get examSubjectCannotBeEmpty;
+
+  /// No description provided for @examDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Exam Duration'**
+  String get examDuration;
+
+  /// No description provided for @startDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Date'**
+  String get startDate;
+
+  /// No description provided for @endDate.
+  ///
+  /// In en, this message translates to:
+  /// **'End Date'**
+  String get endDate;
+
+  /// No description provided for @selectDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Select date'**
+  String get selectDate;
+
+  /// No description provided for @pleaseEnterYourFullName.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your full name.'**
+  String get pleaseEnterYourFullName;
+
+  /// No description provided for @pleaseEnterYourPhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your phone number.'**
+  String get pleaseEnterYourPhoneNumber;
+
+  /// No description provided for @pleaseEnterYourParentPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your parent phone.'**
+  String get pleaseEnterYourParentPhone;
+
+  /// No description provided for @pleaseEnterYourSchool.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your school.'**
+  String get pleaseEnterYourSchool;
+
+  /// No description provided for @pleaseEnterYourGrade.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your grade.'**
+  String get pleaseEnterYourGrade;
+
+  /// No description provided for @pleaseEnterYourEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your email.'**
+  String get pleaseEnterYourEmail;
+
+  /// No description provided for @pleaseEnterYourPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your password.'**
+  String get pleaseEnterYourPassword;
+
+  /// No description provided for @pleaseEnterValidEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email address.'**
+  String get pleaseEnterValidEmail;
+
+  /// No description provided for @pleaseEnterValidPhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid phone number.'**
+  String get pleaseEnterValidPhoneNumber;
+
+  /// No description provided for @registering.
+  ///
+  /// In en, this message translates to:
+  /// **'Registering, please wait...'**
+  String get registering;
+
+  /// No description provided for @registerSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'You have successfully registered.'**
+  String get registerSuccess;
+
+  /// No description provided for @registerFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Registration failed. Please try again.'**
+  String get registerFailed;
+
+  /// No description provided for @availabilityWindow.
+  ///
+  /// In en, this message translates to:
+  /// **'AVAILABILITY WINDOW'**
+  String get availabilityWindow;
+
+  /// No description provided for @endDateMustBeAfterStartDate.
+  ///
+  /// In en, this message translates to:
+  /// **'End date must be after start date'**
+  String get endDateMustBeAfterStartDate;
+
+  /// No description provided for @selectStartAndEndDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select both start and end dates'**
+  String get selectStartAndEndDate;
+
+  /// No description provided for @enterExamDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter exam duration in minutes'**
+  String get enterExamDuration;
+
+  /// No description provided for @examDurationCannotBeEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Exam duration cannot be empty.'**
+  String get examDurationCannotBeEmpty;
+
+  /// No description provided for @examDurationMustBeANumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Exam duration must be a number.'**
+  String get examDurationMustBeANumber;
+
+  /// No description provided for @unauthorized.
+  ///
+  /// In en, this message translates to:
+  /// **'You are not authorized to perform this action.'**
+  String get unauthorized;
 }
 
 class _AppLocalizationsDelegate
