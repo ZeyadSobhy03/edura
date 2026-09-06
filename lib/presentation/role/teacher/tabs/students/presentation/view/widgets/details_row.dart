@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/resources/colors/color_manger.dart';
-import '../../../../../../core/widgets/custom_text.dart';
+import '../../../../../../../../core/resources/colors/color_manger.dart';
+import '../../../../../../../../core/widgets/custom_text.dart';
+
+
 
 class DetailsRow extends StatelessWidget {
   const DetailsRow({

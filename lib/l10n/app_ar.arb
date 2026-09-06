@@ -411,6 +411,8 @@
   "registering": "جارٍ التسجيل...",
   "registerSuccess": "تم التسجيل بنجاح",
   "registerFailed": "فشل التسجيل. يرجى المحاولة مرة أخرى.",
+  "errorOccurred": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+  "noStudentsFound":  "لم يتم العثور على طلاب",
   "endDateMustBeAfterStartDate": "يجب أن يكون تاريخ الانتهاء بعد تاريخ البدء",
   "selectStartAndEndDate": "يرجى اختيار تاريخي البدء والانتهاء",
   "examDurationMustBeANumber": "يجب أن تكون مدة الاختبار رقمًا",

@@ -546,6 +546,8 @@
   "registering": "Registering, please wait...",
   "registerSuccess": "You have successfully registered.",
   "registerFailed": "Registration failed. Please try again.",
+  "errorOccurred": "An error occurred. Please try again.",
+  "noStudentsFound": "No students found",
   "availabilityWindow": "AVAILABILITY WINDOW",
   "endDateMustBeAfterStartDate": "End date must be after start date",
   "selectStartAndEndDate": "Please select both start and end dates",

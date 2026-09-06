@@ -1,6 +1,9 @@
+import 'chat_message_model.dart';
+
 class ChatConversationModel {
   final String id;
   final String studentName;
+  final String? teacherName;
   final String lastMessage;
   final DateTime lastMessageTime;
   final int unreadCount;
@@ -12,20 +15,28 @@ class ChatConversationModel {
     required this.lastMessage,
     required this.lastMessageTime,
     this.unreadCount = 0,
+    this.teacherName,
     this.isOnline = false,
   });
 
   factory ChatConversationModel.fromJson(Map<String, dynamic> json) {
     return ChatConversationModel(
+      teacherName: json['teacher']?['name'],
       id: json['id'].toString(),
-      studentName: json['student_name'] ?? '',
+      studentName: json['student']?['name'] ?? '',
       lastMessage: json['last_message'] ?? '',
       lastMessageTime: DateTime.parse(json['last_message_time']),
       unreadCount: json['unread_count'] ?? 0,
       isOnline: json['is_online'] ?? false,
     );
   }
+  String contactName(MessageSender viewerRole) {
+    return viewerRole == MessageSender.teacher
+        ? studentName
+        : (teacherName ?? '');
+  }
 }
+
 
 class DummyConversationsData {
   static List<ChatConversationModel> all = [

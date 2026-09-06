@@ -1,21 +1,20 @@
-import 'package:edura/core/model/student_detail_model.dart';
+import 'package:edura/presentation/role/teacher/tabs/students/data/model/student_detail_model.dart';
 import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/widgets/custom_text.dart';
-import 'package:edura/presentation/role/teacher/tabs/students/widgets/details_row.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../l10n/app_localizations.dart';
+import '../widgets/details_row.dart';
+
 
 class StudentCard extends StatelessWidget {
   const StudentCard({super.key, required this.student, this.onTap});
 
-  final StudentDetailsModel student;
+  final StudentModel student;
   final void Function()? onTap;
 
 
   @override
   Widget build(BuildContext context) {
-    final l10 = AppLocalizations.of(context)!;
     return GestureDetector(
       onTap: onTap,
       child: Card(

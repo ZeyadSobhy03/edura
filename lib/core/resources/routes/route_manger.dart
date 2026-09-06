@@ -1,7 +1,7 @@
 import 'package:edura/core/model/chat_args.dart';
 import 'package:edura/core/model/exam_attempt_arguments.dart';
 import 'package:edura/core/model/homework_submission_model.dart';
-import 'package:edura/core/model/student_detail_model.dart';
+import 'package:edura/presentation/role/teacher/tabs/students/data/model/student_detail_model.dart';
 import 'package:edura/core/widgets/chat/chat.dart';
 import 'package:edura/presentation/role/student/student_main_layout.dart';
 import 'package:edura/presentation/role/student/tabs/exams/exam_details/exam_details.dart';
@@ -21,14 +21,14 @@ import 'package:edura/presentation/role/student/tabs/profile/section/settings/se
 import 'package:edura/presentation/role/student/tabs/profile/section/settings/settings_screen.dart';
 import 'package:edura/presentation/role/student/tabs/profile/section/settings/sections/webview_screen.dart';
 import 'package:edura/presentation/role/teacher/tabs/dashboard/section/teacher_notification.dart';
-import 'package:edura/presentation/role/teacher/tabs/students/section/student_details.dart';
-import 'package:edura/presentation/role/teacher/tabs/students/students.dart';
+import 'package:edura/presentation/role/teacher/tabs/students/presentation/view/students.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_chats/teacher_chats.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view/teacher_lessons.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/teacher_edit_profile/teacher_edit_profile_screen.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/teacher_profile.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/teacher_setting/teacher_setting_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../presentation/auth/forget_password/forget_password.dart';
 import '../../../presentation/auth/login/presentation/view/login.dart';
@@ -39,6 +39,11 @@ import '../../../presentation/role/student/tabs/profile/section/notes/notes_scre
 import '../../../presentation/role/teacher/tabs/dashboard/section/analytics_screen.dart';
 import '../../../presentation/role/teacher/tabs/dashboard/section/attendance/take_attendance_screen.dart';
 import '../../../presentation/role/teacher/tabs/dashboard/section/exams/question_builder_screen.dart';
+import '../../../presentation/role/teacher/tabs/students/presentation/view/section/student_details.dart';
+import '../../../presentation/role/teacher/tabs/teacher_chats/data/data_source/chats_supabase_data_source.dart';
+import '../../../presentation/role/teacher/tabs/teacher_chats/data/repositories/chats_repositories_imp.dart';
+import '../../../presentation/role/teacher/tabs/teacher_chats/domain/use_case/chats_use_case.dart';
+import '../../../presentation/role/teacher/tabs/teacher_chats/presentation/view_model/chats_view_model.dart';
 import '../../../presentation/role/teacher/tabs/teacher_lessons/presentation/view/section/add_new_lesson_screen.dart';
 import '../../../presentation/role/teacher/tabs/teacher_lessons/presentation/view/section/edit_lesson_screen.dart';
 import '../../../presentation/role/teacher/tabs/teacher_lessons/presentation/view/section/review_homework_screen.dart';
@@ -99,7 +104,8 @@ class RouteManger {
   static const String teacherSettingsScreen = '/teacherSettingsScreen';
   static const String teacherProfileEditScreen = '/teacherProfileEditScreen';
 
-  static const String subjectsClassesScreen= '/subjectsClassesScreen';
+  static const String subjectsClassesScreen = '/subjectsClassesScreen';
+
   static Route router(RouteSettings settings) {
     switch (settings.name) {
       case registerRoute:
@@ -144,7 +150,7 @@ class RouteManger {
         );
 
       case studentDetailsScreen:
-        final student = settings.arguments as StudentDetailsModel;
+        final student = settings.arguments as StudentModel;
         return MaterialPageRoute(
           builder: (context) => StudentDetails(student: student),
         );
@@ -152,8 +158,17 @@ class RouteManger {
       case chat:
         return MaterialPageRoute(
           builder: (context) {
-            final chat = settings.arguments as ChatArgs;
-            return Chat(chat: chat);
+            final chatArgs = settings.arguments as ChatArgs;
+            return BlocProvider(
+              create: (_) => MessagesCubit(
+                chatsUseCase: ChatsUseCase(
+                  repositories: ChatsRepositoriesImp(
+                    remoteDataSource: ChatsSupabaseDataSource(),
+                  ),
+                ),
+              )..getMessages(chatArgs.conversationId),
+              child: Chat(chat: chatArgs),
+            );
           },
         );
       case subjectsClassesScreen:

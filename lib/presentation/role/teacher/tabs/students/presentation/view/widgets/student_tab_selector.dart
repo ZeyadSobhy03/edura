@@ -1,8 +1,9 @@
 import 'package:edura/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/resources/colors/color_manger.dart';
-import '../../../../../../core/widgets/custom_text.dart';
+import '../../../../../../../../core/resources/colors/color_manger.dart';
+import '../../../../../../../../core/widgets/custom_text.dart';
+
 
 enum StudentTab { all, active, inactive, blocked }
 

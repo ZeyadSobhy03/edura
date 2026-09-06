@@ -1,9 +1,13 @@
+import 'dart:developer';
+
 import 'package:edura/core/model/chat_args.dart';
 import 'package:edura/core/resources/colors/color_manger.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_chats/presentation/view_model/chats_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/model/chat_message_model.dart';
 import '../../../../../l10n/app_localizations.dart';
+import '../../localization/error_messages.dart';
 import 'section/chat_bubble.dart';
 import 'section/chat_header.dart';
 import 'section/chat_input_field.dart';
@@ -18,38 +22,12 @@ class Chat extends StatefulWidget {
 }
 
 class _ChatState extends State<Chat> {
-  late final List<ChatMessageModel> _messages;
   final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
-    _messages = List<ChatMessageModel>.from(
-      widget.chat.initialMessages ?? DummyChatData.all,
-    );
-  }
-
-  void _sendMessage(String text) {
-    setState(() {
-      _messages.add(
-        ChatMessageModel(
-          id: DateTime.now().millisecondsSinceEpoch.toString(),
-          text: text,
-          sender: widget.chat.currentUserRole,
-          time: DateTime.now(),
-        ),
-      );
-    });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (_scrollController.hasClients) {
-        _scrollController.animateTo(
-          _scrollController.position.maxScrollExtent,
-          duration: const Duration(milliseconds: 250),
-          curve: Curves.easeOut,
-        );
-      }
-    });
+    context.read<MessagesCubit>().getMessages(widget.chat.conversationId);
   }
 
   @override
@@ -76,31 +54,77 @@ class _ChatState extends State<Chat> {
       body: Column(
         children: [
           Expanded(
-            child: _messages.isEmpty
-                ? Center(
+            child: BlocConsumer<MessagesCubit, MessagesState>(
+              builder: (context, state) {
+                if (state is MessagesLoading || state is MessagesInitial) {
+                  return const Center(
+                    child: CircularProgressIndicator(
+                      color: ColorManager.primary,
+                      strokeWidth: 2,
+                    ),
+                  );
+                }
+                if (state is MessagesError) {
+                  log("Error: ${state.error}");
+                  return Center(
                     child: Text(
-                      l10.noMessages,
+                      ErrorMessages.get(context, state.error),
                       style: TextStyle(color: ColorManager.gray),
                     ),
-                  )
-                : ListView.builder(
-                    controller: _scrollController,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 12,
-                    ),
-                    itemCount: _messages.length,
-                    itemBuilder: (context, index) {
-                      final message = _messages[index];
-                      final isMe =
-                          message.sender == widget.chat.currentUserRole;
-                      return ChatBubble(message: message, isMe: isMe);
-                    },
+                  );
+                }
+                final messages = (state as MessagesLoaded).messages;
+                return messages.isEmpty
+                    ? Center(
+                  child: Text(
+                    l10.noMessages,
+                    style: TextStyle(color: ColorManager.gray),
                   ),
+                )
+                    : ListView.builder(
+                  controller: _scrollController,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 12,
+                  ),
+                  itemCount: messages.length,
+                  itemBuilder: (context, index) {
+                    final message = messages[index];
+                    final isMe =
+                        message.sender == widget.chat.currentUserRole;
+                    return ChatBubble(message: message, isMe: isMe);
+                  },
+                );
+              },
+              listener: (context, state) {
+                if (state is MessagesLoaded) _scrollToBottom();
+              },
+            ),
           ),
-          ChatInputField(onSend: _sendMessage),
+
+          ChatInputField(
+            onSend: (message) {
+              context.read<MessagesCubit>().sendMessage(
+                text: message,
+                sender: widget.chat.currentUserRole.name,
+                conversationId: widget.chat.conversationId,
+              );
+            },
+          ),
         ],
       ),
     );
+  }
+
+  void _scrollToBottom() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_scrollController.hasClients) {
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 250),
+          curve: Curves.easeOut,
+        );
+      }
+    });
   }
 }

@@ -1298,6 +1298,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get registerFailed => 'فشل التسجيل. يرجى المحاولة مرة أخرى.';
 
   @override
+  String get errorOccurred => 'حدث خطأ ما. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get noStudentsFound => 'لم يتم العثور على طلاب';
+
+  @override
   String get availabilityWindow => 'فترة الإتاحة';
 
   @override

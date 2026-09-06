@@ -1308,6 +1308,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get registerFailed => 'Registration failed. Please try again.';
 
   @override
+  String get errorOccurred => 'An error occurred. Please try again.';
+
+  @override
+  String get noStudentsFound => 'No students found';
+
+  @override
   String get availabilityWindow => 'AVAILABILITY WINDOW';
 
   @override

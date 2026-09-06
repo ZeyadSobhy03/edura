@@ -2540,6 +2540,18 @@ abstract class AppLocalizations {
   /// **'Registration failed. Please try again.'**
   String get registerFailed;
 
+  /// No description provided for @errorOccurred.
+  ///
+  /// In en, this message translates to:
+  /// **'An error occurred. Please try again.'**
+  String get errorOccurred;
+
+  /// No description provided for @noStudentsFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No students found'**
+  String get noStudentsFound;
+
   /// No description provided for @availabilityWindow.
   ///
   /// In en, this message translates to:

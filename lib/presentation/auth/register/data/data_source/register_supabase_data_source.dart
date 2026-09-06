@@ -8,7 +8,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class RegisterSupabaseDataSource implements RegisterRemoteDataSource {
   final supabase = Supabase.instance.client;
 
-
   @override
   Future<RegisterResponseModel> register({
     required RegisterRequestModel student,
@@ -31,6 +30,12 @@ class RegisterSupabaseDataSource implements RegisterRemoteDataSource {
       if (user == null) {
         throw Exception('User registration failed');
       }
+      await supabase.from('students_contacts').insert({
+        'user_id': user.id,
+        'phone': student.phone,
+        'parent_phone': student.parentPhone,
+        'email': student.email,
+      });
 
       return RegisterResponseModel(
         id: user.id,

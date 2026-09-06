@@ -9,14 +9,16 @@ class ChatConversationCard extends StatelessWidget {
   const ChatConversationCard({
     super.key,
     required this.conversation,
+    required this.displayName,
     required this.onTap,
   });
 
   final ChatConversationModel conversation;
+  final String displayName;
   final VoidCallback onTap;
 
   String get _initials {
-    final parts = conversation.studentName.trim().split(' ');
+    final parts = displayName.trim().split(' ');
     if (parts.length >= 2) return '${parts[0][0]}${parts[1][0]}'.toUpperCase();
     return parts.isNotEmpty ? parts[0][0].toUpperCase() : '?';
   }
@@ -85,7 +87,7 @@ class ChatConversationCard extends StatelessWidget {
                       children: [
                         Expanded(
                           child: CustomText(
-                            text: conversation.studentName,
+                            text: displayName,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
