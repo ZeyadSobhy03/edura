@@ -4,7 +4,7 @@ import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
-import '../../../data/model/new_lesson_model.dart';
+import '../../../data/model/lessons/new_lesson_model.dart';
 import '../../../../../../../../l10n/app_localizations.dart';
 import 'file_upload_dropzone.dart';
 

@@ -1076,6 +1076,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get lessonSavedAsDraft => 'تم حفظ الدرس كمسودة';
 
   @override
+  String get lessonUpdatedSuccessfully => 'تم تحديث الدرس بنجاح';
+
+  @override
+  String get lessonDeletedSuccessfully => 'تم حذف الدرس بنجاح';
+
+  @override
+  String get deleteLessonConfirmation => 'هل أنت متأكد أنك تريد حذف هذا الدرس؟';
+
+  @override
   String passRate(String rate) {
     return 'نسبة النجاح: $rate%';
   }
@@ -1302,6 +1311,85 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get noStudentsFound => 'لم يتم العثور على طلاب';
+
+  @override
+  String get lessonTitleRequired => 'عنوان الدرس مطلوب';
+
+  @override
+  String get homeworkTitle => 'عنوان الواجب المنزلي';
+
+  @override
+  String get homeworkDescription => 'وصف الواجب المنزلي';
+
+  @override
+  String get enterHomeworkTitle => 'أدخل عنوان الواجب المنزلي';
+
+  @override
+  String get enterHomeworkDescription => 'أدخل وصف الواجب المنزلي';
+
+  @override
+  String get dueDate => 'تاريخ الاستحقاق';
+
+  @override
+  String get dueDateRequired => 'تاريخ الاستحقاق مطلوب';
+
+  @override
+  String get dueDateHint => 'اختر تاريخ الاستحقاق';
+
+  @override
+  String get nextAddAttachments => 'التالي: إضافة المرفقات';
+
+  @override
+  String get attachments => 'المرفقات';
+
+  @override
+  String get supportedFormats =>
+      'الأنواع المدعومة: PDF, DOCX, PPTX, XLSX, JPG, PNG';
+
+  @override
+  String get dragDropFiles => 'اسحب وأفلت الملفات هنا أو انقر للتحميل';
+
+  @override
+  String get publishing => 'جارٍ النشر...';
+
+  @override
+  String get selectedFiles => 'الملفات المحددة';
+
+  @override
+  String get homeworkTitleRequired => 'عنوان الواجب المنزلي مطلوب';
+
+  @override
+  String get saveDraft => 'حفظ كمسودة';
+
+  @override
+  String get createHomework => 'إنشاء واجب منزلي';
+
+  @override
+  String get addHomework => 'إضافة واجب منزلي';
+
+  @override
+  String get addAttachment => 'إضافة مرفق';
+
+  @override
+  String get requiredField => 'هذا الحقل مطلوب';
+
+  @override
+  String get skipAndPublish => 'تخطي والنشر';
+
+  @override
+  String get addHomeworkAndPublish => 'إضافة الواجب والنشر';
+
+  @override
+  String get descriptionRequired => 'وصف الدرس مطلوب';
+
+  @override
+  String get subjectHint => 'ادخل المادة التي تدرّسها';
+
+  @override
+  String get durationRequired => 'مدة الدرس مطلوبة';
+
+  @override
+  String get durationInvalid => 'مدة الدرس غير صالحة';
 
   @override
   String get availabilityWindow => 'فترة الإتاحة';

@@ -24,4 +24,8 @@ extension TextEx on String {
     final phoneRegex = RegExp(r'^\+?\d{10,15}$');
     return phoneRegex.hasMatch(trim());
   }
+
+  bool get isValidText {
+    return trim().isNotEmpty && length >= 3;
+  }
 }

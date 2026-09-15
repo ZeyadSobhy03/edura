@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:edura/core/error/app_error.dart';
 import 'package:edura/presentation/role/teacher/tabs/students/domain/use_case/student/student_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,8 +39,10 @@ class StudentCubit extends Cubit<StudentState> {
 
       emit(StudentDetailsLoaded(student));
     } on AppError catch (e) {
+      log('AppError in getStudentDetails: ${e.toString()}');
       emit(StudentError(e));
     } catch (e) {
+      log('Error in getStudentDetails: ${e.toString()}');
       emit(StudentError(ServerError()));
     }
   }

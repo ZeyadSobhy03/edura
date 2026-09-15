@@ -12,12 +12,15 @@ final supabase=Supabase.instance.client;
   Future<List<StudentModel>> getStudents() async {
     try {
       final response = await supabase.from('students').select();
+      log('getStudents response: $response');
 
       return response.map((json) => StudentModel.fromJson(json)).toList();
-    } on AppError  {
+    } on AppError catch (e) {
+      log('AppError in getStudents: ${e.toString()}');
       rethrow;
     }
     catch (e) {
+      log('Error in getStudents: ${e.toString()}');
       throw ServerError();
     }
   }
@@ -29,7 +32,6 @@ final supabase=Supabase.instance.client;
           .from('students')
           .select('''
       *,
-      student_contacts (*),
       student_lesson_progress (*),
       student_attendance (*)
     ''')

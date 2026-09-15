@@ -1080,6 +1080,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get lessonSavedAsDraft => 'Lesson saved as draft';
 
   @override
+  String get lessonUpdatedSuccessfully => 'Lesson updated successfully';
+
+  @override
+  String get lessonDeletedSuccessfully => 'Lesson deleted successfully';
+
+  @override
+  String get deleteLessonConfirmation =>
+      'Are you sure you want to delete this lesson?';
+
+  @override
   String passRate(String rate) {
     return 'Pass rate: $rate%';
   }
@@ -1312,6 +1322,85 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noStudentsFound => 'No students found';
+
+  @override
+  String get lessonTitleRequired => 'Please enter a title for your lesson.';
+
+  @override
+  String get homeworkTitle => 'Homework Title';
+
+  @override
+  String get homeworkDescription => 'Homework Description';
+
+  @override
+  String get enterHomeworkTitle => 'Enter your homework title';
+
+  @override
+  String get enterHomeworkDescription => 'Enter your homework description';
+
+  @override
+  String get dueDate => 'Due Date';
+
+  @override
+  String get dueDateRequired => 'Please select a due date for your homework.';
+
+  @override
+  String get dueDateHint => 'Select due date';
+
+  @override
+  String get nextAddAttachments => 'Next: Add Attachments';
+
+  @override
+  String get attachments => 'Attachments';
+
+  @override
+  String get supportedFormats => 'Supported formats: PDF, DOCX, JPG, PNG';
+
+  @override
+  String get dragDropFiles => 'Drag and drop files here or click to upload';
+
+  @override
+  String get publishing => 'Publishing, please wait...';
+
+  @override
+  String get selectedFiles => 'Selected Files';
+
+  @override
+  String get homeworkTitleRequired => 'Please enter a title for your homework.';
+
+  @override
+  String get saveDraft => 'Save Draft';
+
+  @override
+  String get createHomework => 'Create Homework';
+
+  @override
+  String get addHomework => 'Add Homework';
+
+  @override
+  String get addAttachment => 'Add Attachment';
+
+  @override
+  String get requiredField => 'This field is required';
+
+  @override
+  String get skipAndPublish => 'Skip & Publish';
+
+  @override
+  String get addHomeworkAndPublish => 'Add Homework & Publish';
+
+  @override
+  String get descriptionRequired =>
+      'Please enter a description for your lesson.';
+
+  @override
+  String get subjectHint => 'enter subject name';
+
+  @override
+  String get durationRequired => 'Please enter the duration of the Lesson.';
+
+  @override
+  String get durationInvalid => 'Please enter a valid duration in minutes.';
 
   @override
   String get availabilityWindow => 'AVAILABILITY WINDOW';

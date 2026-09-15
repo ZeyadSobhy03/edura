@@ -19,6 +19,7 @@ class Students extends StatefulWidget {
 
 class _StudentsState extends State<Students> {
   late final TextEditingController _searchController;
+  String _searchQuery = '';
 
   @override
   void initState() {
@@ -63,7 +64,9 @@ class _StudentsState extends State<Students> {
                 ),
               );
             }
-            final students = state.students;
+            final students = state.students.where((student) {
+              return student.name.toLowerCase().contains(_searchQuery);
+            }).toList();
             return SafeArea(
               child: SingleChildScrollView(
                 padding: EdgeInsets.all(16),
@@ -77,7 +80,11 @@ class _StudentsState extends State<Students> {
                       hintText: l10.searchStudents,
 
                       prefix: Icon(Icons.search, color: ColorManager.gray),
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        setState(() {
+                          _searchQuery = value.toLowerCase().trim();
+                        });
+                      },
                     ),
                     const SizedBox(height: 8),
                     ListView.builder(
@@ -87,12 +94,17 @@ class _StudentsState extends State<Students> {
                       itemBuilder: (context, index) {
                         return StudentCard(
                           student: students[index],
-                          onTap: () {
-                            Navigator.pushNamed(
+                          onTap: () async {
+                            final studentCubit = context.read<StudentCubit>();
+
+                            await Navigator.pushNamed(
                               context,
                               RouteManger.studentDetailsScreen,
                               arguments: students[index],
                             );
+
+                            if (!mounted) return;
+                            studentCubit.getStudents();
                           },
                         );
                       },

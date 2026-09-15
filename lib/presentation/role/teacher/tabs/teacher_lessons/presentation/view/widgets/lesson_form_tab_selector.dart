@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../../../../../../l10n/app_localizations.dart';
 
 
-enum LessonFormStep { details, video, pdf }
+enum LessonFormStep { details, video, pdf, homework }
 
 class LessonFormTabSelector extends StatelessWidget {
   const LessonFormTabSelector({
@@ -14,12 +14,14 @@ class LessonFormTabSelector extends StatelessWidget {
     required this.onStepTapped,
     required this.videoDone,
     required this.pdfDone,
+    required this.homeworkDone,
   });
 
   final LessonFormStep currentStep;
   final ValueChanged<LessonFormStep> onStepTapped;
   final bool videoDone;
   final bool pdfDone;
+  final bool homeworkDone;
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +42,12 @@ class LessonFormTabSelector extends StatelessWidget {
         ),
         const SizedBox(width: 8),
         _tab(LessonFormStep.pdf, _getLabel(LessonFormStep.pdf, l10), pdfDone),
+        const SizedBox(width: 8),
+        _tab(
+          LessonFormStep.homework,
+          _getLabel(LessonFormStep.homework, l10),
+          homeworkDone,
+        ),
       ],
     );
   }
@@ -88,6 +96,8 @@ class LessonFormTabSelector extends StatelessWidget {
         return l10.video;
       case LessonFormStep.pdf:
         return l10.pdfs;
+      case LessonFormStep.homework:
+        return l10.homework;
     }
   }
 }

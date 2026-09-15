@@ -6,6 +6,9 @@ class StudentModel {
   final int averageScore;
   final int lessons;
   final int attendance;
+  final String phone;
+  final String parentPhone;
+  final String email;
 
   final List<LessonProgress> lessonProgress;
   final ContactInfo contactInfo;
@@ -23,11 +26,14 @@ class StudentModel {
     required this.lessonProgress,
     required this.contactInfo,
     required this.examResults,
-    required this.attendanceRecords,
+    required this.attendanceRecords, required this.phone, required this.parentPhone, required this.email,
   });
 
   factory StudentModel.fromJson(Map<String, dynamic> json) {
     return StudentModel(
+      email: json['email'] as String? ?? '',
+      phone: json['phone'] as String? ?? '',
+      parentPhone: json['parentPhone'] as String? ?? '',
       id: json['id'] as String,
       name: json['name'] as String? ?? '',
       grade: json['grade'] as String? ?? '',
@@ -94,6 +100,9 @@ class StudentModel {
         json['student_attendance'] as List? ?? [];
 
     return StudentModel(
+      phone: json['phone'] as String? ?? '',
+      parentPhone: json['parent_phone'] as String? ?? '',
+      email: json['contact_email'] as String? ?? '',
       id: json['id'] as String? ?? '',
       name: json['name'] as String? ?? '',
       grade: json['grade'] as String? ?? '',

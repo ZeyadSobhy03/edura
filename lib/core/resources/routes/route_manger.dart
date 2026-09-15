@@ -45,6 +45,7 @@ import '../../../presentation/role/teacher/tabs/teacher_chats/data/repositories/
 import '../../../presentation/role/teacher/tabs/teacher_chats/domain/use_case/chats_use_case.dart';
 import '../../../presentation/role/teacher/tabs/teacher_chats/presentation/view_model/chats_view_model.dart';
 import '../../../presentation/role/teacher/tabs/teacher_lessons/presentation/view/section/add_new_lesson_screen.dart';
+import '../../../presentation/role/teacher/tabs/teacher_lessons/presentation/view/section/create_homework_screen.dart';
 import '../../../presentation/role/teacher/tabs/teacher_lessons/presentation/view/section/edit_lesson_screen.dart';
 import '../../../presentation/role/teacher/tabs/teacher_lessons/presentation/view/section/review_homework_screen.dart';
 import '../../../presentation/role/teacher/tabs/teacher_lessons/presentation/view/section/teacher_homework_screen.dart';
@@ -105,6 +106,8 @@ class RouteManger {
   static const String teacherProfileEditScreen = '/teacherProfileEditScreen';
 
   static const String subjectsClassesScreen = '/subjectsClassesScreen';
+
+  static const String createHomeworkScreen = '/createHomeworkScreen';
 
   static Route router(RouteSettings settings) {
     switch (settings.name) {
@@ -182,6 +185,13 @@ class RouteManger {
           builder: (context) {
             final teacher = settings.arguments as TeacherProfileModel;
             return TeacherEditProfileScreen(teacher: teacher);
+          },
+        );
+
+     case createHomeworkScreen:
+        return MaterialPageRoute(
+          builder: (context) {
+            return const CreateHomeworkScreen();
           },
         );
 

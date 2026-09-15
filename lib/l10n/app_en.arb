@@ -442,7 +442,6 @@
   "years": "Years",
   "accountPreferences": "Account Preferences",
   "helpAndSupport": "Help & Support",
-
   "subjectRequired": "Please enter your subject",
   "yearsOfExperience": "Years of Experience",
   "enterFullName": "Enter your full name",
@@ -459,7 +458,14 @@
   "subjectNameHint": "e.g. Mathematics",
   "noSubjectsYet": "No subjects added yet",
   "@classSummary": {
-    "placeholders": { "classes": { "type": "int" }, "students": { "type": "int" } }
+    "placeholders": {
+      "classes": {
+        "type": "int"
+      },
+      "students": {
+        "type": "int"
+      }
+    }
   },
   "studentsAndRatingAreComputed": "Students count and rating are calculated automatically and can't be edited here.",
   "delete": "Delete",
@@ -470,13 +476,20 @@
   "examAvgAndPassRate": "Avg: {avg}% Â· Pass rate: {passRate}%",
   "@examAvgAndPassRate": {
     "placeholders": {
-      "avg": { "type": "String" },
-      "passRate": { "type": "String" }
+      "avg": {
+        "type": "String"
+      },
+      "passRate": {
+        "type": "String"
+      }
     }
   },
   "saveAsDraft": "Save as Draft",
   "lessonPublishedSuccessfully": "Lesson published successfully",
   "lessonSavedAsDraft": "Lesson saved as draft",
+  "lessonUpdatedSuccessfully": "Lesson updated successfully",
+  "lessonDeletedSuccessfully": "Lesson deleted successfully",
+  "deleteLessonConfirmation": "Are you sure you want to delete this lesson?",
   "passRate": "Pass rate: {rate}%",
   "nameRequired": "Please enter your name",
   "currentPassword": "Current Password",
@@ -495,7 +508,8 @@
   "emailSupport": "Email Support",
   "noNotesFound": "No notes found",
   "notesCount": "{count, plural, =1{1 note} other{{count} notes}}",
-  "rankAndBadgesSummary": "Rank #{rank} Â· {count} badges earned",  "questions": "Questions",
+  "rankAndBadgesSummary": "Rank #{rank} Â· {count} badges earned",
+  "questions": "Questions",
   "invalidCredentials": "Invalid email or password.",
   "emailNotConfirmed": "Please confirm your email before logging in.",
   "emailAlreadyExists": "An account with this email already exists.",
@@ -527,7 +541,7 @@
   "passwordInvalid": "Password must be at least 8 characters long.",
   "userNotFound": "No account found with this email.",
   "examSubject": "Exam Subject",
-    "enterExamSubject": "Enter your exam subject",
+  "enterExamSubject": "Enter your exam subject",
   "examSubjectCannotBeEmpty": "Exam subject cannot be empty.",
   "examDuration": "Exam Duration",
   "startDate": "Start Date",
@@ -540,7 +554,6 @@
   "pleaseEnterYourGrade": "Please enter your grade.",
   "pleaseEnterYourEmail": "Please enter your email.",
   "pleaseEnterYourPassword": "Please enter your password.",
-
   "pleaseEnterValidEmail": "Please enter a valid email address.",
   "pleaseEnterValidPhoneNumber": "Please enter a valid phone number.",
   "registering": "Registering, please wait...",
@@ -548,6 +561,32 @@
   "registerFailed": "Registration failed. Please try again.",
   "errorOccurred": "An error occurred. Please try again.",
   "noStudentsFound": "No students found",
+  "lessonTitleRequired": "Please enter a title for your lesson.",
+  "homeworkTitle": "Homework Title",
+  "homeworkDescription": "Homework Description",
+  "enterHomeworkTitle": "Enter your homework title",
+  "enterHomeworkDescription": "Enter your homework description",
+  "dueDate": "Due Date",
+  "dueDateRequired": "Please select a due date for your homework.",
+  "dueDateHint": "Select due date",
+  "nextAddAttachments": "Next: Add Attachments",
+  "attachments": "Attachments",
+  "supportedFormats": "Supported formats: PDF, DOCX, JPG, PNG",
+  "dragDropFiles": "Drag and drop files here or click to upload",
+  "publishing": "Publishing, please wait...",
+  "selectedFiles": "Selected Files",
+  "homeworkTitleRequired": "Please enter a title for your homework.",
+  "saveDraft": "Save Draft",
+  "createHomework": "Create Homework",
+  "addHomework": "Add Homework",
+  "addAttachment": "Add Attachment",
+  "requiredField": "This field is required",
+  "skipAndPublish": "Skip & Publish",
+  "addHomeworkAndPublish": "Add Homework & Publish",
+  "descriptionRequired": "Please enter a description for your lesson.",
+  "subjectHint": "enter subject name",
+  "durationRequired": "Please enter the duration of the Lesson.",
+  "durationInvalid": "Please enter a valid duration in minutes.",
   "availabilityWindow": "AVAILABILITY WINDOW",
   "endDateMustBeAfterStartDate": "End date must be after start date",
   "selectStartAndEndDate": "Please select both start and end dates",

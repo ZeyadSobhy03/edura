@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -10,23 +12,28 @@ class ChangeVideoCard extends StatefulWidget {
     super.key,
     required this.videoThumbnailUrl,
     required this.videoUrl,
+    this.onVideoSelected,
   });
 
   final String videoThumbnailUrl;
   final String videoUrl;
-
+  final ValueChanged<File>? onVideoSelected;
 
   @override
   State<ChangeVideoCard> createState() => _ChangeVideoCardState();
 }
 
 class _ChangeVideoCardState extends State<ChangeVideoCard> {
-  late String videoUrl;
+  File? _selectedVideo;
 
-  @override
-  void initState() {
-    super.initState();
-    videoUrl = widget.videoUrl;
+  Future<void> _pickVideo() async {
+    final result = await FilePicker.pickFiles(type: FileType.video);
+
+    if (result != null && result.files.single.path != null) {
+      final file = File(result.files.single.path!);
+      setState(() => _selectedVideo = file);
+      widget.onVideoSelected?.call(file);
+    }
   }
 
   @override
@@ -48,40 +55,71 @@ class _ChangeVideoCardState extends State<ChangeVideoCard> {
           height: 200,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: Image.network(
-              widget.videoThumbnailUrl,
-              fit: BoxFit.cover,
-              loadingBuilder: (context, child, progress) {
-                if (progress == null) return child;
-
-                return Container(
-                  color: ColorManager.gray.withValues(alpha: 0.1),
-                  alignment: Alignment.center,
-                  child: SizedBox(
-                    width: 16,
-                    height: 16,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2,
-                      color: ColorManager.primary.withValues(alpha: 0.5),
+            child: _selectedVideo != null
+                ? Container(
+                    color: ColorManager.primary.withValues(alpha: 0.08),
+                    alignment: Alignment.center,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.videocam_outlined,
+                          size: 40,
+                          color: ColorManager.primary.withValues(alpha: 0.7),
+                        ),
+                        const SizedBox(height: 8),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: CustomText(
+                            text: _selectedVideo!.path
+                                .split(Platform.pathSeparator)
+                                .last,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              color: ColorManager.primary.withValues(
+                                alpha: 0.8,
+                              ),
+                              fontSize: 13,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
+                  )
+                : Image.network(
+                    widget.videoThumbnailUrl,
+                    fit: BoxFit.cover,
+                    loadingBuilder: (context, child, progress) {
+                      if (progress == null) return child;
+
+                      return Container(
+                        color: ColorManager.gray.withValues(alpha: 0.1),
+                        alignment: Alignment.center,
+                        child: SizedBox(
+                          width: 16,
+                          height: 16,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: ColorManager.primary.withValues(alpha: 0.5),
+                          ),
+                        ),
+                      );
+                    },
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        color: ColorManager.primary.withValues(alpha: 0.08),
+                        alignment: Alignment.center,
+                        child: Icon(
+                          Icons.menu_book_outlined,
+                          size: 18,
+                          color: ColorManager.primary.withValues(alpha: 0.6),
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-              errorBuilder: (context, error, stackTrace) {
-                return Container(
-                  color: ColorManager.primary.withValues(alpha: 0.08),
-                  alignment: Alignment.center,
-                  child: Icon(
-                    Icons.menu_book_outlined,
-                    size: 18,
-                    color: ColorManager.primary.withValues(alpha: 0.6),
-                  ),
-                );
-              },
-            ),
           ),
         ),
-
         Column(
           children: [
             Container(
@@ -108,17 +146,5 @@ class _ChangeVideoCardState extends State<ChangeVideoCard> {
         ),
       ],
     );
-  }
-
-  Future<void> _pickVideo() async {
-    final result = await FilePicker.pickFiles(type: FileType.video);
-
-    if (result != null && result.files.single.path != null) {
-      setState(() {
-        videoUrl = result.files.single.path!;
-      });
-
-      debugPrint('New Video Path: $videoUrl');
-    }
   }
 }

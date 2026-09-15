@@ -2126,6 +2126,24 @@ abstract class AppLocalizations {
   /// **'Lesson saved as draft'**
   String get lessonSavedAsDraft;
 
+  /// No description provided for @lessonUpdatedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Lesson updated successfully'**
+  String get lessonUpdatedSuccessfully;
+
+  /// No description provided for @lessonDeletedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Lesson deleted successfully'**
+  String get lessonDeletedSuccessfully;
+
+  /// No description provided for @deleteLessonConfirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this lesson?'**
+  String get deleteLessonConfirmation;
+
   /// No description provided for @passRate.
   ///
   /// In en, this message translates to:
@@ -2551,6 +2569,162 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No students found'**
   String get noStudentsFound;
+
+  /// No description provided for @lessonTitleRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a title for your lesson.'**
+  String get lessonTitleRequired;
+
+  /// No description provided for @homeworkTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Homework Title'**
+  String get homeworkTitle;
+
+  /// No description provided for @homeworkDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Homework Description'**
+  String get homeworkDescription;
+
+  /// No description provided for @enterHomeworkTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your homework title'**
+  String get enterHomeworkTitle;
+
+  /// No description provided for @enterHomeworkDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your homework description'**
+  String get enterHomeworkDescription;
+
+  /// No description provided for @dueDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Due Date'**
+  String get dueDate;
+
+  /// No description provided for @dueDateRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select a due date for your homework.'**
+  String get dueDateRequired;
+
+  /// No description provided for @dueDateHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Select due date'**
+  String get dueDateHint;
+
+  /// No description provided for @nextAddAttachments.
+  ///
+  /// In en, this message translates to:
+  /// **'Next: Add Attachments'**
+  String get nextAddAttachments;
+
+  /// No description provided for @attachments.
+  ///
+  /// In en, this message translates to:
+  /// **'Attachments'**
+  String get attachments;
+
+  /// No description provided for @supportedFormats.
+  ///
+  /// In en, this message translates to:
+  /// **'Supported formats: PDF, DOCX, JPG, PNG'**
+  String get supportedFormats;
+
+  /// No description provided for @dragDropFiles.
+  ///
+  /// In en, this message translates to:
+  /// **'Drag and drop files here or click to upload'**
+  String get dragDropFiles;
+
+  /// No description provided for @publishing.
+  ///
+  /// In en, this message translates to:
+  /// **'Publishing, please wait...'**
+  String get publishing;
+
+  /// No description provided for @selectedFiles.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected Files'**
+  String get selectedFiles;
+
+  /// No description provided for @homeworkTitleRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a title for your homework.'**
+  String get homeworkTitleRequired;
+
+  /// No description provided for @saveDraft.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Draft'**
+  String get saveDraft;
+
+  /// No description provided for @createHomework.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Homework'**
+  String get createHomework;
+
+  /// No description provided for @addHomework.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Homework'**
+  String get addHomework;
+
+  /// No description provided for @addAttachment.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Attachment'**
+  String get addAttachment;
+
+  /// No description provided for @requiredField.
+  ///
+  /// In en, this message translates to:
+  /// **'This field is required'**
+  String get requiredField;
+
+  /// No description provided for @skipAndPublish.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip & Publish'**
+  String get skipAndPublish;
+
+  /// No description provided for @addHomeworkAndPublish.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Homework & Publish'**
+  String get addHomeworkAndPublish;
+
+  /// No description provided for @descriptionRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a description for your lesson.'**
+  String get descriptionRequired;
+
+  /// No description provided for @subjectHint.
+  ///
+  /// In en, this message translates to:
+  /// **'enter subject name'**
+  String get subjectHint;
+
+  /// No description provided for @durationRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter the duration of the Lesson.'**
+  String get durationRequired;
+
+  /// No description provided for @durationInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid duration in minutes.'**
+  String get durationInvalid;
 
   /// No description provided for @availabilityWindow.
   ///

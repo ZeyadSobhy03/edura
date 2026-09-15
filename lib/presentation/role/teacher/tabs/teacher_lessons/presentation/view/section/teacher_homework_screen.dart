@@ -8,7 +8,6 @@ import '../../../../../../../../l10n/app_localizations.dart';
 import '../widgets/homework_stat_card.dart';
 import '../widgets/submission_list_card.dart';
 
-
 class TeacherHomeworkScreen extends StatelessWidget {
   const TeacherHomeworkScreen({super.key, required this.submissions});
 
@@ -17,8 +16,12 @@ class TeacherHomeworkScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10 = AppLocalizations.of(context)!;
-    final pending = submissions.where((s) => s.status == SubmissionStatus.pending).toList();
-    final graded = submissions.where((s) => s.status == SubmissionStatus.graded).toList();
+    final pending = submissions
+        .where((s) => s.status == SubmissionStatus.pending)
+        .toList();
+    final graded = submissions
+        .where((s) => s.status == SubmissionStatus.graded)
+        .toList();
 
     final sorted = [...pending, ...graded];
 
@@ -80,7 +83,9 @@ class TeacherHomeworkScreen extends StatelessWidget {
                   child: Center(
                     child: CustomText(
                       text: l10.noSubmissionsYet,
-                      style: TextStyle(color: ColorManager.black.withValues(alpha: 0.5)),
+                      style: TextStyle(
+                        color: ColorManager.black.withValues(alpha: 0.5),
+                      ),
                     ),
                   ),
                 )
@@ -92,7 +97,8 @@ class TeacherHomeworkScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => ReviewHomeworkScreen(submission: submission),
+                          builder: (_) =>
+                              ReviewHomeworkScreen(submission: submission),
                         ),
                       );
                     },

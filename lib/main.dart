@@ -23,10 +23,14 @@ import 'package:edura/presentation/role/teacher/tabs/teacher_chats/data/data_sou
 import 'package:edura/presentation/role/teacher/tabs/teacher_chats/data/repositories/chats_repositories_imp.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_chats/domain/use_case/chats_use_case.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_chats/presentation/view_model/chats_view_model.dart';
-import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/data/data_source/teacher_lessons_supabase_data_source.dart';
-import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/data/repositories/teacher_lessons_repositories_imp.dart';
-import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/domain/use_case/teacher_lessons_use_case.dart';
-import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view_model/teacher_lessons_view_model.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/data/data_source/home_work/home_work_supabase_data_source.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/data/data_source/lessons/teacher_lessons_supabase_data_source.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/data/repositories/home_work/home_work_repositories_imp.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/data/repositories/lessons/teacher_lessons_repositories_imp.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/domain/use_case/home_work/home_work_use_case.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/domain/use_case/lessons/teacher_lessons_use_case.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view_model/home_work/home_work_view_model.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view_model/lessons/teacher_lessons_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -34,8 +38,14 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  const webClientId =
-      '253234772403-pn4ubo3k6lkg9tkmaoolps40ruv8fjh4.apps.googleusercontent.com';
+  const supabaseUrl = String.fromEnvironment('SUPABASE_URL');
+  const supabasePublishableKey =
+  String.fromEnvironment('SUPABASE_PUBLISHABLE_KEY');
+
+  const googleServerClientId =
+  String.fromEnvironment('GOOGLE_SERVER_CLIENT_ID');
+
+
   final googleSignIn = GoogleSignIn.instance;
   await Supabase.initialize(
     url: 'https://daxgkzzwfnpyqsjcpnad.supabase.co',
@@ -117,6 +127,15 @@ void main() async {
             teacherUseCase: TeacherUseCase(
               repositories: TeacherRepositoriesImp(
                 remoteDataSource: TeacherSupabaseDataSource(),
+              ),
+            ),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => HomeWorkCubit(
+            useCase: HomeWorkUseCase(
+              homeWorkRepositories: HomeWorkRepositoriesImp(
+                remoteDataSource: HomeWorkSupabaseDataSource(),
               ),
             ),
           ),

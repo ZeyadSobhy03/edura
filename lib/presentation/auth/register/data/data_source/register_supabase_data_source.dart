@@ -30,11 +30,15 @@ class RegisterSupabaseDataSource implements RegisterRemoteDataSource {
       if (user == null) {
         throw Exception('User registration failed');
       }
-      await supabase.from('students_contacts').insert({
-        'user_id': user.id,
+
+      await supabase.from('students').insert({
+        'id': user.id,
+        'name': student.name,
+        'grade': student.grade,
+        'school': student.school,
         'phone': student.phone,
         'parent_phone': student.parentPhone,
-        'email': student.email,
+        'contact_email': student.email,
       });
 
       return RegisterResponseModel(
@@ -45,6 +49,9 @@ class RegisterSupabaseDataSource implements RegisterRemoteDataSource {
     } on AuthException catch (e) {
       log('Supabase AuthException: ${e.message}');
       throw Exception('AuthException: ${e.message}');
+    } catch (e) {
+      log('Register error: $e');
+      throw Exception('Registration failed: $e');
     }
   }
 }
