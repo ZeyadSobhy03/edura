@@ -1,10 +1,13 @@
 import 'package:edura/core/error/app_error.dart';
 import 'package:edura/core/error/app_errors.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../domain/use_case/login_use_case.dart';
 
+
+@injectable
 class LoginCubit extends Cubit<LoginState> {
   final LoginUseCase loginUseCase;
 

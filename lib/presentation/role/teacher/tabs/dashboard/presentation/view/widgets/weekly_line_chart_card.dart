@@ -4,7 +4,8 @@ import 'package:edura/core/widgets/custom_text.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/model/analytics_model.dart';
+import '../../../../../../../../core/model/analytics_model.dart';
+
 
 
 class WeeklyLineChartCard extends StatelessWidget {

@@ -1,9 +1,8 @@
 import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../../../../../core/model/attendance_taking_model.dart';
-import '../../../../../../../../l10n/app_localizations.dart';
+import '../../../../../../../../../../core/model/attendance_taking_model.dart';
+import '../../../../../../../../../../l10n/app_localizations.dart';
 import 'attendance_mark_style.dart';
 
 class StudentAttendanceRow extends StatelessWidget {

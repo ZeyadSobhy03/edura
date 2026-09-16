@@ -1,8 +1,10 @@
 import 'package:edura/presentation/role/teacher/tabs/dashboard/domain/use_case/exam_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../data/model/question_draft_model.dart';
 
+@injectable
 class ExamCubit extends Cubit<ExamState> {
   final ExamUseCase examUseCase;
 
@@ -24,7 +26,7 @@ class ExamCubit extends Cubit<ExamState> {
         durationMinutes: durationMinutes,
         questions: questions,
         startDate: startDate,
-        endDate: endDate
+        endDate: endDate,
       );
       emit(ExamSuccess(data: result));
     } catch (e) {

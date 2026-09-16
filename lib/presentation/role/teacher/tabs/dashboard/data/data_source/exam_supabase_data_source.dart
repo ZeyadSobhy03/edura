@@ -4,10 +4,12 @@ import 'dart:io';
 
 import 'package:edura/presentation/role/teacher/tabs/dashboard/data/model/question_draft_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/dashboard/data/data_source/exam_remote_data_source.dart';
+import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../../../../core/error/app_error.dart';
 
+@LazySingleton(as: ExamRemoteDataSource)
 class ExamSupabaseDataSource implements ExamRemoteDataSource {
   final supabase = Supabase.instance.client;
 

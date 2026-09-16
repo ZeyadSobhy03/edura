@@ -3,7 +3,10 @@ import 'package:edura/core/model/lesson_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/data/model/lessons/new_lesson_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/domain/use_case/lessons/teacher_lessons_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
+
+@injectable
 class TeacherLessonsCubit extends Cubit<TeacherLessonsState> {
   final TeacherLessonsUseCase teacherLessonsUseCase;
 

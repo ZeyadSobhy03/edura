@@ -1,7 +1,10 @@
+import 'package:injectable/injectable.dart';
+
 import '../../../../../../../core/model/chat_conversation_model.dart';
 import '../../../../../../../core/model/chat_message_model.dart';
 import '../../data/repositories/chats_repositories.dart';
 
+@injectable
 class ChatsUseCase {
   final ChatsRepositories repositories;
 

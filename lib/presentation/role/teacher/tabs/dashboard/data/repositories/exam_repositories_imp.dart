@@ -1,7 +1,9 @@
 import 'package:edura/presentation/role/teacher/tabs/dashboard/data/data_source/exam_remote_data_source.dart';
 import 'package:edura/presentation/role/teacher/tabs/dashboard/data/model/question_draft_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/dashboard/data/repositories/exam_repositories.dart';
+import 'package:injectable/injectable.dart';
 
+@LazySingleton(as: ExamRepositories)
 class ExamRepositoriesImp implements ExamRepositories {
   final ExamRemoteDataSource remoteDataSource;
 
@@ -22,7 +24,7 @@ class ExamRepositoriesImp implements ExamRepositories {
       durationMinutes: durationMinutes,
       questions: questions,
       endDate: endDate,
-      startDate: startDate
+      startDate: startDate,
     );
   }
 }

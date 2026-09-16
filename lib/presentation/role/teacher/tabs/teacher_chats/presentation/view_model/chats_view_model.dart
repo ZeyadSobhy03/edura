@@ -1,10 +1,11 @@
 import 'package:edura/core/error/app_error.dart';
 import 'package:edura/core/model/chat_conversation_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../../../../../core/model/chat_message_model.dart';
 import '../../domain/use_case/chats_use_case.dart';
-
+@injectable
 class ChatsCubit extends Cubit<ChatsState> {
   final ChatsUseCase chatsUseCase;
 
@@ -38,6 +39,7 @@ final class ChatsError extends ChatsState {
   ChatsError({required this.error});
 }
 
+@injectable
 class MessagesCubit extends Cubit<MessagesState> {
   final ChatsUseCase chatsUseCase;
 

@@ -1,9 +1,11 @@
 import 'package:edura/core/model/chat_conversation_model.dart';
 import 'package:edura/core/model/chat_message_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_chats/data/repositories/chats_repositories.dart';
+import 'package:injectable/injectable.dart';
 
 import '../data_source/chats_remote_data_source.dart';
 
+@LazySingleton(as: ChatsRepositories)
 class ChatsRepositoriesImp implements ChatsRepositories {
   final ChatsRemoteDataSource remoteDataSource;
 

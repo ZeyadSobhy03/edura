@@ -20,9 +20,8 @@ import 'package:edura/presentation/role/student/tabs/profile/section/settings/se
 import 'package:edura/presentation/role/student/tabs/profile/section/settings/sections/help_faq_screen.dart';
 import 'package:edura/presentation/role/student/tabs/profile/section/settings/settings_screen.dart';
 import 'package:edura/presentation/role/student/tabs/profile/section/settings/sections/webview_screen.dart';
-import 'package:edura/presentation/role/teacher/tabs/dashboard/section/teacher_notification.dart';
 import 'package:edura/presentation/role/teacher/tabs/students/presentation/view/students.dart';
-import 'package:edura/presentation/role/teacher/tabs/teacher_chats/teacher_chats.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_chats/presentation/view/teacher_chats.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view/teacher_lessons.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/teacher_edit_profile/teacher_edit_profile_screen.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/teacher_profile.dart';
@@ -36,9 +35,10 @@ import '../../../presentation/auth/register/presentation/view/register.dart';
 import '../../../presentation/role/student/tabs/chat/student_chats_screen.dart';
 import '../../../presentation/role/student/tabs/profile/section/attendance/attendance_screen.dart';
 import '../../../presentation/role/student/tabs/profile/section/notes/notes_screen.dart';
-import '../../../presentation/role/teacher/tabs/dashboard/section/analytics_screen.dart';
-import '../../../presentation/role/teacher/tabs/dashboard/section/attendance/take_attendance_screen.dart';
-import '../../../presentation/role/teacher/tabs/dashboard/section/exams/question_builder_screen.dart';
+import '../../../presentation/role/teacher/tabs/dashboard/presentation/view/section/analytics_screen.dart';
+import '../../../presentation/role/teacher/tabs/dashboard/presentation/view/section/attendance/take_attendance_screen.dart';
+import '../../../presentation/role/teacher/tabs/dashboard/presentation/view/section/exams/question_builder_screen.dart';
+import '../../../presentation/role/teacher/tabs/dashboard/presentation/view/section/teacher_notification.dart';
 import '../../../presentation/role/teacher/tabs/students/presentation/view/section/student_details.dart';
 import '../../../presentation/role/teacher/tabs/teacher_chats/data/data_source/chats_supabase_data_source.dart';
 import '../../../presentation/role/teacher/tabs/teacher_chats/data/repositories/chats_repositories_imp.dart';
@@ -188,10 +188,11 @@ class RouteManger {
           },
         );
 
-     case createHomeworkScreen:
+      case createHomeworkScreen:
+        final lessonId = settings.arguments as String?;
         return MaterialPageRoute(
           builder: (context) {
-            return const CreateHomeworkScreen();
+            return CreateHomeworkScreen(lessonId: lessonId);
           },
         );
 

@@ -233,6 +233,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pinned => 'مثبت';
 
   @override
+  String get homeworkPublished => 'تم نشر الواجب المنزلي';
+
+  @override
+  String get homeworkSavedAsDraft => 'تم حفظ الواجب المنزلي كمسودة';
+
+  @override
   String get noAnnouncements => 'لا توجد إعلانات حتى الآن';
 
   @override

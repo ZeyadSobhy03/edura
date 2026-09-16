@@ -177,7 +177,7 @@ class _HomeworkDetailsFormState extends State<HomeworkDetailsForm> {
               ),
             ),
             child: Text(
-              l10.nextAddAttachments ?? 'Next: Add Attachments',
+              l10.nextAddAttachments,
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,

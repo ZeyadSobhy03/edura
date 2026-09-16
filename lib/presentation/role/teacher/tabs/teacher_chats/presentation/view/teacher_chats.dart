@@ -9,15 +9,15 @@ import 'package:edura/core/resources/routes/route_manger.dart';
 import 'package:edura/core/widgets/custom_label.dart';
 import 'package:edura/core/widgets/custom_text_formed_field.dart';
 import 'package:edura/l10n/app_localizations.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_chats/presentation/view/section/chat_conversation_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../students/presentation/view_model/student/student_view_model.dart';
-import '../teacher_chats/data/data_source/chats_supabase_data_source.dart';
-import '../teacher_chats/data/repositories/chats_repositories_imp.dart';
-import '../teacher_chats/domain/use_case/chats_use_case.dart';
-import '../teacher_chats/section/chat_conversation_card.dart';
+import '../../../students/presentation/view_model/student/student_view_model.dart';
+import '../../data/data_source/chats_supabase_data_source.dart';
+import '../../data/repositories/chats_repositories_imp.dart';
+import '../../domain/use_case/chats_use_case.dart';
 
 class TeacherChats extends StatefulWidget {
   const TeacherChats({super.key});

@@ -2,20 +2,22 @@ import 'dart:io';
 
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/data/data_source/home_work/home_work_remote_data_source.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/data/model/home_work/new_homework_model.dart';
+import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../../../../../core/error/rethrow_as_app_error.dart';
 
+@LazySingleton(as: HomeWorkRemoteDataSource)
 class HomeWorkSupabaseDataSource implements HomeWorkRemoteDataSource {
   final supabase = Supabase.instance.client;
 
-  // TODO: confirm these match your actual schema/bucket names
   static const String _table = 'homeworks';
   static const String _bucket = 'homework-attachments';
+  static const String homeworkSubmissions = "homework_submissions";
 
   @override
   Future<void> createHomework({
-    required String lessonId,
+    String? lessonId,
     required NewHomeworkModel homework,
   }) async {
     try {
@@ -23,7 +25,7 @@ class HomeWorkSupabaseDataSource implements HomeWorkRemoteDataSource {
       for (final file in homework.attachments) {
         final fileName = file.path.split(Platform.pathSeparator).last;
         final storagePath =
-            '$lessonId/${DateTime.now().millisecondsSinceEpoch}_$fileName';
+            '${lessonId ?? 'standalone'}/${DateTime.now().millisecondsSinceEpoch}_$fileName';
 
         await supabase.storage.from(_bucket).upload(storagePath, file);
 
@@ -34,7 +36,7 @@ class HomeWorkSupabaseDataSource implements HomeWorkRemoteDataSource {
       }
 
       await supabase.from(_table).insert({
-        'lesson_id': lessonId,
+        'lesson_id': ?lessonId,
         'title': homework.title,
         'description': homework.description,
         'subject': homework.subject,
@@ -80,6 +82,26 @@ class HomeWorkSupabaseDataSource implements HomeWorkRemoteDataSource {
           .from(_table)
           .update({'is_published': true})
           .eq('id', homeworkId);
+    } catch (e) {
+      rethrowAsAppError(e);
+    }
+  }
+
+  @override
+  Future<void> reviewHomework(
+    String submissionId,
+    int grade,
+    String feedback,
+  ) async {
+    try {
+      await supabase
+          .from(homeworkSubmissions)
+          .update({
+            'grade': grade,
+            'feedback': feedback,
+            'graded_at': DateTime.now().toIso8601String(),
+          })
+          .eq('id', submissionId);
     } catch (e) {
       rethrowAsAppError(e);
     }

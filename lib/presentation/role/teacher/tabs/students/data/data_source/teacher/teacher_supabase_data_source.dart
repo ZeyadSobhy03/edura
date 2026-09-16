@@ -1,11 +1,12 @@
 import 'dart:developer';
 
 import 'package:edura/core/error/app_error.dart';
+import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../../../../../core/model/teacher_model.dart';
 import 'teacher_remote_data_source.dart';
-
+@LazySingleton(as: TeacherRemoteDataSource)
 class TeacherSupabaseDataSource implements TeacherRemoteDataSource {
   final supabase = Supabase.instance.client;
 

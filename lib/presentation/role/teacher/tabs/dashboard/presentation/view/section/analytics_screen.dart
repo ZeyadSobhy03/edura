@@ -2,8 +2,8 @@ import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/model/analytics_model.dart';
-import '../../../../../../l10n/app_localizations.dart';
+import '../../../../../../../../core/model/analytics_model.dart';
+import '../../../../../../../../l10n/app_localizations.dart';
 import '../widgets/analytics_stat_card.dart';
 import '../widgets/analytics_time_range_tabs.dart';
 import '../widgets/donut_stat_card.dart';

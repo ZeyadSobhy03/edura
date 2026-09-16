@@ -233,6 +233,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pinned => 'Pinned';
 
   @override
+  String get homeworkPublished => 'Homework Published';
+
+  @override
+  String get homeworkSavedAsDraft => 'Homework Saved as Draft';
+
+  @override
   String get noAnnouncements => 'No announcements';
 
   @override

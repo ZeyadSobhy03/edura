@@ -1,8 +1,13 @@
 
+import 'package:injectable/injectable.dart';
+
 import '../../../../../../../../core/model/teacher_model.dart';
 import '../../data_source/teacher/teacher_remote_data_source.dart';
 import 'teacher_repositories.dart';
 
+
+
+@LazySingleton(as: TeacherRepositories)
 class TeacherRepositoriesImp implements TeacherRepositories {
   final TeacherRemoteDataSource remoteDataSource;
 

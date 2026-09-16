@@ -5,10 +5,11 @@ import 'package:edura/core/error/app_error.dart';
 import 'package:edura/core/model/lesson_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/data/data_source/lessons/teacher_lessons_remote_data_source.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/data/model/lessons/new_lesson_model.dart';
+import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../../../../../core/error/rethrow_as_app_error.dart';
-
+@LazySingleton(as: TeacherLessonsRemoteDataSource)
 class TeacherLessonsSupabaseDataSource
     implements TeacherLessonsRemoteDataSource {
   final supabase = Supabase.instance.client;

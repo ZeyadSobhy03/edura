@@ -2,9 +2,11 @@ import 'package:edura/presentation/auth/register/data/model/register_request_mod
 import 'package:edura/presentation/auth/register/data/model/register_response_model.dart';
 import 'package:edura/presentation/auth/register/domain/use_case/register_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../../../core/error/app_error.dart';
 
+@injectable
 class RegisterCubit extends Cubit<RegisterState> {
   final RegisterUseCase registerUseCase;
 

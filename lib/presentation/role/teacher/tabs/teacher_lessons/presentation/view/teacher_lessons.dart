@@ -37,12 +37,12 @@ class _TeacherLessonsState extends State<TeacherLessons> {
      }
    }
 
-   Future<void> _openCreateHomework() async {
-     await Navigator.pushNamed(context, RouteManger.createHomeworkScreen);
-     if (mounted) {
-       context.read<TeacherLessonsCubit>().fetchLessons();
-     }
-   }
+   // Future<void> _openCreateHomework() async {
+   //   await Navigator.pushNamed(context, RouteManger.createHomeworkScreen);
+   //   if (mounted) {
+   //     context.read<TeacherLessonsCubit>().fetchLessons();
+   //   }
+   // }
 
    Future<void> _editLesson(LessonModel lesson) async {
     await Navigator.pushNamed(
@@ -60,12 +60,14 @@ class _TeacherLessonsState extends State<TeacherLessons> {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
+        backgroundColor: ColorManager.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         title: Text(l10.deleteLesson),
         content: Text(l10.deleteLessonConfirmation),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: Text(l10.cancel),
+            child: Text(l10.cancel, style: const TextStyle(color: Colors.black)),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),

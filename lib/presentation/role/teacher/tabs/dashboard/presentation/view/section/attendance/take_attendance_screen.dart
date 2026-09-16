@@ -1,8 +1,8 @@
 import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
-import '../../../../../../../core/model/attendance_taking_model.dart';
-import '../../../../../../../l10n/app_localizations.dart';
+import '../../../../../../../../../core/model/attendance_taking_model.dart';
+import '../../../../../../../../../l10n/app_localizations.dart';
 import 'section/attendance_summary_stat.dart';
 import 'section/student_attendance_row.dart';
 

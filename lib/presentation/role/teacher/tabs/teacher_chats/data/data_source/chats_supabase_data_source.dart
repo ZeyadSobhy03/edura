@@ -4,8 +4,11 @@ import 'package:edura/core/error/app_error.dart';
 import 'package:edura/core/model/chat_conversation_model.dart';
 import 'package:edura/core/model/chat_message_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_chats/data/data_source/chats_remote_data_source.dart';
+import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+
+@LazySingleton(as: ChatsRemoteDataSource)
 class ChatsSupabaseDataSource implements ChatsRemoteDataSource {
   final supabase = Supabase.instance.client;
 

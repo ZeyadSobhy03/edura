@@ -1,12 +1,13 @@
 import 'dart:async';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:edura/core/error/app_error.dart';
 import 'package:edura/presentation/auth/login/data/data_source/remote/login_remote_data_source.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+@LazySingleton(as: LoginRemoteDataSource)
 class LoginSupabaseDataSource implements LoginRemoteDataSource {
   final supabase = Supabase.instance.client;
   static const _googleScopes = ['email', 'profile'];
@@ -45,60 +46,23 @@ class LoginSupabaseDataSource implements LoginRemoteDataSource {
   Future<T> _guard<T>(Future<T> Function() action) async {
     try {
       return await action();
-    } on AuthException catch (error, stackTrace) {
-      log(
-        'Supabase AuthException',
-        error: error,
-        stackTrace: stackTrace,
-      );
-
-      log('message: ${error.message}');
-      log('statusCode: ${error.statusCode}');
-      log('code: ${error.code}');
-
+    } on AuthException catch (error) {
       throw _mapAuthException(error);
-    } on GoogleSignInException catch (error, stackTrace) {
-      log(
-        'Google Sign-In Exception',
-        error: error,
-        stackTrace: stackTrace,
-      );
-
+    } on GoogleSignInException {
       throw const UnknownServerError();
-    } on SocketException catch (error, stackTrace) {
-      log(
-        'SocketException: $error',
-        stackTrace: stackTrace,
-      );
-
+    } on SocketException {
       throw const NoInternetError();
-    } on TimeoutException catch (error, stackTrace) {
-      log(
-        'TimeoutException: $error',
-        stackTrace: stackTrace,
-      );
-
+    } on TimeoutException {
       throw const TimeoutError();
-    } on PostgrestException catch (error, stackTrace) {
-      log(
-        'PostgrestException',
-        error: error,
-        stackTrace: stackTrace,
-      );
-
+    } on PostgrestException {
       throw const ServerError();
     } on AppError {
       rethrow;
-    } catch (error, stackTrace) {
-      log(
-        'Unknown Exception',
-        error: error,
-        stackTrace: stackTrace,
-      );
-
+    } catch (error) {
       throw const UnknownServerError();
     }
   }
+
   @override
   Future<User?> login(String email, String password) {
     return _guard(() async {
@@ -134,9 +98,6 @@ class LoginSupabaseDataSource implements LoginRemoteDataSource {
         idToken: idToken,
         accessToken: authorization.accessToken,
       );
-
-
-      log('Login with Google response: ${response}');
 
       return response.user;
     });

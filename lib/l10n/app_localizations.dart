@@ -542,6 +542,18 @@ abstract class AppLocalizations {
   /// **'Pinned'**
   String get pinned;
 
+  /// No description provided for @homeworkPublished.
+  ///
+  /// In en, this message translates to:
+  /// **'Homework Published'**
+  String get homeworkPublished;
+
+  /// No description provided for @homeworkSavedAsDraft.
+  ///
+  /// In en, this message translates to:
+  /// **'Homework Saved as Draft'**
+  String get homeworkSavedAsDraft;
+
   /// No description provided for @noAnnouncements.
   ///
   /// In en, this message translates to:

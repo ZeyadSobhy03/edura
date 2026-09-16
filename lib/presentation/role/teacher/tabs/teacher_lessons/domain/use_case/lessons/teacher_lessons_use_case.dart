@@ -1,7 +1,10 @@
 import 'package:edura/core/model/lesson_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/data/model/lessons/new_lesson_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/data/repositories/lessons/teacher_lessons_repositories.dart';
+import 'package:injectable/injectable.dart';
 
+
+@injectable
 class TeacherLessonsUseCase {
   final TeacherLessonsRepositories repositories;
 

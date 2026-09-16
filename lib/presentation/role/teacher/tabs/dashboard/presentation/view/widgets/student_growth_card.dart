@@ -3,8 +3,9 @@ import 'package:edura/core/widgets/custom_text.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/model/analytics_model.dart';
-import '../../../../../../l10n/app_localizations.dart';
+import '../../../../../../../../core/model/analytics_model.dart';
+import '../../../../../../../../l10n/app_localizations.dart';
+
 
 
 class StudentGrowthCard extends StatelessWidget {

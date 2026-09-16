@@ -2,7 +2,10 @@ import 'package:edura/core/model/lesson_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/data/data_source/lessons/teacher_lessons_remote_data_source.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/data/model/lessons/new_lesson_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/data/repositories/lessons/teacher_lessons_repositories.dart';
+import 'package:injectable/injectable.dart';
 
+
+@LazySingleton(as: TeacherLessonsRepositories)
 class TeacherLessonsRepositoriesImp implements TeacherLessonsRepositories {
   final TeacherLessonsRemoteDataSource remoteDataSource;
 

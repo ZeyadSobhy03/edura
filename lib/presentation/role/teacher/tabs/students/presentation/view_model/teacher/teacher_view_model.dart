@@ -1,11 +1,14 @@
 import 'package:edura/core/error/app_error.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../../../../../../core/model/teacher_model.dart';
 import '../../../domain/use_case/teacher/teacher_use_case.dart';
 
 
 
+
+@injectable
 class TeacherCubit extends Cubit<TeacherState> {
   final TeacherUseCase teacherUseCase;
 

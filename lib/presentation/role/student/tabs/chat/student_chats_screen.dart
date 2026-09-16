@@ -14,7 +14,7 @@ import '../../../../../l10n/app_localizations.dart';
 import '../../../teacher/tabs/teacher_chats/data/data_source/chats_supabase_data_source.dart';
 import '../../../teacher/tabs/teacher_chats/data/repositories/chats_repositories_imp.dart';
 import '../../../teacher/tabs/teacher_chats/domain/use_case/chats_use_case.dart';
-import '../../../teacher/tabs/teacher_chats/section/chat_conversation_card.dart';
+import '../../../teacher/tabs/teacher_chats/presentation/view/section/chat_conversation_card.dart';
 
 class StudentChatsScreen extends StatefulWidget {
   const StudentChatsScreen({super.key});

@@ -1,6 +1,6 @@
-import 'package:edura/presentation/role/teacher/tabs/dashboard/dashboard.dart';
+import 'package:edura/presentation/role/teacher/tabs/dashboard/presentation/view/dashboard.dart';
 import 'package:edura/presentation/role/teacher/tabs/students/presentation/view/students.dart';
-import 'package:edura/presentation/role/teacher/tabs/teacher_chats/teacher_chats.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_chats/presentation/view/teacher_chats.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view/teacher_lessons.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/teacher_profile.dart';
 import 'package:flutter/material.dart';

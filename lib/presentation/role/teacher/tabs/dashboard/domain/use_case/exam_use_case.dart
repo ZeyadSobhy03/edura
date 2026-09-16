@@ -1,7 +1,8 @@
 import 'package:edura/presentation/role/teacher/tabs/dashboard/data/repositories/exam_repositories.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../data/model/question_draft_model.dart';
-
+@injectable
 class ExamUseCase {
   final ExamRepositories repositories;
 

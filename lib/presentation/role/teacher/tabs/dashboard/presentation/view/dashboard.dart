@@ -4,14 +4,14 @@ import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/widgets/custom_label.dart';
 import 'package:edura/core/widgets/custom_text_button.dart';
 import 'package:edura/l10n/app_localizations.dart';
-import 'package:edura/presentation/role/teacher/tabs/dashboard/widgets/activity_card.dart';
-import 'package:edura/presentation/role/teacher/tabs/dashboard/widgets/quick_action_card.dart';
-import 'package:edura/presentation/role/teacher/tabs/dashboard/widgets/stat_card.dart';
-import 'package:edura/presentation/role/teacher/tabs/dashboard/widgets/student_growth_card.dart';
+import 'package:edura/presentation/role/teacher/tabs/dashboard/presentation/view/widgets/activity_card.dart';
+import 'package:edura/presentation/role/teacher/tabs/dashboard/presentation/view/widgets/quick_action_card.dart';
+import 'package:edura/presentation/role/teacher/tabs/dashboard/presentation/view/widgets/stat_card.dart';
+import 'package:edura/presentation/role/teacher/tabs/dashboard/presentation/view/widgets/student_growth_card.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/resources/routes/route_manger.dart';
-import '../../../student/tabs/home/widgets/home_header.dart';
+import '../../../../../../../core/resources/routes/route_manger.dart';
+import '../../../../../student/tabs/home/widgets/home_header.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});

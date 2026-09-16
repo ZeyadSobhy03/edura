@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../../../core/model/attendance_taking_model.dart';
-import '../../../../../../../../l10n/app_localizations.dart';
+import '../../../../../../../../../../core/model/attendance_taking_model.dart';
+import '../../../../../../../../../../l10n/app_localizations.dart';
+
 
 class AttendanceMarkStyle {
   final Color color;

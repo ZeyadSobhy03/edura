@@ -3,8 +3,8 @@ import 'package:edura/core/widgets/custom_text.dart';
 import 'package:edura/core/widgets/custom_text_formed_field.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/model/notification_audience.dart';
-import '../../../../../../l10n/app_localizations.dart';
+import '../../../../../../../../core/model/notification_audience.dart';
+import '../../../../../../../../l10n/app_localizations.dart';
 import '../widgets/audience_option_tile.dart';
 import '../widgets/pin_announcement_toggle.dart';
 import '../widgets/student_multi_select_field.dart';

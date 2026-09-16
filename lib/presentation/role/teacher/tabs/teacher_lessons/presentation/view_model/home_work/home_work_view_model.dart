@@ -1,18 +1,18 @@
 import 'package:edura/core/error/app_error.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/data/model/home_work/new_homework_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../domain/use_case/home_work/home_work_use_case.dart';
 
-
-
+@injectable
 class HomeWorkCubit extends Cubit<HomeWorkState> {
   final HomeWorkUseCase useCase;
 
   HomeWorkCubit({required this.useCase}) : super(HomeWorkInitial());
 
   Future<void> createHomework({
-    required String lessonId,
+    String? lessonId,
     required NewHomeworkModel homework,
   }) async {
     emit(HomeWorkSubmitting());
@@ -61,6 +61,22 @@ class HomeWorkCubit extends Cubit<HomeWorkState> {
       emit(DeleteHomeworkFailure(const UnknownServerError()));
     }
   }
+
+  Future<void> reviewHomework({
+    required String submissionId,
+    required int grade,
+    required String feedback,
+  }) async {
+    emit(HomeWorkSubmitting());
+    try {
+      await useCase.reviewHomework(submissionId, grade, feedback);
+      emit(ReviewHomeworkSuccess());
+    } on AppError catch (error) {
+      emit(ReviewHomeworkFailure(error));
+    } catch (_) {
+      emit(ReviewHomeworkFailure(const UnknownServerError()));
+    }
+  }
 }
 
 sealed class HomeWorkState {}
@@ -103,6 +119,14 @@ class DeleteHomeworkFailure extends HomeWorkState {
   final AppError error;
 
   DeleteHomeworkFailure(this.error);
+}
+
+class ReviewHomeworkSuccess extends HomeWorkState {}
+
+class ReviewHomeworkFailure extends HomeWorkState {
+  final AppError error;
+
+  ReviewHomeworkFailure(this.error);
 }
 
 class HomeWorkFailure extends HomeWorkState {

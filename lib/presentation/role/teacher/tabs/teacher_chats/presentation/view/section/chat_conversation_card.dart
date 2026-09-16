@@ -3,7 +3,8 @@ import 'package:edura/core/model/chat_conversation_model.dart';
 import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/widgets/custom_text.dart';
+import '../../../../../../../../core/widgets/custom_text.dart';
+
 
 class ChatConversationCard extends StatelessWidget {
   const ChatConversationCard({

@@ -3,8 +3,10 @@ import 'dart:developer';
 import 'package:edura/presentation/auth/register/data/data_source/register_remote_data_source.dart';
 import 'package:edura/presentation/auth/register/data/model/register_request_model.dart';
 import 'package:edura/presentation/auth/register/data/model/register_response_model.dart';
+import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+@LazySingleton(as: RegisterRemoteDataSource)
 class RegisterSupabaseDataSource implements RegisterRemoteDataSource {
   final supabase = Supabase.instance.client;
 
