@@ -23,9 +23,7 @@ import 'package:edura/presentation/role/student/tabs/profile/section/settings/se
 import 'package:edura/presentation/role/teacher/tabs/students/presentation/view/students.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_chats/presentation/view/teacher_chats.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view/teacher_lessons.dart';
-import 'package:edura/presentation/role/teacher/tabs/teacher_profile/teacher_edit_profile/teacher_edit_profile_screen.dart';
-import 'package:edura/presentation/role/teacher/tabs/teacher_profile/teacher_profile.dart';
-import 'package:edura/presentation/role/teacher/tabs/teacher_profile/teacher_setting/teacher_setting_screen.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -38,7 +36,7 @@ import '../../../presentation/role/student/tabs/profile/section/notes/notes_scre
 import '../../../presentation/role/teacher/tabs/dashboard/presentation/view/section/analytics_screen.dart';
 import '../../../presentation/role/teacher/tabs/dashboard/presentation/view/section/attendance/take_attendance_screen.dart';
 import '../../../presentation/role/teacher/tabs/dashboard/presentation/view/section/exams/question_builder_screen.dart';
-import '../../../presentation/role/teacher/tabs/dashboard/presentation/view/section/teacher_notification.dart';
+import '../../../presentation/role/teacher/tabs/dashboard/presentation/view/section/notification/teacher_notification.dart';
 import '../../../presentation/role/teacher/tabs/students/presentation/view/section/student_details.dart';
 import '../../../presentation/role/teacher/tabs/teacher_chats/data/data_source/chats_supabase_data_source.dart';
 import '../../../presentation/role/teacher/tabs/teacher_chats/data/repositories/chats_repositories_imp.dart';
@@ -49,13 +47,15 @@ import '../../../presentation/role/teacher/tabs/teacher_lessons/presentation/vie
 import '../../../presentation/role/teacher/tabs/teacher_lessons/presentation/view/section/edit_lesson_screen.dart';
 import '../../../presentation/role/teacher/tabs/teacher_lessons/presentation/view/section/review_homework_screen.dart';
 import '../../../presentation/role/teacher/tabs/teacher_lessons/presentation/view/section/teacher_homework_screen.dart';
-import '../../../presentation/role/teacher/tabs/teacher_profile/teacher_setting/section/subjects_classes_screen.dart';
+import '../../../presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_edit_profile/teacher_edit_profile_screen.dart';
+import '../../../presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/section/subjects_classes_screen.dart';
+import '../../../presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/teacher_setting_screen.dart';
 import '../../../presentation/role/teacher/teacher_main_layout.dart';
 import '../../../presentation/splash_screen/splash_screen.dart';
 import '../../model/edit_profile_arguments.dart';
 import '../../model/homework_model.dart';
 import '../../model/lesson_model.dart';
-import '../../model/teacher_profile_model.dart';
+import '../../../presentation/role/teacher/tabs/teacher_profile/data/model/teacher_profile_model.dart';
 import '../../model/web_view_arguments.dart';
 
 class RouteManger {

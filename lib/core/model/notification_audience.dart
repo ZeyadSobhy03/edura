@@ -1,1 +1,0 @@
-enum NotificationAudience { allStudents, activeOnly, individual }

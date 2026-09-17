@@ -3,7 +3,7 @@ import 'package:edura/core/widgets/custom_text.dart';
 import 'package:edura/presentation/role/student/tabs/home/section/notification/widget/notification_item.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../../core/model/notification_model.dart';
+import '../../../../../teacher/tabs/dashboard/data/model/teacher_notification/notification_model.dart';
 import '../../../../../../../l10n/app_localizations.dart';
 
 class StudentNotificationScreen extends StatefulWidget {

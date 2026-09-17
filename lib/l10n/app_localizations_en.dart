@@ -239,6 +239,32 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeworkSavedAsDraft => 'Homework Saved as Draft';
 
   @override
+  String get unpin => 'Unpin';
+
+  @override
+  String get pin => 'Pin';
+
+  @override
+  String get failedToLoadStudents =>
+      'Failed to load students. Please try again.';
+
+  @override
+  String get notificationReadDetails =>
+      'You have read the notification details.';
+
+  @override
+  String get close => 'Close';
+
+  @override
+  String notificationReadStats(
+    Object readCount,
+    Object recipientCount,
+    Object totalRecipients,
+  ) {
+    return '$readCount of $totalRecipients recipients have read this notification.\n$recipientCount recipient records found.';
+  }
+
+  @override
   String get noAnnouncements => 'No announcements';
 
   @override

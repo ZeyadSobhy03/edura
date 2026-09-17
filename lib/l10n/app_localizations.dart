@@ -554,6 +554,46 @@ abstract class AppLocalizations {
   /// **'Homework Saved as Draft'**
   String get homeworkSavedAsDraft;
 
+  /// No description provided for @unpin.
+  ///
+  /// In en, this message translates to:
+  /// **'Unpin'**
+  String get unpin;
+
+  /// No description provided for @pin.
+  ///
+  /// In en, this message translates to:
+  /// **'Pin'**
+  String get pin;
+
+  /// No description provided for @failedToLoadStudents.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load students. Please try again.'**
+  String get failedToLoadStudents;
+
+  /// No description provided for @notificationReadDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'You have read the notification details.'**
+  String get notificationReadDetails;
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
+
+  /// No description provided for @notificationReadStats.
+  ///
+  /// In en, this message translates to:
+  /// **'{readCount} of {totalRecipients} recipients have read this notification.\n{recipientCount} recipient records found.'**
+  String notificationReadStats(
+    Object readCount,
+    Object recipientCount,
+    Object totalRecipients,
+  );
+
   /// No description provided for @noAnnouncements.
   ///
   /// In en, this message translates to:

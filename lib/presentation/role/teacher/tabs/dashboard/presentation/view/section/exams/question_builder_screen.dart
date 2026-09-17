@@ -5,13 +5,13 @@ import 'package:edura/core/widgets/custom_elevated_button.dart';
 import 'package:edura/core/widgets/custom_text.dart';
 import 'package:edura/presentation/role/teacher/tabs/dashboard/presentation/view/section/exams/section/add_question_button.dart';
 import 'package:edura/presentation/role/teacher/tabs/dashboard/presentation/view/section/exams/section/exam_header.dart';
-import 'package:edura/presentation/role/teacher/tabs/dashboard/presentation/view_model/exam_view_model.dart';
+import 'package:edura/presentation/role/teacher/tabs/dashboard/presentation/view_model/exam/exam_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../../../../../../../l10n/app_localizations.dart';
-import '../../../../data/model/question_draft_model.dart';
+import '../../../../data/model/exam/question_draft_model.dart';
 import 'section/exam_date_range_picker.dart';
 import 'section/question_builder_card.dart';
 

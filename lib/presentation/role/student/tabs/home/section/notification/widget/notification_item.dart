@@ -1,4 +1,4 @@
-import 'package:edura/core/model/notification_model.dart';
+import 'package:edura/presentation/role/teacher/tabs/dashboard/data/model/teacher_notification/notification_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../../../core/resources/colors/color_manger.dart';

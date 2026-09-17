@@ -1,0 +1,30 @@
+import 'package:edura/presentation/role/teacher/tabs/dashboard/data/data_source/exam/exam_remote_data_source.dart';
+import 'package:edura/presentation/role/teacher/tabs/dashboard/data/model/exam/question_draft_model.dart';
+import 'package:edura/presentation/role/teacher/tabs/dashboard/data/repositories/exam/exam_repositories.dart';
+import 'package:injectable/injectable.dart';
+
+@LazySingleton(as: ExamRepositories)
+class ExamRepositoriesImp implements ExamRepositories {
+  final ExamRemoteDataSource remoteDataSource;
+
+  ExamRepositoriesImp({required this.remoteDataSource});
+
+  @override
+  Future<Map<String, dynamic>> createExam({
+    required String title,
+    required String subject,
+    required int durationMinutes,
+    required List<QuestionDraftModel> questions,
+    required DateTime startDate,
+    required DateTime endDate,
+  }) {
+    return remoteDataSource.createExam(
+      title: title,
+      subject: subject,
+      durationMinutes: durationMinutes,
+      questions: questions,
+      endDate: endDate,
+      startDate: startDate,
+    );
+  }
+}

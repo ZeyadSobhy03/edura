@@ -13,9 +13,14 @@ import 'package:flutter/material.dart';
 import '../../../../../../../core/resources/routes/route_manger.dart';
 import '../../../../../student/tabs/home/widgets/home_header.dart';
 
-class Dashboard extends StatelessWidget {
+class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
 
+  @override
+  State<Dashboard> createState() => _DashboardState();
+}
+
+class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     final l10 = AppLocalizations.of(context)!;

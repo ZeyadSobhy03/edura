@@ -4,7 +4,7 @@ import 'package:edura/core/widgets/custom_text_formed_field.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../../../../../l10n/app_localizations.dart';
-import '../../../../../data/model/question_draft_model.dart';
+import '../../../../../data/model/exam/question_draft_model.dart';
 
 
 

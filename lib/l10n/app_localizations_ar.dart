@@ -239,6 +239,32 @@ class AppLocalizationsAr extends AppLocalizations {
   String get homeworkSavedAsDraft => 'تم حفظ الواجب المنزلي كمسودة';
 
   @override
+  String get unpin => 'إلغاء التثبيت';
+
+  @override
+  String get pin => 'تثبيت';
+
+  @override
+  String get failedToLoadStudents =>
+      'فشل تحميل الطلاب. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get notificationReadDetails =>
+      'تمت قراءة الإشعار. انقر هنا لعرض التفاصيل.';
+
+  @override
+  String get close => 'إغلاق';
+
+  @override
+  String notificationReadStats(
+    Object readCount,
+    Object recipientCount,
+    Object totalRecipients,
+  ) {
+    return 'قام $readCount من أصل $totalRecipients مستلم بقراءة هذا الإشعار.\nتم العثور على $recipientCount سجل للمستلمين.';
+  }
+
+  @override
   String get noAnnouncements => 'لا توجد إعلانات حتى الآن';
 
   @override

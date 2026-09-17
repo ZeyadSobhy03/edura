@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../../../core/model/notification_model.dart';
+import '../../../../../../teacher/tabs/dashboard/data/model/teacher_notification/notification_model.dart';
 
 class NotificationCategoryStyle {
   final IconData icon;
