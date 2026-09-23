@@ -1,6 +1,9 @@
 class TeacherProfileModel {
   final String name;
   final String subject;
+  final String? bio;
+  final String? phone;
+
   final int studentsCount;
   final double rating;
   final int yearsExperience;
@@ -16,7 +19,7 @@ class TeacherProfileModel {
     required this.yearsExperience,
     required this.homeworkCount,
     required this.lessonsCount,
-    required this.examsCount,
+    required this.examsCount, this.bio, this.phone,
   });
 
   factory TeacherProfileModel.fromJson(Map<String, dynamic> json) {
@@ -29,6 +32,8 @@ class TeacherProfileModel {
       homeworkCount: json['homeworks_count'] as int? ?? 0,
       lessonsCount: json['lessons_count'] as int? ?? 0,
       examsCount: json['exams_count'] as int? ?? 0,
+      bio: json['bio'] as String?,
+      phone: json['phone'] as String?,
     );
   }
 }

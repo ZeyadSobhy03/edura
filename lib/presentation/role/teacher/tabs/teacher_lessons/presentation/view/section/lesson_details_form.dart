@@ -1,6 +1,7 @@
 import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/widgets/custom_text.dart';
 import 'package:edura/core/widgets/custom_text_formed_field.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view/widgets/lesson_grade_selector.dart';
 import 'package:flutter/material.dart';
 
 import '../../../data/model/lessons/new_lesson_model.dart';
@@ -25,6 +26,8 @@ class _LessonDetailsFormState extends State<LessonDetailsForm> {
   late final TextEditingController _durationController;
   late final TextEditingController _descriptionController;
   late final TextEditingController _subjectController;
+  String? _selectedGradeId;
+  String? _selectedGradeName;
 
 
   @override
@@ -38,6 +41,8 @@ class _LessonDetailsFormState extends State<LessonDetailsForm> {
       text: widget.draft.description,
     );
     _subjectController = TextEditingController(text: widget.draft.subject);
+    _selectedGradeId = widget.draft.gradeId;
+    _selectedGradeName = widget.draft.grade;
   }
 
   @override
@@ -65,14 +70,17 @@ class _LessonDetailsFormState extends State<LessonDetailsForm> {
 
   bool get _canProceed =>
       _titleController.text.trim().isNotEmpty &&
-      _durationController.text.trim().isNotEmpty;
+      _durationController.text.trim().isNotEmpty &&
+      _selectedGradeId != null && _selectedGradeName != null ;
 
   void _handleNext() {
     if (!_canProceed) return;
     widget.draft
       ..title = _titleController.text.trim()
       ..durationMinutes = int.parse(_durationController.text.trim())
-      ..description = _descriptionController.text.trim();
+      ..description = _descriptionController.text.trim()
+      ..gradeId = _selectedGradeId!
+      .. grade = _selectedGradeName!;
     widget.onNext();
   }
 
@@ -137,6 +145,7 @@ class _LessonDetailsFormState extends State<LessonDetailsForm> {
         _sectionLabel(l10.description),
         CustomTextFormedField(
           onChanged: (_) => setState(() {}),
+          minLines: 4,
 
           hintText: l10.descriptionHint,
           validator: (value) {
@@ -153,49 +162,15 @@ class _LessonDetailsFormState extends State<LessonDetailsForm> {
         ),
         const SizedBox(height: 20),
 
-        // Container(
-        //   padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-        //   decoration: BoxDecoration(
-        //     color: ColorManager.white,
-        //     borderRadius: BorderRadius.circular(14),
-        //     border: Border.all(
-        //       color: ColorManager.gray.withValues(alpha: 0.15),
-        //     ),
-        //   ),
-        //   child: Row(
-        //     children: [
-        //       Expanded(
-        //         child: Column(
-        //           crossAxisAlignment: CrossAxisAlignment.start,
-        //           children: [
-        //             CustomText(
-        //               text: l10.premiumContent,
-        //               style: TextStyle(
-        //                 color: ColorManager.black,
-        //                 fontSize: 14,
-        //                 fontWeight: FontWeight.bold,
-        //               ),
-        //             ),
-        //             CustomText(
-        //               text: l10.premiumContentSubtitle,
-        //               style: TextStyle(
-        //                 color: ColorManager.black.withValues(alpha: 0.5),
-        //                 fontSize: 12,
-        //               ),
-        //             ),
-        //           ],
-        //         ),
-        //       ),
-        //       Switch(
-        //         value: widget.draft.isPremium,
-        //         onChanged: (value) =>
-        //             setState(() => widget.draft.isPremium = value),
-        //         activeThumbColor: ColorManager.primary,
-        //       ),
-        //     ],
-        //   ),
-        // ),
-        // const SizedBox(height: 20),
+        _sectionLabel(l10.grade),
+        LessonGradeSelector(
+          selectedGradeId: _selectedGradeId,
+          onChanged: (grade) => setState(() {
+            _selectedGradeId = grade.id;
+            _selectedGradeName = grade.name;
+          },),
+        ),
+        const SizedBox(height: 20),
 
         SizedBox(
           width: double.infinity,

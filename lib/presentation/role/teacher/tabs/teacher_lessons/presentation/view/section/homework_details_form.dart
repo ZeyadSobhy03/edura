@@ -1,5 +1,5 @@
 import 'package:edura/core/resources/colors/color_manger.dart';
-import 'package:edura/core/widgets/custom_text.dart';
+import 'package:edura/core/widgets/custom_label.dart';
 import 'package:edura/core/widgets/custom_text_formed_field.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -51,19 +51,6 @@ class _HomeworkDetailsFormState extends State<HomeworkDetailsForm> {
     super.dispose();
   }
 
-  Widget _sectionLabel(String text) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
-      child: CustomText(
-        text: text,
-        style: TextStyle(
-          color: ColorManager.black.withValues(alpha: 0.5),
-          fontSize: 12,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
-    );
-  }
 
   bool get _canProceed =>
       _titleController.text.trim().isNotEmpty &&
@@ -76,6 +63,7 @@ class _HomeworkDetailsFormState extends State<HomeworkDetailsForm> {
     final lastDate = DateTime(now.year + 1);
 
     final picked = await showDatePicker(
+
       context: context,
       initialDate: widget.draft.dueDate ?? now,
       firstDate: firstDate,
@@ -106,7 +94,10 @@ class _HomeworkDetailsFormState extends State<HomeworkDetailsForm> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _sectionLabel(l10.homeworkTitle ),
+        CustomLabel(
+          label: l10.homeworkTitle ,
+          fontSize: 14,
+        ),
         CustomTextFormedField(
           controller: _titleController,
           onChanged: (_) => setState(() {}),
@@ -119,7 +110,10 @@ class _HomeworkDetailsFormState extends State<HomeworkDetailsForm> {
           hintText: l10.enterHomeworkTitle,
         ),
         const SizedBox(height: 20),
-        _sectionLabel(l10.subject),
+        CustomLabel(
+          label: l10.subject,
+          fontSize: 14,
+        ),
         CustomTextFormedField(
           onChanged: (_) => setState(() {}),
           validator: (value) {
@@ -132,10 +126,14 @@ class _HomeworkDetailsFormState extends State<HomeworkDetailsForm> {
           controller: _subjectController,
         ),
         const SizedBox(height: 20),
-        _sectionLabel(l10.description),
+        CustomLabel(
+          label: l10.description,
+          fontSize: 14,
+        ),
         CustomTextFormedField(
           onChanged: (_) => setState(() {}),
           hintText: l10.descriptionHint,
+
           validator: (value) {
             if (value == null || value.isEmpty) {
               return l10.descriptionRequired;
@@ -148,7 +146,10 @@ class _HomeworkDetailsFormState extends State<HomeworkDetailsForm> {
           maxLines: 4,
         ),
         const SizedBox(height: 20),
-        _sectionLabel(l10.dueDate),
+        CustomLabel(
+          label: l10.dueDate,
+          fontSize: 14,
+        ),
         CustomTextFormedField(
           controller: _dueDateController,
           readOnly: true,

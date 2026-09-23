@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/widgets/custom_text.dart';
+import 'package:edura/core/widgets/custom_text_formed_field.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -124,29 +125,23 @@ class _LessonHomeworkUploadFormState extends State<LessonHomeworkUploadForm> {
           ),
           const SizedBox(height: 12),
 
-          TextFormField(
+          CustomTextFormedField(
+            minLines: 1,
+            hintText: l10.enterHomeworkTitle,
+
             controller: _titleController,
-            decoration: InputDecoration(
-              labelText: l10.homeworkTitle,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
+
             validator: (value) => (value == null || value.trim().isEmpty)
                 ? l10.requiredField
                 : null,
           ),
           const SizedBox(height: 12),
 
-          TextFormField(
+          CustomTextFormedField(
             controller: _descriptionController,
-            maxLines: 4,
-            decoration: InputDecoration(
-              labelText: l10.homeworkDescription,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
+            minLines: 4,
+
+            hintText: l10.enterHomeworkDescription,
             validator: (value) => (value == null || value.trim().isEmpty)
                 ? l10.requiredField
                 : null,
@@ -154,13 +149,8 @@ class _LessonHomeworkUploadFormState extends State<LessonHomeworkUploadForm> {
           const SizedBox(height: 12),
 
           DropdownButtonFormField<String>(
+            dropdownColor: ColorManager.white,
             initialValue: _subject,
-            decoration: InputDecoration(
-              labelText: l10.subject,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
             items: _subjects
                 .map((s) => DropdownMenuItem(value: s, child: Text(s)))
                 .toList(),
@@ -168,17 +158,11 @@ class _LessonHomeworkUploadFormState extends State<LessonHomeworkUploadForm> {
               if (value != null) setState(() => _subject = value);
             },
           ),
-          const SizedBox(height: 12),
-
+          const SizedBox(height: 20),
           InkWell(
             onTap: _pickDueDate,
             child: InputDecorator(
-              decoration: InputDecoration(
-                labelText: l10.dueDate,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
+              decoration: InputDecoration(labelText: l10.dueDate),
               child: Text(
                 _dueDate == null
                     ? l10.selectDate
@@ -190,8 +174,16 @@ class _LessonHomeworkUploadFormState extends State<LessonHomeworkUploadForm> {
 
           OutlinedButton.icon(
             onPressed: _pickAttachments,
-            icon: const Icon(Icons.attach_file),
-            label: Text(l10.addAttachment),
+            style: OutlinedButton.styleFrom(
+              side: BorderSide(color: ColorManager.primary),
+            ),
+            icon:  Icon(Icons.attach_file,color: ColorManager.primary,),
+            label: Text(
+              l10.addAttachment,
+              style: TextStyle(color: ColorManager.primary,
+
+              ),
+            ),
           ),
           const SizedBox(height: 8),
 
@@ -214,20 +206,27 @@ class _LessonHomeworkUploadFormState extends State<LessonHomeworkUploadForm> {
           ),
 
           const SizedBox(height: 24),
-
+/*
+ onPressed: widget.isSubmitting ? null : widget.onSkip,
+                  child: Text(l10.skipAndPublish),
+ */
           Row(
             children: [
               Expanded(
                 child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    side: BorderSide(color: ColorManager.primary),
+                  ),
                   onPressed: widget.isSubmitting ? null : widget.onSkip,
-                  child: Text(l10.skipAndPublish),
+                  child: Text(l10.skipAndPublish, style: TextStyle(color: ColorManager.primary)),
                 ),
               ),
               const SizedBox(width: 12),
               Expanded(
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
+                child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
                     backgroundColor: ColorManager.primary,
+                    side: BorderSide(color: ColorManager.primary)
                   ),
                   onPressed: widget.isSubmitting ? null : _submit,
                   child: widget.isSubmitting
@@ -239,7 +238,7 @@ class _LessonHomeworkUploadFormState extends State<LessonHomeworkUploadForm> {
                             color: Colors.white,
                           ),
                         )
-                      : Text(l10.addHomeworkAndPublish),
+                      : Text(l10.addHomeworkAndPublish, style: const TextStyle(color: Colors.white)),
                 ),
               ),
             ],

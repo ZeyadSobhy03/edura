@@ -20,4 +20,9 @@ class StudentRepositoriesImp implements StudentRepositories {
     return remoteDataSource.getStudentDetails(studentId: studentId);
   }
 
+  @override
+  Future<void> markAttendance({required String lessonId, required DateTime date, required List<Map<String, String>> entries}) {
+    return remoteDataSource.markAttendance(lessonId: lessonId, date: date, entries: entries);
+  }
+
 }

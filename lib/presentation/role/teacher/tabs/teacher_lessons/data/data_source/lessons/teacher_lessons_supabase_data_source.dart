@@ -9,6 +9,7 @@ import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../../../../../core/error/rethrow_as_app_error.dart';
+
 @LazySingleton(as: TeacherLessonsRemoteDataSource)
 class TeacherLessonsSupabaseDataSource
     implements TeacherLessonsRemoteDataSource {
@@ -55,8 +56,11 @@ class TeacherLessonsSupabaseDataSource
             'is_premium': lesson.isPremium,
             'is_completed': false,
             'view_count': 0,
+            'grade_id': lesson.gradeId,
+             'grade': lesson.grade,
             'rating': 0,
             'progress': 0,
+
             'materials': [],
           })
           .select()

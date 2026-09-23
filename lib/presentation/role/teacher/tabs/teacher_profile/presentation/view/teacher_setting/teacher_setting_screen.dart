@@ -40,7 +40,6 @@ class _TeacherSettingScreenState extends State<TeacherSettingScreen> {
         currentLanguageCode: _languageCode,
         onSelected: (code) {
           setState(() => _languageCode = code);
-          // TODO: call your app's locale-switching logic here
         },
       ),
     );

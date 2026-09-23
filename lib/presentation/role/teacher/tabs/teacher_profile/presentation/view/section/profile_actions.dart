@@ -3,13 +3,12 @@ import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/resources/routes/route_manger.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../../../core/widgets/divider_row.dart';
 import '../../../../../../../../l10n/app_localizations.dart';
 import 'action_tail.dart';
 
-
 class ProfileActions extends StatelessWidget {
   const ProfileActions({super.key, required this.teacher});
+
   final TeacherProfileModel teacher;
 
   @override
@@ -39,17 +38,31 @@ class ProfileActions extends StatelessWidget {
               icon: Icons.insert_chart_outlined,
               iconColor: ColorManager.primary,
             ),
-            DividerRow(),
+            Divider(
+              color: Colors.grey,
+              thickness: 1,
+              endIndent: 8.0,
+              indent: 8.0,
+            ),
             ActionTail(
               title: l10.settings,
               subtitle: l10.accountPreferences,
               onPressed: () {
-                Navigator.pushNamed(context, RouteManger.teacherSettingsScreen,arguments: teacher);
+                Navigator.pushNamed(
+                  context,
+                  RouteManger.teacherSettingsScreen,
+                  arguments: teacher,
+                );
               },
               icon: Icons.settings_outlined,
               iconColor: ColorManager.salatGray,
             ),
-            DividerRow(),
+            Divider(
+              color: Colors.grey,
+              thickness: 1,
+              endIndent: 8.0,
+              indent: 8.0,
+            ),
             ActionTail(
               title: l10.helpAndSupport,
               subtitle: l10.contactSupport,

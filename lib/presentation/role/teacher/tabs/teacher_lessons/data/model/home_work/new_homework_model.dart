@@ -7,6 +7,8 @@ class NewHomeworkModel {
   DateTime? dueDate;
   bool isPublished;
   List<File> attachments;
+  String gradeId;
+  String grade;
 
   NewHomeworkModel({
     this.title = '',
@@ -15,10 +17,14 @@ class NewHomeworkModel {
     this.dueDate,
     this.isPublished = true,
     this.attachments = const [],
+    this.grade = '',
+    this.gradeId = '',
   });
 
   factory NewHomeworkModel.fromJson(Map<String, dynamic> json) {
     return NewHomeworkModel(
+      grade: json['grade'] as String? ?? '',
+      gradeId: json['gradeId'] as String? ?? '',
       title: json['title'] as String? ?? '',
       description: json['description'] as String? ?? '',
       subject: json['subject'] as String? ?? 'Mathematics',

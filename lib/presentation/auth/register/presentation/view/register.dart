@@ -37,7 +37,6 @@ class _RegisterState extends State<Register> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     fullNameController.dispose();
     emailController.dispose();
@@ -50,7 +49,6 @@ class _RegisterState extends State<Register> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _formKey = GlobalKey<FormState>();
     fullNameController = TextEditingController();

@@ -20,6 +20,30 @@ class TeacherProfileCubit extends Cubit<TeacherProfileState> {
       emit(TeacherProfileError(e.toString()));
     }
   }
+
+  Future<void> updateTeacherProfile({
+    required String name,
+    required String subject,
+    required String bio,
+    required int yearsExperience,
+    required String phone,
+    required String teacherId,
+  }) async {
+    emit(TeacherProfileUpdating());
+    try {
+      final profile = await teacherProfileUseCase.updateTeacherProfile(
+        name: name,
+        subject: subject,
+        bio: bio,
+        yearsExperience: yearsExperience,
+        phone: phone,
+        teacherId: teacherId,
+      );
+      emit(TeacherProfileLoaded(profile));
+    } catch (e) {
+      emit(TeacherProfileError(e.toString()));
+    }
+  }
 }
 
 sealed class TeacherProfileState {}
@@ -27,6 +51,8 @@ sealed class TeacherProfileState {}
 class TeacherProfileInitial extends TeacherProfileState {}
 
 class TeacherProfileLoading extends TeacherProfileState {}
+
+class TeacherProfileUpdating extends TeacherProfileState {}
 
 class TeacherProfileLoaded extends TeacherProfileState {
   final TeacherProfileModel profile;

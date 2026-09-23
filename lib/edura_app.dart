@@ -1,3 +1,5 @@
+import 'package:edura/config/theme/theme_manger.dart';
+import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/resources/routes/route_manger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,7 +11,7 @@ class EduraApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  ScreenUtilInit(
+    return ScreenUtilInit(
       designSize: const Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: true,
@@ -17,6 +19,8 @@ class EduraApp extends StatelessWidget {
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         locale: const Locale('ar'),
+        color: ColorManager.white,
+        theme: ThemeManger.light,
 
         debugShowCheckedModeBanner: false,
         initialRoute: RouteManger.splashRoute,

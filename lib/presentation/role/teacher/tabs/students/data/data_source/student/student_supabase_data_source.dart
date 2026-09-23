@@ -6,11 +6,10 @@ import 'package:edura/presentation/role/teacher/tabs/students/data/model/student
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-
-@LazySingleton(as :StudentRemoteDataSource)
+@LazySingleton(as: StudentRemoteDataSource)
 class StudentSupabaseDataSource implements StudentRemoteDataSource {
+  final supabase = Supabase.instance.client;
 
-final supabase=Supabase.instance.client;
   @override
   Future<List<StudentModel>> getStudents() async {
     try {
@@ -21,8 +20,7 @@ final supabase=Supabase.instance.client;
     } on AppError catch (e) {
       log('AppError in getStudents: ${e.toString()}');
       rethrow;
-    }
-    catch (e) {
+    } catch (e) {
       log('Error in getStudents: ${e.toString()}');
       throw ServerError();
     }
@@ -46,9 +44,36 @@ final supabase=Supabase.instance.client;
     } on AppError catch (e) {
       log('AppError in getStudentDetails: ${e.toString()}');
       rethrow;
-    }
-    catch (e) {
+    } catch (e) {
       log('Error in getStudentDetails: ${e.toString()}');
+      throw ServerError();
+    }
+  }
+
+  @override
+  Future<void> markAttendance({
+    required String lessonId,
+    required DateTime date,
+    required List<Map<String, String>> entries,
+  }) async {
+    try {
+      final rows = entries
+          .map(
+            (e) => {
+              'student_id': e['studentId'],
+              'lesson_id': lessonId,
+              'date': date.toIso8601String().split('T').first,
+              'status': e['status'],
+            },
+          )
+          .toList();
+
+      await supabase
+          .from('student_attendance')
+          .upsert(rows, onConflict: 'student_id,lesson_id,date');
+    } on AppError {
+      rethrow;
+    } catch (e) {
       throw ServerError();
     }
   }

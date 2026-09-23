@@ -5,4 +5,9 @@ abstract class StudentRemoteDataSource {
   Future<StudentModel> getStudentDetails({
     required String studentId,
   });
+  Future<void> markAttendance({
+    required String lessonId,
+    required DateTime date,
+    required List<Map<String, String>> entries,
+  });
 }

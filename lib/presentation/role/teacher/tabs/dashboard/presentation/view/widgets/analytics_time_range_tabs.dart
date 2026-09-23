@@ -37,6 +37,7 @@ class AnalyticsTimeRangeTabs extends StatelessWidget {
           final isSelected = entry.key == selected;
           return Expanded(
             child: GestureDetector(
+
               onTap: () => onSelected(entry.key),
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 200),

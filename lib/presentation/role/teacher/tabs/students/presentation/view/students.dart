@@ -20,6 +20,7 @@ class Students extends StatefulWidget {
 class _StudentsState extends State<Students> {
   late final TextEditingController _searchController;
   String _searchQuery = '';
+  String? _selectedGrade;
 
   @override
   void initState() {
@@ -64,9 +65,18 @@ class _StudentsState extends State<Students> {
                 ),
               );
             }
+
+            final grades = state.students.map((s) => s.grade).toSet().toList()
+              ..sort();
+
             final students = state.students.where((student) {
-              return student.name.toLowerCase().contains(_searchQuery);
+              final matchesSearch =
+              student.name.toLowerCase().contains(_searchQuery);
+              final matchesGrade =
+                  _selectedGrade == null || student.grade == _selectedGrade;
+              return matchesSearch && matchesGrade;
             }).toList();
+
             return SafeArea(
               child: SingleChildScrollView(
                 padding: EdgeInsets.all(16),
@@ -78,7 +88,6 @@ class _StudentsState extends State<Students> {
                     CustomTextFormedField(
                       controller: _searchController,
                       hintText: l10.searchStudents,
-
                       prefix: Icon(Icons.search, color: ColorManager.gray),
                       onChanged: (value) {
                         setState(() {
@@ -86,7 +95,35 @@ class _StudentsState extends State<Students> {
                         });
                       },
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 12),
+
+                    SizedBox(
+                      height: 36,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: [
+                          _GradeChip(
+                            label: l10.all,
+                            selected: _selectedGrade == null,
+                            onTap: () => setState(() => _selectedGrade = null),
+                          ),
+                          const SizedBox(width: 8),
+                          ...grades.map(
+                                (grade) => Padding(
+                              padding: const EdgeInsets.only(right: 8),
+                              child: _GradeChip(
+                                label: grade,
+                                selected: _selectedGrade == grade,
+                                onTap: () =>
+                                    setState(() => _selectedGrade = grade),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+
                     ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
@@ -124,6 +161,42 @@ class _StudentsState extends State<Students> {
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+class _GradeChip extends StatelessWidget {
+  const _GradeChip({
+    required this.label,
+    required this.selected,
+    required this.onTap,
+  });
+
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+        decoration: BoxDecoration(
+          color: selected
+              ? ColorManager.primary
+              : ColorManager.primary.withValues(alpha: 0.08),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Text(
+          label,
+          style: TextStyle(
+            color: selected ? Colors.white : ColorManager.primary,
+            fontWeight: FontWeight.w600,
+            fontSize: 13,
+          ),
+        ),
       ),
     );
   }

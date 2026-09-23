@@ -55,13 +55,21 @@ class _CreateHomeworkScreenState extends State<CreateHomeworkScreen> {
       listener: (context, state) {
         if (state is CreateHomeworkSuccess) {
           Fluttertoast.showToast(
+            backgroundColor: ColorManager.green,
+            gravity: ToastGravity.BOTTOM,
+            textColor: ColorManager.white,
             msg: state.homework.isPublished
                 ? l10.homeworkPublished
                 : l10.homeworkSavedAsDraft,
           );
           Navigator.pop(context, state.homework);
         } else if (state is CreateHomeworkFailure) {
-          Fluttertoast.showToast(msg: ErrorMessages.get(context, state.error));
+
+          Fluttertoast.showToast(
+              backgroundColor: ColorManager.red,
+              gravity: ToastGravity.BOTTOM,
+              textColor: ColorManager.white,
+              msg: ErrorMessages.get(context, state.error));
         }
       },
       child: BlocBuilder<HomeWorkCubit, HomeWorkState>(

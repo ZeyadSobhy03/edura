@@ -48,7 +48,8 @@ import '../../../presentation/role/teacher/tabs/teacher_lessons/presentation/vie
 import '../../../presentation/role/teacher/tabs/teacher_lessons/presentation/view/section/review_homework_screen.dart';
 import '../../../presentation/role/teacher/tabs/teacher_lessons/presentation/view/section/teacher_homework_screen.dart';
 import '../../../presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_edit_profile/teacher_edit_profile_screen.dart';
-import '../../../presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/section/subjects_classes_screen.dart';
+import '../../../presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_grades/presentation/view/teacher_grades_screen.dart';
+import '../../../presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/subjects_classes/presentation/view/subjects_classes_screen.dart';
 import '../../../presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/teacher_setting_screen.dart';
 import '../../../presentation/role/teacher/teacher_main_layout.dart';
 import '../../../presentation/splash_screen/splash_screen.dart';
@@ -104,7 +105,7 @@ class RouteManger {
   static const String teacherEditProfileScreen = '/teacherEditProfileScreen';
   static const String teacherSettingsScreen = '/teacherSettingsScreen';
   static const String teacherProfileEditScreen = '/teacherProfileEditScreen';
-
+  static const String teacherGradesScreen = '/teacherGradesScreen';
   static const String subjectsClassesScreen = '/subjectsClassesScreen';
 
   static const String createHomeworkScreen = '/createHomeworkScreen';
@@ -150,6 +151,13 @@ class RouteManger {
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => StudentMainLayout(initialIndex: initialIndex),
+        );
+
+      case  teacherGradesScreen:
+        return MaterialPageRoute(
+          builder: (context) {
+            return const TeacherGradesScreen();
+          },
         );
 
       case studentDetailsScreen:
@@ -219,6 +227,12 @@ class RouteManger {
           builder: (context) => const StudentChatsScreen(),
         );
 
+      case takeAttendanceScreen:
+        final lesson = settings.arguments as LessonModel;
+        return MaterialPageRoute(
+          builder: (context) => TakeAttendanceScreen(lesson: lesson),
+        );
+
       case lessonsScreen:
         return MaterialPageRoute(builder: (context) => Lessons());
 
@@ -249,10 +263,7 @@ class RouteManger {
           builder: (context) => ExamDetails(),
           settings: settings,
         );
-      case takeAttendanceScreen:
-        return MaterialPageRoute(
-          builder: (context) => const TakeAttendanceScreen(),
-        );
+
       case scheduleScreen:
         return MaterialPageRoute(builder: (context) => ScheduleScreen());
 

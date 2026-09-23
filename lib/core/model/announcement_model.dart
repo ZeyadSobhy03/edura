@@ -26,7 +26,7 @@ class DummyAnnouncementData {
       id: '1',
       title: 'Midterm Exam Schedule Released',
       description:
-      'The midterm exam schedule for all subjects has been published. Please check your dashboard for exact dates and times.',
+      'The midterm exam schedule for all subjects_classes has been published. Please check your dashboard for exact dates and times.',
       date: DateTime(2026, 7, 20),
       isPinned: true,
       author: 'Admin Office',

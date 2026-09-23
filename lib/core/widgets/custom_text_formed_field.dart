@@ -19,7 +19,9 @@ class CustomTextFormedField extends StatelessWidget {
     this.minLines = 1,
     this.fillColor = ColorManager.white,
     this.readOnly = false,
-    this.initialValue,  this.filled=false, this.onTap,
+    this.initialValue,
+    this.filled = false,
+    this.onTap,
   });
 
   final String hintText;
@@ -43,15 +45,17 @@ class CustomTextFormedField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      cursorColor: ColorManager.primary,
 
-      onTap:onTap ,
+      onTap: onTap,
       initialValue: initialValue,
       minLines: minLines,
       textInputAction: textInputAction,
       onChanged: onChanged,
       readOnly: readOnly,
       style: TextStyle(fontSize: 14.sp, color: ColorManager.black),
-      maxLines: maxLines,
+      maxLines: minLines,
+
       keyboardType: keyboardType,
       controller: controller,
       validator: validator,
@@ -59,6 +63,7 @@ class CustomTextFormedField extends StatelessWidget {
 
       decoration: InputDecoration(
         suffixIcon: suffix,
+
         prefixIcon: prefix,
 
         contentPadding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),

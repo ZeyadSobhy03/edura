@@ -46,6 +46,36 @@
   "failedToLoadStudents": "فشل تحميل الطلاب. يرجى المحاولة مرة أخرى.",
   "notificationReadDetails": "تمت قراءة الإشعار. انقر هنا لعرض التفاصيل.",
   "close": "إغلاق",
+  "enterPhoneNumber": "أدخل رقم الهاتف",
+  "enterBio": "أدخل سيرتك الذاتية",
+    "bio": "السيرة الذاتية",
+  "profileUpdateSuccessfully": "تم تحديث الملف الشخصي بنجاح",
+  "takeAttendance": "تسجيل الحضور",
+  "editGrade": "تعديل الصف",
+  "addGrade": "إضافة صف",
+  "gradeName": "اسم الصف",
+  "enterGradeName" : "أدخل اسم الصف",
+  "pleaseEnterGradeName": "يرجى إدخال اسم الصف",
+  "monthlyAmount": "المبلغ الشهري",
+    "enterMonthlyAmount": "أدخل المبلغ الشهري",
+    "pleaseEnterMonthlyAmount": "يرجى إدخال المبلغ الشهري",
+  "pleaseEnterValidMonthlyAmount": "يرجى إدخال مبلغ شهري صالح",
+
+
+  "enterValidNumber": "الرجاء إدخال رقم صحيح",
+  "grades": "الصفوف",
+  "noGradesYet": "لا توجد صفوف بعد — اضغط + لإضافة صف.",
+  "deleteGradeTitle": "حذف {gradeName}؟",
+  "@deleteGradeTitle": {
+    "placeholders": {
+      "gradeName": { "type": "String" }
+    }
+  },
+  "deleteGradeMessage": "لا يمكن التراجع عن هذا الإجراء. الطلاب المسجلون بالفعل في هذا الصف سيحتفظون بمرجع الصف الحالي الخاص بهم.",
+  "noGradesFound" : "لم يتم إعداد أي صفوف بعد — أضف واحدًا من شاشة الصفوف الخاصة بك أولاً.",
+
+
+  "myGrades": "الفصول الدراسيه الخاص بي",
   "notificationReadStats": "قام {readCount} من أصل {totalRecipients} مستلم بقراءة هذا الإشعار.\nتم العثور على {recipientCount} سجل للمستلمين.",
   "lessons": "الدروس",
   "chat": "الدردشة",

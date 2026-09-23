@@ -14,6 +14,10 @@ class LessonCard extends StatelessWidget {
     required this.thirdActionIcon,
     required this.onThirdAction,
     this.thirdActionColor,
+    this.fourthActionLabel,
+    this.fourthActionIcon,
+    this.onFourthAction,
+    this.fourthActionColor,
   });
 
   final LessonModel lesson;
@@ -25,10 +29,16 @@ class LessonCard extends StatelessWidget {
   final VoidCallback onThirdAction;
   final Color? thirdActionColor;
 
+  final String? fourthActionLabel;
+  final IconData? fourthActionIcon;
+  final VoidCallback? onFourthAction;
+  final Color? fourthActionColor;
+
   @override
   Widget build(BuildContext context) {
     final l10 = AppLocalizations.of(context)!;
     final thirdColor = thirdActionColor ?? ColorManager.salatGray;
+    final fourthColor = fourthActionColor ?? ColorManager.primary;
 
     return Card(
       shape: RoundedRectangleBorder(
@@ -173,6 +183,22 @@ class LessonCard extends StatelessWidget {
                 ),
               ],
             ),
+
+            if (onFourthAction != null) ...[
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  Expanded(
+                    child: _actionButton(
+                      icon: fourthActionIcon ?? Icons.checklist_outlined,
+                      label: fourthActionLabel ?? '',
+                      color: fourthColor,
+                      onTap: onFourthAction!,
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ],
         ),
       ),

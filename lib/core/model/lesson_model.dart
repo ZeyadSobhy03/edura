@@ -7,6 +7,7 @@ class LessonMaterialModel {
   final String sizeLabel;
   final String url;
 
+
   LessonMaterialModel({
     required this.id,
     required this.name,
@@ -37,6 +38,8 @@ class LessonModel {
   final double rating;
   final int viewCount;
   bool isPublished;
+  final String grade;
+  final String gradeId;
   final List<HomeworkSubmissionModel> homeworkSubmissions;
 
   final double progress; // 0.0 - 1.0
@@ -48,6 +51,7 @@ class LessonModel {
   final List<LessonMaterialModel> materials;
 
   LessonModel({
+    required this.gradeId,
     required this.id,
     required this.subject,
     required this.title,
@@ -65,10 +69,14 @@ class LessonModel {
     required this.viewCount,
     required this.isPublished,
     required this.homeworkSubmissions,
+    required this.grade
+
   });
 
   factory LessonModel.fromJson(Map<String, dynamic> json) {
     return LessonModel(
+      gradeId: json['grade_id'] ?? '',
+      grade: json['grade'] ?? '',
       homeworkSubmissions:
           (json['homework_submissions'] as List<dynamic>? ?? [])
               .map((e) => HomeworkSubmissionModel.fromJson(e))
@@ -97,6 +105,8 @@ class LessonModel {
 
 class DummyLessonData {
   static LessonModel quantumMechanics = LessonModel(
+    gradeId: "g1",
+    grade: "10th Grade",
     homeworkSubmissions: DummySubmissionData.all,
 
     isPublished: true,
@@ -148,6 +158,8 @@ class DummyLessonData {
   );
 
   static LessonModel calculusDerivatives = LessonModel(
+    gradeId: "g2",
+    grade: "11th Grade",
     homeworkSubmissions: DummySubmissionData.all,
     isPublished: true,
     viewCount: 850,
@@ -181,6 +193,8 @@ class DummyLessonData {
     ],
   );
   static LessonModel chemistryReactions = LessonModel(
+    gradeId: "g3",
+    grade: "10th Grade",
     homeworkSubmissions: DummySubmissionData.all,
     isPublished: false,
     viewCount: 950,

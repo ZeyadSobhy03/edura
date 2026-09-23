@@ -1,18 +1,15 @@
-import 'dart:developer';
-
 import 'package:edura/core/error/app_error.dart';
 import 'package:edura/presentation/role/teacher/tabs/students/domain/use_case/student/student_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../data/model/student_detail_model.dart';
+
 @injectable
 class StudentCubit extends Cubit<StudentState> {
   final StudentUseCase studentUseCase;
 
-  StudentCubit({
-    required this.studentUseCase,
-  }) : super(StudentInitial());
+  StudentCubit({required this.studentUseCase}) : super(StudentInitial());
 
   Future<void> getStudents() async {
     emit(StudentLoading());
@@ -28,9 +25,7 @@ class StudentCubit extends Cubit<StudentState> {
     }
   }
 
-  Future<void> getStudentDetails({
-    required String studentId,
-  }) async {
+  Future<void> getStudentDetails({required String studentId}) async {
     emit(StudentDetailsLoading());
 
     try {
@@ -40,10 +35,28 @@ class StudentCubit extends Cubit<StudentState> {
 
       emit(StudentDetailsLoaded(student));
     } on AppError catch (e) {
-      log('AppError in getStudentDetails: ${e.toString()}');
       emit(StudentError(e));
     } catch (e) {
-      log('Error in getStudentDetails: ${e.toString()}');
+      emit(StudentError(ServerError()));
+    }
+  }
+
+  Future<void> markAttendance({
+    required String lessonId,
+    required DateTime date,
+    required List<Map<String, String>> entries,
+  }) async {
+    emit(AttendanceSaving());
+    try {
+      await studentUseCase.markAttendance(
+        lessonId: lessonId,
+        date: date,
+        entries: entries,
+      );
+      emit(AttendanceSaved());
+    } on AppError catch (e) {
+      emit(StudentError(e));
+    } catch (e) {
       emit(StudentError(ServerError()));
     }
   }
@@ -75,6 +88,6 @@ class StudentError extends StudentState {
   StudentError(this.error);
 }
 
+class AttendanceSaving extends StudentState {}
 
-
-
+class AttendanceSaved extends StudentState {}

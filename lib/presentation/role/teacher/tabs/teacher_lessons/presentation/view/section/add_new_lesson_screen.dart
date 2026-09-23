@@ -1,4 +1,3 @@
-
 import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/resources/localization/error_messages.dart';
 import 'package:edura/core/widgets/custom_text.dart';
@@ -67,6 +66,9 @@ class _AddNewLessonScreenState extends State<AddNewLessonScreen> {
               final homework = _pendingHomework;
               if (homework == null) {
                 Fluttertoast.showToast(
+                  backgroundColor: ColorManager.green,
+                  gravity: ToastGravity.BOTTOM,
+                  textColor: ColorManager.white,
                   msg: state.lesson.isPublished
                       ? l10.lessonPublishedSuccessfully
                       : l10.lessonSavedAsDraft,
@@ -81,6 +83,9 @@ class _AddNewLessonScreenState extends State<AddNewLessonScreen> {
             } else if (state is CreateLessonFailure) {
               if (!context.mounted) return;
               Fluttertoast.showToast(
+                backgroundColor: ColorManager.red,
+                gravity: ToastGravity.BOTTOM,
+                textColor: ColorManager.white,
                 msg: ErrorMessages.get(context, state.error),
               );
             }
@@ -113,6 +118,7 @@ class _AddNewLessonScreenState extends State<AddNewLessonScreen> {
 
               return Scaffold(
                 backgroundColor: ColorManager.white,
+                resizeToAvoidBottomInset: true,
                 appBar: AppBar(
                   backgroundColor: ColorManager.white,
                   elevation: 0,
@@ -128,7 +134,12 @@ class _AddNewLessonScreenState extends State<AddNewLessonScreen> {
                 ),
                 body: SafeArea(
                   child: SingleChildScrollView(
-                    padding: const EdgeInsets.all(16),
+                    padding: EdgeInsets.only(
+                      left: 16,
+                      right: 16,
+                      top: 16,
+                      bottom: MediaQuery.of(context).viewInsets.bottom + 16,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -172,6 +183,13 @@ class _AddNewLessonScreenState extends State<AddNewLessonScreen> {
                             },
                             onSaveDraft: _saveDraft,
                             isPublishing: isSubmitting,
+                          )
+
+                        else if (_step == LessonFormStep.homework)
+                          LessonHomeworkUploadForm(
+                            onNext: _publishWithHomework,
+                            onSkip: _publishWithoutHomework,
+                            isSubmitting: isSubmitting,
                           )
                         else
                           LessonHomeworkUploadForm(

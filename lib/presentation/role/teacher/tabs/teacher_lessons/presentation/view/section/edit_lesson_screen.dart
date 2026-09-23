@@ -37,8 +37,9 @@ class _EditLessonScreenState extends State<EditLessonScreen> {
   void initState() {
     super.initState();
     _titleController = TextEditingController(text: widget.lesson.title);
-    _descriptionController =
-        TextEditingController(text: widget.lesson.overviewDescription);
+    _descriptionController = TextEditingController(
+      text: widget.lesson.overviewDescription,
+    );
     _isPublished = widget.lesson.isPublished;
   }
 
@@ -51,6 +52,7 @@ class _EditLessonScreenState extends State<EditLessonScreen> {
 
   void _saveChanges() {
     final lesson = NewLessonModel(
+      gradeId: widget.lesson.gradeId,
       title: _titleController.text.trim(),
       durationMinutes: widget.lesson.durationMinutes,
       subject: widget.lesson.subject,
@@ -59,14 +61,15 @@ class _EditLessonScreenState extends State<EditLessonScreen> {
       videoFile: _newVideoFile,
     );
 
-
-    log('Updating lesson: ${lesson.title}, ${lesson.description}, isPublished: ${lesson.isPublished}, videoFile: ${lesson.videoFile?.path}, lesson id : ${widget.lesson.id}');
+    log(
+      'Updating lesson: ${lesson.title}, ${lesson.description}, isPublished: ${lesson.isPublished}, videoFile: ${lesson.videoFile?.path}, lesson id : ${widget.lesson.id}',
+    );
     context.read<TeacherLessonsCubit>().updateLesson(
-          lessonId: widget.lesson.id,
-          lesson: lesson,
-          currentVideoUrl: widget.lesson.videoUrl,
-          currentPdfUrl: widget.lesson.pdfUrl,
-        );
+      lessonId: widget.lesson.id,
+      lesson: lesson,
+      currentVideoUrl: widget.lesson.videoUrl,
+      currentPdfUrl: widget.lesson.pdfUrl,
+    );
   }
 
   Future<void> _confirmDelete() async {
@@ -83,10 +86,7 @@ class _EditLessonScreenState extends State<EditLessonScreen> {
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
-            child: Text(
-              l10.delete,
-              style: const TextStyle(color: Colors.red),
-            ),
+            child: Text(l10.delete, style: const TextStyle(color: Colors.red)),
           ),
         ],
       ),

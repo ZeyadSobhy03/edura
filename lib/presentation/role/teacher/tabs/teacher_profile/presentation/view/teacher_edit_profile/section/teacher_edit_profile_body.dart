@@ -12,12 +12,14 @@ class TeacherEditProfileBody extends StatelessWidget {
     super.key,
     required this.nameController,
     required this.subjectController,
-    required this.yearsController,
+    required this.yearsController, required this.phoneController, required this.bioController,
   });
 
   final TextEditingController nameController;
   final TextEditingController subjectController;
   final TextEditingController yearsController;
+  final TextEditingController phoneController;
+  final TextEditingController bioController;
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +53,36 @@ class TeacherEditProfileBody extends StatelessWidget {
           hintText: l10.enterSubject,
           controller: subjectController,
         ),
+        const SizedBox(height: 16),
+        CustomLabel(
+          label: l10.phoneNumber,
+          color: ColorManager.black.withValues(alpha: 0.6),
+          fontSize: 13,
+        ),
+        CustomTextFormedField(
+          filled: true,
+          textInputAction: TextInputAction.next,
+          fillColor: ColorManager.gray.withValues(alpha: 0.06),
+          hintText: l10.enterPhoneNumber,
+          controller: phoneController,
+          keyboardType: TextInputType.phone,
+        ),
+        const SizedBox(height: 16),
+        CustomLabel(
+          label: l10.bio,
+          color: ColorManager.black.withValues(alpha: 0.6),
+          fontSize: 13,
+        ),
+        CustomTextFormedField(
+          filled: true,
+          textInputAction: TextInputAction.next,
+        fillColor: ColorManager.gray.withValues(alpha: 0.06),
+          hintText: l10.enterBio,
+          controller: bioController,
+          maxLines: 3,
+        ),
+
+
         const SizedBox(height: 16),
         CustomLabel(
           label: l10.yearsOfExperience,

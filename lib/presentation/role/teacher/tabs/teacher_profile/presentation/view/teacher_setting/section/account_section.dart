@@ -7,7 +7,6 @@ import '../../../../../../../student/tabs/profile/section/settings/sections/sett
 import '../../../../../../../student/tabs/profile/section/settings/sections/settings_section_header.dart';
 import '../../../../../../../student/tabs/profile/section/settings/widgets/settings_tile.dart';
 
-
 class AccountSection extends StatelessWidget {
   const AccountSection({super.key, required this.teacher});
 
@@ -45,6 +44,13 @@ class AccountSection extends StatelessWidget {
               title: l10.mySubjectsAndClasses,
               onTap: () {
                 Navigator.pushNamed(context, RouteManger.subjectsClassesScreen);
+              },
+            ),
+            SettingsTile(
+              icon: Icons.grade_outlined,
+              title: l10.myGrades,
+              onTap: () {
+                Navigator.pushNamed(context, RouteManger.teacherGradesScreen);
               },
             ),
           ],

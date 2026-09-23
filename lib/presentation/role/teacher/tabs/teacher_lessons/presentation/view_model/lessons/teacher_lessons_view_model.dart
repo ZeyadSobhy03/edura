@@ -82,7 +82,10 @@ class TeacherLessonsCubit extends Cubit<TeacherLessonsState> {
 
     try {
       await teacherLessonsUseCase.deleteLesson(lessonId: lessonId);
+
       emit(DeleteLessonSuccess(lessonId));
+
+
     } on AppError catch (error) {
       emit(DeleteLessonFailure(error));
     } catch (_) {

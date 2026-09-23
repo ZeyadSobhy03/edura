@@ -13,12 +13,14 @@ class PublishedTab extends StatelessWidget {
     required this.onEdit,
     required this.onDelete,
     required this.onHomework,
+    required this.onAttendance,
   });
 
   final List<LessonModel> lessons;
   final ValueChanged<LessonModel> onEdit;
   final ValueChanged<LessonModel> onDelete;
   final ValueChanged<LessonModel> onHomework;
+  final ValueChanged<LessonModel> onAttendance;
 
   @override
   Widget build(BuildContext context) {
@@ -54,12 +56,14 @@ class PublishedTab extends StatelessWidget {
         final lesson = lessons[index];
         return LessonCard(
           lesson: lesson,
-
           onEdit: () => onEdit(lesson),
           onDelete: () => onDelete(lesson),
           thirdActionLabel: l10.homework,
           thirdActionIcon: Icons.assignment_outlined,
           onThirdAction: () => onHomework(lesson),
+          fourthActionLabel: l10.takeAttendance,
+          fourthActionIcon: Icons.checklist_outlined,
+          onFourthAction: () => onAttendance(lesson),
         );
       },
     );

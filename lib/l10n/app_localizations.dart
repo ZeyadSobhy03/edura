@@ -584,6 +584,126 @@ abstract class AppLocalizations {
   /// **'Close'**
   String get close;
 
+  /// No description provided for @enterPhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter phone number'**
+  String get enterPhoneNumber;
+
+  /// No description provided for @enterBio.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter bio'**
+  String get enterBio;
+
+  /// No description provided for @bio.
+  ///
+  /// In en, this message translates to:
+  /// **'Bio'**
+  String get bio;
+
+  /// No description provided for @profileUpdateSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile updated successfully'**
+  String get profileUpdateSuccessfully;
+
+  /// No description provided for @takeAttendance.
+  ///
+  /// In en, this message translates to:
+  /// **'Take Attendance'**
+  String get takeAttendance;
+
+  /// No description provided for @myGrades.
+  ///
+  /// In en, this message translates to:
+  /// **'My Grades'**
+  String get myGrades;
+
+  /// No description provided for @editGrade.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Grade'**
+  String get editGrade;
+
+  /// No description provided for @addGrade.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Grade'**
+  String get addGrade;
+
+  /// No description provided for @gradeName.
+  ///
+  /// In en, this message translates to:
+  /// **'Grade Name'**
+  String get gradeName;
+
+  /// No description provided for @enterGradeName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter grade name'**
+  String get enterGradeName;
+
+  /// No description provided for @pleaseEnterGradeName.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a grade name'**
+  String get pleaseEnterGradeName;
+
+  /// No description provided for @monthlyAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly Amount'**
+  String get monthlyAmount;
+
+  /// No description provided for @enterMonthlyAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter monthly amount'**
+  String get enterMonthlyAmount;
+
+  /// No description provided for @pleaseEnterMonthlyAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a monthly amount'**
+  String get pleaseEnterMonthlyAmount;
+
+  /// No description provided for @pleaseEnterValidMonthlyAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid monthly amount'**
+  String get pleaseEnterValidMonthlyAmount;
+
+  /// No description provided for @grades.
+  ///
+  /// In en, this message translates to:
+  /// **'Grades'**
+  String get grades;
+
+  /// No description provided for @noGradesYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No grades yet — tap + to add one.'**
+  String get noGradesYet;
+
+  /// No description provided for @deleteGradeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete {gradeName}?'**
+  String deleteGradeTitle(String gradeName);
+
+  /// No description provided for @noGradesFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No grades set up yet — add one from your Grades screen first.'**
+  String get noGradesFound;
+
+  /// No description provided for @deleteGradeMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'This cannot be undone. Students already registered under this grade keep their existing gradeId reference.'**
+  String get deleteGradeMessage;
+
   /// No description provided for @notificationReadStats.
   ///
   /// In en, this message translates to:

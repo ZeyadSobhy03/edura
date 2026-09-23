@@ -2,8 +2,8 @@ import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../../../../core/model/subject_class_model.dart';
-import '../../../../../../../../../l10n/app_localizations.dart';
+import '../../../../../../../../../../../../l10n/app_localizations.dart';
+import '../../../data/model/subject_class_model.dart';
 
 
 class SubjectClassCard extends StatelessWidget {

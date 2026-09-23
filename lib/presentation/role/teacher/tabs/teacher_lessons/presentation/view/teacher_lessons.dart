@@ -30,21 +30,21 @@ class _TeacherLessonsState extends State<TeacherLessons> {
     context.read<TeacherLessonsCubit>().fetchLessons();
   }
 
-   Future<void> _openAddLesson() async {
-     await Navigator.pushNamed(context, RouteManger.addNewLessonScreen);
-     if (mounted) {
-       context.read<TeacherLessonsCubit>().fetchLessons();
-     }
-   }
+  Future<void> _openAddLesson() async {
+    await Navigator.pushNamed(context, RouteManger.addNewLessonScreen);
+    if (mounted) {
+      context.read<TeacherLessonsCubit>().fetchLessons();
+    }
+  }
 
-   // Future<void> _openCreateHomework() async {
-   //   await Navigator.pushNamed(context, RouteManger.createHomeworkScreen);
-   //   if (mounted) {
-   //     context.read<TeacherLessonsCubit>().fetchLessons();
-   //   }
-   // }
+  // Future<void> _openCreateHomework() async {
+  //   await Navigator.pushNamed(context, RouteManger.createHomeworkScreen);
+  //   if (mounted) {
+  //     context.read<TeacherLessonsCubit>().fetchLessons();
+  //   }
+  // }
 
-   Future<void> _editLesson(LessonModel lesson) async {
+  Future<void> _editLesson(LessonModel lesson) async {
     await Navigator.pushNamed(
       context,
       RouteManger.editLessonScreen,
@@ -53,6 +53,14 @@ class _TeacherLessonsState extends State<TeacherLessons> {
     if (mounted) {
       context.read<TeacherLessonsCubit>().fetchLessons();
     }
+  }
+
+  void _openAttendance(LessonModel lesson) {
+    Navigator.pushNamed(
+      context,
+      RouteManger.takeAttendanceScreen,
+      arguments: lesson,
+    );
   }
 
   Future<void> _deleteLesson(LessonModel lesson) async {
@@ -67,14 +75,14 @@ class _TeacherLessonsState extends State<TeacherLessons> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: Text(l10.cancel, style: const TextStyle(color: Colors.black)),
+            child: Text(
+              l10.cancel,
+              style: const TextStyle(color: Colors.black),
+            ),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
-            child: Text(
-              l10.delete,
-              style: const TextStyle(color: Colors.red),
-            ),
+            child: Text(l10.delete, style: const TextStyle(color: Colors.red)),
           ),
         ],
       ),
@@ -161,18 +169,19 @@ class _TeacherLessonsState extends State<TeacherLessons> {
                     child: isLoading
                         ? const Center(child: CircularProgressIndicator())
                         : selected == TeacherLessonsTab.published
-                            ? PublishedTab(
-                                lessons: publishedLessons,
-                                onEdit: _editLesson,
-                                onDelete: _deleteLesson,
-                                onHomework: _openHomework,
-                              )
-                            : DraftTab(
-                                drafts: draftLessons,
-                                onEdit: _editLesson,
-                                onDelete: _deleteLesson,
-                                onPublish: _publishDraft,
-                              ),
+                        ? PublishedTab(
+                            lessons: publishedLessons,
+                            onEdit: _editLesson,
+                            onDelete: _deleteLesson,
+                            onHomework: _openHomework,
+                            onAttendance: _openAttendance,
+                          )
+                        : DraftTab(
+                            drafts: draftLessons,
+                            onEdit: _editLesson,
+                            onDelete: _deleteLesson,
+                            onPublish: _publishDraft,
+                          ),
                   ),
                 ],
               ),

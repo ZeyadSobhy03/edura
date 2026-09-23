@@ -12,6 +12,8 @@ import 'package:edura/presentation/role/teacher/tabs/students/presentation/view_
 import 'package:edura/presentation/role/teacher/tabs/teacher_chats/presentation/view_model/chats_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view_model/home_work/home_work_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view_model/lessons/teacher_lessons_view_model.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_grades/presentation/view_model/grade_view_model.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/subjects_classes/presentation/view_model/subject_classes_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view_model/teacher_profile_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -59,7 +61,9 @@ void main() async {
         BlocProvider(create: (context) => getIt<TeacherCubit>()),
         BlocProvider(create: (context) => getIt<HomeWorkCubit>()),
         BlocProvider(create: (context) => getIt<TeacherNotificationCubit>() ,),
-        BlocProvider(create: (context) => getIt<TeacherProfileCubit>(),)
+        BlocProvider(create: (context) => getIt<TeacherProfileCubit>(),),
+        BlocProvider(create: (context) =>getIt<GardeCubit>() ,),
+        BlocProvider(create: (context) => getIt<SubjectClassesCubit>(),)
       ],
 
       child: const EduraApp(),

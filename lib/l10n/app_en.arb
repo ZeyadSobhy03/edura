@@ -81,6 +81,33 @@
   "failedToLoadStudents": "Failed to load students. Please try again.",
   "notificationReadDetails": "You have read the notification details.",
   "close": "Close",
+  "enterPhoneNumber": "Enter phone number",
+  "enterBio": "Enter bio",
+  "bio": "Bio",
+  "profileUpdateSuccessfully": "Profile updated successfully",
+  "takeAttendance": "Take Attendance",
+  "myGrades": "My Grades",
+  "editGrade": "Edit Grade",
+  "addGrade": "Add Grade",
+  "gradeName": "Grade Name",
+  "enterGradeName": "Enter grade name",
+  "pleaseEnterGradeName": "Please enter a grade name",
+  "monthlyAmount": "Monthly Amount",
+  "enterMonthlyAmount": "Enter monthly amount",
+  "pleaseEnterMonthlyAmount": "Please enter a monthly amount",
+  "pleaseEnterValidMonthlyAmount": "Please enter a valid monthly amount",
+  "grades": "Grades",
+  "noGradesYet": "No grades yet — tap + to add one.",
+  "deleteGradeTitle": "Delete {gradeName}?",
+  "@deleteGradeTitle": {
+    "placeholders": {
+      "gradeName": {
+        "type": "String"
+      }
+    }
+  },
+  "noGradesFound": "No grades set up yet — add one from your Grades screen first.",
+  "deleteGradeMessage": "This cannot be undone. Students already registered under this grade keep their existing gradeId reference.",
   "notificationReadStats": "{readCount} of {totalRecipients} recipients have read this notification.\n{recipientCount} recipient records found.",
   "noAnnouncements": "No announcements",
   "teacherName": "Teacher Name",

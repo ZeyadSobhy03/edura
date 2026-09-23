@@ -14,4 +14,15 @@ class StudentUseCase {
   }){
     return repositories.getStudentDetails(studentId: studentId);
   }
+  Future<void> markAttendance({
+    required String lessonId,
+    required DateTime date,
+    required List<Map<String, String>> entries,
+  }){
+    return repositories.markAttendance(
+      lessonId: lessonId,
+      date: date,
+      entries: entries,
+    );
+  }
 }

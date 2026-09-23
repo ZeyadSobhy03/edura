@@ -256,6 +256,71 @@ class AppLocalizationsEn extends AppLocalizations {
   String get close => 'Close';
 
   @override
+  String get enterPhoneNumber => 'Enter phone number';
+
+  @override
+  String get enterBio => 'Enter bio';
+
+  @override
+  String get bio => 'Bio';
+
+  @override
+  String get profileUpdateSuccessfully => 'Profile updated successfully';
+
+  @override
+  String get takeAttendance => 'Take Attendance';
+
+  @override
+  String get myGrades => 'My Grades';
+
+  @override
+  String get editGrade => 'Edit Grade';
+
+  @override
+  String get addGrade => 'Add Grade';
+
+  @override
+  String get gradeName => 'Grade Name';
+
+  @override
+  String get enterGradeName => 'Enter grade name';
+
+  @override
+  String get pleaseEnterGradeName => 'Please enter a grade name';
+
+  @override
+  String get monthlyAmount => 'Monthly Amount';
+
+  @override
+  String get enterMonthlyAmount => 'Enter monthly amount';
+
+  @override
+  String get pleaseEnterMonthlyAmount => 'Please enter a monthly amount';
+
+  @override
+  String get pleaseEnterValidMonthlyAmount =>
+      'Please enter a valid monthly amount';
+
+  @override
+  String get grades => 'Grades';
+
+  @override
+  String get noGradesYet => 'No grades yet — tap + to add one.';
+
+  @override
+  String deleteGradeTitle(String gradeName) {
+    return 'Delete $gradeName?';
+  }
+
+  @override
+  String get noGradesFound =>
+      'No grades set up yet — add one from your Grades screen first.';
+
+  @override
+  String get deleteGradeMessage =>
+      'This cannot be undone. Students already registered under this grade keep their existing gradeId reference.';
+
+  @override
   String notificationReadStats(
     Object readCount,
     Object recipientCount,

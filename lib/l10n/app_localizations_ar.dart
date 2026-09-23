@@ -256,6 +256,70 @@ class AppLocalizationsAr extends AppLocalizations {
   String get close => 'إغلاق';
 
   @override
+  String get enterPhoneNumber => 'أدخل رقم الهاتف';
+
+  @override
+  String get enterBio => 'أدخل سيرتك الذاتية';
+
+  @override
+  String get bio => 'السيرة الذاتية';
+
+  @override
+  String get profileUpdateSuccessfully => 'تم تحديث الملف الشخصي بنجاح';
+
+  @override
+  String get takeAttendance => 'تسجيل الحضور';
+
+  @override
+  String get myGrades => 'الفصول الدراسيه الخاص بي';
+
+  @override
+  String get editGrade => 'تعديل الصف';
+
+  @override
+  String get addGrade => 'إضافة صف';
+
+  @override
+  String get gradeName => 'اسم الصف';
+
+  @override
+  String get enterGradeName => 'أدخل اسم الصف';
+
+  @override
+  String get pleaseEnterGradeName => 'يرجى إدخال اسم الصف';
+
+  @override
+  String get monthlyAmount => 'المبلغ الشهري';
+
+  @override
+  String get enterMonthlyAmount => 'أدخل المبلغ الشهري';
+
+  @override
+  String get pleaseEnterMonthlyAmount => 'يرجى إدخال المبلغ الشهري';
+
+  @override
+  String get pleaseEnterValidMonthlyAmount => 'يرجى إدخال مبلغ شهري صالح';
+
+  @override
+  String get grades => 'الصفوف';
+
+  @override
+  String get noGradesYet => 'لا توجد صفوف بعد — اضغط + لإضافة صف.';
+
+  @override
+  String deleteGradeTitle(String gradeName) {
+    return 'حذف $gradeName؟';
+  }
+
+  @override
+  String get noGradesFound =>
+      'لم يتم إعداد أي صفوف بعد — أضف واحدًا من شاشة الصفوف الخاصة بك أولاً.';
+
+  @override
+  String get deleteGradeMessage =>
+      'لا يمكن التراجع عن هذا الإجراء. الطلاب المسجلون بالفعل في هذا الصف سيحتفظون بمرجع الصف الحالي الخاص بهم.';
+
+  @override
   String notificationReadStats(
     Object readCount,
     Object recipientCount,

@@ -9,5 +9,22 @@ class TeacherProfileUseCase {
   Future<TeacherProfileModel> getTeacherProfile(String teacherId){
     return teacherProfileRepositories.getTeacherProfile(teacherId);
   }
+  Future<TeacherProfileModel> updateTeacherProfile({
+    required String name,
+    required String subject,
+    required String bio,
+    required int yearsExperience,
+    required String phone,
+    required String teacherId,
+  }){
+    return teacherProfileRepositories.updateTeacherProfile(
+      name: name,
+      subject: subject,
+      bio: bio,
+      yearsExperience: yearsExperience,
+      phone: phone,
+      teacherId: teacherId
+    );
+  }
 
 }
