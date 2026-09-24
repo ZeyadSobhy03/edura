@@ -746,6 +746,60 @@ abstract class AppLocalizations {
   /// **'Payments for'**
   String get paymentsFor;
 
+  /// No description provided for @classSchedules.
+  ///
+  /// In en, this message translates to:
+  /// **'Class Schedules'**
+  String get classSchedules;
+
+  /// No description provided for @noSchedulesFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No schedules found'**
+  String get noSchedulesFound;
+
+  /// No description provided for @addClassSchedule.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Class Schedule'**
+  String get addClassSchedule;
+
+  /// No description provided for @startTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Start time'**
+  String get startTime;
+
+  /// No description provided for @scheduleClasses.
+  ///
+  /// In en, this message translates to:
+  /// **'Schedule Classes'**
+  String get scheduleClasses;
+
+  /// No description provided for @endTime.
+  ///
+  /// In en, this message translates to:
+  /// **'End time'**
+  String get endTime;
+
+  /// No description provided for @chooseStartAndEndTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose start and end time'**
+  String get chooseStartAndEndTime;
+
+  /// No description provided for @endMustBeAfterStart.
+  ///
+  /// In en, this message translates to:
+  /// **'End must be after start'**
+  String get endMustBeAfterStart;
+
+  /// No description provided for @dayOfWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'Day of week'**
+  String get dayOfWeek;
+
   /// No description provided for @paid.
   ///
   /// In en, this message translates to:

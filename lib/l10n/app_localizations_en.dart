@@ -341,6 +341,33 @@ class AppLocalizationsEn extends AppLocalizations {
   String get paymentsFor => 'Payments for';
 
   @override
+  String get classSchedules => 'Class Schedules';
+
+  @override
+  String get noSchedulesFound => 'No schedules found';
+
+  @override
+  String get addClassSchedule => 'Add Class Schedule';
+
+  @override
+  String get startTime => 'Start time';
+
+  @override
+  String get scheduleClasses => 'Schedule Classes';
+
+  @override
+  String get endTime => 'End time';
+
+  @override
+  String get chooseStartAndEndTime => 'Choose start and end time';
+
+  @override
+  String get endMustBeAfterStart => 'End must be after start';
+
+  @override
+  String get dayOfWeek => 'Day of week';
+
+  @override
   String get paid => 'Paid';
 
   @override

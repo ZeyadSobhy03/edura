@@ -37,6 +37,10 @@ import '../../presentation/auth/register/domain/use_case/register_use_case.dart'
     as _i266;
 import '../../presentation/auth/register/presentation/view_model/register_view_model.dart'
     as _i23;
+import '../../presentation/role/teacher/tabs/dashboard/data/data_source/dashboard/dashboard_remote_data_source.dart'
+    as _i802;
+import '../../presentation/role/teacher/tabs/dashboard/data/data_source/dashboard/dashboard_supabase_data_source.dart'
+    as _i891;
 import '../../presentation/role/teacher/tabs/dashboard/data/data_source/exam/exam_remote_data_source.dart'
     as _i506;
 import '../../presentation/role/teacher/tabs/dashboard/data/data_source/exam/exam_supabase_data_source.dart'
@@ -45,6 +49,10 @@ import '../../presentation/role/teacher/tabs/dashboard/data/data_source/teacher_
     as _i77;
 import '../../presentation/role/teacher/tabs/dashboard/data/data_source/teacher_notification/teacher_notification_supabase_data_source.dart'
     as _i418;
+import '../../presentation/role/teacher/tabs/dashboard/data/repositories/dashboard/dashboard_repositories.dart'
+    as _i174;
+import '../../presentation/role/teacher/tabs/dashboard/data/repositories/dashboard/dashboard_repositories_imp.dart'
+    as _i122;
 import '../../presentation/role/teacher/tabs/dashboard/data/repositories/exam/exam_repositories.dart'
     as _i796;
 import '../../presentation/role/teacher/tabs/dashboard/data/repositories/exam/exam_repositories_imp.dart'
@@ -53,10 +61,14 @@ import '../../presentation/role/teacher/tabs/dashboard/data/repositories/teacher
     as _i602;
 import '../../presentation/role/teacher/tabs/dashboard/data/repositories/teacher_notification/teacher_notification_repositories_imp.dart'
     as _i487;
+import '../../presentation/role/teacher/tabs/dashboard/domain/use_case/dashboard/dashboard_use_case.dart'
+    as _i325;
 import '../../presentation/role/teacher/tabs/dashboard/domain/use_case/exam/exam_use_case.dart'
     as _i817;
 import '../../presentation/role/teacher/tabs/dashboard/domain/use_case/teacher_notification/teacher_notification_use_case.dart'
     as _i376;
+import '../../presentation/role/teacher/tabs/dashboard/presentation/view_model/dashboard/dashboard_view_model.dart'
+    as _i436;
 import '../../presentation/role/teacher/tabs/dashboard/presentation/view_model/exam/exam_view_model.dart'
     as _i668;
 import '../../presentation/role/teacher/tabs/dashboard/presentation/view_model/teacher_notification/teacher_notification_view_model.dart'
@@ -131,6 +143,18 @@ import '../../presentation/role/teacher/tabs/teacher_profile/data/repositories/t
     as _i944;
 import '../../presentation/role/teacher/tabs/teacher_profile/domain/use_case/teacher_profile_use_case.dart'
     as _i547;
+import '../../presentation/role/teacher/tabs/teacher_profile/presentation/view/class_schedules/data/data_source/class_schedules_remote_data_source.dart'
+    as _i267;
+import '../../presentation/role/teacher/tabs/teacher_profile/presentation/view/class_schedules/data/data_source/class_schedules_supabase_data_source.dart'
+    as _i173;
+import '../../presentation/role/teacher/tabs/teacher_profile/presentation/view/class_schedules/data/repositories/class_schedules_repositories.dart'
+    as _i816;
+import '../../presentation/role/teacher/tabs/teacher_profile/presentation/view/class_schedules/data/repositories/class_schedules_repositories_imp.dart'
+    as _i253;
+import '../../presentation/role/teacher/tabs/teacher_profile/presentation/view/class_schedules/domain/use_case/class_schedules_use_case.dart'
+    as _i728;
+import '../../presentation/role/teacher/tabs/teacher_profile/presentation/view/class_schedules/presentation/view_model/class_schedules_view_model.dart'
+    as _i175;
 import '../../presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_grades/data/data_source/grade_remote_data_source.dart'
     as _i80;
 import '../../presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_grades/data/data_source/grade_supabase_data_source.dart'
@@ -204,6 +228,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i80.GradeRemoteDataSource>(
       () => _i154.GradeSupabaseDataSource(),
     );
+    gh.lazySingleton<_i802.DashboardRemoteDataSource>(
+      () => _i891.DashboardSupabaseDataSource(),
+    );
     gh.lazySingleton<_i394.GardeRepositories>(
       () => _i655.GardeRepositoriesImp(
         remoteDataSource: gh<_i80.GradeRemoteDataSource>(),
@@ -246,6 +273,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i617.TeacherRemoteDataSource>(
       () => _i156.TeacherSupabaseDataSource(),
     );
+    gh.lazySingleton<_i267.ClassSchedulesRemoteDataSource>(
+      () => _i173.ClassSchedulesSupabaseDataSource(),
+    );
     gh.factory<_i817.ExamUseCase>(
       () => _i817.ExamUseCase(repositories: gh<_i796.ExamRepositories>()),
     );
@@ -260,6 +290,16 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i200.TeacherRepositories>(
       () => _i466.TeacherRepositoriesImp(
         remoteDataSource: gh<_i617.TeacherRemoteDataSource>(),
+      ),
+    );
+    gh.lazySingleton<_i816.ClassSchedulesRepositories>(
+      () => _i253.ClassSchedulesRepositoriesImp(
+        remoteDataSource: gh<_i267.ClassSchedulesRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i728.ClassSchedulesUseCase>(
+      () => _i728.ClassSchedulesUseCase(
+        classSchedulesRepositories: gh<_i816.ClassSchedulesRepositories>(),
       ),
     );
     gh.factory<_i74.GardeCubit>(
@@ -278,6 +318,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i835.PaymentRepositories>(
       () => _i541.PaymentRepositoriesImp(
         remoteDataSource: gh<_i110.PaymentRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i436.DashboardCubit>(
+      () => _i436.DashboardCubit(gh<_i802.DashboardRemoteDataSource>()),
+    );
+    gh.lazySingleton<_i174.DashboardRepositories>(
+      () => _i122.DashboardRepositoriesImp(
+        remoteDataSource: gh<_i802.DashboardRemoteDataSource>(),
       ),
     );
     gh.lazySingleton<_i372.RegisterRepositories>(
@@ -331,6 +379,11 @@ extension GetItInjectableX on _i174.GetIt {
         paymentRepositories: gh<_i835.PaymentRepositories>(),
       ),
     );
+    gh.factory<_i175.ScheduleCubit>(
+      () => _i175.ScheduleCubit(
+        classSchedulesUseCase: gh<_i728.ClassSchedulesUseCase>(),
+      ),
+    );
     gh.factory<_i376.TeacherNotificationUseCase>(
       () => _i376.TeacherNotificationUseCase(
         teacherNotificationRepositories:
@@ -343,6 +396,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i362.TeacherNotificationCubit>(
       () => _i362.TeacherNotificationCubit(
         gh<_i376.TeacherNotificationUseCase>(),
+      ),
+    );
+    gh.factory<_i325.DashboardUseCase>(
+      () => _i325.DashboardUseCase(
+        dashboardRepositories: gh<_i174.DashboardRepositories>(),
       ),
     );
     gh.factory<_i623.TeacherCubit>(

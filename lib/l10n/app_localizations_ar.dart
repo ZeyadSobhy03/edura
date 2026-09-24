@@ -341,6 +341,33 @@ class AppLocalizationsAr extends AppLocalizations {
   String get paymentsFor => 'المدفوعات لـ ';
 
   @override
+  String get classSchedules => 'جداول الحصص';
+
+  @override
+  String get noSchedulesFound => 'لم يتم العثور على جداول الحصص';
+
+  @override
+  String get addClassSchedule => 'إضافة جدول حصة';
+
+  @override
+  String get startTime => 'وقت البدء';
+
+  @override
+  String get scheduleClasses => 'جدولة الحصص';
+
+  @override
+  String get endTime => 'وقت الانتهاء';
+
+  @override
+  String get chooseStartAndEndTime => 'اختر وقت البدء ووقت الانتهاء';
+
+  @override
+  String get endMustBeAfterStart => 'يجب أن يكون وقت الانتهاء بعد وقت البدء';
+
+  @override
+  String get dayOfWeek => 'يوم الأسبوع';
+
+  @override
   String get paid => 'مدفوع';
 
   @override

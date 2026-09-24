@@ -2,6 +2,7 @@ import 'package:edura/edura_app.dart';
 
 import 'package:edura/presentation/auth/login/presentation/view_model/login_view_model.dart';
 import 'package:edura/presentation/auth/register/presentation/view_model/register_view_model.dart';
+import 'package:edura/presentation/role/teacher/tabs/dashboard/presentation/view_model/dashboard/dashboard_view_model.dart';
 
 import 'package:edura/presentation/role/teacher/tabs/dashboard/presentation/view_model/exam/exam_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/dashboard/presentation/view_model/teacher_notification/teacher_notification_view_model.dart';
@@ -12,6 +13,7 @@ import 'package:edura/presentation/role/teacher/tabs/students/presentation/view_
 import 'package:edura/presentation/role/teacher/tabs/teacher_chats/presentation/view_model/chats_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view_model/home_work/home_work_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view_model/lessons/teacher_lessons_view_model.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/class_schedules/presentation/view_model/class_schedules_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_grades/presentation/view_model/grade_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/payment/presentation/view_model/payment_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/subjects_classes/presentation/view_model/subject_classes_view_model.dart';
@@ -48,11 +50,9 @@ void main() async {
       providers: [
         BlocProvider(create: (context) => getIt<LoginCubit>()),
         BlocProvider(create: (context) => getIt<TeacherLessonsCubit>()),
-
         BlocProvider(create: (context) => getIt<ExamCubit>()),
         BlocProvider(create: (context) => getIt<RegisterCubit>()),
         BlocProvider(create: (context) => getIt<StudentCubit>()),
-
         BlocProvider(create: (context) => getIt<ChatsCubit>()),
         BlocProvider(create: (context) => getIt<MessagesCubit>()),
         BlocProvider(create: (context) => getIt<TeacherCubit>()),
@@ -62,6 +62,8 @@ void main() async {
         BlocProvider(create: (context) => getIt<GardeCubit>()),
         BlocProvider(create: (context) => getIt<SubjectClassesCubit>()),
         BlocProvider(create: (context) => getIt<PaymentCubit>()),
+        BlocProvider(create: (context) => getIt<ScheduleCubit>()),
+        BlocProvider(create: (context) => getIt<DashboardCubit>(),)
       ],
 
       child: const EduraApp(),

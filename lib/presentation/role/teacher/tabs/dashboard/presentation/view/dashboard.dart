@@ -9,9 +9,13 @@ import 'package:edura/presentation/role/teacher/tabs/dashboard/presentation/view
 import 'package:edura/presentation/role/teacher/tabs/dashboard/presentation/view/widgets/stat_card.dart';
 import 'package:edura/presentation/role/teacher/tabs/dashboard/presentation/view/widgets/student_growth_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../../../../core/resources/routes/route_manger.dart';
 import '../../../../../student/tabs/home/widgets/home_header.dart';
+import '../../../teacher_profile/presentation/view_model/teacher_profile_view_model.dart';
+import '../view_model/dashboard/dashboard_view_model.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -21,43 +25,30 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  String? teacherId;
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<DashboardCubit>().load();
+    final currentUser = Supabase.instance.client.auth.currentUser;
+
+    if (currentUser == null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.pushReplacementNamed(context, RouteManger.loginRoute);
+      });
+      return;
+    }
+
+    teacherId = currentUser.id;
+    context.read<TeacherProfileCubit>().getTeacherProfile(teacherId!);
+
+  }
+
+
   @override
   Widget build(BuildContext context) {
     final l10 = AppLocalizations.of(context)!;
-    final statCardData = [
-      {
-        'icon': Icons.person,
-        'color': ColorManager.primary,
-        'navigateTo': RouteManger.teacherStudentsScreen,
-        'value': 550,
-        'label': l10.totalOfStudents,
-        'description': l10.totalNumberOfStudents(30),
-      },
-      {
-        'icon': Icons.flash_on,
-        'color': ColorManager.green,
-        'navigateTo': RouteManger.teacherStudentsScreen,
-        'value': 15,
-        'label': l10.activeStudents,
-        'description': l10.totalNumberOfActiveStudents(20),
-      },
-      {
-        'icon': Icons.attach_money_rounded,
-        'color': ColorManager.orange,
-        'navigateTo': RouteManger.teacherChatsScreen,
-        'value': 30,
-        'label': l10.revenue,
-        'description': l10.totalRevenue(30),
-      },
-      {
-        'icon': Icons.calendar_today_outlined,
-        'color': ColorManager.purple,
-        'navigateTo': RouteManger.teacherProfileScreen,
-        'value': 1,
-        'label': l10.todaysClasses,
-        'description': l10.totalNumberOfTodaysClasses(1),
-      },
-    ];
 
     return Scaffold(
       backgroundColor: ColorManager.white,
@@ -68,40 +59,85 @@ class _DashboardState extends State<Dashboard> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              HomeHeader(
-                userName: "Ziyad Sobhy",
-                onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    RouteManger.teacherNotificationScreen,
+              BlocBuilder<TeacherProfileCubit, TeacherProfileState>(
+                builder: (context, state) {
+                  final name = state is TeacherProfileLoaded ? state.profile.name : null;
+
+                  return HomeHeader(
+                    userName: (name == null || name.isEmpty) ? l10.teacher : name,
+                    onTap: () {
+                      Navigator.pushNamed(context, RouteManger.teacherNotificationScreen);
+                    },
                   );
                 },
-              ),
-              const SizedBox(height: 8),
-              GridView.builder(
-                itemCount: statCardData.length,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.8,
-                ),
-                itemBuilder: (context, index) {
-                  final data = statCardData[index];
-                  final icon = data['icon'] as IconData;
-                  final color = data['color'] as Color;
-                  final navigateTo = data['navigateTo'] as String;
-                  final value = data['value'] as int;
-                  final label = data['label'] as String;
-                  final description = data['description'] as String;
+              ),              const SizedBox(height: 8),
+              BlocBuilder<DashboardCubit, DashboardState>(
+                builder: (context, state) {
+                  final stats = state is DashboardLoaded ? state.stats : null;
 
-                  return StatCard(
-                    icon: icon,
-                    color: color,
-                    navigateTo: navigateTo,
-                    value: value,
-                    label: label,
-                    description: description,
+                  final statCardData = [
+                    {
+                      'icon': Icons.person,
+                      'color': ColorManager.primary,
+                      'navigateTo': RouteManger.teacherStudentsScreen,
+                      'value': stats?.totalStudents ?? 0,
+                      'label': l10.totalOfStudents,
+                      'description': l10.totalNumberOfStudents(
+                        stats?.totalStudents ?? 0,
+                      ),
+                    },
+                    {
+                      'icon': Icons.flash_on,
+                      'color': ColorManager.green,
+                      'navigateTo': RouteManger.teacherStudentsScreen,
+                      'value': stats?.activeStudents ?? 0,
+                      'label': l10.activeStudents,
+                      'description': l10.totalNumberOfActiveStudents(
+                        stats?.activeStudents ?? 0,
+                      ),
+                    },
+                    {
+                      'icon': Icons.attach_money_rounded,
+                      'color': ColorManager.orange,
+                      'navigateTo': RouteManger.teacherChatsScreen,
+                      'value': (stats?.monthlyRevenue ?? 0).toInt(),
+                      'label': l10.revenue,
+                      'description': l10.totalRevenue(
+                        (stats?.monthlyRevenue ?? 0).toInt(),
+                      ),
+                    },
+                    {
+                      'icon': Icons.calendar_today_outlined,
+                      'color': ColorManager.purple,
+                      'navigateTo': RouteManger.teacherProfileScreen,
+                      'value': stats?.todaysClasses ?? 0,
+                      'label': l10.todaysClasses,
+                      'description': l10.totalNumberOfTodaysClasses(
+                        stats?.todaysClasses ?? 0,
+                      ),
+                    },
+                  ];
+
+                  return GridView.builder(
+                    itemCount: statCardData.length,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 0.8,
+                        ),
+                    itemBuilder: (context, index) {
+                      final data = statCardData[index];
+                      return StatCard(
+                        icon: data['icon'] as IconData,
+                        color: data['color'] as Color,
+                        navigateTo: data['navigateTo'] as String,
+                        value: data['value'] as int,
+                        label: data['label'] as String,
+                        description: data['description'] as String,
+                      );
+                    },
                   );
                 },
               ),
@@ -133,14 +169,7 @@ class _DashboardState extends State<Dashboard> {
                       navigateTo: RouteManger.questionBuilderScreen,
                     ),
                   ),
-                  Expanded(
-                    child: QuickActionCard(
-                      icon: Icons.qr_code,
-                      label: l10.attendance,
-                      color: ColorManager.green,
-                      navigateTo: RouteManger.takeAttendanceScreen,
-                    ),
-                  ),
+
                   Expanded(
                     child: QuickActionCard(
                       icon: Icons.notifications_outlined,

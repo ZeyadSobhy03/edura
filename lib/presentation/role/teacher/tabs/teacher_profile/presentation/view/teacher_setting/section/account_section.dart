@@ -64,7 +64,17 @@ class AccountSection extends StatelessWidget {
               icon: Icons.assignment_outlined,
               title: l10.attendanceForAllClasses,
               onTap: () {
-                Navigator.pushNamed(context, RouteManger.attendanceForAllClasses);
+                Navigator.pushNamed(
+                  context,
+                  RouteManger.attendanceForAllClasses,
+                );
+              },
+            ),
+            SettingsTile(
+              icon: Icons.calendar_today_outlined,
+              title: l10.scheduleClasses,
+              onTap: () {
+                Navigator.pushNamed(context, RouteManger.scheduleClassScreen);
               },
             ),
           ],
