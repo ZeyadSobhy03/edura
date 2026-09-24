@@ -56,7 +56,10 @@ class _SubjectsClassesScreenState extends State<SubjectsClassesScreen> {
   }
 
   Future<void> _openEditSheet(SubjectClassModel subject) async {
-    final newName = await showModalBottomSheet<SubjectClassModel>(
+    final teacherId = _teacherId;
+    if (teacherId == null) return;
+
+    final result = await showModalBottomSheet<SubjectClassModel>(
       backgroundColor: ColorManager.white,
       context: context,
       isScrollControlled: true,
@@ -66,7 +69,13 @@ class _SubjectsClassesScreenState extends State<SubjectsClassesScreen> {
       builder: (_) => AddEditSubjectSheet(existing: subject),
     );
 
-    if (newName != null) {}
+    if (result != null && mounted) {
+      context.read<SubjectClassesCubit>().updateSubject(
+        id: result.id,
+        teacherId: teacherId,
+        subjectName: result.subjectName,
+      );
+    }
   }
 
   void _confirmDelete(SubjectClassModel subject) {

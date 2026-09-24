@@ -53,6 +53,20 @@ class AccountSection extends StatelessWidget {
                 Navigator.pushNamed(context, RouteManger.teacherGradesScreen);
               },
             ),
+            SettingsTile(
+              icon: Icons.monetization_on,
+              title: l10.payments,
+              onTap: () {
+                Navigator.pushNamed(context, RouteManger.paymentScreen);
+              },
+            ),
+            SettingsTile(
+              icon: Icons.assignment_outlined,
+              title: l10.attendanceForAllClasses,
+              onTap: () {
+                Navigator.pushNamed(context, RouteManger.attendanceForAllClasses);
+              },
+            ),
           ],
         ),
       ],

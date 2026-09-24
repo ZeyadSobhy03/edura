@@ -22,7 +22,7 @@ class AttendanceRecordModel {
       subject: json['subject'] ?? '',
       room: json['room'] ?? '',
       status: AttendanceStatus.values.firstWhere(
-            (e) => e.name == json['status'],
+        (e) => e.name == json['status'],
         orElse: () => AttendanceStatus.present,
       ),
     );

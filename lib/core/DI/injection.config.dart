@@ -143,6 +143,18 @@ import '../../presentation/role/teacher/tabs/teacher_profile/presentation/view/t
     as _i322;
 import '../../presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_grades/presentation/view_model/grade_view_model.dart'
     as _i74;
+import '../../presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/payment/data/data_source/payment_remote_data_source.dart'
+    as _i110;
+import '../../presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/payment/data/data_source/payment_supabase_data_source.dart'
+    as _i536;
+import '../../presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/payment/data/repositories/payment_repositories.dart'
+    as _i835;
+import '../../presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/payment/data/repositories/payment_repositories_imp.dart'
+    as _i541;
+import '../../presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/payment/domain/use_case/payment_use_case.dart'
+    as _i391;
+import '../../presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/payment/presentation/view_model/payment_view_model.dart'
+    as _i52;
 import '../../presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/subjects_classes/data/data_source/subject_classes_remote_data_source.dart'
     as _i640;
 import '../../presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/subjects_classes/data/data_source/subject_classes_supabase_data_source.dart'
@@ -205,6 +217,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i129.StudentRemoteDataSource>(
       () => _i228.StudentSupabaseDataSource(),
     );
+    gh.lazySingleton<_i110.PaymentRemoteDataSource>(
+      () => _i536.PaymentSupabaseDataSource(),
+    );
     gh.lazySingleton<_i796.ExamRepositories>(
       () => _i384.ExamRepositoriesImp(
         remoteDataSource: gh<_i506.ExamRemoteDataSource>(),
@@ -260,6 +275,11 @@ extension GetItInjectableX on _i174.GetIt {
         remoteDataSource: gh<_i1025.LoginRemoteDataSource>(),
       ),
     );
+    gh.lazySingleton<_i835.PaymentRepositories>(
+      () => _i541.PaymentRepositoriesImp(
+        remoteDataSource: gh<_i110.PaymentRemoteDataSource>(),
+      ),
+    );
     gh.lazySingleton<_i372.RegisterRepositories>(
       () => _i985.RegisterRepositoriesImp(
         remoteDataSource: gh<_i873.RegisterRemoteDataSource>(),
@@ -306,6 +326,11 @@ extension GetItInjectableX on _i174.GetIt {
       () =>
           _i266.RegisterUseCase(repositories: gh<_i372.RegisterRepositories>()),
     );
+    gh.factory<_i391.PaymentUseCase>(
+      () => _i391.PaymentUseCase(
+        paymentRepositories: gh<_i835.PaymentRepositories>(),
+      ),
+    );
     gh.factory<_i376.TeacherNotificationUseCase>(
       () => _i376.TeacherNotificationUseCase(
         teacherNotificationRepositories:
@@ -350,6 +375,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i342.StudentCubit>(
       () => _i342.StudentCubit(studentUseCase: gh<_i406.StudentUseCase>()),
+    );
+    gh.factory<_i52.PaymentCubit>(
+      () => _i52.PaymentCubit(paymentUseCase: gh<_i391.PaymentUseCase>()),
     );
     gh.factory<_i837.SubjectClassesCubit>(
       () => _i837.SubjectClassesCubit(

@@ -2,6 +2,7 @@ import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/widgets/custom_text.dart';
 import 'package:edura/core/widgets/custom_text_formed_field.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view/widgets/lesson_grade_selector.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view/widgets/subject_selector.dart';
 import 'package:flutter/material.dart';
 
 import '../../../data/model/lessons/new_lesson_model.dart';
@@ -25,10 +26,8 @@ class _LessonDetailsFormState extends State<LessonDetailsForm> {
   late final TextEditingController _titleController;
   late final TextEditingController _durationController;
   late final TextEditingController _descriptionController;
-  late final TextEditingController _subjectController;
   String? _selectedGradeId;
   String? _selectedGradeName;
-
 
   @override
   void initState() {
@@ -40,7 +39,6 @@ class _LessonDetailsFormState extends State<LessonDetailsForm> {
     _descriptionController = TextEditingController(
       text: widget.draft.description,
     );
-    _subjectController = TextEditingController(text: widget.draft.subject);
     _selectedGradeId = widget.draft.gradeId;
     _selectedGradeName = widget.draft.grade;
   }
@@ -50,7 +48,6 @@ class _LessonDetailsFormState extends State<LessonDetailsForm> {
     _titleController.dispose();
     _durationController.dispose();
     _descriptionController.dispose();
-    _subjectController.dispose();
     super.dispose();
   }
 
@@ -71,7 +68,8 @@ class _LessonDetailsFormState extends State<LessonDetailsForm> {
   bool get _canProceed =>
       _titleController.text.trim().isNotEmpty &&
       _durationController.text.trim().isNotEmpty &&
-      _selectedGradeId != null && _selectedGradeName != null ;
+      _selectedGradeId != null &&
+      _selectedGradeName != null;
 
   void _handleNext() {
     if (!_canProceed) return;
@@ -80,7 +78,7 @@ class _LessonDetailsFormState extends State<LessonDetailsForm> {
       ..durationMinutes = int.parse(_durationController.text.trim())
       ..description = _descriptionController.text.trim()
       ..gradeId = _selectedGradeId!
-      .. grade = _selectedGradeName!;
+      ..grade = _selectedGradeName!;
     widget.onNext();
   }
 
@@ -127,17 +125,11 @@ class _LessonDetailsFormState extends State<LessonDetailsForm> {
         const SizedBox(height: 20),
 
         _sectionLabel(l10.subject),
-        CustomTextFormedField(
-          onChanged: (_) => setState(() {}),
-
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return l10.subjectRequired;
-            }
-            return null;
-          },
-          hintText: l10.subjectHint,
-          controller: _subjectController,
+        SubjectSelector(
+          onChanged: (subject) => setState(() {
+            widget.draft.subject = subject;
+          }),
+          selectedSubject: widget.draft.subject,
         ),
 
         const SizedBox(height: 20),
@@ -168,7 +160,7 @@ class _LessonDetailsFormState extends State<LessonDetailsForm> {
           onChanged: (grade) => setState(() {
             _selectedGradeId = grade.id;
             _selectedGradeName = grade.name;
-          },),
+          }),
         ),
         const SizedBox(height: 20),
 

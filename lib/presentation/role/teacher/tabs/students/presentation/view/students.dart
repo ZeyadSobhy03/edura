@@ -2,6 +2,7 @@ import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/resources/routes/route_manger.dart';
 import 'package:edura/core/widgets/custom_label.dart';
 import 'package:edura/core/widgets/custom_text_formed_field.dart';
+import 'package:edura/core/widgets/grade_chip.dart';
 import 'package:edura/presentation/role/teacher/tabs/students/presentation/view/section/student_card.dart';
 import 'package:edura/presentation/role/teacher/tabs/students/presentation/view_model/student/student_view_model.dart';
 import 'package:flutter/material.dart';
@@ -102,7 +103,7 @@ class _StudentsState extends State<Students> {
                       child: ListView(
                         scrollDirection: Axis.horizontal,
                         children: [
-                          _GradeChip(
+                          GradeChip(
                             label: l10.all,
                             selected: _selectedGrade == null,
                             onTap: () => setState(() => _selectedGrade = null),
@@ -111,7 +112,7 @@ class _StudentsState extends State<Students> {
                           ...grades.map(
                                 (grade) => Padding(
                               padding: const EdgeInsets.only(right: 8),
-                              child: _GradeChip(
+                              child: GradeChip(
                                 label: grade,
                                 selected: _selectedGrade == grade,
                                 onTap: () =>
@@ -166,38 +167,3 @@ class _StudentsState extends State<Students> {
   }
 }
 
-class _GradeChip extends StatelessWidget {
-  const _GradeChip({
-    required this.label,
-    required this.selected,
-    required this.onTap,
-  });
-
-  final String label;
-  final bool selected;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-        decoration: BoxDecoration(
-          color: selected
-              ? ColorManager.primary
-              : ColorManager.primary.withValues(alpha: 0.08),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Text(
-          label,
-          style: TextStyle(
-            color: selected ? Colors.white : ColorManager.primary,
-            fontWeight: FontWeight.w600,
-            fontSize: 13,
-          ),
-        ),
-      ),
-    );
-  }
-}

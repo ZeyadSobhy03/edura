@@ -312,6 +312,44 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
+  String get noSubjectsFound =>
+      'لم يتم إعداد أي مواد بعد — أضف واحدًا من شاشة المواد الخاصة بك أولاً.';
+
+  @override
+  String get attendanceAlreadyTaken =>
+      'تم تسجيل الحضور بالفعل لهذا الصف لهذا اليوم.';
+
+  @override
+  String get attendanceForAllClasses => 'الحضور لجميع الصفوف';
+
+  @override
+  String get attendanceReport => 'تقرير الحضور';
+
+  @override
+  String get noAttendanceRecords => 'لا توجد سجلات حضور';
+
+  @override
+  String get searchStudent => 'ابحث عن الطلاب...';
+
+  @override
+  String get addNewHomeWork => 'إنشاء واجب جديد للطلاب';
+
+  @override
+  String get setPrice => 'تعيين السعر';
+
+  @override
+  String get paymentsFor => 'المدفوعات لـ ';
+
+  @override
+  String get paid => 'مدفوع';
+
+  @override
+  String get unpaid => 'غير مدفوع';
+
+  @override
+  String get gradePricing => 'تسعير الصف';
+
+  @override
   String get noGradesFound =>
       'لم يتم إعداد أي صفوف بعد — أضف واحدًا من شاشة الصفوف الخاصة بك أولاً.';
 

@@ -21,11 +21,18 @@ class HomeWorkSupabaseDataSource implements HomeWorkRemoteDataSource {
     required NewHomeworkModel homework,
   }) async {
     try {
+      final teacherId = supabase.auth.currentUser?.id;
+      if (teacherId == null) {
+        throw Exception('No authenticated user');
+      }
+
+      final ownerFolder = lessonId ?? teacherId;
+
       final attachmentUrls = <String>[];
       for (final file in homework.attachments) {
         final fileName = file.path.split(Platform.pathSeparator).last;
         final storagePath =
-            '${lessonId ?? 'standalone'}/${DateTime.now().millisecondsSinceEpoch}_$fileName';
+            '$ownerFolder/${DateTime.now().millisecondsSinceEpoch}_$fileName';
 
         await supabase.storage.from(_bucket).upload(storagePath, file);
 
@@ -38,6 +45,7 @@ class HomeWorkSupabaseDataSource implements HomeWorkRemoteDataSource {
       await supabase.from(_table).insert({
         'lesson_id': ?lessonId,
         'title': homework.title,
+        'teacher_id': teacherId,
         'description': homework.description,
         'subject': homework.subject,
         'due_date': homework.dueDate?.toIso8601String(),

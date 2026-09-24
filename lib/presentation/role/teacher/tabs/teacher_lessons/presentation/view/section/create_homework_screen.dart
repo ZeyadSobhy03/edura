@@ -65,6 +65,7 @@ class _CreateHomeworkScreenState extends State<CreateHomeworkScreen> {
           Navigator.pop(context, state.homework);
         } else if (state is CreateHomeworkFailure) {
 
+
           Fluttertoast.showToast(
               backgroundColor: ColorManager.red,
               gravity: ToastGravity.BOTTOM,

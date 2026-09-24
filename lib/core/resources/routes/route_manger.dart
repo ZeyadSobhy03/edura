@@ -24,6 +24,7 @@ import 'package:edura/presentation/role/teacher/tabs/students/presentation/view/
 import 'package:edura/presentation/role/teacher/tabs/teacher_chats/presentation/view/teacher_chats.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view/teacher_lessons.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_profile.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/attendance_report_screen/attendance_report_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -49,6 +50,7 @@ import '../../../presentation/role/teacher/tabs/teacher_lessons/presentation/vie
 import '../../../presentation/role/teacher/tabs/teacher_lessons/presentation/view/section/teacher_homework_screen.dart';
 import '../../../presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_edit_profile/teacher_edit_profile_screen.dart';
 import '../../../presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_grades/presentation/view/teacher_grades_screen.dart';
+import '../../../presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/payment/presentation/view/payment_screen.dart';
 import '../../../presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/subjects_classes/presentation/view/subjects_classes_screen.dart';
 import '../../../presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/teacher_setting_screen.dart';
 import '../../../presentation/role/teacher/teacher_main_layout.dart';
@@ -107,7 +109,9 @@ class RouteManger {
   static const String teacherProfileEditScreen = '/teacherProfileEditScreen';
   static const String teacherGradesScreen = '/teacherGradesScreen';
   static const String subjectsClassesScreen = '/subjectsClassesScreen';
+  static const String paymentScreen = '/paymentScreen';
 
+  static const String attendanceForAllClasses= '/attendanceForAllClasses';
   static const String createHomeworkScreen = '/createHomeworkScreen';
 
   static Route router(RouteSettings settings) {
@@ -166,6 +170,14 @@ class RouteManger {
           builder: (context) => StudentDetails(student: student),
         );
 
+
+      case attendanceForAllClasses:
+        return MaterialPageRoute(
+          builder: (context) {
+            return const AttendanceReportScreen();
+          },
+        );
+
       case chat:
         return MaterialPageRoute(
           builder: (context) {
@@ -209,6 +221,13 @@ class RouteManger {
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => TeacherMainLayout(initialIndex: initialIndex),
+        );
+
+      case paymentScreen:
+        return MaterialPageRoute(
+          builder: (context) {
+            return const PaymentScreen();
+          },
         );
 
       case studentNotificationScreen:

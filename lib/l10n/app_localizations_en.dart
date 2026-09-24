@@ -313,6 +313,43 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get noSubjectsFound => 'No subjects found';
+
+  @override
+  String get attendanceAlreadyTaken =>
+      'Attendance has already been taken for this class.';
+
+  @override
+  String get attendanceForAllClasses => 'Attendance for all classes';
+
+  @override
+  String get attendanceReport => 'Attendance Report';
+
+  @override
+  String get noAttendanceRecords => 'No attendance records found';
+
+  @override
+  String get searchStudent => 'Search student';
+
+  @override
+  String get addNewHomeWork => 'Add New Homework For Student';
+
+  @override
+  String get setPrice => 'Set Price';
+
+  @override
+  String get paymentsFor => 'Payments for';
+
+  @override
+  String get paid => 'Paid';
+
+  @override
+  String get unpaid => 'Unpaid';
+
+  @override
+  String get gradePricing => 'Grade Pricing';
+
+  @override
   String get noGradesFound =>
       'No grades set up yet — add one from your Grades screen first.';
 

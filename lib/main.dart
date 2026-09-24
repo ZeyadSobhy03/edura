@@ -13,6 +13,7 @@ import 'package:edura/presentation/role/teacher/tabs/teacher_chats/presentation/
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view_model/home_work/home_work_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view_model/lessons/teacher_lessons_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_grades/presentation/view_model/grade_view_model.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/payment/presentation/view_model/payment_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/subjects_classes/presentation/view_model/subject_classes_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view_model/teacher_profile_view_model.dart';
 import 'package:flutter/material.dart';
@@ -45,25 +46,22 @@ void main() async {
   runApp(
     MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => getIt<LoginCubit>(),
-        ),
+        BlocProvider(create: (context) => getIt<LoginCubit>()),
         BlocProvider(create: (context) => getIt<TeacherLessonsCubit>()),
 
         BlocProvider(create: (context) => getIt<ExamCubit>()),
-        BlocProvider(
-          create: (context) => getIt<RegisterCubit>(),
-        ),
+        BlocProvider(create: (context) => getIt<RegisterCubit>()),
         BlocProvider(create: (context) => getIt<StudentCubit>()),
 
         BlocProvider(create: (context) => getIt<ChatsCubit>()),
         BlocProvider(create: (context) => getIt<MessagesCubit>()),
         BlocProvider(create: (context) => getIt<TeacherCubit>()),
         BlocProvider(create: (context) => getIt<HomeWorkCubit>()),
-        BlocProvider(create: (context) => getIt<TeacherNotificationCubit>() ,),
-        BlocProvider(create: (context) => getIt<TeacherProfileCubit>(),),
-        BlocProvider(create: (context) =>getIt<GardeCubit>() ,),
-        BlocProvider(create: (context) => getIt<SubjectClassesCubit>(),)
+        BlocProvider(create: (context) => getIt<TeacherNotificationCubit>()),
+        BlocProvider(create: (context) => getIt<TeacherProfileCubit>()),
+        BlocProvider(create: (context) => getIt<GardeCubit>()),
+        BlocProvider(create: (context) => getIt<SubjectClassesCubit>()),
+        BlocProvider(create: (context) => getIt<PaymentCubit>()),
       ],
 
       child: const EduraApp(),

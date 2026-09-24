@@ -58,11 +58,29 @@ class _HomeworkDetailsFormState extends State<HomeworkDetailsForm> {
       _dueDateController.text.trim().isNotEmpty;
 
   Future<void> _selectDate() async {
+
     final now = DateTime.now();
     final firstDate = now;
     final lastDate = DateTime(now.year + 1);
 
     final picked = await showDatePicker(
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: ColorScheme.light(
+              primary: ColorManager.primary,
+              onPrimary: Colors.white,
+              onSurface: Colors.black,
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                foregroundColor: ColorManager.primary,
+              ),
+            ),
+          ),
+          child: child!,
+        );
+      },
 
       context: context,
       initialDate: widget.draft.dueDate ?? now,
@@ -133,6 +151,7 @@ class _HomeworkDetailsFormState extends State<HomeworkDetailsForm> {
         CustomTextFormedField(
           onChanged: (_) => setState(() {}),
           hintText: l10.descriptionHint,
+          minLines: 4,
 
           validator: (value) {
             if (value == null || value.isEmpty) {
@@ -143,7 +162,6 @@ class _HomeworkDetailsFormState extends State<HomeworkDetailsForm> {
           textInputAction: TextInputAction.newline,
           keyboardType: TextInputType.multiline,
           controller: _descriptionController,
-          maxLines: 4,
         ),
         const SizedBox(height: 20),
         CustomLabel(

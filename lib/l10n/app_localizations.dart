@@ -692,6 +692,78 @@ abstract class AppLocalizations {
   /// **'Delete {gradeName}?'**
   String deleteGradeTitle(String gradeName);
 
+  /// No description provided for @noSubjectsFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No subjects found'**
+  String get noSubjectsFound;
+
+  /// No description provided for @attendanceAlreadyTaken.
+  ///
+  /// In en, this message translates to:
+  /// **'Attendance has already been taken for this class.'**
+  String get attendanceAlreadyTaken;
+
+  /// No description provided for @attendanceForAllClasses.
+  ///
+  /// In en, this message translates to:
+  /// **'Attendance for all classes'**
+  String get attendanceForAllClasses;
+
+  /// No description provided for @attendanceReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Attendance Report'**
+  String get attendanceReport;
+
+  /// No description provided for @noAttendanceRecords.
+  ///
+  /// In en, this message translates to:
+  /// **'No attendance records found'**
+  String get noAttendanceRecords;
+
+  /// No description provided for @searchStudent.
+  ///
+  /// In en, this message translates to:
+  /// **'Search student'**
+  String get searchStudent;
+
+  /// No description provided for @addNewHomeWork.
+  ///
+  /// In en, this message translates to:
+  /// **'Add New Homework For Student'**
+  String get addNewHomeWork;
+
+  /// No description provided for @setPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Set Price'**
+  String get setPrice;
+
+  /// No description provided for @paymentsFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Payments for'**
+  String get paymentsFor;
+
+  /// No description provided for @paid.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid'**
+  String get paid;
+
+  /// No description provided for @unpaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Unpaid'**
+  String get unpaid;
+
+  /// No description provided for @gradePricing.
+  ///
+  /// In en, this message translates to:
+  /// **'Grade Pricing'**
+  String get gradePricing;
+
   /// No description provided for @noGradesFound.
   ///
   /// In en, this message translates to:

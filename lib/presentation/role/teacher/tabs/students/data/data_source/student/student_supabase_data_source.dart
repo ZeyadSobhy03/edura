@@ -1,7 +1,6 @@
-import 'dart:developer';
-
 import 'package:edura/core/error/app_error.dart';
 import 'package:edura/presentation/role/teacher/tabs/students/data/data_source/student/student_remote_data_source.dart';
+import 'package:edura/presentation/role/teacher/tabs/students/data/model/student_attendance_history.dart';
 import 'package:edura/presentation/role/teacher/tabs/students/data/model/student_detail_model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -14,14 +13,11 @@ class StudentSupabaseDataSource implements StudentRemoteDataSource {
   Future<List<StudentModel>> getStudents() async {
     try {
       final response = await supabase.from('students').select();
-      log('getStudents response: $response');
 
       return response.map((json) => StudentModel.fromJson(json)).toList();
-    } on AppError catch (e) {
-      log('AppError in getStudents: ${e.toString()}');
+    } on AppError {
       rethrow;
     } catch (e) {
-      log('Error in getStudents: ${e.toString()}');
       throw ServerError();
     }
   }
@@ -38,14 +34,11 @@ class StudentSupabaseDataSource implements StudentRemoteDataSource {
     ''')
           .eq('id', studentId)
           .single();
-      log('DETAIL RESPONSE: $response');
 
       return StudentModel.fromDetailsJson(response);
-    } on AppError catch (e) {
-      log('AppError in getStudentDetails: ${e.toString()}');
+    } on AppError {
       rethrow;
     } catch (e) {
-      log('Error in getStudentDetails: ${e.toString()}');
       throw ServerError();
     }
   }
@@ -55,6 +48,7 @@ class StudentSupabaseDataSource implements StudentRemoteDataSource {
     required String lessonId,
     required DateTime date,
     required List<Map<String, String>> entries,
+    required String teacherId,
   }) async {
     try {
       final rows = entries
@@ -62,6 +56,7 @@ class StudentSupabaseDataSource implements StudentRemoteDataSource {
             (e) => {
               'student_id': e['studentId'],
               'lesson_id': lessonId,
+              'teacher_id': teacherId,
               'date': date.toIso8601String().split('T').first,
               'status': e['status'],
             },
@@ -71,6 +66,52 @@ class StudentSupabaseDataSource implements StudentRemoteDataSource {
       await supabase
           .from('student_attendance')
           .upsert(rows, onConflict: 'student_id,lesson_id,date');
+    } on AppError {
+      rethrow;
+    } catch (e) {
+      throw ServerError();
+    }
+  }
+
+  @override
+  Future<Map<String, String>> getAttendanceForLesson({
+    required String lessonId,
+    required DateTime date,
+  }) async {
+    try {
+      final dateStr = date.toIso8601String().split('T').first;
+      final response = await supabase
+          .from('student_attendance')
+          .select('student_id, status')
+          .eq('lesson_id', lessonId)
+          .eq('date', dateStr);
+
+      return {
+        for (final row in response)
+          row['student_id'] as String: row['status'] as String,
+      };
+    } on AppError {
+      rethrow;
+    } catch (e) {
+      throw ServerError();
+    }
+  }
+
+  @override
+  Future<List<StudentAttendanceHistory>> getAttendanceHistoryForGrade({
+    required String grade,
+  }) async {
+    try {
+      final teacherId = supabase.auth.currentUser!.id;
+      final response = await supabase
+          .from('students')
+          .select('id, name, student_attendance(date, status)')
+          .eq('grade', grade)
+          .eq('teacher_id', teacherId);
+
+      return response
+          .map((json) => StudentAttendanceHistory.fromJson(json))
+          .toList();
     } on AppError {
       rethrow;
     } catch (e) {

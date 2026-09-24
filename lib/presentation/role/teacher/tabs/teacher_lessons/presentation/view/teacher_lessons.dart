@@ -2,7 +2,6 @@ import 'package:edura/core/model/lesson_model.dart';
 import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/resources/localization/error_messages.dart';
 import 'package:edura/core/resources/routes/route_manger.dart';
-import 'package:edura/core/widgets/custom_elevated_button.dart';
 import 'package:edura/core/widgets/custom_label.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view/section/draft_tab.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view/section/published_tab.dart';
@@ -37,13 +36,6 @@ class _TeacherLessonsState extends State<TeacherLessons> {
     }
   }
 
-  // Future<void> _openCreateHomework() async {
-  //   await Navigator.pushNamed(context, RouteManger.createHomeworkScreen);
-  //   if (mounted) {
-  //     context.read<TeacherLessonsCubit>().fetchLessons();
-  //   }
-  // }
-
   Future<void> _editLesson(LessonModel lesson) async {
     await Navigator.pushNamed(
       context,
@@ -60,6 +52,97 @@ class _TeacherLessonsState extends State<TeacherLessons> {
       context,
       RouteManger.takeAttendanceScreen,
       arguments: lesson,
+    );
+  }
+
+  void _showAddOptions() {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: ColorManager.white,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (context) {
+        final l10 = AppLocalizations.of(context)!;
+        return Padding(
+          padding: const EdgeInsets.all(20),
+          child: SafeArea(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: 40,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade300,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+
+                const SizedBox(height: 20),
+
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    l10.addLesson,
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ),
+
+                const SizedBox(height: 20),
+
+                ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: ColorManager.primary.withValues(
+                      alpha: 0.1,
+                    ),
+                    child: Icon(
+                      Icons.menu_book_rounded,
+                      color: ColorManager.primary,
+                    ),
+                  ),
+                  title: Text(
+                    l10.addNewLesson,
+                    style: TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                  subtitle: Text(l10.addNewLesson),
+                  onTap: () {
+                    Navigator.pop(context);
+                    _openAddLesson();
+                  },
+                ),
+
+                const SizedBox(height: 8),
+
+                ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.orange.withValues(alpha: 0.1),
+                    child: const Icon(
+                      Icons.assignment_rounded,
+                      color: Colors.orange,
+                    ),
+                  ),
+                  title: Text(
+                    l10.addHomework,
+                    style: TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                  subtitle: Text(l10.addNewHomeWork),
+                  onTap: () {
+                    Navigator.pop(context);
+
+                    Navigator.pushNamed(
+                      context,
+                      RouteManger.createHomeworkScreen,
+                    );
+                  },
+                ),
+
+                const SizedBox(height: 10),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 
@@ -129,7 +212,6 @@ class _TeacherLessonsState extends State<TeacherLessons> {
       },
       builder: (context, state) {
         final isLoading = state is TeacherLessonsLoading;
-        final isSubmitting = state is TeacherLessonsSubmitting;
 
         final publishedLessons = state is TeacherLessonsLoaded
             ? state.publishedLessons
@@ -140,6 +222,13 @@ class _TeacherLessonsState extends State<TeacherLessons> {
 
         return Scaffold(
           backgroundColor: ColorManager.white,
+
+          floatingActionButton: FloatingActionButton(
+            onPressed: _showAddOptions,
+            backgroundColor: ColorManager.primary,
+            child: const Icon(Icons.add, color: Colors.white),
+          ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
           body: SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(16),
@@ -147,17 +236,7 @@ class _TeacherLessonsState extends State<TeacherLessons> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    children: [
-                      CustomLabel(label: l10.lessons, fontSize: 18),
-                      const Spacer(),
-
-                      CustomElevatedButton(
-                        text: l10.addLesson,
-                        onPressed: isSubmitting ? null : _openAddLesson,
-                        haveIcon: true,
-                        icon: Icons.add,
-                      ),
-                    ],
+                    children: [CustomLabel(label: l10.lessons, fontSize: 18)],
                   ),
                   const SizedBox(height: 16),
                   TeacherLessonsTabSelector(
@@ -167,7 +246,9 @@ class _TeacherLessonsState extends State<TeacherLessons> {
                   const SizedBox(height: 16),
                   Expanded(
                     child: isLoading
-                        ? const Center(child: CircularProgressIndicator())
+                        ? const Center(child: CircularProgressIndicator(
+                      color: ColorManager.primary,
+                    ))
                         : selected == TeacherLessonsTab.published
                         ? PublishedTab(
                             lessons: publishedLessons,

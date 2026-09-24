@@ -3,6 +3,7 @@ import 'package:edura/presentation/role/teacher/tabs/students/domain/use_case/st
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../data/model/student_attendance_history.dart';
 import '../../../data/model/student_detail_model.dart';
 
 @injectable
@@ -13,10 +14,8 @@ class StudentCubit extends Cubit<StudentState> {
 
   Future<void> getStudents() async {
     emit(StudentLoading());
-
     try {
       final students = await studentUseCase.getStudents();
-
       emit(StudentLoaded(students));
     } on AppError catch (e) {
       emit(StudentError(e));
@@ -27,12 +26,10 @@ class StudentCubit extends Cubit<StudentState> {
 
   Future<void> getStudentDetails({required String studentId}) async {
     emit(StudentDetailsLoading());
-
     try {
       final student = await studentUseCase.getStudentDetails(
         studentId: studentId,
       );
-
       emit(StudentDetailsLoaded(student));
     } on AppError catch (e) {
       emit(StudentError(e));
@@ -45,6 +42,7 @@ class StudentCubit extends Cubit<StudentState> {
     required String lessonId,
     required DateTime date,
     required List<Map<String, String>> entries,
+    required String teacherId,
   }) async {
     emit(AttendanceSaving());
     try {
@@ -52,8 +50,49 @@ class StudentCubit extends Cubit<StudentState> {
         lessonId: lessonId,
         date: date,
         entries: entries,
+        teacherId: teacherId,
       );
       emit(AttendanceSaved());
+    } on AppError catch (e) {
+      emit(StudentError(e));
+    } catch (e) {
+      emit(StudentError(ServerError()));
+    }
+  }
+
+  /// Plain fetch — returns data directly, does NOT emit. Safe to call
+  /// from initState/helper methods without disturbing the current state.
+  Future<Map<String, String>> getAttendanceForLesson({
+    required String lessonId,
+    required DateTime date,
+  }) {
+    return studentUseCase.getAttendanceForLesson(
+      lessonId: lessonId,
+      date: date,
+    );
+  }
+  Future<void> fetchAttendanceForLesson({
+    required String lessonId,
+    required DateTime date,
+  }) async {
+    emit(StudentLoading());
+    try {
+      final record = await studentUseCase.getAttendanceForLesson(
+        lessonId: lessonId,
+        date: date,
+      );
+      emit(GetAttendance(record));
+    } on AppError catch (e) {
+      emit(AttendanceError(e));
+    } catch (e) {
+      emit(AttendanceError(ServerError()));
+    }
+  }
+  Future<void> getAttendanceHistoryForGrade({required String grade}) async {
+    emit(StudentLoading());
+    try {
+      final history = await studentUseCase.getAttendanceHistoryForGrade(grade: grade);
+      emit(AttendanceHistoryLoaded(history));
     } on AppError catch (e) {
       emit(StudentError(e));
     } catch (e) {
@@ -91,3 +130,19 @@ class StudentError extends StudentState {
 class AttendanceSaving extends StudentState {}
 
 class AttendanceSaved extends StudentState {}
+
+class AttendanceError extends StudentState {
+  final AppError error;
+
+  AttendanceError(this.error);
+}
+
+class GetAttendance extends StudentState {
+  final Map<String, dynamic> attendance;
+
+  GetAttendance(this.attendance);
+}
+class AttendanceHistoryLoaded extends StudentState {
+  final List<StudentAttendanceHistory> history;
+  AttendanceHistoryLoaded(this.history);
+}

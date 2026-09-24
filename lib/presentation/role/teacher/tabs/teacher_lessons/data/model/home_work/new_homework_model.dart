@@ -16,10 +16,10 @@ class NewHomeworkModel {
     this.subject = 'Mathematics',
     this.dueDate,
     this.isPublished = true,
-    this.attachments = const [],
+    List<File>? attachments,
     this.grade = '',
     this.gradeId = '',
-  });
+  }) : attachments = List<File>.from(attachments ?? []);
 
   factory NewHomeworkModel.fromJson(Map<String, dynamic> json) {
     return NewHomeworkModel(
@@ -28,11 +28,14 @@ class NewHomeworkModel {
       title: json['title'] as String? ?? '',
       description: json['description'] as String? ?? '',
       subject: json['subject'] as String? ?? 'Mathematics',
-      dueDate: json['dueDate'] != null ? DateTime.parse(json['dueDate'] as String) : null,
+      dueDate: json['dueDate'] != null
+          ? DateTime.parse(json['dueDate'] as String)
+          : null,
       isPublished: json['isPublished'] as bool? ?? true,
       attachments: (json['attachments'] as List<dynamic>?)
           ?.map((e) => File(e as String))
-          .toList() ?? [],
+          .toList() ??
+          [],
     );
   }
 
@@ -47,4 +50,3 @@ class NewHomeworkModel {
     };
   }
 }
-

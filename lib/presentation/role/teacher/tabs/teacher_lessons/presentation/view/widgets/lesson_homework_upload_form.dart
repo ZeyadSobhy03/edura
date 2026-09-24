@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/widgets/custom_text.dart';
 import 'package:edura/core/widgets/custom_text_formed_field.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view/widgets/subject_selector.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -35,14 +36,6 @@ class _LessonHomeworkUploadFormState extends State<LessonHomeworkUploadForm> {
   String _subject = 'Mathematics';
   DateTime? _dueDate;
   final List<File> _attachments = [];
-
-  static const _subjects = [
-    'Mathematics',
-    'Science',
-    'English',
-    'History',
-    'Other',
-  ];
 
   @override
   void dispose() {
@@ -147,17 +140,13 @@ class _LessonHomeworkUploadFormState extends State<LessonHomeworkUploadForm> {
                 : null,
           ),
           const SizedBox(height: 12),
-
-          DropdownButtonFormField<String>(
-            dropdownColor: ColorManager.white,
-            initialValue: _subject,
-            items: _subjects
-                .map((s) => DropdownMenuItem(value: s, child: Text(s)))
-                .toList(),
-            onChanged: (value) {
-              if (value != null) setState(() => _subject = value);
+          SubjectSelector(
+            onChanged: (subject) {
+              setState(() => _subject = subject);
             },
+            selectedSubject: _subject,
           ),
+
           const SizedBox(height: 20),
           InkWell(
             onTap: _pickDueDate,
@@ -177,12 +166,10 @@ class _LessonHomeworkUploadFormState extends State<LessonHomeworkUploadForm> {
             style: OutlinedButton.styleFrom(
               side: BorderSide(color: ColorManager.primary),
             ),
-            icon:  Icon(Icons.attach_file,color: ColorManager.primary,),
+            icon: Icon(Icons.attach_file, color: ColorManager.primary),
             label: Text(
               l10.addAttachment,
-              style: TextStyle(color: ColorManager.primary,
-
-              ),
+              style: TextStyle(color: ColorManager.primary),
             ),
           ),
           const SizedBox(height: 8),
@@ -206,10 +193,7 @@ class _LessonHomeworkUploadFormState extends State<LessonHomeworkUploadForm> {
           ),
 
           const SizedBox(height: 24),
-/*
- onPressed: widget.isSubmitting ? null : widget.onSkip,
-                  child: Text(l10.skipAndPublish),
- */
+
           Row(
             children: [
               Expanded(
@@ -218,7 +202,10 @@ class _LessonHomeworkUploadFormState extends State<LessonHomeworkUploadForm> {
                     side: BorderSide(color: ColorManager.primary),
                   ),
                   onPressed: widget.isSubmitting ? null : widget.onSkip,
-                  child: Text(l10.skipAndPublish, style: TextStyle(color: ColorManager.primary)),
+                  child: Text(
+                    l10.skipAndPublish,
+                    style: TextStyle(color: ColorManager.primary),
+                  ),
                 ),
               ),
               const SizedBox(width: 12),
@@ -226,7 +213,7 @@ class _LessonHomeworkUploadFormState extends State<LessonHomeworkUploadForm> {
                 child: OutlinedButton(
                   style: OutlinedButton.styleFrom(
                     backgroundColor: ColorManager.primary,
-                    side: BorderSide(color: ColorManager.primary)
+                    side: BorderSide(color: ColorManager.primary),
                   ),
                   onPressed: widget.isSubmitting ? null : _submit,
                   child: widget.isSubmitting
@@ -238,7 +225,10 @@ class _LessonHomeworkUploadFormState extends State<LessonHomeworkUploadForm> {
                             color: Colors.white,
                           ),
                         )
-                      : Text(l10.addHomeworkAndPublish, style: const TextStyle(color: Colors.white)),
+                      : Text(
+                          l10.addHomeworkAndPublish,
+                          style: const TextStyle(color: Colors.white),
+                        ),
                 ),
               ),
             ],

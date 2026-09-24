@@ -65,6 +65,7 @@
   "enterValidNumber": "الرجاء إدخال رقم صحيح",
   "grades": "الصفوف",
   "noGradesYet": "لا توجد صفوف بعد — اضغط + لإضافة صف.",
+
   "deleteGradeTitle": "حذف {gradeName}؟",
   "@deleteGradeTitle": {
     "placeholders": {
@@ -74,7 +75,17 @@
   "deleteGradeMessage": "لا يمكن التراجع عن هذا الإجراء. الطلاب المسجلون بالفعل في هذا الصف سيحتفظون بمرجع الصف الحالي الخاص بهم.",
   "noGradesFound" : "لم يتم إعداد أي صفوف بعد — أضف واحدًا من شاشة الصفوف الخاصة بك أولاً.",
 
-
+"addNewHomeWork": "إنشاء واجب جديد للطلاب",
+  "setPrice": "تعيين السعر",
+  "paymentsFor": "المدفوعات لـ ",
+  "gradePricing": "تسعير الصف",
+  "paid": "مدفوع",
+    "unpaid": "غير مدفوع",
+  "noSubjectsFound": "لم يتم إعداد أي مواد بعد — أضف واحدًا من شاشة المواد الخاصة بك أولاً.",
+  "attendanceAlreadyTaken": "تم تسجيل الحضور بالفعل لهذا الصف لهذا اليوم.",
+  "attendanceForAllClasses": "الحضور لجميع الصفوف",
+  "attendanceReport": "تقرير الحضور",
+  "noAttendanceRecords": "لا توجد سجلات حضور",
   "myGrades": "الفصول الدراسيه الخاص بي",
   "notificationReadStats": "قام {readCount} من أصل {totalRecipients} مستلم بقراءة هذا الإشعار.\nتم العثور على {recipientCount} سجل للمستلمين.",
   "lessons": "الدروس",
@@ -476,6 +487,7 @@
   "skipAndPublish": "تخطي والنشر",
   "addHomeworkAndPublish": "إضافة الواجب والنشر",
   "attachments": "المرفقات",
+  "searchStudent": "ابحث عن الطلاب...",
   "dragDropFiles": "اسحب وأفلت الملفات هنا أو انقر للتحميل",
   "supportedFormats": "الأنواع المدعومة: PDF, DOCX, PPTX, XLSX, JPG, PNG",
   "homeworkTitleRequired": "عنوان الواجب المنزلي مطلوب",

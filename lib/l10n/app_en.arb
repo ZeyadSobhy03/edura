@@ -106,6 +106,19 @@
       }
     }
   },
+  "noSubjectsFound": "No subjects found",
+  "attendanceAlreadyTaken": "Attendance has already been taken for this class.",
+  "attendanceForAllClasses": "Attendance for all classes",
+  "attendanceReport": "Attendance Report",
+  "noAttendanceRecords": "No attendance records found",
+  "searchStudent": "Search student",
+
+  "addNewHomeWork":"Add New Homework For Student",
+  "setPrice": "Set Price",
+  "paymentsFor": "Payments for",
+  "paid": "Paid",
+    "unpaid": "Unpaid",
+    "gradePricing": "Grade Pricing",
   "noGradesFound": "No grades set up yet — add one from your Grades screen first.",
   "deleteGradeMessage": "This cannot be undone. Students already registered under this grade keep their existing gradeId reference.",
   "notificationReadStats": "{readCount} of {totalRecipients} recipients have read this notification.\n{recipientCount} recipient records found.",

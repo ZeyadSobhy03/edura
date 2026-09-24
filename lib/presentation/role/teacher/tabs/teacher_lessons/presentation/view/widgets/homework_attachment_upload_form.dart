@@ -30,23 +30,34 @@ class _HomeworkAttachmentUploadFormState
     extends State<HomeworkAttachmentUploadForm> {
   Future<void> _pickFiles() async {
     try {
-      final result = await FilePicker.pickFiles(type: FileType.any);
+      final result = await FilePicker.pickFiles(
+        type: FileType.any,
+      );
 
-      if (result != null) {
-        setState(() {
-          widget.draft.attachments.addAll(
-            result.files.map((file) => File(file.path!)),
-          );
-        });
-      }
+      if (result == null) return;
+
+      final newFiles = result.files
+          .where((file) => file.path != null)
+          .map((file) => File(file.path!))
+          .toList();
+
+      setState(() {
+        widget.draft.attachments = [
+          ...widget.draft.attachments,
+          ...newFiles,
+        ];
+      });
     } catch (e) {
+
       if (!mounted) return;
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Error picking files: $e')));
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error picking files: $e'),
+        ),
+      );
     }
   }
-
   void _removeAttachment(int index) {
     setState(() {
       widget.draft.attachments.removeAt(index);
