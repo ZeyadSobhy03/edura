@@ -1,5 +1,4 @@
 import 'package:edura/core/model/analytics_model.dart';
-import 'package:edura/core/model/recent_activity_model.dart';
 import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/widgets/custom_label.dart';
 import 'package:edura/core/widgets/custom_text_button.dart';
@@ -13,8 +12,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../../../../core/resources/routes/route_manger.dart';
+import '../../../../../../../core/widgets/custom_text.dart';
 import '../../../../../student/tabs/home/widgets/home_header.dart';
-import '../../../teacher_profile/presentation/view_model/teacher_profile_view_model.dart';
+import '../../../teacher_profile/presentation/view_model/teacher_profile/teacher_profile_view_model.dart';
+import '../view_model/activities/activities_view_model.dart';
 import '../view_model/dashboard/dashboard_view_model.dart';
 
 class Dashboard extends StatefulWidget {
@@ -42,7 +43,7 @@ class _DashboardState extends State<Dashboard> {
 
     teacherId = currentUser.id;
     context.read<TeacherProfileCubit>().getTeacherProfile(teacherId!);
-
+    context.read<ActivitiesCubit>().load();
   }
 
 
@@ -194,18 +195,37 @@ class _DashboardState extends State<Dashboard> {
                 ],
               ),
               const SizedBox(height: 8),
-              ListView.builder(
-                itemCount: DummyActivityModel.getDummyActivities().length,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  final activity =
-                      DummyActivityModel.getDummyActivities()[index];
+              BlocBuilder<ActivitiesCubit, ActivitiesState>(
+                builder: (context, state) {
+                  if (state is ActivitiesLoading || state is ActivitiesInitial) {
+                    return const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 16),
+                      child: Center(child: CircularProgressIndicator()),
+                    );
+                  }
+                  if (state is ActivitiesError) {
+                    return const SizedBox();
+                  }
 
-                  return ActivityCard(activity: activity);
+                  final activities = (state as ActivitiesLoaded).activities;
+                  if (activities.isEmpty) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      child: CustomText(
+                        text: l10.noRecentActivities,
+                        style: TextStyle(color: ColorManager.black.withValues(alpha: 0.5)),
+                      ),
+                    );
+                  }
+
+                  return ListView.builder(
+                    itemCount: activities.length,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) => ActivityCard(activity: activities[index]),
+                  );
                 },
-              ),
-            ],
+              ),            ],
           ),
         ),
       ),

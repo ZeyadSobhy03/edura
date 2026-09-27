@@ -34,7 +34,7 @@ import '../../../presentation/auth/register/presentation/view/register.dart';
 import '../../../presentation/role/student/tabs/chat/student_chats_screen.dart';
 import '../../../presentation/role/student/tabs/profile/section/attendance/attendance_screen.dart';
 import '../../../presentation/role/student/tabs/profile/section/notes/notes_screen.dart';
-import '../../../presentation/role/teacher/tabs/dashboard/presentation/view/section/analytics_screen.dart';
+import '../../../presentation/role/teacher/tabs/dashboard/presentation/view/section/analytics/analytics_screen.dart';
 import '../../../presentation/role/teacher/tabs/dashboard/presentation/view/section/attendance/take_attendance_screen.dart';
 import '../../../presentation/role/teacher/tabs/dashboard/presentation/view/section/exams/question_builder_screen.dart';
 import '../../../presentation/role/teacher/tabs/dashboard/presentation/view/section/notification/teacher_notification.dart';

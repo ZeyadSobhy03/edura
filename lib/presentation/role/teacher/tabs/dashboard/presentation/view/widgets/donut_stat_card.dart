@@ -7,12 +7,12 @@ class DonutStatCard extends StatelessWidget {
   const DonutStatCard({
     super.key,
     required this.title,
-    required this.percentage, // 0-100
+    required this.percentage,
     required this.color,
   });
 
   final String title;
-  final double percentage;
+  final int percentage;
   final Color color;
 
   @override
@@ -50,13 +50,13 @@ class DonutStatCard extends StatelessWidget {
                       centerSpaceRadius: 32,
                       sections: [
                         PieChartSectionData(
-                          value: percentage,
+                          value: percentage.toDouble(),
                           color: color,
                           radius: 12,
                           showTitle: false,
                         ),
                         PieChartSectionData(
-                          value: 100 - percentage,
+                          value: 100 - percentage.toDouble(),
                           color: ColorManager.gray.withValues(alpha: 0.15),
                           radius: 12,
                           showTitle: false,

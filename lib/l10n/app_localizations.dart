@@ -776,6 +776,12 @@ abstract class AppLocalizations {
   /// **'Schedule Classes'**
   String get scheduleClasses;
 
+  /// No description provided for @noRecentActivities.
+  ///
+  /// In en, this message translates to:
+  /// **'No recent activities'**
+  String get noRecentActivities;
+
   /// No description provided for @endTime.
   ///
   /// In en, this message translates to:

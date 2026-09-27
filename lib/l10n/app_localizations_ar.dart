@@ -356,6 +356,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get scheduleClasses => 'جدولة الحصص';
 
   @override
+  String get noRecentActivities => 'لا توجد أنشطة حديثة';
+
+  @override
   String get endTime => 'وقت الانتهاء';
 
   @override

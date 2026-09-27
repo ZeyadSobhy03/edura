@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../data/model/teacher_profile_model.dart';
-import '../../domain/use_case/teacher_profile_use_case.dart';
+import '../../../data/model/teacher_profile_model.dart';
+import '../../../domain/use_case/teacher_profile/teacher_profile_use_case.dart';
 
 @injectable
 class TeacherProfileCubit extends Cubit<TeacherProfileState> {

@@ -490,6 +490,7 @@
   "noSchedulesFound": "لم يتم العثور على جداول الحصص",
   "addClassSchedule": "إضافة جدول حصة",
   "scheduleClasses": "جدولة الحصص",
+  "noRecentActivities": "لا توجد أنشطة حديثة",
   "startTime": "وقت البدء",
   "endTime": "وقت الانتهاء",
   "chooseStartAndEndTime": "اختر وقت البدء ووقت الانتهاء",

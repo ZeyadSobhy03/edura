@@ -2,7 +2,7 @@ import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/resources/routes/route_manger.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/section/teacher_profile_body.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/section/teacher_profile_header.dart';
-import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view_model/teacher_profile_view_model.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view_model/teacher_profile/teacher_profile_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';

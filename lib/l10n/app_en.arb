@@ -121,6 +121,7 @@
   "addClassSchedule": "Add Class Schedule",
   "startTime": "Start time",
   "scheduleClasses": "Schedule Classes",
+  "noRecentActivities": "No recent activities",
   "endTime": "End time",
   "chooseStartAndEndTime": "Choose start and end time",
   "endMustBeAfterStart": "End must be after start",

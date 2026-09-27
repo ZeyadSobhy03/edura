@@ -1,4 +1,4 @@
-import '../model/teacher_profile_model.dart';
+import '../../model/teacher_profile_model.dart';
 
 abstract class TeacherProfileRepositories {
 

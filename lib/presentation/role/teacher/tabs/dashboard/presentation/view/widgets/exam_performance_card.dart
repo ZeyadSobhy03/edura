@@ -15,8 +15,8 @@ class ExamPerformanceCard extends StatelessWidget {
   });
 
   final String examTitle;
-  final double avgScore;
-  final double passRate;
+  final int avgScore;
+  final int passRate;
 
   @override
   Widget build(BuildContext context) {

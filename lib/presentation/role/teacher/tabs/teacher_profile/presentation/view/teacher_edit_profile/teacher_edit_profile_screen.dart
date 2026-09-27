@@ -9,7 +9,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../data/model/teacher_profile_model.dart';
 import '../../../../../../../../l10n/app_localizations.dart';
-import '../../view_model/teacher_profile_view_model.dart';
+import '../../view_model/teacher_profile/teacher_profile_view_model.dart';
 
 class TeacherEditProfileScreen extends StatefulWidget {
   const TeacherEditProfileScreen({super.key, required this.teacher});

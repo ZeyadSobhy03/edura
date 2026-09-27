@@ -1,11 +1,11 @@
 import 'dart:developer';
 
-import 'package:edura/presentation/role/teacher/tabs/teacher_profile/data/data_source/teacher_profile_remote_data_source.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_profile/data/data_source/teacher_profile/teacher_profile_remote_data_source.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/data/model/teacher_profile_model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../../../../../../core/error/app_error.dart';
+import '../../../../../../../../core/error/app_error.dart';
 
 @LazySingleton(as: TeacherProfileRemoteDataSource)
 class TeacherProfileSupabaseDataSource

@@ -356,6 +356,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get scheduleClasses => 'Schedule Classes';
 
   @override
+  String get noRecentActivities => 'No recent activities';
+
+  @override
   String get endTime => 'End time';
 
   @override

@@ -37,6 +37,14 @@ import '../../presentation/auth/register/domain/use_case/register_use_case.dart'
     as _i266;
 import '../../presentation/auth/register/presentation/view_model/register_view_model.dart'
     as _i23;
+import '../../presentation/role/teacher/tabs/dashboard/data/data_source/activities/activities_remote_data_source.dart'
+    as _i749;
+import '../../presentation/role/teacher/tabs/dashboard/data/data_source/activities/activities_supabase_data_source.dart'
+    as _i967;
+import '../../presentation/role/teacher/tabs/dashboard/data/data_source/analytics/analytics_remote_data_source.dart'
+    as _i693;
+import '../../presentation/role/teacher/tabs/dashboard/data/data_source/analytics/analytics_supabase_data_source.dart'
+    as _i995;
 import '../../presentation/role/teacher/tabs/dashboard/data/data_source/dashboard/dashboard_remote_data_source.dart'
     as _i802;
 import '../../presentation/role/teacher/tabs/dashboard/data/data_source/dashboard/dashboard_supabase_data_source.dart'
@@ -49,6 +57,14 @@ import '../../presentation/role/teacher/tabs/dashboard/data/data_source/teacher_
     as _i77;
 import '../../presentation/role/teacher/tabs/dashboard/data/data_source/teacher_notification/teacher_notification_supabase_data_source.dart'
     as _i418;
+import '../../presentation/role/teacher/tabs/dashboard/data/repositories/activities/activities_repositories.dart'
+    as _i497;
+import '../../presentation/role/teacher/tabs/dashboard/data/repositories/activities/activities_repositories_imp.dart'
+    as _i397;
+import '../../presentation/role/teacher/tabs/dashboard/data/repositories/analytics/analytics_repositories.dart'
+    as _i1028;
+import '../../presentation/role/teacher/tabs/dashboard/data/repositories/analytics/analytics_repositories_imp.dart'
+    as _i695;
 import '../../presentation/role/teacher/tabs/dashboard/data/repositories/dashboard/dashboard_repositories.dart'
     as _i174;
 import '../../presentation/role/teacher/tabs/dashboard/data/repositories/dashboard/dashboard_repositories_imp.dart'
@@ -61,12 +77,20 @@ import '../../presentation/role/teacher/tabs/dashboard/data/repositories/teacher
     as _i602;
 import '../../presentation/role/teacher/tabs/dashboard/data/repositories/teacher_notification/teacher_notification_repositories_imp.dart'
     as _i487;
+import '../../presentation/role/teacher/tabs/dashboard/domain/use_case/activities/activities_use_case.dart'
+    as _i661;
+import '../../presentation/role/teacher/tabs/dashboard/domain/use_case/analytics/analytics_use_case.dart'
+    as _i113;
 import '../../presentation/role/teacher/tabs/dashboard/domain/use_case/dashboard/dashboard_use_case.dart'
     as _i325;
 import '../../presentation/role/teacher/tabs/dashboard/domain/use_case/exam/exam_use_case.dart'
     as _i817;
 import '../../presentation/role/teacher/tabs/dashboard/domain/use_case/teacher_notification/teacher_notification_use_case.dart'
     as _i376;
+import '../../presentation/role/teacher/tabs/dashboard/presentation/view_model/activities/activities_view_model.dart'
+    as _i404;
+import '../../presentation/role/teacher/tabs/dashboard/presentation/view_model/analytics/analytics_view_model.dart'
+    as _i89;
 import '../../presentation/role/teacher/tabs/dashboard/presentation/view_model/dashboard/dashboard_view_model.dart'
     as _i436;
 import '../../presentation/role/teacher/tabs/dashboard/presentation/view_model/exam/exam_view_model.dart'
@@ -133,16 +157,26 @@ import '../../presentation/role/teacher/tabs/teacher_lessons/presentation/view_m
     as _i847;
 import '../../presentation/role/teacher/tabs/teacher_lessons/presentation/view_model/lessons/teacher_lessons_view_model.dart'
     as _i551;
-import '../../presentation/role/teacher/tabs/teacher_profile/data/data_source/teacher_profile_remote_data_source.dart'
-    as _i630;
-import '../../presentation/role/teacher/tabs/teacher_profile/data/data_source/teacher_profile_supabase_data_source.dart'
-    as _i4;
-import '../../presentation/role/teacher/tabs/teacher_profile/data/repositories/teacher_profile_repositories.dart'
-    as _i921;
-import '../../presentation/role/teacher/tabs/teacher_profile/data/repositories/teacher_profile_repositories_imp.dart'
-    as _i944;
-import '../../presentation/role/teacher/tabs/teacher_profile/domain/use_case/teacher_profile_use_case.dart'
-    as _i547;
+import '../../presentation/role/teacher/tabs/teacher_profile/data/data_source/change_password/change_password_remote_data_source.dart'
+    as _i919;
+import '../../presentation/role/teacher/tabs/teacher_profile/data/data_source/change_password/change_password_supabase_data_source.dart'
+    as _i829;
+import '../../presentation/role/teacher/tabs/teacher_profile/data/data_source/teacher_profile/teacher_profile_remote_data_source.dart'
+    as _i77;
+import '../../presentation/role/teacher/tabs/teacher_profile/data/data_source/teacher_profile/teacher_profile_supabase_data_source.dart'
+    as _i176;
+import '../../presentation/role/teacher/tabs/teacher_profile/data/repositories/change_password/change_password_repositories.dart'
+    as _i686;
+import '../../presentation/role/teacher/tabs/teacher_profile/data/repositories/change_password/change_password_repositories_imp.dart'
+    as _i56;
+import '../../presentation/role/teacher/tabs/teacher_profile/data/repositories/teacher_profile/teacher_profile_repositories.dart'
+    as _i8;
+import '../../presentation/role/teacher/tabs/teacher_profile/data/repositories/teacher_profile/teacher_profile_repositories_imp.dart'
+    as _i59;
+import '../../presentation/role/teacher/tabs/teacher_profile/domain/use_case/change_password/change_password_use_case.dart'
+    as _i100;
+import '../../presentation/role/teacher/tabs/teacher_profile/domain/use_case/teacher_profile/teacher_profile_use_case.dart'
+    as _i666;
 import '../../presentation/role/teacher/tabs/teacher_profile/presentation/view/class_schedules/data/data_source/class_schedules_remote_data_source.dart'
     as _i267;
 import '../../presentation/role/teacher/tabs/teacher_profile/presentation/view/class_schedules/data/data_source/class_schedules_supabase_data_source.dart'
@@ -191,8 +225,10 @@ import '../../presentation/role/teacher/tabs/teacher_profile/presentation/view/t
     as _i155;
 import '../../presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/subjects_classes/presentation/view_model/subject_classes_view_model.dart'
     as _i837;
-import '../../presentation/role/teacher/tabs/teacher_profile/presentation/view_model/teacher_profile_view_model.dart'
-    as _i135;
+import '../../presentation/role/teacher/tabs/teacher_profile/presentation/view_model/change_password/change_password_view_model.dart'
+    as _i335;
+import '../../presentation/role/teacher/tabs/teacher_profile/presentation/view_model/teacher_profile/teacher_profile_view_model.dart'
+    as _i1037;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -201,8 +237,8 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
-    gh.lazySingleton<_i630.TeacherProfileRemoteDataSource>(
-      () => _i4.TeacherProfileSupabaseDataSource(),
+    gh.lazySingleton<_i749.ActivitiesRemoteDataSource>(
+      () => _i967.ActivitiesSupabaseDataSource(),
     );
     gh.lazySingleton<_i506.ExamRemoteDataSource>(
       () => _i929.ExamSupabaseDataSource(),
@@ -216,14 +252,30 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i619.TeacherLessonsRemoteDataSource>(
       () => _i815.TeacherLessonsSupabaseDataSource(),
     );
+    gh.lazySingleton<_i77.TeacherProfileRemoteDataSource>(
+      () => _i176.TeacherProfileSupabaseDataSource(),
+    );
     gh.lazySingleton<_i640.SubjectClassesRemoteDataSource>(
       () => _i538.SubjectClassesSupabaseDataSource(),
+    );
+    gh.lazySingleton<_i8.TeacherProfileRepositories>(
+      () => _i59.TeacherProfileRepositoriesImp(
+        remoteDataSource: gh<_i77.TeacherProfileRemoteDataSource>(),
+      ),
+    );
+    gh.lazySingleton<_i919.ChangePasswordRemoteDataSource>(
+      () => _i829.ChangePasswordSupabaseDataSource(),
     );
     gh.lazySingleton<_i53.ChatsRemoteDataSource>(
       () => _i480.ChatsSupabaseDataSource(),
     );
     gh.lazySingleton<_i77.TeacherNotificationRemoteDataSource>(
       () => _i418.TeacherNotificationSupabaseDataSource(),
+    );
+    gh.lazySingleton<_i686.ChangePasswordRepositories>(
+      () => _i56.ChangePasswordRepositoriesImp(
+        remoteDataSource: gh<_i919.ChangePasswordRemoteDataSource>(),
+      ),
     );
     gh.lazySingleton<_i80.GradeRemoteDataSource>(
       () => _i154.GradeSupabaseDataSource(),
@@ -236,13 +288,18 @@ extension GetItInjectableX on _i174.GetIt {
         remoteDataSource: gh<_i80.GradeRemoteDataSource>(),
       ),
     );
-    gh.lazySingleton<_i921.TeacherProfileRepositories>(
-      () => _i944.TeacherProfileRepositoriesImp(
-        remoteDataSource: gh<_i630.TeacherProfileRemoteDataSource>(),
-      ),
-    );
     gh.lazySingleton<_i129.StudentRemoteDataSource>(
       () => _i228.StudentSupabaseDataSource(),
+    );
+    gh.factory<_i100.ChangePasswordUseCase>(
+      () => _i100.ChangePasswordUseCase(
+        changePasswordRepositories: gh<_i686.ChangePasswordRepositories>(),
+      ),
+    );
+    gh.factory<_i335.ChangePasswordCubit>(
+      () => _i335.ChangePasswordCubit(
+        changePasswordUseCase: gh<_i100.ChangePasswordUseCase>(),
+      ),
     );
     gh.lazySingleton<_i110.PaymentRemoteDataSource>(
       () => _i536.PaymentSupabaseDataSource(),
@@ -273,6 +330,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i617.TeacherRemoteDataSource>(
       () => _i156.TeacherSupabaseDataSource(),
     );
+    gh.lazySingleton<_i693.AnalyticsRemoteDataSource>(
+      () => _i995.AnalyticsSupabaseDataSource(),
+    );
     gh.lazySingleton<_i267.ClassSchedulesRemoteDataSource>(
       () => _i173.ClassSchedulesSupabaseDataSource(),
     );
@@ -281,11 +341,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i322.GradeUseCase>(
       () => _i322.GradeUseCase(repositories: gh<_i394.GardeRepositories>()),
-    );
-    gh.factory<_i547.TeacherProfileUseCase>(
-      () => _i547.TeacherProfileUseCase(
-        teacherProfileRepositories: gh<_i921.TeacherProfileRepositories>(),
-      ),
     );
     gh.lazySingleton<_i200.TeacherRepositories>(
       () => _i466.TeacherRepositoriesImp(
@@ -333,9 +388,24 @@ extension GetItInjectableX on _i174.GetIt {
         remoteDataSource: gh<_i873.RegisterRemoteDataSource>(),
       ),
     );
+    gh.lazySingleton<_i1028.AnalyticsRepositories>(
+      () => _i695.AnalyticsRepositoriesImp(
+        remoteDataSource: gh<_i693.AnalyticsRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i666.TeacherProfileUseCase>(
+      () => _i666.TeacherProfileUseCase(
+        teacherProfileRepositories: gh<_i8.TeacherProfileRepositories>(),
+      ),
+    );
     gh.lazySingleton<_i74.StudentRepositories>(
       () => _i593.StudentRepositoriesImp(
         remoteDataSource: gh<_i129.StudentRemoteDataSource>(),
+      ),
+    );
+    gh.lazySingleton<_i497.ActivitiesRepositories>(
+      () => _i397.ActivitiesRepositoriesImp(
+        remoteDataSource: gh<_i749.ActivitiesRemoteDataSource>(),
       ),
     );
     gh.factory<_i668.ExamCubit>(
@@ -365,11 +435,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i999.LoginUseCase>(
       () => _i999.LoginUseCase(loginRepositories: gh<_i43.LoginRepositories>()),
     );
-    gh.factory<_i135.TeacherProfileCubit>(
-      () => _i135.TeacherProfileCubit(
-        teacherProfileUseCase: gh<_i547.TeacherProfileUseCase>(),
-      ),
-    );
     gh.factory<_i266.RegisterUseCase>(
       () =>
           _i266.RegisterUseCase(repositories: gh<_i372.RegisterRepositories>()),
@@ -377,6 +442,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i391.PaymentUseCase>(
       () => _i391.PaymentUseCase(
         paymentRepositories: gh<_i835.PaymentRepositories>(),
+      ),
+    );
+    gh.factory<_i1037.TeacherProfileCubit>(
+      () => _i1037.TeacherProfileCubit(
+        teacherProfileUseCase: gh<_i666.TeacherProfileUseCase>(),
       ),
     );
     gh.factory<_i175.ScheduleCubit>(
@@ -423,6 +493,16 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i964.MessagesCubit>(
       () => _i964.MessagesCubit(chatsUseCase: gh<_i828.ChatsUseCase>()),
     );
+    gh.factory<_i661.ActivitiesUseCase>(
+      () => _i661.ActivitiesUseCase(
+        activitiesRepositories: gh<_i497.ActivitiesRepositories>(),
+      ),
+    );
+    gh.factory<_i113.AnalyticsUseCase>(
+      () => _i113.AnalyticsUseCase(
+        analyticsRepositories: gh<_i1028.AnalyticsRepositories>(),
+      ),
+    );
     gh.factory<_i406.StudentUseCase>(
       () => _i406.StudentUseCase(repositories: gh<_i74.StudentRepositories>()),
     );
@@ -434,8 +514,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i342.StudentCubit>(
       () => _i342.StudentCubit(studentUseCase: gh<_i406.StudentUseCase>()),
     );
+    gh.factory<_i404.ActivitiesCubit>(
+      () => _i404.ActivitiesCubit(gh<_i661.ActivitiesUseCase>()),
+    );
     gh.factory<_i52.PaymentCubit>(
       () => _i52.PaymentCubit(paymentUseCase: gh<_i391.PaymentUseCase>()),
+    );
+    gh.factory<_i89.AnalyticsCubit>(
+      () => _i89.AnalyticsCubit(gh<_i113.AnalyticsUseCase>()),
     );
     gh.factory<_i837.SubjectClassesCubit>(
       () => _i837.SubjectClassesCubit(
