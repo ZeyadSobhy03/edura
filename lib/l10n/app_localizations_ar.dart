@@ -136,6 +136,27 @@ class AppLocalizationsAr extends AppLocalizations {
   String get exams => 'الامتحانات';
 
   @override
+  String get noteSavedSuccessfully => 'تم حفظ الملاحظة بنجاح';
+
+  @override
+  String get noteTitle => 'عنوان الملاحظة';
+
+  @override
+  String get noteContent => 'محتوى الملاحظة';
+
+  @override
+  String get noteContentRequired => 'محتوى الملاحظة مطلوب';
+
+  @override
+  String get noteDeletedSuccessfully => 'تم حذف الملاحظة بنجاح';
+
+  @override
+  String get noteUpdatedSuccessfully => 'تم تحديث الملاحظة بنجاح';
+
+  @override
+  String get update => 'تحديث';
+
+  @override
   String get goodMorning => 'صباح الخير';
 
   @override
@@ -357,6 +378,15 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get noRecentActivities => 'لا توجد أنشطة حديثة';
+
+  @override
+  String get successfullyDownload => 'تم التحميل بنجاح';
+
+  @override
+  String get downloadFailed => 'فشل التحميل';
+
+  @override
+  String get lessonDuration => 'مدة الدرس: ';
 
   @override
   String get endTime => 'وقت الانتهاء';

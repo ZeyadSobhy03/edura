@@ -24,7 +24,6 @@ class LessonDetailsForm extends StatefulWidget {
 
 class _LessonDetailsFormState extends State<LessonDetailsForm> {
   late final TextEditingController _titleController;
-  late final TextEditingController _durationController;
   late final TextEditingController _descriptionController;
   String? _selectedGradeId;
   String? _selectedGradeName;
@@ -33,9 +32,7 @@ class _LessonDetailsFormState extends State<LessonDetailsForm> {
   void initState() {
     super.initState();
     _titleController = TextEditingController(text: widget.draft.title);
-    _durationController = TextEditingController(
-      text: widget.draft.durationMinutes.toString(),
-    );
+
     _descriptionController = TextEditingController(
       text: widget.draft.description,
     );
@@ -46,7 +43,6 @@ class _LessonDetailsFormState extends State<LessonDetailsForm> {
   @override
   void dispose() {
     _titleController.dispose();
-    _durationController.dispose();
     _descriptionController.dispose();
     super.dispose();
   }
@@ -67,7 +63,6 @@ class _LessonDetailsFormState extends State<LessonDetailsForm> {
 
   bool get _canProceed =>
       _titleController.text.trim().isNotEmpty &&
-      _durationController.text.trim().isNotEmpty &&
       _selectedGradeId != null &&
       _selectedGradeName != null;
 
@@ -75,7 +70,6 @@ class _LessonDetailsFormState extends State<LessonDetailsForm> {
     if (!_canProceed) return;
     widget.draft
       ..title = _titleController.text.trim()
-      ..durationMinutes = int.parse(_durationController.text.trim())
       ..description = _descriptionController.text.trim()
       ..gradeId = _selectedGradeId!
       ..grade = _selectedGradeName!;
@@ -100,27 +94,6 @@ class _LessonDetailsFormState extends State<LessonDetailsForm> {
             return null;
           },
           hintText: l10.lessonTitleHint,
-        ),
-        const SizedBox(height: 20),
-
-        _sectionLabel(l10.duration),
-        CustomTextFormedField(
-          onChanged: (_) => setState(() {}),
-
-          hintText: l10.durationHint,
-          controller: _durationController,
-
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return l10.durationRequired;
-            }
-            final duration = int.tryParse(value);
-            if (duration == null || duration <= 0) {
-              return l10.durationInvalid;
-            }
-            return null;
-          },
-          keyboardType: TextInputType.number,
         ),
         const SizedBox(height: 20),
 

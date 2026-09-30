@@ -13,7 +13,9 @@ class TeacherLessonsUseCase {
   Future<Map<String, dynamic>> createLesson({required NewLessonModel lesson}) {
     return repositories.createLesson(lesson: lesson);
   }
-
+  Future<List<LessonModel>>getLessonsByGrade({required String grade}){
+    return repositories.getLessonsByGrade(grade: grade);
+  }
   Future<List<LessonModel>> getLessons() {
     return repositories.getLessons();
   }

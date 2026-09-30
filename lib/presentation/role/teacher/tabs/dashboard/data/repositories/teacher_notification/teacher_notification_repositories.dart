@@ -11,6 +11,12 @@ abstract class TeacherNotificationRepositories {
     List<String> recipientIds = const [],
     bool isPinned = false,
   });
+  Future<List<NotificationModel>> getNotificationsOfStudent(String studentId);
+  Future<void> markAsRead({
+    required String notificationId,
+    required String studentId,
+  });
+
 
   Future<List<NotificationModel>> getNotificationsByTeacher(String teacherId);
 

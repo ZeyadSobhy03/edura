@@ -48,6 +48,7 @@ class HomeWorkSupabaseDataSource implements HomeWorkRemoteDataSource {
         'teacher_id': teacherId,
         'description': homework.description,
         'subject': homework.subject,
+        'status': homework.status,
         'due_date': homework.dueDate?.toIso8601String(),
         'is_published': homework.isPublished,
         'attachments': attachmentUrls,

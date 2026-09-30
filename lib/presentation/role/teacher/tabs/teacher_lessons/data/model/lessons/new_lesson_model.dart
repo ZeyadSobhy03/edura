@@ -9,9 +9,9 @@ class NewLessonModel {
   bool isPublished;
   File? videoFile;
   File? pdfFile;
-   String gradeId;
-   String grade;
-
+  String gradeId;
+  String grade;
+  File? videoThumbnailUrl;
 
   NewLessonModel({
     this.grade = '',
@@ -21,12 +21,17 @@ class NewLessonModel {
     this.description = '',
     this.isPremium = false,
     this.isPublished = true,
+    this.videoThumbnailUrl,
     this.videoFile,
-    this.pdfFile,  this.gradeId = '',
+    this.pdfFile,
+    this.gradeId = '',
   });
 
   factory NewLessonModel.fromJson(Map<String, dynamic> json) {
     return NewLessonModel(
+      videoThumbnailUrl: json['videoThumbnailUrl'] != null
+          ? File(json['videoThumbnailUrl'] as String)
+          : null,
       grade: json['grade'] as String? ?? '',
       title: json['title'] as String? ?? '',
       gradeId: json['gradeId'] as String? ?? '',

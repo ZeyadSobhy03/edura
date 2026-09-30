@@ -5,19 +5,33 @@ import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/domain/use_
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-
 @injectable
 class TeacherLessonsCubit extends Cubit<TeacherLessonsState> {
   final TeacherLessonsUseCase teacherLessonsUseCase;
 
   TeacherLessonsCubit({required this.teacherLessonsUseCase})
-      : super(TeacherLessonsInitial());
+    : super(TeacherLessonsInitial());
 
   Future<void> fetchLessons() async {
     emit(TeacherLessonsLoading());
 
     try {
       final lessons = await teacherLessonsUseCase.getLessons();
+      emit(_loadedStateFrom(lessons));
+    } on AppError catch (error) {
+      emit(TeacherLessonsFailure(error));
+    } catch (_) {
+      emit(TeacherLessonsFailure(const UnknownServerError()));
+    }
+  }
+
+  Future<void> fetchLessonByGrade(String grade) async {
+    emit(TeacherLessonsLoading());
+
+    try {
+      final lessons = await teacherLessonsUseCase.getLessonsByGrade(
+        grade: grade,
+      );
       emit(_loadedStateFrom(lessons));
     } on AppError catch (error) {
       emit(TeacherLessonsFailure(error));
@@ -84,8 +98,6 @@ class TeacherLessonsCubit extends Cubit<TeacherLessonsState> {
       await teacherLessonsUseCase.deleteLesson(lessonId: lessonId);
 
       emit(DeleteLessonSuccess(lessonId));
-
-
     } on AppError catch (error) {
       emit(DeleteLessonFailure(error));
     } catch (_) {
@@ -112,6 +124,7 @@ class TeacherLessonsSubmitting extends TeacherLessonsState {}
 class TeacherLessonsLoaded extends TeacherLessonsState {
   final List<LessonModel> publishedLessons;
   final List<LessonModel> draftLessons;
+
 
   TeacherLessonsLoaded({
     required this.publishedLessons,

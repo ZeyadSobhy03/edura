@@ -9,6 +9,7 @@ class NewHomeworkModel {
   List<File> attachments;
   String gradeId;
   String grade;
+  String status;
 
   NewHomeworkModel({
     this.title = '',
@@ -19,11 +20,13 @@ class NewHomeworkModel {
     List<File>? attachments,
     this.grade = '',
     this.gradeId = '',
+    this.status = 'pending',
   }) : attachments = List<File>.from(attachments ?? []);
 
   factory NewHomeworkModel.fromJson(Map<String, dynamic> json) {
     return NewHomeworkModel(
       grade: json['grade'] as String? ?? '',
+      status: json['status'] as String? ?? 'pending',
       gradeId: json['gradeId'] as String? ?? '',
       title: json['title'] as String? ?? '',
       description: json['description'] as String? ?? '',
@@ -32,9 +35,10 @@ class NewHomeworkModel {
           ? DateTime.parse(json['dueDate'] as String)
           : null,
       isPublished: json['isPublished'] as bool? ?? true,
-      attachments: (json['attachments'] as List<dynamic>?)
-          ?.map((e) => File(e as String))
-          .toList() ??
+      attachments:
+          (json['attachments'] as List<dynamic>?)
+              ?.map((e) => File(e as String))
+              .toList() ??
           [],
     );
   }
@@ -46,6 +50,9 @@ class NewHomeworkModel {
       'subject': subject,
       'dueDate': dueDate?.toIso8601String(),
       'isPublished': isPublished,
+      'grade': grade,
+      'gradeId': gradeId,
+      'status': status,
       'attachments': attachments.map((f) => f.path).toList(),
     };
   }

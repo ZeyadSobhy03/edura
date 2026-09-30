@@ -350,6 +350,48 @@ abstract class AppLocalizations {
   /// **'Exams'**
   String get exams;
 
+  /// No description provided for @noteSavedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Note saved successfully'**
+  String get noteSavedSuccessfully;
+
+  /// No description provided for @noteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Note Title'**
+  String get noteTitle;
+
+  /// No description provided for @noteContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Note Content'**
+  String get noteContent;
+
+  /// No description provided for @noteContentRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter content for your note.'**
+  String get noteContentRequired;
+
+  /// No description provided for @noteDeletedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Note deleted successfully'**
+  String get noteDeletedSuccessfully;
+
+  /// No description provided for @noteUpdatedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Note updated successfully'**
+  String get noteUpdatedSuccessfully;
+
+  /// No description provided for @update.
+  ///
+  /// In en, this message translates to:
+  /// **'Update'**
+  String get update;
+
   /// No description provided for @goodMorning.
   ///
   /// In en, this message translates to:
@@ -781,6 +823,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No recent activities'**
   String get noRecentActivities;
+
+  /// No description provided for @successfullyDownload.
+  ///
+  /// In en, this message translates to:
+  /// **'Successfully downloaded'**
+  String get successfullyDownload;
+
+  /// No description provided for @downloadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Download failed'**
+  String get downloadFailed;
+
+  /// No description provided for @lessonDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Lesson Duration: '**
+  String get lessonDuration;
 
   /// No description provided for @endTime.
   ///

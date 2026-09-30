@@ -1,9 +1,10 @@
 import 'package:edura/core/resources/routes/route_manger.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../../../../../core/model/homework_model.dart';
-import '../../../../../../core/model/lesson_model.dart';
-import '../../../../../../core/resources/colors/color_manger.dart';
+import '../../../../../../../../core/model/homework_model.dart';
+import '../../../../../../../../core/model/lesson_model.dart';
+import '../../../../../../../../core/resources/colors/color_manger.dart';
 import 'lesson_header_section.dart';
 import 'lesson_materials_tab.dart';
 import 'lesson_notes_tab.dart';
@@ -22,10 +23,18 @@ class LessonDetails extends StatefulWidget {
 
 class _LessonDetailsState extends State<LessonDetails> {
   LessonTab _selectedTab = LessonTab.overview;
+  String? studentId;
+
+  @override
+  void initState() {
+    super.initState();
+    studentId = Supabase.instance.client.auth.currentUser?.id;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       backgroundColor: ColorManager.white,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -33,11 +42,13 @@ class _LessonDetailsState extends State<LessonDetails> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               LessonVideoPlayer(
+                lessonId: widget.lesson.id,
+                studentId: studentId!,
                 thumbnailUrl: widget.lesson.videoThumbnailUrl,
                 videoUrl: widget.lesson.videoUrl,
                 onBack: () => Navigator.pop(context),
               ),
-              LessonHeaderSection(lesson: widget.lesson),
+              LessonHeaderSection(lesson: widget.lesson, studentId: studentId!),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: LessonTabSelector(
@@ -60,9 +71,14 @@ class _LessonDetailsState extends State<LessonDetails> {
                     },
                   ),
                   LessonTab.materials => LessonMaterialsTab(
-                    materials: widget.lesson.materials,
+                    material: widget.lesson.pdfUrl,
+                    name: widget.lesson.title,
                   ),
-                  LessonTab.notes => const LessonNotesTab(),
+                  LessonTab.notes =>  LessonNotesTab(
+                    subject: widget.lesson.subject,
+
+                    lessonId: widget.lesson.id,
+                  ),
                 },
               ),
             ],

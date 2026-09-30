@@ -3,9 +3,8 @@ import 'package:edura/core/widgets/custom_text.dart';
 import 'package:edura/presentation/role/student/tabs/profile/section/notes/section/recent_note_card.dart';
 import 'package:flutter/material.dart';
 
-
 import '../../../../../../../../core/model/note_folder_model.dart';
-import '../../../../../../../../core/model/note_model.dart';
+import '../../../data/model/student_notes/note_model.dart';
 import '../../../../../../../../l10n/app_localizations.dart';
 import 'note_editor_screen.dart';
 
@@ -17,7 +16,7 @@ class FolderNotesScreen extends StatefulWidget {
   });
 
   final NoteFolderModel folder;
-  final List<NoteModel> notes; // pre-filtered notes belonging to this folder
+  final List<NoteModel> notes;
 
   @override
   State<FolderNotesScreen> createState() => _FolderNotesScreenState();
@@ -35,12 +34,7 @@ class _FolderNotesScreenState extends State<FolderNotesScreen> {
   Future<void> _openNote(NoteModel? note) async {
     final result = await Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (_) => NoteEditorScreen(
-          existingNote: note,
-          folderId: widget.folder.id,
-        ),
-      ),
+      MaterialPageRoute(builder: (_) => NoteEditorScreen(existingNote: note)),
     );
 
     if (result is NoteModel) {
@@ -85,25 +79,28 @@ class _FolderNotesScreenState extends State<FolderNotesScreen> {
       body: SafeArea(
         child: _notes.isEmpty
             ? Center(
-          child: CustomText(
-            text: l10.noNotesFound,
-            style: TextStyle(
-              color: ColorManager.black.withValues(alpha: 0.5),
-              fontSize: 14,
-            ),
-          ),
-        )
+                child: CustomText(
+                  text: l10.noNotesFound,
+                  style: TextStyle(
+                    color: ColorManager.black.withValues(alpha: 0.5),
+                    fontSize: 14,
+                  ),
+                ),
+              )
             : ListView.builder(
-          padding: const EdgeInsets.all(16),
-          itemCount: _notes.length,
-          itemBuilder: (context, index) {
-            final note = _notes[index];
-            return RecentNoteCard(
-              note: note,
-              onTap: () => _openNote(note),
-            );
-          },
-        ),
+                padding: const EdgeInsets.all(16),
+                itemCount: _notes.length,
+                itemBuilder: (context, index) {
+                  final note = _notes[index];
+                  return RecentNoteCard(
+                    onEdit: () {},
+                    onDelete: () {},
+
+                    note: note,
+                    onTap: () => _openNote(note),
+                  );
+                },
+              ),
       ),
     );
   }

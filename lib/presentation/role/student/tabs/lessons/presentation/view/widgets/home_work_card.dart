@@ -1,19 +1,19 @@
 import 'dart:io';
 
+import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/data/model/home_work/new_homework_model.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../../../../../core/model/homework_model.dart';
-import '../../../../../../core/resources/colors/color_manger.dart';
-import '../../../../../../core/resources/localization/status_localization.dart';
-import '../../../../../../core/widgets/custom_text.dart';
-import '../../../../../../l10n/app_localizations.dart';
+import '../../../../../../../../core/resources/colors/color_manger.dart';
+import '../../../../../../../../core/widgets/custom_text.dart';
+import '../../../../../../../../l10n/app_localizations.dart';
+
 
 class HomeWorkCard extends StatefulWidget {
   const HomeWorkCard({super.key, this.homework});
 
-  final HomeworkModel? homework;
+  final NewHomeworkModel? homework;
 
   @override
   State<HomeWorkCard> createState() => _HomeWorkCardState();
@@ -94,10 +94,7 @@ class _HomeWorkCardState extends State<HomeWorkCard> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: CustomText(
-                    text: StatusLocalization.getStatusText(
-                      homework?.status ?? HomeworkStatus.pending,
-                      l10,
-                    ),
+                    text: homework?.status ?? l10.pending,
                     style: TextStyle(
                       color: Colors.orange,
                       fontSize: 11,
@@ -164,7 +161,11 @@ class _HomeWorkCardState extends State<HomeWorkCard> {
                 ),
                 child: Row(
                   children: [
-                    const Icon(Icons.picture_as_pdf, color: Colors.green, size: 20),
+                    const Icon(
+                      Icons.picture_as_pdf,
+                      color: Colors.green,
+                      size: 20,
+                    ),
                     const SizedBox(width: 8),
                     Expanded(
                       child: CustomText(
@@ -192,7 +193,9 @@ class _HomeWorkCardState extends State<HomeWorkCard> {
                       style: TextStyle(color: ColorManager.primary),
                     ),
                     style: OutlinedButton.styleFrom(
-                      backgroundColor: ColorManager.primary.withValues(alpha: 0.1),
+                      backgroundColor: ColorManager.primary.withValues(
+                        alpha: 0.1,
+                      ),
                       foregroundColor: ColorManager.primary,
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       side: BorderSide(color: ColorManager.primary),

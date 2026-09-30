@@ -13,6 +13,12 @@ abstract class TeacherNotificationRemoteDataSource {
   });
 
   Future<List<NotificationModel>> getNotificationsByTeacher(String teacherId);
+  Future<List<NotificationModel>> getNotificationsOfStudent(String studentId);
+  Future<void> markAsRead({
+    required String notificationId,
+    required String studentId,
+});
+
 
   Future<void> deleteNotification(String notificationId);
 

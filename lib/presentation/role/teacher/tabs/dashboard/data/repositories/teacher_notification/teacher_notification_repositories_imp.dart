@@ -58,4 +58,16 @@ class TeacherNotificationRepositoriesImp
   Future<void> setPinned(String notificationId, bool isPinned) {
     return remoteDataSource.setPinned(notificationId, isPinned);
   }
+
+
+
+  @override
+  Future<void> markAsRead({required String notificationId, required String studentId}) {
+    return remoteDataSource.markAsRead(notificationId: notificationId, studentId: studentId);
+  }
+
+  @override
+  Future<List<NotificationModel>> getNotificationsOfStudent(String studentId) {
+    return remoteDataSource.getNotificationsOfStudent(studentId);
+  }
 }

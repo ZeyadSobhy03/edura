@@ -37,6 +37,29 @@ class TeacherNotificationCubit extends Cubit<TeacherNotificationState> {
     }
   }
 
+  Future<void> getNotificationsOfStudent(String studentId) async {
+    emit(TeacherNotificationLoading());
+    try {
+      final notifications = await useCase.getNotificationsOfStudent(studentId);
+      emit(TeacherNotificationLoaded(notifications));
+    } catch (e) {
+      emit(TeacherNotificationError(e.toString()));
+    }
+  }
+
+  Future<void> markAsRead(String notificationId, String studentId, ) async {
+    emit(TeacherNotificationLoading());
+    try {
+      await useCase.markAsRead(
+        notificationId: notificationId,
+        studentId: studentId,
+      );
+      emit(TeacherNotificationInitial());
+    } catch (e) {
+      emit(TeacherNotificationError(e.toString()));
+    }
+  }
+
   Future<void> getNotificationsByTeacher(String teacherId) async {
     emit(TeacherNotificationLoading());
     try {

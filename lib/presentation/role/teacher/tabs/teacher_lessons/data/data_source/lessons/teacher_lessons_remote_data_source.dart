@@ -5,6 +5,7 @@ abstract class TeacherLessonsRemoteDataSource {
   Future<Map<String, dynamic>> createLesson({required NewLessonModel lesson});
 
   Future<List<LessonModel>> getLessons();
+  Future<List<LessonModel>>getLessonsByGrade({required String grade});
 
   Future<Map<String, dynamic>> updateLesson({
     required String lessonId,

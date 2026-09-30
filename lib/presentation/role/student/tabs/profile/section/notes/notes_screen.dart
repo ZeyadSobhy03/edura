@@ -1,13 +1,11 @@
 import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/widgets/custom_text.dart';
 import 'package:edura/core/widgets/custom_text_formed_field.dart';
-import 'package:edura/presentation/role/student/tabs/profile/section/notes/section/folder_notes_screen.dart';
 import 'package:edura/presentation/role/student/tabs/profile/section/notes/section/note_editor_screen.dart';
-import 'package:edura/presentation/role/student/tabs/profile/section/notes/section/note_folder_card.dart';
 import 'package:flutter/material.dart';
 
 
-import '../../../../../../../core/model/note_model.dart';
+import '../../data/model/student_notes/note_model.dart';
 import '../../../../../../../l10n/app_localizations.dart';
 import 'section/recent_note_card.dart';
 
@@ -25,7 +23,6 @@ class _NotesScreenState extends State<NotesScreen> {
   @override
   void initState() {
     super.initState();
-    _allNotes = List<NoteModel>.from(DummyNotesData.notes);
   }
 
   List<NoteModel> get _filteredNotes {
@@ -60,16 +57,6 @@ class _NotesScreenState extends State<NotesScreen> {
     }
   }
 
-  void _openFolder(dynamic folder) {
-    final folderNotes =
-    _allNotes.where((n) => n.folderId == folder.id).toList();
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => FolderNotesScreen(folder: folder, notes: folderNotes),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -131,19 +118,19 @@ class _NotesScreenState extends State<NotesScreen> {
                 ),
               ),
               const SizedBox(height: 10),
-              Row(
-                children: DummyNotesData.folders.map((folder) {
-                  return Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 8),
-                      child: NoteFolderCard(
-                        folder: folder,
-                        onTap: () => _openFolder(folder),
-                      ),
-                    ),
-                  );
-                }).toList(),
-              ),
+              // Row(
+              //   children: DummyNotesData.folders.map((folder) {
+              //     return Expanded(
+              //       child: Padding(
+              //         padding: const EdgeInsets.only(right: 8),
+              //         child: NoteFolderCard(
+              //           folder: folder,
+              //           onTap: () => _openFolder(folder),
+              //         ),
+              //       ),
+              //     );
+              //   }).toList(),
+              // ),
               const SizedBox(height: 20),
 
               CustomText(
@@ -171,6 +158,8 @@ class _NotesScreenState extends State<NotesScreen> {
                 )
               else
                 ...notes.map((note) => RecentNoteCard(
+                  onDelete: (){},
+                  onEdit: (){},
                   note: note,
                   onTap: () => _openNote(note),
                 )),

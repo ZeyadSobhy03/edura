@@ -3,15 +3,29 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../../../core/resources/colors/color_manger.dart';
 import '../../../../../../../../core/widgets/custom_text.dart';
+import '../../../../../../../../l10n/app_localizations.dart';
 import 'notification_category_style.dart';
 
 class NotificationItem extends StatelessWidget {
   const NotificationItem({super.key, required this.item, this.onDelete});
+
   final NotificationModel item;
   final VoidCallback? onDelete;
 
   @override
   Widget build(BuildContext context) {
+    final l10 = AppLocalizations.of(context)!;
+    String relativeTime(String isoOrEmpty) {
+      if (isoOrEmpty.isEmpty) return '';
+      final dt = DateTime.tryParse(isoOrEmpty);
+      if (dt == null) return isoOrEmpty;
+      final diff = DateTime.now().difference(dt);
+      if (diff.inMinutes < 1) return l10.justNow;
+      if (diff.inMinutes < 60) return l10.minutesAgo(diff.inMinutes);
+      if (diff.inHours < 24) return l10.hoursAgo(diff.inHours);
+      return l10.daysAgo(diff.inDays);
+    }
+
     final style = NotificationCategoryStyle.of(item.category);
 
     return Row(
@@ -40,13 +54,13 @@ class NotificationItem extends StatelessWidget {
                       text: item.title,
                       style: TextStyle(
                         color: ColorManager.black,
-                        fontWeight:
-                        item.isRead ? FontWeight.normal : FontWeight.bold,
+                        fontWeight: item.isRead
+                            ? FontWeight.normal
+                            : FontWeight.bold,
                         fontSize: 15,
                       ),
                     ),
                   ),
-                  // unread dot moved next to title like your screenshot
                   if (!item.isRead)
                     Container(
                       width: 8,
@@ -69,7 +83,7 @@ class NotificationItem extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               CustomText(
-                text: item.time,
+                text: relativeTime(item.time),
                 style: TextStyle(
                   color: ColorManager.black.withValues(alpha: 0.4),
                   fontSize: 12,

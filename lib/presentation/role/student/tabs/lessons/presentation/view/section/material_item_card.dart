@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../../../../core/model/lesson_model.dart';
-import '../../../../../../core/resources/colors/color_manger.dart';
-import '../../../../../../core/widgets/custom_text.dart';
+import '../../../../../../../../core/resources/colors/color_manger.dart';
+import '../../../../../../../../core/widgets/custom_text.dart';
 
 class MaterialItemCard extends StatelessWidget {
-  const MaterialItemCard({super.key, required this.material});
+  const MaterialItemCard({
+    super.key,
+    required this.material,
+    required this.name,
+  });
 
-  final LessonMaterialModel material;
+  final String material;
+  final String name;
 
   Future<void> _download() async {
-    final uri = Uri.parse(material.url);
+    final uri = Uri.parse(material);
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri, mode: LaunchMode.externalApplication);
     }
@@ -35,13 +39,12 @@ class MaterialItemCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomText(
-                  text: material.name,
-                  style: TextStyle(color: ColorManager.black, fontWeight: FontWeight.w600, fontSize: 14),
-                ),
-                const SizedBox(height: 2),
-                CustomText(
-                  text: '${material.fileType} · ${material.sizeLabel}',
-                  style: TextStyle(color: ColorManager.black.withValues(alpha: 0.5), fontSize: 12),
+                  text: name,
+                  style: TextStyle(
+                    color: ColorManager.black,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14,
+                  ),
                 ),
               ],
             ),

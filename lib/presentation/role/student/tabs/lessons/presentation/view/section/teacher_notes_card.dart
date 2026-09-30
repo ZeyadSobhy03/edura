@@ -1,7 +1,8 @@
 import 'package:edura/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/widgets/custom_text.dart';
+import '../../../../../../../../core/widgets/custom_text.dart';
+
 
 class TeacherNotesCard extends StatelessWidget {
   const TeacherNotesCard({super.key, required this.notes});

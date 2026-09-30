@@ -40,4 +40,9 @@ class TeacherLessonsRepositoriesImp implements TeacherLessonsRepositories {
   Future<void> deleteLesson({required String lessonId}) {
     return remoteDataSource.deleteLesson(lessonId: lessonId);
   }
+
+  @override
+  Future<List<LessonModel>> getLessonsByGrade({required String grade}) {
+    return remoteDataSource.getLessonsByGrade(grade: grade);
+  }
 }

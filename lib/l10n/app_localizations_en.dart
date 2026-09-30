@@ -136,6 +136,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get exams => 'Exams';
 
   @override
+  String get noteSavedSuccessfully => 'Note saved successfully';
+
+  @override
+  String get noteTitle => 'Note Title';
+
+  @override
+  String get noteContent => 'Note Content';
+
+  @override
+  String get noteContentRequired => 'Please enter content for your note.';
+
+  @override
+  String get noteDeletedSuccessfully => 'Note deleted successfully';
+
+  @override
+  String get noteUpdatedSuccessfully => 'Note updated successfully';
+
+  @override
+  String get update => 'Update';
+
+  @override
   String get goodMorning => 'Good Morning';
 
   @override
@@ -357,6 +378,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noRecentActivities => 'No recent activities';
+
+  @override
+  String get successfullyDownload => 'Successfully downloaded';
+
+  @override
+  String get downloadFailed => 'Download failed';
+
+  @override
+  String get lessonDuration => 'Lesson Duration: ';
 
   @override
   String get endTime => 'End time';

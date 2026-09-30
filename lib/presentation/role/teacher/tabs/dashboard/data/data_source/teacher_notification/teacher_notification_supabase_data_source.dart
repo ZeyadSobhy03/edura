@@ -1,3 +1,4 @@
+
 import 'package:edura/presentation/role/teacher/tabs/dashboard/data/data_source/teacher_notification/teacher_notification_remote_data_source.dart';
 import 'package:edura/presentation/role/teacher/tabs/dashboard/data/model/teacher_notification/notification_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/dashboard/data/model/teacher_notification/notification_read_stats.dart';
@@ -116,5 +117,66 @@ class TeacherNotificationSupabaseDataSource
       totalRecipients: total,
       readCount: readCount,
     );
+  }
+
+  @override
+  Future<List<NotificationModel>> getNotificationsOfStudent(
+    String studentId,
+  ) async {
+    final individualRows = await supabase
+        .from(_recipientsTable)
+        .select('notification_id')
+        .eq('student_id', studentId);
+
+    final individualIds = (individualRows as List)
+        .map((j) => (j as Map<String, dynamic>)['notification_id'] as String)
+        .toSet();
+
+    final orParts = <String>['audience.eq.all_students'];
+    if (individualIds.isNotEmpty) {
+      orParts.add('id.in.(${individualIds.join(',')})');
+    }
+
+    final response = await supabase
+        .from(_notificationsTable)
+        .select()
+        .or(orParts.join(','))
+        .order('created_at', ascending: false);
+
+    final notifications = (response as List)
+        .map((json) => NotificationModel.fromJson(json as Map<String, dynamic>))
+        .toList();
+
+    if (notifications.isEmpty) return notifications;
+
+    // merge this student's real is_read status from notification_recipients
+    final recipientRows = await supabase
+        .from(_recipientsTable)
+        .select('notification_id, is_read')
+        .eq('student_id', studentId);
+
+    final readMap = <String, bool>{
+      for (final r in (recipientRows as List))
+        (r as Map<String, dynamic>)['notification_id'] as String:
+            r['is_read'] as bool? ?? false,
+    };
+
+    for (final n in notifications) {
+      n.isRead = readMap[n.id] ?? false;
+    }
+
+    return notifications;
+  }
+
+  @override
+  Future<void> markAsRead({
+    required String notificationId,
+    required String studentId,
+  }) async {
+    await supabase
+        .from(_recipientsTable)
+        .update({'is_read': true})
+        .eq('notification_id', notificationId)
+        .eq('student_id', studentId);
   }
 }

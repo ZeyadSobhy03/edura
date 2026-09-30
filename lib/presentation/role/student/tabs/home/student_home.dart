@@ -8,11 +8,11 @@ import 'package:edura/presentation/role/student/tabs/home/section/up_next_card.d
 import 'package:edura/presentation/role/student/tabs/home/widgets/home_header.dart';
 import 'package:edura/presentation/role/student/tabs/home/widgets/quick_action_card.dart';
 import 'package:edura/core/widgets/stat_card.dart';
-import 'package:edura/presentation/role/student/tabs/lessons/section/lesson_grid_card.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/model/announcement_model.dart';
 import '../../../../../core/model/lesson_model.dart';
+import '../lessons/presentation/view/section/lesson_grid_card.dart';
 
 class StudentHome extends StatelessWidget {
   const StudentHome({super.key});

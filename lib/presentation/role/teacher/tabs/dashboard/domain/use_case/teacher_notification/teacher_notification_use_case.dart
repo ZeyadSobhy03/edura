@@ -8,7 +8,9 @@ import '../../../data/repositories/teacher_notification/teacher_notification_rep
 @injectable
 class TeacherNotificationUseCase {
   final TeacherNotificationRepositories teacherNotificationRepositories;
+
   TeacherNotificationUseCase({required this.teacherNotificationRepositories});
+
   Future<NotificationModel> createNotification({
     required String teacherId,
     required String title,
@@ -35,8 +37,22 @@ class TeacherNotificationUseCase {
     return teacherNotificationRepositories.deleteNotification(notificationId);
   }
 
+  Future<List<NotificationModel>> getNotificationsOfStudent(String studentId) {
+    return teacherNotificationRepositories.getNotificationsOfStudent(studentId);
+  }
+
   Future<void> setPinned(String notificationId, bool isPinned) {
     return teacherNotificationRepositories.setPinned(notificationId, isPinned);
+  }
+
+  Future<void> markAsRead({
+    required String notificationId,
+    required String studentId,
+  }) {
+    return teacherNotificationRepositories.markAsRead(
+      notificationId: notificationId,
+      studentId: studentId,
+    );
   }
 
   Future<List<NotificationRecipientModel>> getRecipients(

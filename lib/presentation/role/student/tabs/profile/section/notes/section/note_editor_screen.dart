@@ -2,19 +2,17 @@ import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../../../core/model/note_model.dart';
+import '../../../data/model/student_notes/note_model.dart';
 import '../../../../../../../../l10n/app_localizations.dart';
 
 class NoteEditorScreen extends StatefulWidget {
   const NoteEditorScreen({
     super.key,
     this.existingNote,
-    this.folderId,
     this.subjectOptions = const ['Mathematics', 'Physics', 'General'],
   });
 
   final NoteModel? existingNote;
-  final String? folderId;
   final List<String> subjectOptions;
 
   @override
@@ -35,7 +33,7 @@ class _NoteEditorScreenState extends State<NoteEditorScreen> {
       text: widget.existingNote?.title ?? '',
     );
     _contentController = TextEditingController(
-      text: widget.existingNote?.preview ?? '',
+      text: widget.existingNote?.content ?? '',
     );
     _selectedSubject =
         widget.existingNote?.subject ?? widget.subjectOptions.first;
@@ -58,21 +56,21 @@ class _NoteEditorScreenState extends State<NoteEditorScreen> {
     }
 
     final note = NoteModel(
+      lessonId: widget.existingNote?.lessonId ?? '',
+      createdAt: widget.existingNote?.createdAt ?? DateTime.now(),
+      updatedAt: DateTime.now(),
       id:
           widget.existingNote?.id ??
           DateTime.now().millisecondsSinceEpoch.toString(),
       title: _titleController.text.trim(),
       subject: _selectedSubject,
-      preview: _contentController.text.trim(),
-      date: DateTime.now(),
-      folderId: widget.folderId ?? widget.existingNote?.folderId ?? '',
+      content: _contentController.text.trim(),
     );
 
     Navigator.pop(context, note);
   }
 
   void _delete() {
-    // TODO: delete widget.existingNote from Supabase
     Navigator.pop(context, 'deleted');
   }
 

@@ -2,6 +2,8 @@ import 'package:edura/edura_app.dart';
 
 import 'package:edura/presentation/auth/login/presentation/view_model/login_view_model.dart';
 import 'package:edura/presentation/auth/register/presentation/view_model/register_view_model.dart';
+import 'package:edura/presentation/role/student/tabs/lessons/presentation/view_model/lesson_progress_view_model.dart';
+import 'package:edura/presentation/role/student/tabs/profile/presentation/view_model/student_notes/student_notes_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/dashboard/presentation/view_model/activities/activities_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/dashboard/presentation/view_model/analytics/analytics_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/dashboard/presentation/view_model/dashboard/dashboard_view_model.dart';
@@ -68,6 +70,8 @@ void main() async {
         BlocProvider(create: (context) => getIt<ScheduleCubit>()),
         BlocProvider(create: (context) => getIt<DashboardCubit>(),),
         BlocProvider(create: (context) => getIt<ActivitiesCubit>(),),
+        BlocProvider(create: (context) => getIt<LessonProgressCubit>(),),
+        BlocProvider(create: (context) => getIt<StudentNotesCubit>(),),
         BlocProvider(create: (context) => getIt<ChangePasswordCubit>(),),
         BlocProvider(create: (context) => getIt<AnalyticsCubit>(),),
       ],

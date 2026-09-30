@@ -1,6 +1,7 @@
 import 'package:edura/core/model/chat_args.dart';
 import 'package:edura/core/model/exam_attempt_arguments.dart';
 import 'package:edura/core/model/homework_submission_model.dart';
+import 'package:edura/presentation/role/student/tabs/profile/section/notes/section/note_editor_screen.dart';
 import 'package:edura/presentation/role/teacher/tabs/students/data/model/student_detail_model.dart';
 import 'package:edura/core/widgets/chat/chat.dart';
 import 'package:edura/presentation/role/student/student_main_layout.dart';
@@ -8,9 +9,7 @@ import 'package:edura/presentation/role/student/tabs/exams/exam_details/exam_det
 import 'package:edura/presentation/role/student/tabs/exams/exam_details/section/exam_attempt_screen.dart';
 import 'package:edura/presentation/role/student/tabs/home/section/announcements/announcements_screen.dart';
 import 'package:edura/presentation/role/student/tabs/home/section/notification/student_notification_screen.dart';
-import 'package:edura/presentation/role/student/tabs/lessons/lessons.dart';
-import 'package:edura/presentation/role/student/tabs/lessons/section/homework_screen.dart';
-import 'package:edura/presentation/role/student/tabs/lessons/section/lesson_details.dart';
+import 'package:edura/presentation/role/student/tabs/lessons/presentation/view/lessons.dart';
 import 'package:edura/presentation/role/student/tabs/profile/section/achievements/achievements_screen.dart';
 import 'package:edura/presentation/role/student/tabs/profile/section/leaderboard/leaderboard_screen.dart';
 import 'package:edura/presentation/role/student/tabs/profile/section/schedule/schedule_screen.dart';
@@ -32,6 +31,8 @@ import '../../../presentation/auth/forget_password/forget_password.dart';
 import '../../../presentation/auth/login/presentation/view/login.dart';
 import '../../../presentation/auth/register/presentation/view/register.dart';
 import '../../../presentation/role/student/tabs/chat/student_chats_screen.dart';
+import '../../../presentation/role/student/tabs/lessons/presentation/view/section/homework_screen.dart';
+import '../../../presentation/role/student/tabs/lessons/presentation/view/section/lesson_details.dart';
 import '../../../presentation/role/student/tabs/profile/section/attendance/attendance_screen.dart';
 import '../../../presentation/role/student/tabs/profile/section/notes/notes_screen.dart';
 import '../../../presentation/role/teacher/tabs/dashboard/presentation/view/section/analytics/analytics_screen.dart';
@@ -57,7 +58,6 @@ import '../../../presentation/role/teacher/tabs/teacher_profile/presentation/vie
 import '../../../presentation/role/teacher/teacher_main_layout.dart';
 import '../../../presentation/splash_screen/splash_screen.dart';
 import '../../model/edit_profile_arguments.dart';
-import '../../model/homework_model.dart';
 import '../../model/lesson_model.dart';
 import '../../../presentation/role/teacher/tabs/teacher_profile/data/model/teacher_profile_model.dart';
 import '../../model/web_view_arguments.dart';
@@ -94,7 +94,7 @@ class RouteManger {
   static const String teacherLessonsScreen = '/teacherLessonsScreen';
   static const String teacherChatsScreen = '/teacherChatsScreen';
   static const String takeAttendanceScreen = '/takeAttendanceScreen';
-
+  static const String noteEditorScreen = '/noteEditorScreen';
   static const String teacherProfileScreen = '/teacherProfileScreen';
   static const String analyticsScreen = '/analyticsScreen';
   static const String addNewLessonScreen = '/addNewLessonScreen';
@@ -132,10 +132,12 @@ class RouteManger {
             return const ForgetPassword();
           },
         );
+      case noteEditorScreen:
+        return MaterialPageRoute(builder: (context) => NoteEditorScreen());
       case homeWorkScreen:
-        final homework = settings.arguments as List<HomeworkModel>?;
+        final lessonId = settings.arguments as String?;
         return MaterialPageRoute(
-          builder: (context) => HomeworkScreen(homeworkList: homework),
+          builder: (context) => HomeworkScreen(lessonId: lessonId),
         );
 
       case loginRoute:

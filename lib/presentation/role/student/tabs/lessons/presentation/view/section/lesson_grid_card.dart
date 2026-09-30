@@ -2,22 +2,49 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../../../../../core/model/lesson_model.dart';
-import '../../../../../../l10n/app_localizations.dart';
+import '../../../../../../../../core/model/lesson_model.dart';
+import '../../../../../../../../l10n/app_localizations.dart';
+import '../../view_model/lesson_progress_view_model.dart';
 
-class LessonGridCard extends StatelessWidget {
+
+class LessonGridCard extends StatefulWidget {
   const LessonGridCard({super.key, required this.lesson, required this.onTap});
 
   final LessonModel lesson;
   final VoidCallback onTap;
 
+  @override
+  State<LessonGridCard> createState() => _LessonGridCardState();
+}
+
+class _LessonGridCardState extends State<LessonGridCard> {
+  String? studentId;
+
+  @override
+  void initState() {
+    super.initState();
+
+    studentId = Supabase.instance.client.auth.currentUser?.id;
+
+    if (studentId != null) {
+      context.read<LessonProgressCubit>().fetchLessonProgress(
+        widget.lesson.id,
+        studentId!,
+      );
+    }
+  }
+
   Color _subjectColor() {
-    switch (lesson.subject.toLowerCase()) {
+    switch (widget.lesson.subject.toLowerCase()) {
       case 'mathematics':
         return Colors.blue;
+
       case 'physics':
         return Colors.purple;
+
       default:
         return ColorManager.primary;
     }
@@ -29,7 +56,7 @@ class LessonGridCard extends StatelessWidget {
     final l10 = AppLocalizations.of(context)!;
 
     return GestureDetector(
-      onTap: onTap,
+      onTap: widget.onTap,
       child: Container(
         decoration: BoxDecoration(
           color: ColorManager.white,
@@ -46,12 +73,14 @@ class LessonGridCard extends StatelessWidget {
                 fit: StackFit.expand,
                 children: [
                   CachedNetworkImage(
-                    imageUrl: lesson.videoThumbnailUrl,
+                    imageUrl: widget.lesson.videoThumbnailUrl,
                     fit: BoxFit.cover,
-                    errorWidget: (_, _, _) => Container(color: Colors.black12),
+                    errorWidget: (_, _, _) {
+                      return Container(color: Colors.black12);
+                    },
                   ),
 
-                  if (lesson.isCompleted)
+                  if (widget.lesson.isCompleted)
                     Positioned(
                       top: 8,
                       left: 8,
@@ -91,7 +120,7 @@ class LessonGridCard extends StatelessWidget {
                           ),
                           const SizedBox(width: 3),
                           CustomText(
-                            text: '${lesson.durationMinutes}  ${l10.min}',
+                            text: '${widget.lesson.durationMinutes} ${l10.min}',
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 10,
@@ -120,7 +149,7 @@ class LessonGridCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: CustomText(
-                      text: lesson.subject,
+                      text: widget.lesson.subject,
                       style: TextStyle(
                         color: subjectColor,
                         fontSize: 10,
@@ -128,10 +157,11 @@ class LessonGridCard extends StatelessWidget {
                       ),
                     ),
                   ),
+
                   const SizedBox(height: 6),
 
                   CustomText(
-                    text: lesson.title,
+                    text: widget.lesson.title,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -141,18 +171,51 @@ class LessonGridCard extends StatelessWidget {
                       height: 1.2,
                     ),
                   ),
+
                   const SizedBox(height: 6),
 
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(6),
-                    child: LinearProgressIndicator(
-                      value: lesson.progress,
-                      minHeight: 4,
-                      backgroundColor: ColorManager.black.withValues(
-                        alpha: 0.08,
-                      ),
-                      valueColor: AlwaysStoppedAnimation(subjectColor),
-                    ),
+                  BlocBuilder<LessonProgressCubit, LessonProgressState>(
+                    builder: (context, state) {
+                      final cubit = context.read<LessonProgressCubit>();
+
+                      final savedProgress = cubit.progressMap[widget.lesson.id];
+
+                      double progress =
+                          savedProgress?.progress.toDouble() ??
+                          widget.lesson.progress;
+
+                      Color progressColor = ColorManager.primary;
+
+                      if (state is LessonProgressLoading &&
+                          state.lessonId == widget.lesson.id) {}
+
+                      if (state is LessonProgressLoaded &&
+                          state.lessonId == widget.lesson.id) {
+                        progress = state.progress.progress.toDouble();
+                      }
+
+                      if (state is LessonProgressFailure &&
+                          state.lessonId == widget.lesson.id) {
+                        progressColor = ColorManager.red;
+                      }
+
+                      if (state is LessonProgressNotFound &&
+                          state.lessonId == widget.lesson.id) {
+                        progress = widget.lesson.progress;
+                      }
+
+                      return ClipRRect(
+                        borderRadius: BorderRadius.circular(4),
+                        child: LinearProgressIndicator(
+                          value: progress.clamp(0.0, 1.0),
+                          minHeight: 5,
+                          color: progressColor,
+                          backgroundColor: ColorManager.gray.withValues(
+                            alpha: 0.2,
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),

@@ -2,28 +2,32 @@ import 'package:edura/core/model/homework_submission_model.dart';
 
 class LessonMaterialModel {
   final String id;
+  final String lessonId;
   final String name;
   final String fileType;
   final String sizeLabel;
-  final String url;
-
+  final String url; // resolved signed URL, ready to open
+  final String storagePath; // raw path, needed for delete/re-sign
 
   LessonMaterialModel({
     required this.id,
+    required this.lessonId,
     required this.name,
     required this.fileType,
     required this.sizeLabel,
     required this.url,
+    required this.storagePath,
   });
 
   factory LessonMaterialModel.fromJson(Map<String, dynamic> json) {
     return LessonMaterialModel(
       id: json['id'].toString(),
-
-      name: json['name'] ?? '',
-      fileType: json['file_type'] ?? 'PDF',
-      sizeLabel: json['size_label'] ?? '',
-      url: json['url'] ?? '',
+      lessonId: json['lesson_id'] as String,
+      name: json['name'] as String? ?? '',
+      fileType: json['file_type'] as String? ?? 'PDF',
+      sizeLabel: json['size_label'] as String? ?? '',
+      url: json['url'] as String? ?? '',
+      storagePath: json['storage_path'] as String? ?? '',
     );
   }
 }
@@ -31,6 +35,7 @@ class LessonMaterialModel {
 class LessonModel {
   final String id;
   final String subject;
+  final String teacherId;
   final String title;
   final String teacherName;
   final int durationMinutes;
@@ -61,6 +66,7 @@ class LessonModel {
     required this.progress,
     required this.videoThumbnailUrl,
     required this.videoUrl,
+    required this.teacherId,
     required this.overviewDescription,
     required this.teacherNotes,
     required this.pdfUrl,
@@ -69,12 +75,12 @@ class LessonModel {
     required this.viewCount,
     required this.isPublished,
     required this.homeworkSubmissions,
-    required this.grade
-
+    required this.grade,
   });
 
   factory LessonModel.fromJson(Map<String, dynamic> json) {
     return LessonModel(
+      teacherId: json['teacher_id'] ?? '',
       gradeId: json['grade_id'] ?? '',
       grade: json['grade'] ?? '',
       homeworkSubmissions:
@@ -105,6 +111,7 @@ class LessonModel {
 
 class DummyLessonData {
   static LessonModel quantumMechanics = LessonModel(
+    teacherId: "t1",
     gradeId: "g1",
     grade: "10th Grade",
     homeworkSubmissions: DummySubmissionData.all,
@@ -131,6 +138,8 @@ class DummyLessonData {
         'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
     materials: [
       LessonMaterialModel(
+        lessonId: '1',
+        storagePath: 'materials/chapter1_notes.pdf',
         id: 'm1',
         name: 'Chapter 1 Notes.pdf',
         fileType: 'PDF',
@@ -139,6 +148,8 @@ class DummyLessonData {
             'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
       ),
       LessonMaterialModel(
+        lessonId: '1',
+        storagePath: 'materials/chapter1_notes.pdf',
         id: 'm2',
         name: 'Practice Problems.pdf',
         fileType: 'PDF',
@@ -147,6 +158,8 @@ class DummyLessonData {
             'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
       ),
       LessonMaterialModel(
+        lessonId: '1',
+        storagePath: 'materials/chapter1_notes.pdf',
         id: 'm3',
         name: 'Formula Sheet.pdf',
         fileType: 'PDF',
@@ -158,6 +171,7 @@ class DummyLessonData {
   );
 
   static LessonModel calculusDerivatives = LessonModel(
+    teacherId: "t2",
     gradeId: "g2",
     grade: "11th Grade",
     homeworkSubmissions: DummySubmissionData.all,
@@ -183,6 +197,8 @@ class DummyLessonData {
         'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
     materials: [
       LessonMaterialModel(
+        lessonId: '1',
+        storagePath: 'materials/chapter1_notes.pdf',
         id: 'm4',
         name: 'Derivative Rules.pdf',
         fileType: 'PDF',
@@ -193,6 +209,7 @@ class DummyLessonData {
     ],
   );
   static LessonModel chemistryReactions = LessonModel(
+    teacherId: "t3",
     gradeId: "g3",
     grade: "10th Grade",
     homeworkSubmissions: DummySubmissionData.all,
@@ -218,6 +235,8 @@ class DummyLessonData {
         'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
     materials: [
       LessonMaterialModel(
+        lessonId: '1',
+        storagePath: 'materials/chapter1_notes.pdf',
         id: 'm5',
         name: 'Reaction Types.pdf',
         fileType: 'PDF',
@@ -226,6 +245,8 @@ class DummyLessonData {
             'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
       ),
       LessonMaterialModel(
+        lessonId: '1',
+        storagePath: 'materials/chapter1_notes.pdf',
         id: 'm6',
         name: 'Lab Safety Guidelines.pdf',
         fileType: 'PDF',

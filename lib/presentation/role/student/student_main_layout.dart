@@ -3,7 +3,7 @@ import 'package:edura/l10n/app_localizations.dart';
 import 'package:edura/presentation/role/student/tabs/chat/student_chats_screen.dart';
 import 'package:edura/presentation/role/student/tabs/exams/exams.dart';
 import 'package:edura/presentation/role/student/tabs/home/student_home.dart';
-import 'package:edura/presentation/role/student/tabs/lessons/lessons.dart';
+import 'package:edura/presentation/role/student/tabs/lessons/presentation/view/lessons.dart';
 import 'package:edura/presentation/role/student/tabs/profile/profile.dart';
 import 'package:flutter/material.dart';
 

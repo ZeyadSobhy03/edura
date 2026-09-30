@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../../../../../../../../core/model/lesson_model.dart';
 import '../../../../../../../../l10n/app_localizations.dart';
 import '../../../data/model/home_work/new_homework_model.dart';
 import '../../../data/model/lessons/new_lesson_model.dart';
