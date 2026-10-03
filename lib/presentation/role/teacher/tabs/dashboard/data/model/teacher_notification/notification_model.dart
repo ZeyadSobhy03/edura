@@ -19,6 +19,7 @@ class NotificationModel {
   final String id;
   final String title;
   final String message;
+  final String teacherName;
   final String time;
   bool isRead;
   final NotificationCategory category;
@@ -33,11 +34,12 @@ class NotificationModel {
     this.isRead = false,
     required this.category,
     this.isPinned = false,
-    this.audience = 'all_students',
+    this.audience = 'all_students', required this.teacherName,
   });
 
   factory NotificationModel.fromJson(Map<String, dynamic> json) {
     return NotificationModel(
+      teacherName: json['teacher_name'] as String? ?? '',
       id: json['id'] as String,
       title: json['title'] as String,
       message: json['message'] as String,

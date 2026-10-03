@@ -26,6 +26,18 @@ class HomeWorkCubit extends Cubit<HomeWorkState> {
     }
   }
 
+  Future<void> getAllHomeworks( ) async {
+    emit(HomeWorkLoading());
+    try {
+      final homeworks = await useCase.getAllHomeworks();
+      emit(HomeWorkLoaded(homeworks));
+    } on AppError catch (error) {
+      emit(HomeWorkFailure(error));
+    } catch (e) {
+      emit(HomeWorkFailure(const UnknownServerError()));
+    }
+  }
+
   Future<void> fetchHomeworks(String lessonId) async {
     emit(HomeWorkLoading());
     try {
@@ -86,6 +98,7 @@ class HomeWorkInitial extends HomeWorkState {}
 class HomeWorkLoading extends HomeWorkState {}
 
 class HomeWorkSubmitting extends HomeWorkState {}
+
 
 class HomeWorkLoaded extends HomeWorkState {
   final List<NewHomeworkModel> homeworks;

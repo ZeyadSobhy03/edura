@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import '../../../../../../../../../core/model/web_view_arguments.dart';
 import '../../../../../../../../../core/resources/routes/route_manger.dart';
 import '../../../../../../../../../l10n/app_localizations.dart';
+import '../../../../../../../student/tabs/profile/presentation/view/section/settings/sections/settings_group_card.dart';
+import '../../../../../../../student/tabs/profile/presentation/view/section/settings/sections/settings_section_header.dart';
+import '../../../../../../../student/tabs/profile/presentation/view/section/settings/widgets/settings_tile.dart';
 
-import '../../../../../../../student/tabs/profile/section/settings/sections/settings_group_card.dart';
-import '../../../../../../../student/tabs/profile/section/settings/sections/settings_section_header.dart';
-import '../../../../../../../student/tabs/profile/section/settings/widgets/settings_tile.dart';
 
 class SupportSection extends StatelessWidget {
   const SupportSection({super.key});

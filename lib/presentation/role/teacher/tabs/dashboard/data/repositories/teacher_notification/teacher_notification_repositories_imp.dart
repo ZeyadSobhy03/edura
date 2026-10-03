@@ -17,6 +17,8 @@ class TeacherNotificationRepositoriesImp
   Future<NotificationModel> createNotification({
     required String teacherId,
     required String title,
+    required String teacherName,
+
     required String message,
     required String audience,
     List<String> recipientIds = const [],
@@ -24,6 +26,7 @@ class TeacherNotificationRepositoriesImp
   }) {
     return remoteDataSource.createNotification(
       teacherId: teacherId,
+      teacherName: teacherName,
       title: title,
       message: message,
       audience: audience,
@@ -33,8 +36,8 @@ class TeacherNotificationRepositoriesImp
   }
 
   @override
-  Future<void> deleteNotification(String notificationId) {
-    return remoteDataSource.deleteNotification(notificationId);
+  Future<void> deleteNotification(String notificationId, String teacherId) {
+    return remoteDataSource.deleteNotificationOfTeacher(notificationId, teacherId);
   }
 
   @override
@@ -59,15 +62,4 @@ class TeacherNotificationRepositoriesImp
     return remoteDataSource.setPinned(notificationId, isPinned);
   }
 
-
-
-  @override
-  Future<void> markAsRead({required String notificationId, required String studentId}) {
-    return remoteDataSource.markAsRead(notificationId: notificationId, studentId: studentId);
-  }
-
-  @override
-  Future<List<NotificationModel>> getNotificationsOfStudent(String studentId) {
-    return remoteDataSource.getNotificationsOfStudent(studentId);
-  }
 }

@@ -1,4 +1,4 @@
-import 'package:edura/core/model/homework_submission_model.dart';
+import 'package:edura/presentation/role/student/tabs/lessons/data/model/student_home_work/homework_submission_model.dart';
 
 class LessonMaterialModel {
   final String id;

@@ -73,6 +73,7 @@ class _StudentChatsScreenState extends State<StudentChatsScreen> {
       backgroundColor: ColorManager.white,
       appBar: AppBar(
         backgroundColor: ColorManager.white,
+        automaticallyImplyLeading: false,
         elevation: 0,
         centerTitle: true,
         title: CustomText(

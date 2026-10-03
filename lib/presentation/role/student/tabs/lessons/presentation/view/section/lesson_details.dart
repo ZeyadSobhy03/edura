@@ -2,7 +2,6 @@ import 'package:edura/core/resources/routes/route_manger.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../../../../../../../core/model/homework_model.dart';
 import '../../../../../../../../core/model/lesson_model.dart';
 import '../../../../../../../../core/resources/colors/color_manger.dart';
 import 'lesson_header_section.dart';
@@ -34,7 +33,6 @@ class _LessonDetailsState extends State<LessonDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       backgroundColor: ColorManager.white,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -66,7 +64,7 @@ class _LessonDetailsState extends State<LessonDetails> {
                         context,
                         RouteManger.homeWorkScreen,
 
-                        arguments: DummyHomeworkData.all,
+                        arguments: widget.lesson.id,
                       );
                     },
                   ),
@@ -74,7 +72,7 @@ class _LessonDetailsState extends State<LessonDetails> {
                     material: widget.lesson.pdfUrl,
                     name: widget.lesson.title,
                   ),
-                  LessonTab.notes =>  LessonNotesTab(
+                  LessonTab.notes => LessonNotesTab(
                     subject: widget.lesson.subject,
 
                     lessonId: widget.lesson.id,

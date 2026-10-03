@@ -36,6 +36,8 @@ class _TeacherNotificationState extends State<TeacherNotification> {
   NotificationReadStats? _pendingReadStats;
 
   String? get _teacherId => Supabase.instance.client.auth.currentUser?.id;
+  String? get _teacherName =>
+      Supabase.instance.client.auth.currentUser!.userMetadata?['name'] as String?;
 
   @override
   void initState() {
@@ -66,6 +68,7 @@ class _TeacherNotificationState extends State<TeacherNotification> {
     if (!_canSend || teacherId == null) return;
     setState(() => _isSending = true);
     context.read<TeacherNotificationCubit>().createNotification(
+      teacherName: _teacherName ?? 'Unknown Teacher',
       teacherId: teacherId,
       title: _titleController.text.trim(),
       message: _messageController.text.trim(),

@@ -1,14 +1,22 @@
 import 'dart:io';
 
+import 'package:edura/core/DI/injection.dart';
+import 'package:edura/core/extensions/date_ex.dart';
+import 'package:edura/core/helper/home_work_status_style.dart';
+import 'package:edura/presentation/role/student/tabs/lessons/presentation/view/widgets/build_picker_view.dart';
+import 'package:edura/presentation/role/student/tabs/lessons/presentation/view/widgets/build_submitted_view.dart';
+import 'package:edura/presentation/role/student/tabs/lessons/presentation/view_model/student_home_work/student_home_work_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/data/model/home_work/new_homework_model.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../../../../../core/resources/colors/color_manger.dart';
 import '../../../../../../../../core/widgets/custom_text.dart';
 import '../../../../../../../../l10n/app_localizations.dart';
-
 
 class HomeWorkCard extends StatefulWidget {
   const HomeWorkCard({super.key, this.homework});
@@ -20,35 +28,76 @@ class HomeWorkCard extends StatefulWidget {
 }
 
 class _HomeWorkCardState extends State<HomeWorkCard> {
+  File? _pickedFile;
+  bool _resubmitting = false;
+  String? studentId;
+  String? homeworkId;
+
+  late final StudentHomeWorkCubit _cubit;
+
   final ImagePicker _imagePicker = ImagePicker();
 
-  File? _selectedImage;
-  PlatformFile? _selectedPdf;
+  @override
+  void initState() {
+    super.initState();
+    studentId = Supabase.instance.client.auth.currentUser?.id;
+    homeworkId = widget.homework?.id;
+
+    _cubit = getIt<StudentHomeWorkCubit>();
+    if (studentId != null && homeworkId != null) {
+      _cubit.getMySubmission(homeworkId!, studentId!);
+    }
+  }
+
+  @override
+  void dispose() {
+    _cubit.close();
+    super.dispose();
+  }
+
+  bool get _isPdf =>
+      _pickedFile != null && _pickedFile!.path.toLowerCase().endsWith('.pdf');
+
+  String get _fileName =>
+      _pickedFile?.path.split(Platform.pathSeparator).last ?? '';
 
   Future<void> _takePhoto() async {
     final photo = await _imagePicker.pickImage(
       source: ImageSource.camera,
       imageQuality: 80,
     );
-
-    if (photo != null) {
-      setState(() {
-        _selectedImage = File(photo.path);
-      });
+    if (photo != null && mounted) {
+      setState(() => _pickedFile = File(photo.path));
     }
   }
 
   Future<void> _pickPdf() async {
     final result = await FilePicker.pickFiles(
       type: FileType.custom,
-      allowedExtensions: ['pdf'],
+      allowedExtensions: ['pdf', 'jpg', 'jpeg', 'png'],
     );
-
-    if (result != null && result.files.isNotEmpty) {
-      setState(() {
-        _selectedPdf = result.files.first;
-      });
+    if (result != null && result.files.single.path != null && mounted) {
+      setState(() => _pickedFile = File(result.files.single.path!));
     }
+  }
+
+  Future<void> _submit() async {
+    if (_pickedFile == null || studentId == null || homeworkId == null) return;
+
+    try {
+      await _cubit.submit(
+        homeworkId: homeworkId!,
+        studentId: studentId!,
+        file: _pickedFile!,
+        dueDate: widget.homework?.dueDate,
+      );
+      if (mounted) {
+        setState(() {
+          _pickedFile = null;
+          _resubmitting = false;
+        });
+      }
+    } catch (_) {}
   }
 
   @override
@@ -57,6 +106,7 @@ class _HomeWorkCardState extends State<HomeWorkCard> {
     final homework = widget.homework;
 
     return Card(
+      margin: EdgeInsets.zero,
       elevation: 0,
       color: ColorManager.black.withValues(alpha: 0.03),
       shape: RoundedRectangleBorder(
@@ -94,9 +144,14 @@ class _HomeWorkCardState extends State<HomeWorkCard> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: CustomText(
-                    text: homework?.status ?? l10.pending,
+                    text: HomeWorkStatusStyle.getLabelForStatus(
+                      homework?.status ?? '',
+                      l10,
+                    ),
                     style: TextStyle(
-                      color: Colors.orange,
+                      color: HomeWorkStatusStyle.getColorForStatus(
+                        homework?.status ?? '',
+                      ),
                       fontSize: 11,
                       fontWeight: FontWeight.w600,
                     ),
@@ -126,7 +181,7 @@ class _HomeWorkCardState extends State<HomeWorkCard> {
                 ),
                 const SizedBox(width: 6),
                 CustomText(
-                  text: "${homework?.dueDate ?? ''}",
+                  text: homework?.dueDate?.formatDate ?? '',
                   style: TextStyle(
                     color: ColorManager.black.withValues(alpha: 0.6),
                     fontSize: 13,
@@ -136,98 +191,52 @@ class _HomeWorkCardState extends State<HomeWorkCard> {
             ),
             const SizedBox(height: 16),
 
-            // Show selected image preview
-            if (_selectedImage != null) ...[
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.file(
-                  _selectedImage!,
-                  height: 120,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              const SizedBox(height: 10),
-            ],
+            BlocConsumer<StudentHomeWorkCubit, HomeworkSubmissionState>(
+              bloc: _cubit,
+              listener: (context, state) {
+                if (state is HomeworkSubmissionError) {
+                  Fluttertoast.showToast(
+                    msg: state.message,
+                    backgroundColor: Colors.red,
+                  );
+                }
+              },
+              builder: (context, state) {
+                if (state is HomeworkSubmissionLoading) {
+                  return const Center(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 12),
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        color: ColorManager.primary,
+                      ),
+                    ),
+                  );
+                }
 
-            // Show selected PDF name
-            if (_selectedPdf != null) ...[
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: Colors.green.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.picture_as_pdf,
-                      color: Colors.green,
-                      size: 20,
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: CustomText(
-                        text: _selectedPdf!.name,
-                        style: const TextStyle(
-                          color: Colors.green,
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 10),
-            ],
+                final isSubmitting = state is HomeworkSubmissionSubmitting;
 
-            Row(
-              children: [
-                Expanded(
-                  child: OutlinedButton.icon(
-                    onPressed: _takePhoto,
-                    icon: const Icon(Icons.camera_alt_outlined, size: 18),
-                    label: Text(
-                      l10.takePhoto,
-                      style: TextStyle(color: ColorManager.primary),
-                    ),
-                    style: OutlinedButton.styleFrom(
-                      backgroundColor: ColorManager.primary.withValues(
-                        alpha: 0.1,
-                      ),
-                      foregroundColor: ColorManager.primary,
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      side: BorderSide(color: ColorManager.primary),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: OutlinedButton.icon(
-                    onPressed: _pickPdf,
-                    icon: const Icon(
-                      Icons.upload_file,
-                      size: 18,
-                      color: Colors.green,
-                    ),
-                    label: Text(
-                      l10.attachPdf,
-                      style: const TextStyle(color: Colors.green),
-                    ),
-                    style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      side: const BorderSide(color: Colors.green),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+                final alreadySubmitted =
+                    state is HomeworkSubmissionLoaded &&
+                    state.submission != null;
+
+                if (alreadySubmitted && !_resubmitting) {
+                  return BuildSubmittedView(
+                    onResubmit: () => setState(() => _resubmitting = true),
+                  );
+                }
+
+                return BuildPickerView(
+                  isSubmitting: isSubmitting,
+                  hasFile: _pickedFile != null,
+                  isPdf: _isPdf,
+                  fileName: _fileName,
+                  onTakePhoto: _takePhoto,
+                  pickedFile: _pickedFile,
+                  onPickPdf: _pickPdf,
+                  submit: _submit,
+                );
+              },
             ),
           ],
         ),

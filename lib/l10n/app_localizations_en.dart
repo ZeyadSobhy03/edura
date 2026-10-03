@@ -157,6 +157,36 @@ class AppLocalizationsEn extends AppLocalizations {
   String get update => 'Update';
 
   @override
+  String get unknown => 'Unknown';
+
+  @override
+  String get homeworkSubmitted => 'Homework submitted successfully';
+
+  @override
+  String get resubmitHomework => 'Resubmit Homework';
+
+  @override
+  String get submitHomework => 'Submit Homework';
+
+  @override
+  String get errorDeletingNote => 'Error deleting note. Please try again.';
+
+  @override
+  String get noteSubjectHint => 'Enter subject name';
+
+  @override
+  String get noteSubjectRequired => 'Please enter a subject for your note.';
+
+  @override
+  String get noteCreatedSuccessfully => 'Note created successfully';
+
+  @override
+  String get retry => 'Retry';
+
+  @override
+  String get noLessons => 'No lessons available';
+
+  @override
   String get goodMorning => 'Good Morning';
 
   @override

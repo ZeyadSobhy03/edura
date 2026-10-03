@@ -6,8 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../../../../../../core/resources/colors/color_manger.dart';
-import '../../../data/model/lesson_progress.dart';
-import '../../view_model/lesson_progress_view_model.dart';
+import '../../../data/model/lesson_progress/lesson_progress.dart';
+import '../../view_model/lesson_progress/lesson_progress_view_model.dart';
 
 
 class LessonVideoPlayer extends StatefulWidget {

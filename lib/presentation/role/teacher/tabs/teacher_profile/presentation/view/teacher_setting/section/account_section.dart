@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../../../../core/resources/routes/route_manger.dart';
 import '../../../../../../../../../l10n/app_localizations.dart';
-import '../../../../../../../student/tabs/profile/section/settings/sections/settings_group_card.dart';
-import '../../../../../../../student/tabs/profile/section/settings/sections/settings_section_header.dart';
-import '../../../../../../../student/tabs/profile/section/settings/widgets/settings_tile.dart';
+import '../../../../../../../student/tabs/profile/presentation/view/section/settings/sections/settings_group_card.dart';
+import '../../../../../../../student/tabs/profile/presentation/view/section/settings/sections/settings_section_header.dart';
+import '../../../../../../../student/tabs/profile/presentation/view/section/settings/widgets/settings_tile.dart';
 
 class AccountSection extends StatelessWidget {
   const AccountSection({super.key, required this.teacher});

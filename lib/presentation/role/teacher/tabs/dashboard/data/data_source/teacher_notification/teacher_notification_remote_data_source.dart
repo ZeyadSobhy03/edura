@@ -5,6 +5,7 @@ import '../../model/teacher_notification/notification_recipient_model.dart';
 abstract class TeacherNotificationRemoteDataSource {
   Future<NotificationModel> createNotification({
     required String teacherId,
+    required String teacherName,
     required String title,
     required String message,
     required String audience,
@@ -13,14 +14,9 @@ abstract class TeacherNotificationRemoteDataSource {
   });
 
   Future<List<NotificationModel>> getNotificationsByTeacher(String teacherId);
-  Future<List<NotificationModel>> getNotificationsOfStudent(String studentId);
-  Future<void> markAsRead({
-    required String notificationId,
-    required String studentId,
-});
 
 
-  Future<void> deleteNotification(String notificationId);
+  Future<void> deleteNotificationOfTeacher(String notificationId, String teacherId);
 
   Future<void> setPinned(String notificationId, bool isPinned);
 

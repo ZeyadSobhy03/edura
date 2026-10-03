@@ -1,24 +1,10 @@
 import 'package:edura/core/model/chat_args.dart';
 import 'package:edura/core/model/exam_attempt_arguments.dart';
-import 'package:edura/core/model/homework_submission_model.dart';
-import 'package:edura/presentation/role/student/tabs/profile/section/notes/section/note_editor_screen.dart';
+import 'package:edura/presentation/role/student/tabs/lessons/data/model/student_home_work/homework_submission_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/students/data/model/student_detail_model.dart';
 import 'package:edura/core/widgets/chat/chat.dart';
 import 'package:edura/presentation/role/student/student_main_layout.dart';
-import 'package:edura/presentation/role/student/tabs/exams/exam_details/exam_details.dart';
-import 'package:edura/presentation/role/student/tabs/exams/exam_details/section/exam_attempt_screen.dart';
-import 'package:edura/presentation/role/student/tabs/home/section/announcements/announcements_screen.dart';
-import 'package:edura/presentation/role/student/tabs/home/section/notification/student_notification_screen.dart';
 import 'package:edura/presentation/role/student/tabs/lessons/presentation/view/lessons.dart';
-import 'package:edura/presentation/role/student/tabs/profile/section/achievements/achievements_screen.dart';
-import 'package:edura/presentation/role/student/tabs/profile/section/leaderboard/leaderboard_screen.dart';
-import 'package:edura/presentation/role/student/tabs/profile/section/schedule/schedule_screen.dart';
-import 'package:edura/presentation/role/student/tabs/profile/section/settings/sections/change_password_screen.dart';
-import 'package:edura/presentation/role/student/tabs/profile/section/settings/sections/edit_profile_screen.dart';
-import 'package:edura/presentation/role/student/tabs/profile/section/settings/sections/contact_support_screen.dart';
-import 'package:edura/presentation/role/student/tabs/profile/section/settings/sections/help_faq_screen.dart';
-import 'package:edura/presentation/role/student/tabs/profile/section/settings/settings_screen.dart';
-import 'package:edura/presentation/role/student/tabs/profile/section/settings/sections/webview_screen.dart';
 import 'package:edura/presentation/role/teacher/tabs/students/presentation/view/students.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_chats/presentation/view/teacher_chats.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view/teacher_lessons.dart';
@@ -31,10 +17,25 @@ import '../../../presentation/auth/forget_password/forget_password.dart';
 import '../../../presentation/auth/login/presentation/view/login.dart';
 import '../../../presentation/auth/register/presentation/view/register.dart';
 import '../../../presentation/role/student/tabs/chat/student_chats_screen.dart';
+import '../../../presentation/role/student/tabs/exams/presentation/view/exam_details/exam_details.dart';
+import '../../../presentation/role/student/tabs/exams/presentation/view/exam_details/section/exam_attempt_screen.dart';
+import '../../../presentation/role/student/tabs/home/presentation/view/section/announcements/announcements_screen.dart';
+import '../../../presentation/role/student/tabs/home/presentation/view/section/notification/student_notification_screen.dart';
 import '../../../presentation/role/student/tabs/lessons/presentation/view/section/homework_screen.dart';
 import '../../../presentation/role/student/tabs/lessons/presentation/view/section/lesson_details.dart';
-import '../../../presentation/role/student/tabs/profile/section/attendance/attendance_screen.dart';
-import '../../../presentation/role/student/tabs/profile/section/notes/notes_screen.dart';
+import '../../../presentation/role/student/tabs/profile/data/model/student_notes/note_model.dart';
+import '../../../presentation/role/student/tabs/profile/presentation/view/section/achievements/achievements_screen.dart';
+import '../../../presentation/role/student/tabs/profile/presentation/view/section/attendance/attendance_screen.dart';
+import '../../../presentation/role/student/tabs/profile/presentation/view/section/leaderboard/leaderboard_screen.dart';
+import '../../../presentation/role/student/tabs/profile/presentation/view/section/notes/notes_screen.dart';
+import '../../../presentation/role/student/tabs/profile/presentation/view/section/notes/section/note_editor_screen.dart';
+import '../../../presentation/role/student/tabs/profile/presentation/view/section/schedule/schedule_screen.dart';
+import '../../../presentation/role/student/tabs/profile/presentation/view/section/settings/sections/change_password_screen.dart';
+import '../../../presentation/role/student/tabs/profile/presentation/view/section/settings/sections/contact_support_screen.dart';
+import '../../../presentation/role/student/tabs/profile/presentation/view/section/settings/sections/edit_profile_screen.dart';
+import '../../../presentation/role/student/tabs/profile/presentation/view/section/settings/sections/help_faq_screen.dart';
+import '../../../presentation/role/student/tabs/profile/presentation/view/section/settings/sections/webview_screen.dart';
+import '../../../presentation/role/student/tabs/profile/presentation/view/section/settings/settings_screen.dart';
 import '../../../presentation/role/teacher/tabs/dashboard/presentation/view/section/analytics/analytics_screen.dart';
 import '../../../presentation/role/teacher/tabs/dashboard/presentation/view/section/attendance/take_attendance_screen.dart';
 import '../../../presentation/role/teacher/tabs/dashboard/presentation/view/section/exams/question_builder_screen.dart';
@@ -133,7 +134,10 @@ class RouteManger {
           },
         );
       case noteEditorScreen:
-        return MaterialPageRoute(builder: (context) => NoteEditorScreen());
+        final existingNote = settings.arguments as NoteModel?;
+        return MaterialPageRoute(builder: (context) => NoteEditorScreen(
+          existingNote: existingNote,
+        ));
       case homeWorkScreen:
         final lessonId = settings.arguments as String?;
         return MaterialPageRoute(
@@ -153,7 +157,6 @@ class RouteManger {
             return const ScheduleClassScreen();
           },
         );
-
       case splashRoute:
         return MaterialPageRoute(
           builder: (context) {

@@ -20,7 +20,9 @@ class HomeWorkUseCase {
   Future<List<NewHomeworkModel>> getHomeworksByLesson(String lessonId) {
     return homeWorkRepositories.getHomeworksByLesson(lessonId);
   }
-
+  Future<List<NewHomeworkModel>> getAllHomeworks(){
+    return homeWorkRepositories.getAllHomeworks();
+  }
   Future<void> publishHomework(String homeworkId) {
     return homeWorkRepositories.publishHomework(homeworkId);
   }

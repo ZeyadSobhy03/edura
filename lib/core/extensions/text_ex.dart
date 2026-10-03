@@ -28,4 +28,12 @@ extension TextEx on String {
   bool get isValidText {
     return trim().isNotEmpty && length >= 3;
   }
+  String get formatDate {
+    try {
+      final dateTime = DateTime.parse(this);
+      return '${dateTime.day.toString().padLeft(2, '0')}/${dateTime.month.toString().padLeft(2, '0')}/${dateTime.year}';
+    } catch (e) {
+      return this;
+    }
+  }
 }

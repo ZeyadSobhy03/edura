@@ -5,7 +5,6 @@ import 'package:edura/core/widgets/custom_label.dart';
 import 'package:edura/core/widgets/custom_text_formed_field.dart';
 import 'package:edura/presentation/role/student/tabs/profile/data/model/student_notes/note_model.dart';
 import 'package:edura/presentation/role/student/tabs/profile/presentation/view_model/student_notes/student_notes_view_model.dart';
-import 'package:edura/presentation/role/student/tabs/profile/section/notes/section/recent_note_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -13,6 +12,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../../../../../core/widgets/custom_text.dart';
 import '../../../../../../../../l10n/app_localizations.dart';
+import '../../../../profile/presentation/view/section/notes/section/recent_note_card.dart';
 
 class LessonNotesTab extends StatefulWidget {
   const LessonNotesTab({

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:edura/core/localization/error_messages.dart';
 import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/widgets/custom_text.dart';
@@ -5,23 +7,42 @@ import 'package:edura/l10n/app_localizations.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view_model/home_work/home_work_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../../../../../../../core/resources/routes/route_manger.dart';
 import '../widgets/home_work_card.dart';
 
 class HomeworkScreen extends StatefulWidget {
-  const HomeworkScreen({super.key, this.lessonId, });
+  const HomeworkScreen({super.key, this.lessonId});
 
-final String? lessonId;
+  final String? lessonId;
+
   @override
   State<HomeworkScreen> createState() => _HomeworkScreenState();
 }
 
 class _HomeworkScreenState extends State<HomeworkScreen> {
+  String? studentId;
+
   @override
   void initState() {
-    context.read<HomeWorkCubit>().fetchHomeworks(widget.lessonId?? '');
     super.initState();
+    studentId = Supabase.instance.client.auth.currentUser?.id;
+    if (studentId == null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          Navigator.pushReplacementNamed(context, RouteManger.loginRoute);
+        }
+      });
+      return;
+    }
+    if (widget.lessonId == null) {
+      context.read<HomeWorkCubit>().getAllHomeworks();
+    } else {
+      context.read<HomeWorkCubit>().fetchHomeworks(widget.lessonId!);
+    }
   }
+
   @override
   Widget build(BuildContext context) {
     final l10 = AppLocalizations.of(context)!;
@@ -44,6 +65,7 @@ class _HomeworkScreenState extends State<HomeworkScreen> {
       body: SafeArea(
         child: BlocBuilder<HomeWorkCubit, HomeWorkState>(
           builder: (context, state) {
+            log('HomeworkScreen: Current state: $state');
             if (state is HomeWorkLoading) {
               return const Center(
                 child: CircularProgressIndicator(color: ColorManager.primary),
@@ -52,7 +74,6 @@ class _HomeworkScreenState extends State<HomeworkScreen> {
               return Center(
                 child: Text(
                   ErrorMessages.get(context, state.error),
-
                   style: const TextStyle(
                     color: ColorManager.red,
                     fontSize: 16,
@@ -66,7 +87,7 @@ class _HomeworkScreenState extends State<HomeworkScreen> {
                 return Center(
                   child: Text(
                     l10.noHomework,
-                    style:  TextStyle(
+                    style: TextStyle(
                       color: ColorManager.gray,
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -79,17 +100,17 @@ class _HomeworkScreenState extends State<HomeworkScreen> {
                 itemBuilder: (context, index) {
                   final homework = homeworks[index];
 
-                  return HomeWorkCard(homework: homework);
+                  return HomeWorkCard(
+                    key: ValueKey(homework.id),
+                    homework: homework,
+                  );
                 },
               );
             }
             return const SizedBox.shrink();
           },
         ),
-      )
-
-
-
+      ),
     );
   }
 }

@@ -6,13 +6,12 @@ import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentatio
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/section/support_section.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../../student/tabs/profile/presentation/view/section/settings/sections/settings_group_card.dart';
+import '../../../../../../student/tabs/profile/presentation/view/section/settings/widgets/language_picker_sheet.dart';
+import '../../../../../../student/tabs/profile/presentation/view/section/settings/widgets/settings_tile.dart';
 import '../../../data/model/teacher_profile_model.dart';
 import '../../../../../../../../l10n/app_localizations.dart';
 
-
-import '../../../../../../student/tabs/profile/section/settings/sections/settings_group_card.dart';
-import '../../../../../../student/tabs/profile/section/settings/widgets/language_picker_sheet.dart';
-import '../../../../../../student/tabs/profile/section/settings/widgets/settings_tile.dart';
 
 
 class TeacherSettingScreen extends StatefulWidget {

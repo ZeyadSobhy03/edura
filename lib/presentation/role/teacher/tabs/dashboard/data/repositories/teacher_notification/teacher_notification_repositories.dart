@@ -5,22 +5,18 @@ import '../../model/teacher_notification/notification_recipient_model.dart';
 abstract class TeacherNotificationRepositories {
   Future<NotificationModel> createNotification({
     required String teacherId,
+    required String teacherName,
     required String title,
     required String message,
     required String audience,
     List<String> recipientIds = const [],
     bool isPinned = false,
   });
-  Future<List<NotificationModel>> getNotificationsOfStudent(String studentId);
-  Future<void> markAsRead({
-    required String notificationId,
-    required String studentId,
-  });
 
 
   Future<List<NotificationModel>> getNotificationsByTeacher(String teacherId);
 
-  Future<void> deleteNotification(String notificationId);
+  Future<void> deleteNotification(String notificationId, String teacherId);
 
   Future<void> setPinned(String notificationId, bool isPinned);
 

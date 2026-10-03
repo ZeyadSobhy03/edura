@@ -39,4 +39,9 @@ class HomeWorkRepositoriesImp implements HomeWorkRepositories {
   Future<void> reviewHomework(String submissionId, int grade, String feedback) {
     return remoteDataSource.reviewHomework(submissionId, grade, feedback);
   }
+
+  @override
+  Future<List<NewHomeworkModel>> getAllHomeworks() {
+    return remoteDataSource.getAllHomeworks();
+  }
 }

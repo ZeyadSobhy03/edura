@@ -8,9 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../../../../l10n/app_localizations.dart';
-import '../../../../../student/tabs/profile/section/settings/sections/settings_group_card.dart';
-import '../../../../../student/tabs/profile/section/settings/widgets/settings_tile.dart';
-
+import '../../../../../student/tabs/profile/presentation/view/section/settings/sections/settings_group_card.dart';
+import '../../../../../student/tabs/profile/presentation/view/section/settings/widgets/settings_tile.dart';
 class TeacherProfile extends StatefulWidget {
   const TeacherProfile({super.key});
 

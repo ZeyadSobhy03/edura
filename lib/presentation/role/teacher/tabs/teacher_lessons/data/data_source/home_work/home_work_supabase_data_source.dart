@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/data/data_source/home_work/home_work_remote_data_source.dart';
@@ -112,6 +113,23 @@ class HomeWorkSupabaseDataSource implements HomeWorkRemoteDataSource {
           })
           .eq('id', submissionId);
     } catch (e) {
+      rethrowAsAppError(e);
+    }
+  }
+
+  @override
+  Future<List<NewHomeworkModel>> getAllHomeworks()async {
+    try {
+      final response = await supabase
+          .from(_table)
+          .select()
+          .order('created_at', ascending: false);
+
+      return (response as List<dynamic>)
+          .map((row) => NewHomeworkModel.fromJson(row as Map<String, dynamic>))
+          .toList();
+    } catch (e) {
+      log('Error fetching homeworks of student: $e');
       rethrowAsAppError(e);
     }
   }

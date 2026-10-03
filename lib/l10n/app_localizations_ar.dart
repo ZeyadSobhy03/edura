@@ -157,6 +157,37 @@ class AppLocalizationsAr extends AppLocalizations {
   String get update => 'تحديث';
 
   @override
+  String get unknown => 'غير معروف';
+
+  @override
+  String get homeworkSubmitted => 'تم إرسال الواجب المنزلي';
+
+  @override
+  String get resubmitHomework => 'إعادة إرسال الواجب المنزلي';
+
+  @override
+  String get submitHomework => 'إرسال الواجب المنزلي';
+
+  @override
+  String get errorDeletingNote =>
+      'حدث خطأ أثناء حذف الملاحظة. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get noteSubjectHint => 'الموضوع';
+
+  @override
+  String get noteSubjectRequired => 'الموضوع مطلوب';
+
+  @override
+  String get noteCreatedSuccessfully => 'تم إنشاء الملاحظة بنجاح';
+
+  @override
+  String get retry => 'إعادة المحاولة';
+
+  @override
+  String get noLessons => 'لا توجد دروس';
+
+  @override
   String get goodMorning => 'صباح الخير';
 
   @override

@@ -37,18 +37,54 @@ import '../../presentation/auth/register/domain/use_case/register_use_case.dart'
     as _i266;
 import '../../presentation/auth/register/presentation/view_model/register_view_model.dart'
     as _i23;
-import '../../presentation/role/student/tabs/lessons/data/data_source/lesson_progress_remote_data_source.dart'
-    as _i382;
-import '../../presentation/role/student/tabs/lessons/data/data_source/lesson_progress_supabase_data_source.dart'
-    as _i933;
-import '../../presentation/role/student/tabs/lessons/data/repositories/lesson_progress_repositories.dart'
-    as _i373;
-import '../../presentation/role/student/tabs/lessons/data/repositories/lesson_progress_repositories_imp.dart'
-    as _i55;
-import '../../presentation/role/student/tabs/lessons/domain/use_case/lesson_progress_use_case.dart'
-    as _i992;
-import '../../presentation/role/student/tabs/lessons/presentation/view_model/lesson_progress_view_model.dart'
-    as _i782;
+import '../../presentation/role/student/tabs/home/data/data_source/student_notification/student_notification_remote_data_source.dart'
+    as _i311;
+import '../../presentation/role/student/tabs/home/data/data_source/student_notification/student_notification_supabase_data_source.dart'
+    as _i337;
+import '../../presentation/role/student/tabs/home/data/data_source/student_stats/student_stats_remote_data_source.dart'
+    as _i556;
+import '../../presentation/role/student/tabs/home/data/data_source/student_stats/student_stats_supabase_data_source.dart'
+    as _i1072;
+import '../../presentation/role/student/tabs/home/data/repositories/student_notification/student_notification_repositories.dart'
+    as _i157;
+import '../../presentation/role/student/tabs/home/data/repositories/student_notification/student_notification_repositories_imp.dart'
+    as _i249;
+import '../../presentation/role/student/tabs/home/data/repositories/student_stats/student_stats_repositories.dart'
+    as _i869;
+import '../../presentation/role/student/tabs/home/data/repositories/student_stats/student_stats_repositories_imp.dart'
+    as _i864;
+import '../../presentation/role/student/tabs/home/domain/use_case/student_notification/student_notification_use_case.dart'
+    as _i85;
+import '../../presentation/role/student/tabs/home/domain/use_case/student_stats/student_stats_use_case.dart'
+    as _i923;
+import '../../presentation/role/student/tabs/home/presentation/view_model/student_notification/student_notification_view_model.dart'
+    as _i150;
+import '../../presentation/role/student/tabs/home/presentation/view_model/student_stats/student_stats_view_model.dart'
+    as _i788;
+import '../../presentation/role/student/tabs/lessons/data/data_source/lesson_progress/lesson_progress_remote_data_source.dart'
+    as _i710;
+import '../../presentation/role/student/tabs/lessons/data/data_source/lesson_progress/lesson_progress_supabase_data_source.dart'
+    as _i487;
+import '../../presentation/role/student/tabs/lessons/data/data_source/student_home_work/student_home_work_remote_data_source.dart'
+    as _i968;
+import '../../presentation/role/student/tabs/lessons/data/data_source/student_home_work/student_home_work_supabase_data_source.dart'
+    as _i981;
+import '../../presentation/role/student/tabs/lessons/data/repositories/lesson_progress/lesson_progress_repositories.dart'
+    as _i541;
+import '../../presentation/role/student/tabs/lessons/data/repositories/lesson_progress/lesson_progress_repositories_imp.dart'
+    as _i1011;
+import '../../presentation/role/student/tabs/lessons/data/repositories/student_home_work/student_home_work_repositories.dart'
+    as _i1063;
+import '../../presentation/role/student/tabs/lessons/data/repositories/student_home_work/student_home_work_repositories_imp.dart'
+    as _i263;
+import '../../presentation/role/student/tabs/lessons/domain/use_case/lesson_progress/lesson_progress_use_case.dart'
+    as _i620;
+import '../../presentation/role/student/tabs/lessons/domain/use_case/student_home_work/student_home_work_use_case.dart'
+    as _i864;
+import '../../presentation/role/student/tabs/lessons/presentation/view_model/lesson_progress/lesson_progress_view_model.dart'
+    as _i1022;
+import '../../presentation/role/student/tabs/lessons/presentation/view_model/student_home_work/student_home_work_view_model.dart'
+    as _i489;
 import '../../presentation/role/student/tabs/profile/data/data_source/student_notes/student_notes_remote_data_source.dart'
     as _i168;
 import '../../presentation/role/student/tabs/profile/data/data_source/student_notes/student_supabase_data_source.dart'
@@ -261,6 +297,18 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
+    gh.lazySingleton<_i968.StudentHomeWorkRemoteDataSource>(
+      () => _i981.StudentHomeWorkSupabaseDataSource(),
+    );
+    gh.lazySingleton<_i311.StudentNotificationRemoteDataSource>(
+      () => _i337.StudentNotificationSupabaseDataSource(),
+    );
+    gh.lazySingleton<_i157.StudentNotificationRepositories>(
+      () => _i249.StudentNotificationRepositoriesImp(
+        studentNotificationRemoteDataSource:
+            gh<_i311.StudentNotificationRemoteDataSource>(),
+      ),
+    );
     gh.lazySingleton<_i749.ActivitiesRemoteDataSource>(
       () => _i967.ActivitiesSupabaseDataSource(),
     );
@@ -276,8 +324,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i619.TeacherLessonsRemoteDataSource>(
       () => _i815.TeacherLessonsSupabaseDataSource(),
     );
-    gh.lazySingleton<_i382.LessonProgressRemoteDataSource>(
-      () => _i933.LessonProgressSupabaseDataSource(),
+    gh.lazySingleton<_i1063.StudentHomeWorkRepositories>(
+      () => _i263.StudentHomeWorkRepositoriesImp(
+        remoteDataSource: gh<_i968.StudentHomeWorkRemoteDataSource>(),
+      ),
     );
     gh.lazySingleton<_i77.TeacherProfileRemoteDataSource>(
       () => _i176.TeacherProfileSupabaseDataSource(),
@@ -339,6 +389,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i110.PaymentRemoteDataSource>(
       () => _i536.PaymentSupabaseDataSource(),
     );
+    gh.lazySingleton<_i710.LessonProgressRemoteDataSource>(
+      () => _i487.LessonProgressSupabaseDataSource(),
+    );
+    gh.lazySingleton<_i556.StudentStatsRemoteDataSource>(
+      () => _i1072.StudentStatsSupabaseDataSource(),
+    );
     gh.lazySingleton<_i796.ExamRepositories>(
       () => _i384.ExamRepositoriesImp(
         remoteDataSource: gh<_i506.ExamRemoteDataSource>(),
@@ -365,6 +421,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i617.TeacherRemoteDataSource>(
       () => _i156.TeacherSupabaseDataSource(),
     );
+    gh.factory<_i864.StudentHomeWorkUseCase>(
+      () => _i864.StudentHomeWorkUseCase(
+        repositories: gh<_i1063.StudentHomeWorkRepositories>(),
+      ),
+    );
     gh.lazySingleton<_i693.AnalyticsRemoteDataSource>(
       () => _i995.AnalyticsSupabaseDataSource(),
     );
@@ -374,18 +435,13 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i817.ExamUseCase>(
       () => _i817.ExamUseCase(repositories: gh<_i796.ExamRepositories>()),
     );
+    gh.factory<_i489.StudentHomeWorkCubit>(
+      () => _i489.StudentHomeWorkCubit(
+        useCase: gh<_i864.StudentHomeWorkUseCase>(),
+      ),
+    );
     gh.factory<_i322.GradeUseCase>(
       () => _i322.GradeUseCase(repositories: gh<_i394.GardeRepositories>()),
-    );
-    gh.lazySingleton<_i373.LessonProgressRepositories>(
-      () => _i55.LessonProgressRepositoriesImp(
-        remoteDataSource: gh<_i382.LessonProgressRemoteDataSource>(),
-      ),
-    );
-    gh.factory<_i992.LessonProgressUseCase>(
-      () => _i992.LessonProgressUseCase(
-        lessonProgressRepositories: gh<_i373.LessonProgressRepositories>(),
-      ),
     );
     gh.lazySingleton<_i200.TeacherRepositories>(
       () => _i466.TeacherRepositoriesImp(
@@ -397,6 +453,12 @@ extension GetItInjectableX on _i174.GetIt {
         remoteDataSource: gh<_i267.ClassSchedulesRemoteDataSource>(),
       ),
     );
+    gh.factory<_i85.StudentNotificationUseCase>(
+      () => _i85.StudentNotificationUseCase(
+        studentNotificationRepositories:
+            gh<_i157.StudentNotificationRepositories>(),
+      ),
+    );
     gh.factory<_i728.ClassSchedulesUseCase>(
       () => _i728.ClassSchedulesUseCase(
         classSchedulesRepositories: gh<_i816.ClassSchedulesRepositories>(),
@@ -404,11 +466,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i74.GardeCubit>(
       () => _i74.GardeCubit(gradeUseCase: gh<_i322.GradeUseCase>()),
-    );
-    gh.factory<_i782.LessonProgressCubit>(
-      () => _i782.LessonProgressCubit(
-        lessonProgressUseCase: gh<_i992.LessonProgressUseCase>(),
-      ),
     );
     gh.factory<_i213.TeacherLessonsUseCase>(
       () => _i213.TeacherLessonsUseCase(
@@ -433,9 +490,19 @@ extension GetItInjectableX on _i174.GetIt {
         remoteDataSource: gh<_i802.DashboardRemoteDataSource>(),
       ),
     );
+    gh.lazySingleton<_i541.LessonProgressRepositories>(
+      () => _i1011.LessonProgressRepositoriesImp(
+        remoteDataSource: gh<_i710.LessonProgressRemoteDataSource>(),
+      ),
+    );
     gh.lazySingleton<_i372.RegisterRepositories>(
       () => _i985.RegisterRepositoriesImp(
         remoteDataSource: gh<_i873.RegisterRemoteDataSource>(),
+      ),
+    );
+    gh.lazySingleton<_i869.StudentStatsRepositories>(
+      () => _i864.StudentStatsRepositoriesImp(
+        studentStatsRemoteDataSource: gh<_i556.StudentStatsRemoteDataSource>(),
       ),
     );
     gh.lazySingleton<_i1028.AnalyticsRepositories>(
@@ -472,6 +539,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i447.StudentNotesCubit>(
       () => _i447.StudentNotesCubit(
         studentNotesUseCase: gh<_i1061.StudentNotesUseCase>(),
+      ),
+    );
+    gh.factory<_i923.StudentStatsUseCase>(
+      () => _i923.StudentStatsUseCase(
+        studentStatsRepositories: gh<_i869.StudentStatsRepositories>(),
       ),
     );
     gh.factory<_i847.HomeWorkCubit>(
@@ -520,8 +592,18 @@ extension GetItInjectableX on _i174.GetIt {
             gh<_i602.TeacherNotificationRepositories>(),
       ),
     );
+    gh.factory<_i788.StudentStatsCubit>(
+      () => _i788.StudentStatsCubit(
+        studentStatsUseCase: gh<_i923.StudentStatsUseCase>(),
+      ),
+    );
     gh.factory<_i23.RegisterCubit>(
       () => _i23.RegisterCubit(registerUseCase: gh<_i266.RegisterUseCase>()),
+    );
+    gh.factory<_i150.StudentNotificationCubit>(
+      () => _i150.StudentNotificationCubit(
+        studentNotificationUseCase: gh<_i85.StudentNotificationUseCase>(),
+      ),
     );
     gh.factory<_i362.TeacherNotificationCubit>(
       () => _i362.TeacherNotificationCubit(
@@ -539,12 +621,22 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i828.ChatsUseCase>(
       () => _i828.ChatsUseCase(repositories: gh<_i594.ChatsRepositories>()),
     );
+    gh.factory<_i620.LessonProgressUseCase>(
+      () => _i620.LessonProgressUseCase(
+        lessonProgressRepositories: gh<_i541.LessonProgressRepositories>(),
+      ),
+    );
     gh.factory<_i1058.LoginCubit>(
       () => _i1058.LoginCubit(loginUseCase: gh<_i999.LoginUseCase>()),
     );
     gh.factory<_i551.TeacherLessonsCubit>(
       () => _i551.TeacherLessonsCubit(
         teacherLessonsUseCase: gh<_i213.TeacherLessonsUseCase>(),
+      ),
+    );
+    gh.factory<_i1022.LessonProgressCubit>(
+      () => _i1022.LessonProgressCubit(
+        lessonProgressUseCase: gh<_i620.LessonProgressUseCase>(),
       ),
     );
     gh.factory<_i964.ChatsCubit>(

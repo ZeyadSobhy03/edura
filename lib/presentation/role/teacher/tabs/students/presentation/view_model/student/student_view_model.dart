@@ -60,8 +60,7 @@ class StudentCubit extends Cubit<StudentState> {
     }
   }
 
-  /// Plain fetch — returns data directly, does NOT emit. Safe to call
-  /// from initState/helper methods without disturbing the current state.
+
   Future<Map<String, String>> getAttendanceForLesson({
     required String lessonId,
     required DateTime date,

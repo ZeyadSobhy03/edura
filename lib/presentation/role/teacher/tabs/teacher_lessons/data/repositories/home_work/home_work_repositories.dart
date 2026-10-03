@@ -5,6 +5,7 @@ abstract class HomeWorkRepositories {
     String? lessonId,
     required NewHomeworkModel homework,
   });
+  Future<List<NewHomeworkModel>> getAllHomeworks();
 
   Future<List<NewHomeworkModel>> getHomeworksByLesson(String lessonId);
   Future<void> publishHomework(String homeworkId);

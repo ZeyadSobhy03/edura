@@ -1,3 +1,4 @@
+import 'dart:developer';
 
 import 'package:edura/presentation/role/teacher/tabs/dashboard/data/data_source/teacher_notification/teacher_notification_remote_data_source.dart';
 import 'package:edura/presentation/role/teacher/tabs/dashboard/data/model/teacher_notification/notification_model.dart';
@@ -10,12 +11,15 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class TeacherNotificationSupabaseDataSource
     implements TeacherNotificationRemoteDataSource {
   final supabase = Supabase.instance.client;
+
   static const _notificationsTable = 'notifications';
   static const _recipientsTable = 'notification_recipients';
+
 
   @override
   Future<NotificationModel> createNotification({
     required String teacherId,
+    required String teacherName,
     required String title,
     required String message,
     required String audience,
@@ -25,12 +29,13 @@ class TeacherNotificationSupabaseDataSource
     final response = await supabase
         .from(_notificationsTable)
         .insert({
-          'teacher_id': teacherId,
-          'title': title,
-          'message': message,
-          'audience': audience,
-          'is_pinned': isPinned,
-        })
+      'teacher_id': teacherId,
+      'title': title,
+      'teacher_name': teacherName,
+      'message': message,
+      'audience': audience,
+      'is_pinned': isPinned,
+    })
         .select()
         .single();
 
@@ -40,15 +45,15 @@ class TeacherNotificationSupabaseDataSource
       await supabase
           .from(_recipientsTable)
           .insert(
-            recipientIds
-                .map(
-                  (studentId) => {
-                    'notification_id': notification.id,
-                    'student_id': studentId,
-                  },
-                )
-                .toList(),
-          );
+        recipientIds
+            .map(
+              (studentId) => {
+            'notification_id': notification.id,
+            'student_id': studentId,
+          },
+        )
+            .toList(),
+      );
     }
 
     return notification;
@@ -56,8 +61,8 @@ class TeacherNotificationSupabaseDataSource
 
   @override
   Future<List<NotificationModel>> getNotificationsByTeacher(
-    String teacherId,
-  ) async {
+      String teacherId,
+      ) async {
     final response = await supabase
         .from(_notificationsTable)
         .select()
@@ -69,9 +74,29 @@ class TeacherNotificationSupabaseDataSource
         .toList();
   }
 
+  /// Deletes the notification for EVERYONE (the row is removed).
+  /// Only the teacher who owns it can do this.
   @override
-  Future<void> deleteNotification(String notificationId) async {
-    await supabase.from(_notificationsTable).delete().eq('id', notificationId);
+  Future<void> deleteNotificationOfTeacher(
+      String notificationId,
+      String teacherId,
+      ) async {
+    try {
+      final deleted = await supabase
+          .from(_notificationsTable)
+          .delete()
+          .eq('id', notificationId)
+          .eq('teacher_id', teacherId)
+          .select('id');
+
+      // RLS or a wrong id can make the delete match 0 rows without an error
+      if ((deleted as List).isEmpty) {
+        throw Exception('Notification was not deleted (not found or not allowed)');
+      }
+    } catch (e) {
+      log('Error deleting notification (teacher): $e');
+      rethrow;
+    }
   }
 
   @override
@@ -84,8 +109,8 @@ class TeacherNotificationSupabaseDataSource
 
   @override
   Future<List<NotificationRecipientModel>> getRecipients(
-    String notificationId,
-  ) async {
+      String notificationId,
+      ) async {
     final response = await supabase
         .from(_recipientsTable)
         .select()
@@ -94,8 +119,8 @@ class TeacherNotificationSupabaseDataSource
     return (response as List)
         .map(
           (json) =>
-              NotificationRecipientModel.fromJson(json as Map<String, dynamic>),
-        )
+          NotificationRecipientModel.fromJson(json as Map<String, dynamic>),
+    )
         .toList();
   }
 
@@ -119,64 +144,6 @@ class TeacherNotificationSupabaseDataSource
     );
   }
 
-  @override
-  Future<List<NotificationModel>> getNotificationsOfStudent(
-    String studentId,
-  ) async {
-    final individualRows = await supabase
-        .from(_recipientsTable)
-        .select('notification_id')
-        .eq('student_id', studentId);
 
-    final individualIds = (individualRows as List)
-        .map((j) => (j as Map<String, dynamic>)['notification_id'] as String)
-        .toSet();
 
-    final orParts = <String>['audience.eq.all_students'];
-    if (individualIds.isNotEmpty) {
-      orParts.add('id.in.(${individualIds.join(',')})');
-    }
-
-    final response = await supabase
-        .from(_notificationsTable)
-        .select()
-        .or(orParts.join(','))
-        .order('created_at', ascending: false);
-
-    final notifications = (response as List)
-        .map((json) => NotificationModel.fromJson(json as Map<String, dynamic>))
-        .toList();
-
-    if (notifications.isEmpty) return notifications;
-
-    // merge this student's real is_read status from notification_recipients
-    final recipientRows = await supabase
-        .from(_recipientsTable)
-        .select('notification_id, is_read')
-        .eq('student_id', studentId);
-
-    final readMap = <String, bool>{
-      for (final r in (recipientRows as List))
-        (r as Map<String, dynamic>)['notification_id'] as String:
-            r['is_read'] as bool? ?? false,
-    };
-
-    for (final n in notifications) {
-      n.isRead = readMap[n.id] ?? false;
-    }
-
-    return notifications;
-  }
-
-  @override
-  Future<void> markAsRead({
-    required String notificationId,
-    required String studentId,
-  }) async {
-    await supabase
-        .from(_recipientsTable)
-        .update({'is_read': true})
-        .eq('notification_id', notificationId)
-        .eq('student_id', studentId);
-  }
 }

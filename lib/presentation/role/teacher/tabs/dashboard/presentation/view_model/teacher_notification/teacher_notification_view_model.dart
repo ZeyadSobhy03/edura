@@ -17,6 +17,8 @@ class TeacherNotificationCubit extends Cubit<TeacherNotificationState> {
     required String title,
     required String message,
     required String audience,
+    required String teacherName,
+
     List<String> recipientIds = const [],
     bool isPinned = false,
   }) async {
@@ -27,6 +29,7 @@ class TeacherNotificationCubit extends Cubit<TeacherNotificationState> {
         title: title,
         message: message,
         audience: audience,
+        teacherName: teacherName,
         recipientIds: recipientIds,
         isPinned: isPinned,
       );
@@ -37,28 +40,8 @@ class TeacherNotificationCubit extends Cubit<TeacherNotificationState> {
     }
   }
 
-  Future<void> getNotificationsOfStudent(String studentId) async {
-    emit(TeacherNotificationLoading());
-    try {
-      final notifications = await useCase.getNotificationsOfStudent(studentId);
-      emit(TeacherNotificationLoaded(notifications));
-    } catch (e) {
-      emit(TeacherNotificationError(e.toString()));
-    }
-  }
 
-  Future<void> markAsRead(String notificationId, String studentId, ) async {
-    emit(TeacherNotificationLoading());
-    try {
-      await useCase.markAsRead(
-        notificationId: notificationId,
-        studentId: studentId,
-      );
-      emit(TeacherNotificationInitial());
-    } catch (e) {
-      emit(TeacherNotificationError(e.toString()));
-    }
-  }
+
 
   Future<void> getNotificationsByTeacher(String teacherId) async {
     emit(TeacherNotificationLoading());
@@ -76,7 +59,7 @@ class TeacherNotificationCubit extends Cubit<TeacherNotificationState> {
   }) async {
     emit(TeacherNotificationLoading());
     try {
-      await useCase.deleteNotification(notificationId);
+      await useCase.deleteNotification(notificationId, teacherId);
       await getNotificationsByTeacher(teacherId);
     } catch (e) {
       emit(TeacherNotificationError(e.toString()));

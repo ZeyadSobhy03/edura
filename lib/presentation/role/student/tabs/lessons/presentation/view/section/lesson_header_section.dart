@@ -1,4 +1,4 @@
-import 'package:edura/presentation/role/student/tabs/lessons/presentation/view_model/lesson_progress_view_model.dart';
+import 'package:edura/presentation/role/student/tabs/lessons/presentation/view_model/lesson_progress/lesson_progress_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

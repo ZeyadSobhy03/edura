@@ -3,7 +3,7 @@ import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../../../core/model/homework_submission_model.dart';
+import '../../../../../../student/tabs/lessons/data/model/student_home_work/homework_submission_model.dart';
 
 
 class SubmissionStudentHeader extends StatelessWidget {

@@ -7,7 +7,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../../../../../core/model/lesson_model.dart';
 import '../../../../../../../../l10n/app_localizations.dart';
-import '../../view_model/lesson_progress_view_model.dart';
+import '../../view_model/lesson_progress/lesson_progress_view_model.dart';
 
 
 class LessonGridCard extends StatefulWidget {

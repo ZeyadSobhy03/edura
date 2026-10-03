@@ -13,7 +13,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../../../../core/resources/routes/route_manger.dart';
 import '../../../../../../../core/widgets/custom_text.dart';
-import '../../../../../student/tabs/home/widgets/home_header.dart';
+import '../../../../../student/tabs/home/presentation/view/widgets/home_header.dart';
 import '../../../teacher_profile/presentation/view_model/teacher_profile/teacher_profile_view_model.dart';
 import '../view_model/activities/activities_view_model.dart';
 import '../view_model/dashboard/dashboard_view_model.dart';

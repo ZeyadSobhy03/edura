@@ -392,6 +392,66 @@ abstract class AppLocalizations {
   /// **'Update'**
   String get update;
 
+  /// No description provided for @unknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown'**
+  String get unknown;
+
+  /// No description provided for @homeworkSubmitted.
+  ///
+  /// In en, this message translates to:
+  /// **'Homework submitted successfully'**
+  String get homeworkSubmitted;
+
+  /// No description provided for @resubmitHomework.
+  ///
+  /// In en, this message translates to:
+  /// **'Resubmit Homework'**
+  String get resubmitHomework;
+
+  /// No description provided for @submitHomework.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit Homework'**
+  String get submitHomework;
+
+  /// No description provided for @errorDeletingNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Error deleting note. Please try again.'**
+  String get errorDeletingNote;
+
+  /// No description provided for @noteSubjectHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter subject name'**
+  String get noteSubjectHint;
+
+  /// No description provided for @noteSubjectRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a subject for your note.'**
+  String get noteSubjectRequired;
+
+  /// No description provided for @noteCreatedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Note created successfully'**
+  String get noteCreatedSuccessfully;
+
+  /// No description provided for @retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
+
+  /// No description provided for @noLessons.
+  ///
+  /// In en, this message translates to:
+  /// **'No lessons available'**
+  String get noLessons;
+
   /// No description provided for @goodMorning.
   ///
   /// In en, this message translates to:

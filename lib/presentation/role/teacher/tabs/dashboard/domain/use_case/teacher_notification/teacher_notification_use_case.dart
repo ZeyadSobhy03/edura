@@ -16,11 +16,14 @@ class TeacherNotificationUseCase {
     required String title,
     required String message,
     required String audience,
+    required String teacherName,
+
     List<String> recipientIds = const [],
     bool isPinned = false,
   }) {
     return teacherNotificationRepositories.createNotification(
       teacherId: teacherId,
+      teacherName: teacherName,
       title: title,
       message: message,
       audience: audience,
@@ -33,26 +36,15 @@ class TeacherNotificationUseCase {
     return teacherNotificationRepositories.getNotificationsByTeacher(teacherId);
   }
 
-  Future<void> deleteNotification(String notificationId) {
-    return teacherNotificationRepositories.deleteNotification(notificationId);
-  }
-
-  Future<List<NotificationModel>> getNotificationsOfStudent(String studentId) {
-    return teacherNotificationRepositories.getNotificationsOfStudent(studentId);
+  Future<void> deleteNotification(String notificationId, String teacherId) {
+    return teacherNotificationRepositories.deleteNotification(
+      notificationId,
+      teacherId,
+    );
   }
 
   Future<void> setPinned(String notificationId, bool isPinned) {
     return teacherNotificationRepositories.setPinned(notificationId, isPinned);
-  }
-
-  Future<void> markAsRead({
-    required String notificationId,
-    required String studentId,
-  }) {
-    return teacherNotificationRepositories.markAsRead(
-      notificationId: notificationId,
-      studentId: studentId,
-    );
   }
 
   Future<List<NotificationRecipientModel>> getRecipients(

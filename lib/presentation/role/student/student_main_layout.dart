@@ -1,10 +1,10 @@
 import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/l10n/app_localizations.dart';
 import 'package:edura/presentation/role/student/tabs/chat/student_chats_screen.dart';
-import 'package:edura/presentation/role/student/tabs/exams/exams.dart';
-import 'package:edura/presentation/role/student/tabs/home/student_home.dart';
+import 'package:edura/presentation/role/student/tabs/exams/presentation/view/exams.dart';
+import 'package:edura/presentation/role/student/tabs/home/presentation/view/student_home.dart';
 import 'package:edura/presentation/role/student/tabs/lessons/presentation/view/lessons.dart';
-import 'package:edura/presentation/role/student/tabs/profile/profile.dart';
+import 'package:edura/presentation/role/student/tabs/profile/presentation/view/profile.dart';
 import 'package:flutter/material.dart';
 
 class StudentMainLayout extends StatefulWidget {

@@ -7,7 +7,7 @@ abstract class HomeWorkRemoteDataSource {
   });
 
   Future<List<NewHomeworkModel>> getHomeworksByLesson(String lessonId);
-
+   Future<List<NewHomeworkModel>> getAllHomeworks();
   Future<void> publishHomework(String homeworkId);
 
   Future<void> deleteHomework(String homeworkId);

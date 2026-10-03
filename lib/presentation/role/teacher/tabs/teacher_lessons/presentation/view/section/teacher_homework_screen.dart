@@ -3,7 +3,7 @@ import 'package:edura/core/widgets/custom_text.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view/section/review_homework_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../../../core/model/homework_submission_model.dart';
+import '../../../../../../student/tabs/lessons/data/model/student_home_work/homework_submission_model.dart';
 import '../../../../../../../../l10n/app_localizations.dart';
 import '../widgets/homework_stat_card.dart';
 import '../widgets/submission_list_card.dart';
