@@ -12,12 +12,15 @@ class ExamUseCase {
     required String title,
     required String subject,
     required int durationMinutes,
+    required String teacherId,
+
     required List<QuestionDraftModel> questions,
     required DateTime startDate,
     required DateTime endDate,
   }) {
     return repositories.createExam(
       title: title,
+      teacherId: teacherId,
       subject: subject,
       durationMinutes: durationMinutes,
       questions: questions,

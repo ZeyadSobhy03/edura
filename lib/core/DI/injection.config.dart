@@ -13,6 +13,18 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../../presentation/auth/log_out/data/data_source/log_out_remote_data_source.dart'
+    as _i920;
+import '../../presentation/auth/log_out/data/data_source/log_out_supabase_data_source.dart'
+    as _i272;
+import '../../presentation/auth/log_out/data/repositories/log_out_repositories.dart'
+    as _i983;
+import '../../presentation/auth/log_out/data/repositories/log_out_repositories_imp.dart'
+    as _i299;
+import '../../presentation/auth/log_out/domain/use_case/log_out_use_case.dart'
+    as _i731;
+import '../../presentation/auth/log_out/presentation/view_model/log_out_view_model.dart'
+    as _i30;
 import '../../presentation/auth/login/data/data_source/remote/login_remote_data_source.dart'
     as _i1025;
 import '../../presentation/auth/login/data/data_source/remote/login_supabase_data_source.dart'
@@ -37,6 +49,18 @@ import '../../presentation/auth/register/domain/use_case/register_use_case.dart'
     as _i266;
 import '../../presentation/auth/register/presentation/view_model/register_view_model.dart'
     as _i23;
+import '../../presentation/role/student/tabs/exams/data/data_source/exam_remote_data_source.dart'
+    as _i1015;
+import '../../presentation/role/student/tabs/exams/data/data_source/exam_supabase_data_source.dart'
+    as _i275;
+import '../../presentation/role/student/tabs/exams/data/repositories/exam_repositories.dart'
+    as _i433;
+import '../../presentation/role/student/tabs/exams/data/repositories/exam_repositories_imp.dart'
+    as _i663;
+import '../../presentation/role/student/tabs/exams/domain/use_case/exam_use_case.dart'
+    as _i676;
+import '../../presentation/role/student/tabs/exams/presentation/view_model/exam_view_model.dart'
+    as _i750;
 import '../../presentation/role/student/tabs/home/data/data_source/student_notification/student_notification_remote_data_source.dart'
     as _i311;
 import '../../presentation/role/student/tabs/home/data/data_source/student_notification/student_notification_supabase_data_source.dart'
@@ -89,14 +113,26 @@ import '../../presentation/role/student/tabs/profile/data/data_source/student_no
     as _i168;
 import '../../presentation/role/student/tabs/profile/data/data_source/student_notes/student_supabase_data_source.dart'
     as _i597;
+import '../../presentation/role/student/tabs/profile/data/data_source/student_profile/student_profile_remote_data_source.dart'
+    as _i548;
+import '../../presentation/role/student/tabs/profile/data/data_source/student_profile/student_profile_supabase_data_source.dart'
+    as _i11;
 import '../../presentation/role/student/tabs/profile/data/repositories/student_notes/student_notes_repositories.dart'
     as _i113;
 import '../../presentation/role/student/tabs/profile/data/repositories/student_notes/student_notes_repositories_imp.dart'
     as _i520;
+import '../../presentation/role/student/tabs/profile/data/repositories/student_profile/student_profile_repositories.dart'
+    as _i626;
+import '../../presentation/role/student/tabs/profile/data/repositories/student_profile/student_profile_repositories_imp.dart'
+    as _i1050;
 import '../../presentation/role/student/tabs/profile/domain/use_case/student_notes/student_notes_use_case.dart'
     as _i1061;
+import '../../presentation/role/student/tabs/profile/domain/use_case/student_profile/student_profile_use_case.dart'
+    as _i539;
 import '../../presentation/role/student/tabs/profile/presentation/view_model/student_notes/student_notes_view_model.dart'
     as _i447;
+import '../../presentation/role/student/tabs/profile/presentation/view_model/student_profile/student_profile_view_model.dart'
+    as _i852;
 import '../../presentation/role/teacher/tabs/dashboard/data/data_source/activities/activities_remote_data_source.dart'
     as _i749;
 import '../../presentation/role/teacher/tabs/dashboard/data/data_source/activities/activities_supabase_data_source.dart'
@@ -303,6 +339,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i311.StudentNotificationRemoteDataSource>(
       () => _i337.StudentNotificationSupabaseDataSource(),
     );
+    gh.lazySingleton<_i1015.ExamRemoteDataSource>(
+      () => _i275.ExamSupabaseDataSource(),
+    );
     gh.lazySingleton<_i157.StudentNotificationRepositories>(
       () => _i249.StudentNotificationRepositoriesImp(
         studentNotificationRemoteDataSource:
@@ -318,8 +357,16 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i1025.LoginRemoteDataSource>(
       () => _i722.LoginSupabaseDataSource(),
     );
+    gh.lazySingleton<_i920.LogOutRemoteDataSource>(
+      () => _i272.LogOutSupabaseDataSource(),
+    );
     gh.lazySingleton<_i1009.HomeWorkRemoteDataSource>(
       () => _i480.HomeWorkSupabaseDataSource(),
+    );
+    gh.lazySingleton<_i983.LogOutRepositories>(
+      () => _i299.LogOutRepositoriesImp(
+        logOutRemoteDataSource: gh<_i920.LogOutRemoteDataSource>(),
+      ),
     );
     gh.lazySingleton<_i619.TeacherLessonsRemoteDataSource>(
       () => _i815.TeacherLessonsSupabaseDataSource(),
@@ -343,6 +390,9 @@ extension GetItInjectableX on _i174.GetIt {
         remoteDataSource: gh<_i77.TeacherProfileRemoteDataSource>(),
       ),
     );
+    gh.lazySingleton<_i548.StudentProfileRemoteDataSource>(
+      () => _i11.StudentProfileSupabaseDataSource(),
+    );
     gh.lazySingleton<_i113.StudentNotesRepositories>(
       () => _i520.StudentNotesRepositoriesImp(
         remoteDataSource: gh<_i168.StudentNotesRemoteDataSource>(),
@@ -357,9 +407,19 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i77.TeacherNotificationRemoteDataSource>(
       () => _i418.TeacherNotificationSupabaseDataSource(),
     );
+    gh.factory<_i731.LogOutUseCase>(
+      () => _i731.LogOutUseCase(
+        logOutRepositories: gh<_i983.LogOutRepositories>(),
+      ),
+    );
     gh.lazySingleton<_i686.ChangePasswordRepositories>(
       () => _i56.ChangePasswordRepositoriesImp(
         remoteDataSource: gh<_i919.ChangePasswordRemoteDataSource>(),
+      ),
+    );
+    gh.lazySingleton<_i433.ExamRepositories>(
+      () => _i663.ExamRepositoriesImp(
+        examRemoteDataSource: gh<_i1015.ExamRemoteDataSource>(),
       ),
     );
     gh.lazySingleton<_i80.GradeRemoteDataSource>(
@@ -388,6 +448,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i110.PaymentRemoteDataSource>(
       () => _i536.PaymentSupabaseDataSource(),
+    );
+    gh.factory<_i30.LogOutCubit>(
+      () => _i30.LogOutCubit(logOutUseCase: gh<_i731.LogOutUseCase>()),
     );
     gh.lazySingleton<_i710.LessonProgressRemoteDataSource>(
       () => _i487.LessonProgressSupabaseDataSource(),
@@ -418,6 +481,9 @@ extension GetItInjectableX on _i174.GetIt {
         homeWorkRepositories: gh<_i819.HomeWorkRepositories>(),
       ),
     );
+    gh.factory<_i676.ExamUseCase>(
+      () => _i676.ExamUseCase(examRepositories: gh<_i433.ExamRepositories>()),
+    );
     gh.lazySingleton<_i617.TeacherRemoteDataSource>(
       () => _i156.TeacherSupabaseDataSource(),
     );
@@ -442,6 +508,11 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i322.GradeUseCase>(
       () => _i322.GradeUseCase(repositories: gh<_i394.GardeRepositories>()),
+    );
+    gh.lazySingleton<_i626.StudentProfileRepositories>(
+      () => _i1050.StudentProfileRepositoriesImp(
+        remoteDataSource: gh<_i548.StudentProfileRemoteDataSource>(),
+      ),
     );
     gh.lazySingleton<_i200.TeacherRepositories>(
       () => _i466.TeacherRepositoriesImp(
@@ -567,6 +638,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i999.LoginUseCase>(
       () => _i999.LoginUseCase(loginRepositories: gh<_i43.LoginRepositories>()),
     );
+    gh.factory<_i750.StudentExamCubit>(
+      () => _i750.StudentExamCubit(examUseCase: gh<_i676.ExamUseCase>()),
+    );
+    gh.factory<_i539.StudentProfileUseCase>(
+      () => _i539.StudentProfileUseCase(
+        studentProfileRepositories: gh<_i626.StudentProfileRepositories>(),
+      ),
+    );
     gh.factory<_i266.RegisterUseCase>(
       () =>
           _i266.RegisterUseCase(repositories: gh<_i372.RegisterRepositories>()),
@@ -662,6 +741,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i155.SubjectClassesUseCase(
         repositories: gh<_i283.SubjectClassesRepositories>(),
       ),
+    );
+    gh.factory<_i852.StudentProfileCubit>(
+      () => _i852.StudentProfileCubit(gh<_i539.StudentProfileUseCase>()),
     );
     gh.factory<_i342.StudentCubit>(
       () => _i342.StudentCubit(studentUseCase: gh<_i406.StudentUseCase>()),

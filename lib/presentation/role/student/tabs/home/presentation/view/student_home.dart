@@ -26,12 +26,14 @@ class StudentHome extends StatefulWidget {
 
 class _StudentHomeState extends State<StudentHome> {
   String? studentId;
+  String? studentName;
 
   @override
   void initState() {
     super.initState();
 
     studentId = Supabase.instance.client.auth.currentUser?.id;
+    studentName = Supabase.instance.client.auth.currentUser?.userMetadata?['name'] as String?;
 
     if (studentId == null) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -61,7 +63,7 @@ class _StudentHomeState extends State<StudentHome> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               HomeHeader(
-                userName: "Ziyad Sobhy",
+                userName: studentName?? '',
                 onTap: () {
                   Navigator.pushNamed(
                     context,
@@ -77,7 +79,7 @@ class _StudentHomeState extends State<StudentHome> {
 
               BlocBuilder<TeacherLessonsCubit, TeacherLessonsState>(
                 builder: (context, state) {
-                  if (state is TeacherLessonsLoading) {
+                  if (state is TeacherLessonsLoading || state is TeacherLessonsInitial) {
                     return const Center(
                       child: CircularProgressIndicator(
                         color: ColorManager.primary,
@@ -105,6 +107,7 @@ class _StudentHomeState extends State<StudentHome> {
                     return UpNextLesson(
                       key: ValueKey(lessons.first.id),
                       lesson: lessons.first,
+
                       studentId: id,
                     );
                   }

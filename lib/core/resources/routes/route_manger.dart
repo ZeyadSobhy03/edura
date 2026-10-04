@@ -1,5 +1,4 @@
 import 'package:edura/core/model/chat_args.dart';
-import 'package:edura/core/model/exam_attempt_arguments.dart';
 import 'package:edura/presentation/role/student/tabs/lessons/data/model/student_home_work/homework_submission_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/students/data/model/student_detail_model.dart';
 import 'package:edura/core/widgets/chat/chat.dart';
@@ -59,6 +58,7 @@ import '../../../presentation/role/teacher/tabs/teacher_profile/presentation/vie
 import '../../../presentation/role/teacher/teacher_main_layout.dart';
 import '../../../presentation/splash_screen/splash_screen.dart';
 import '../../model/edit_profile_arguments.dart';
+import '../../model/exam_model.dart';
 import '../../model/lesson_model.dart';
 import '../../../presentation/role/teacher/tabs/teacher_profile/data/model/teacher_profile_model.dart';
 import '../../model/web_view_arguments.dart';
@@ -270,10 +270,10 @@ class RouteManger {
         return MaterialPageRoute(builder: (context) => Lessons());
 
       case examAttemptScreen:
-        final args = settings.arguments as ExamAttemptArguments;
+        final args =settings.arguments as ExamModel;
         return MaterialPageRoute(
           builder: (context) =>
-              ExamAttemptScreen(exam: args.exam, questions: args.questions),
+              ExamAttemptScreen(exam: args),
         );
 
       case questionBuilderScreen:

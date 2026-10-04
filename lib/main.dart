@@ -1,12 +1,15 @@
 import 'package:edura/edura_app.dart';
+import 'package:edura/presentation/auth/log_out/presentation/view_model/log_out_view_model.dart';
 
 import 'package:edura/presentation/auth/login/presentation/view_model/login_view_model.dart';
 import 'package:edura/presentation/auth/register/presentation/view_model/register_view_model.dart';
+import 'package:edura/presentation/role/student/tabs/exams/presentation/view_model/exam_view_model.dart';
 import 'package:edura/presentation/role/student/tabs/home/presentation/view_model/student_notification/student_notification_view_model.dart';
 import 'package:edura/presentation/role/student/tabs/home/presentation/view_model/student_stats/student_stats_view_model.dart';
 import 'package:edura/presentation/role/student/tabs/lessons/presentation/view_model/lesson_progress/lesson_progress_view_model.dart';
 import 'package:edura/presentation/role/student/tabs/lessons/presentation/view_model/student_home_work/student_home_work_view_model.dart';
 import 'package:edura/presentation/role/student/tabs/profile/presentation/view_model/student_notes/student_notes_view_model.dart';
+import 'package:edura/presentation/role/student/tabs/profile/presentation/view_model/student_profile/student_profile_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/dashboard/presentation/view_model/activities/activities_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/dashboard/presentation/view_model/analytics/analytics_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/dashboard/presentation/view_model/dashboard/dashboard_view_model.dart';
@@ -29,9 +32,18 @@ import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentatio
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:hive_ce/hive.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'core/DI/injection.dart';
+import 'presentation/auth/login/data/data_source/local/login_hive_data_source.dart';
+
+Future<void> _initializeHive() async {
+  final appDocumentDirectory = await getApplicationDocumentsDirectory();
+  Hive.init(appDocumentDirectory.path);
+  await Hive.openBox<dynamic>(LoginHiveDataSource.boxName);
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,6 +63,7 @@ void main() async {
     serverClientId:
         "253234772403-pn4ubo3k6lkg9tkmaoolps40ruv8fjh4.apps.googleusercontent.com",
   );
+  await _initializeHive();
   configureDependencies();
 
   runApp(
@@ -78,8 +91,11 @@ void main() async {
         BlocProvider(create: (context) => getIt<StudentHomeWorkCubit>()),
         BlocProvider(create: (context) => getIt<ChangePasswordCubit>()),
         BlocProvider(create: (context) => getIt<AnalyticsCubit>()),
+        BlocProvider(create: (context) => getIt<LogOutCubit>(),),
         BlocProvider(create: (context) => getIt<StudentNotificationCubit>(),),
         BlocProvider(create: (context) => getIt<StudentStatsCubit>()),
+        BlocProvider(create: (context) => getIt<StudentProfileCubit>(),),
+        BlocProvider(create: (context) => getIt<StudentExamCubit>(),),
       ],
 
       child: const EduraApp(),

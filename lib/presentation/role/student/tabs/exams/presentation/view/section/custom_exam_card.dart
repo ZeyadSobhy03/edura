@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +25,8 @@ class CustomExamCard extends StatelessWidget {
     final l10 = AppLocalizations.of(context)!;
     final locale = Localizations.localeOf(context).languageCode;
     final statusStyle = ExamStatusStyle.of(exam.status, l10);
+
+    log('Exam Card: ${exam.title}, Status: ${exam.status}, Style: ${statusStyle.label}, questions Count ${exam.questionsCount}');
 
     return Container(
       margin: const EdgeInsets.only(bottom: 12),

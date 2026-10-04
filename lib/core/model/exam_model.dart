@@ -1,4 +1,3 @@
-
 enum ExamStatus { available, completed, upcoming, locked }
 
 class ExamModel {
@@ -9,6 +8,8 @@ class ExamModel {
   final int durationMinutes;
   final int questionsCount;
   final DateTime date;
+  final DateTime? startDate;
+  final DateTime? endDate;
   final double? score;
   final bool? passed;
   final List<String>? instructions;
@@ -22,6 +23,8 @@ class ExamModel {
     required this.durationMinutes,
     required this.questionsCount,
     required this.date,
+    this.startDate,
+    this.endDate,
     this.score,
     this.passed,
     this.instructions,
@@ -29,75 +32,62 @@ class ExamModel {
   });
 
   factory ExamModel.fromJson(Map<String, dynamic> json) {
+    DateTime? parse(dynamic v) =>
+        v == null ? null : DateTime.parse(v as String).toLocal();
+
+    final startDate = parse(json['start_date']);
+    final endDate = parse(json['end_date']);
+    final createdAt = parse(json['created_at']) ?? DateTime.now();
+
+    final attemptState = json['attempt_state'] as String?;
+    final isLocked = json['is_locked'] as bool? ?? false;
+
+    double? percent;
+    bool? passed;
+    if (attemptState == 'submitted' &&
+        json['score'] != null &&
+        json['max_score'] != null) {
+      final max = (json['max_score'] as num).toDouble();
+      if (max > 0) {
+        percent = (json['score'] as num).toDouble() / max * 100;
+        passed = percent >= 50;
+      }
+    }
+
     return ExamModel(
       id: json['id'].toString(),
       title: json['title'] ?? '',
       subject: json['subject'] ?? '',
-      status: ExamStatus.values.firstWhere(
-            (e) => e.name == json['status'],
-        orElse: () => ExamStatus.upcoming,
+      status: _computeStatus(
+        isLocked: isLocked,
+        attemptState: attemptState,
+        startDate: startDate,
+        endDate: endDate,
       ),
       durationMinutes: json['duration_minutes'] ?? 0,
-      questionsCount: json['questions_count'] ?? 0,
-      date: DateTime.parse(json['date']),
-      score: json['score'] != null ? (json['score'] as num).toDouble() : null,
-      passed: json['passed'],
+      questionsCount:  json['question_count'] ?? 0,
+      date: startDate ?? endDate ?? createdAt,
+      startDate: startDate,
+      endDate: endDate,
+      score: percent,
+      passed: passed,
+      instructions: null,
+      requirements: null,
     );
   }
 
-
-}
-
-class DummyExamData {
-  static List<ExamModel> all = [
-    ExamModel(
-      id: '1',
-      title: 'Calculus Midterm',
-      subject: 'Mathematics',
-      status: ExamStatus.available,
-      durationMinutes: 90,
-      questionsCount: 30,
-      date: DateTime(2026, 1, 20),
-    ),
-    ExamModel(
-      id: '2',
-      title: 'Physics Quiz 1',
-      subject: 'Physics',
-      status: ExamStatus.completed,
-      durationMinutes: 45,
-      questionsCount: 20,
-      date: DateTime(2026, 1, 10),
-      score: 88,
-      passed: true,
-    ),
-    ExamModel(
-      id: '3',
-      title: 'Chemistry Final',
-      subject: 'Chemistry',
-      status: ExamStatus.completed,
-      durationMinutes: 120,
-      questionsCount: 50,
-      date: DateTime(2025, 12, 15),
-      score: 42,
-      passed: false,
-    ),
-    ExamModel(
-      id: '4',
-      title: 'Integration Techniques Test',
-      subject: 'Mathematics',
-      status: ExamStatus.upcoming,
-      durationMinutes: 60,
-      questionsCount: 25,
-      date: DateTime(2026, 2, 5),
-    ),
-    ExamModel(
-      id: '5',
-      title: 'Advanced Mechanics',
-      subject: 'Physics',
-      status: ExamStatus.locked,
-      durationMinutes: 90,
-      questionsCount: 35,
-      date: DateTime(2026, 2, 20),
-    ),
-  ];
+  static ExamStatus _computeStatus({
+    required bool isLocked,
+    required String? attemptState,
+    required DateTime? startDate,
+    required DateTime? endDate,
+  }) {
+    final now = DateTime.now();
+    if (attemptState == 'submitted') return ExamStatus.completed;
+    if (isLocked) return ExamStatus.locked;
+    if (attemptState == 'in_progress') return ExamStatus.locked; // no resume yet
+    if (startDate != null && now.isBefore(startDate)) return ExamStatus.upcoming;
+    if (endDate != null && now.isAfter(endDate)) return ExamStatus.locked;
+    return ExamStatus.available;
+  }
 }

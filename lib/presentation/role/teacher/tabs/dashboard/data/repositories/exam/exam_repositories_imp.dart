@@ -13,6 +13,8 @@ class ExamRepositoriesImp implements ExamRepositories {
   Future<Map<String, dynamic>> createExam({
     required String title,
     required String subject,
+    required String teacherId,
+
     required int durationMinutes,
     required List<QuestionDraftModel> questions,
     required DateTime startDate,
@@ -25,6 +27,8 @@ class ExamRepositoriesImp implements ExamRepositories {
       questions: questions,
       endDate: endDate,
       startDate: startDate,
+      teacherId: teacherId
+
     );
   }
 }

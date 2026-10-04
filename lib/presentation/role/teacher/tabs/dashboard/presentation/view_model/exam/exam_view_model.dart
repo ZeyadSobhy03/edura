@@ -17,11 +17,14 @@ class ExamCubit extends Cubit<ExamState> {
     required List<QuestionDraftModel> questions,
     required DateTime startDate,
     required DateTime endDate,
+    required String teacherId,
+
   }) async {
     emit(ExamLoading());
     try {
       final result = await examUseCase.createExam(
         title: title,
+        teacherId: teacherId,
         subject: subject,
         durationMinutes: durationMinutes,
         questions: questions,

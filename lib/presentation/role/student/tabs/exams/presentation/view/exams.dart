@@ -5,7 +5,10 @@ import 'package:edura/core/widgets/custom_category_filter.dart';
 import 'package:edura/core/widgets/custom_label.dart';
 import 'package:edura/l10n/app_localizations.dart';
 import 'package:edura/presentation/role/student/tabs/exams/presentation/view/section/custom_exam_card.dart';
+import 'package:edura/presentation/role/student/tabs/exams/presentation/view_model/exam_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../../../../core/model/exam_model.dart';
 
@@ -18,6 +21,29 @@ class Exams extends StatefulWidget {
 
 class _ExamsState extends State<Exams> {
   String selectedCategory = "Available";
+  String? studentId;
+
+  @override
+  void initState() {
+    super.initState();
+    studentId = Supabase.instance.client.auth.currentUser?.id;
+
+    if (studentId == null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        Navigator.pushReplacementNamed(context, RouteManger.loginRoute);
+      });
+      return;
+    }
+
+    _reload();
+  }
+
+  void _reload() {
+    final id = studentId;
+    if (id == null) return;
+    context.read<StudentExamCubit>().loadExams(studentId: id);
+  }
 
   ExamStatus _categoryToStatus(String category) {
     switch (category) {
@@ -33,13 +59,12 @@ class _ExamsState extends State<Exams> {
     }
   }
 
-  List<ExamModel> get _filteredExams {
-    final status = _categoryToStatus(selectedCategory);
-    return DummyExamData.all.where((e) => e.status == status).toList();
-  }
-
   @override
   Widget build(BuildContext context) {
+    if (studentId == null) {
+      return const Scaffold(body: SizedBox.shrink());
+    }
+
     final l10 = AppLocalizations.of(context)!;
     final List<String> categories = [
       "Available",
@@ -47,7 +72,6 @@ class _ExamsState extends State<Exams> {
       "Upcoming",
       "Locked",
     ];
-    final exams = _filteredExams;
 
     return Scaffold(
       backgroundColor: ColorManager.white,
@@ -63,41 +87,109 @@ class _ExamsState extends State<Exams> {
                 categories: categories,
                 labelBuilder: (category) =>
                     LocalizeCategory.localizeCategory(category, context),
-
                 selected: selectedCategory,
                 onSelected: (category) =>
                     setState(() => selectedCategory = category),
               ),
               const SizedBox(height: 16),
               Expanded(
-                child: exams.isEmpty
-                    ? Center(
-                        child: Text(
-                          l10.noExamsFound,
-                          style: TextStyle(
-                            color: ColorManager.black.withValues(alpha: 0.5),
-                          ),
+                child: BlocBuilder<StudentExamCubit, ExamState>(
+                  buildWhen: (previous, current) =>
+                  current is ExamInitial ||
+                      current is ExamsLoading ||
+                      current is ExamsLoaded ||
+                      current is ExamError,
+                  builder: (context, state) {
+                    if (state is ExamsLoading || state is ExamInitial) {
+                      return const Center(
+                        child: CircularProgressIndicator(
+                          color: ColorManager.primary,
                         ),
-                      )
-                    : ListView.builder(
+                      );
+                    }
+
+                    if (state is ExamError) {
+                      return Center(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              state.message,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                color: ColorManager.red,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            TextButton(
+                              onPressed: _reload,
+                              child:  Text(l10.retry),
+                            ),
+                          ],
+                        ),
+                      );
+                    }
+
+                    if (state is! ExamsLoaded) {
+                      return const SizedBox.shrink();
+                    }
+
+                    final status = _categoryToStatus(selectedCategory);
+                    final exams = state.exams
+                        .where((e) => e.status == status)
+                        .toList();
+
+                    if (exams.isEmpty) {
+                      return RefreshIndicator(
+                        onRefresh: () async => _reload(),
+                        child: ListView(
+                          physics: const AlwaysScrollableScrollPhysics(),
+                          children: [
+                            SizedBox(
+                              height: 200,
+                              child: Center(
+                                child: Text(
+                                  l10.noExamsFound,
+                                  style: const TextStyle(
+                                    color: ColorManager.gray,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    }
+
+                    return RefreshIndicator(
+                      onRefresh: () async => _reload(),
+                      child: ListView.builder(
+                        physics: const AlwaysScrollableScrollPhysics(),
                         itemCount: exams.length,
                         itemBuilder: (context, index) {
                           final exam = exams[index];
                           return CustomExamCard(
                             exam: exam,
                             onStart: exam.status == ExamStatus.available
-                                ? () {
-                                    Navigator.pushNamed(
-                                      context,
-                                      RouteManger.examDetailsScreen,
-                                      arguments: exam,
-
-                                    );
-                                  }
+                                ? () async {
+                              await Navigator.pushNamed(
+                                context,
+                                RouteManger.examDetailsScreen,
+                                arguments: exam,
+                              );
+                              if (mounted) _reload();
+                            }
                                 : null,
                           );
                         },
                       ),
+                    );
+                  },
+                ),
               ),
             ],
           ),

@@ -1,6 +1,4 @@
-import 'package:edura/core/model/exam_attempt_arguments.dart';
 import 'package:edura/core/model/exam_model.dart';
-import 'package:edura/core/model/question_model.dart';
 import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/resources/routes/route_manger.dart';
 import 'package:edura/core/widgets/custom_elevated_button.dart';
@@ -101,10 +99,7 @@ class _ExamDetailsState extends State<ExamDetails> {
                   Navigator.pushNamed(
                     context,
                     RouteManger.examAttemptScreen,
-                    arguments: ExamAttemptArguments(
-                      exam: exam,
-                      questions: DummyQuestionData.calculusQuestions,
-                    ),
+                    arguments: exam,
                   );
                 },
               ),

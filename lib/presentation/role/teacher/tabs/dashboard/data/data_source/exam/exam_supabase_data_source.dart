@@ -16,48 +16,33 @@ class ExamSupabaseDataSource implements ExamRemoteDataSource {
   @override
   Future<Map<String, dynamic>> createExam({
     required String title,
+    required String teacherId,
     required String subject,
     required int durationMinutes,
     required List<QuestionDraftModel> questions,
     required DateTime startDate,
     required DateTime endDate,
+    List<String> studentIds = const [],
   }) async {
     try {
-      final user = supabase.auth.currentUser;
-      if (user == null) {
-        throw const UnauthorizedError();
-      }
-
-      final examResponse = await supabase
-          .from('exams')
-          .insert({
-            'title': title,
-            'subject': subject,
-            'duration_minutes': durationMinutes,
-            'teacher_id': user.id,
-            'start_date': startDate.toIso8601String(),
-            'end_date': endDate.toIso8601String(),
-          })
-          .select()
-          .single();
-
-      final questionRows = questions
-          .map(
-            (question) => {
-              'exam_id': examResponse['id'],
-              'question_text': question.questionText,
-              'options': question.options,
-              'correct_option_index': question.correctOptionIndex,
-            },
-          )
-          .toList();
-
-      await supabase.from('exam_questions').insert(questionRows);
-
-      return examResponse;
+      final res = await supabase.rpc('create_exam', params: {
+        'p_title': title,
+        'p_subject': subject,
+        'p_duration_minutes': durationMinutes,
+        'p_start_date': startDate.toUtc().toIso8601String(),
+        'p_end_date': endDate.toUtc().toIso8601String(),
+        'p_questions': questions
+            .map((q) => {
+          'question_text': q.questionText,
+          'options': q.options,
+          'correct_option_index': q.correctOptionIndex,
+        })
+            .toList(),
+        'p_student_ids': studentIds,
+      });
+      return res as Map<String, dynamic>;
     } on SocketException catch (e) {
       log('SocketException: $e');
-
       throw const NoInternetError();
     } on TimeoutException {
       throw const TimeoutError();
@@ -66,7 +51,6 @@ class ExamSupabaseDataSource implements ExamRemoteDataSource {
       throw ServerError();
     } on AppError catch (e) {
       log('AppError: $e');
-
       rethrow;
     } catch (e) {
       log('Unexpected error: $e');

@@ -9,6 +9,7 @@ import 'package:edura/presentation/role/teacher/tabs/dashboard/presentation/view
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../../../../../../l10n/app_localizations.dart';
 import '../../../../data/model/exam/question_draft_model.dart';
@@ -24,6 +25,7 @@ class QuestionBuilderScreen extends StatefulWidget {
 
 class _QuestionBuilderScreenState extends State<QuestionBuilderScreen> {
   final List<QuestionDraftModel> _questions = [QuestionDraftModel()];
+  String? teacherId;
 
   late TextEditingController _titleController;
   late TextEditingController _subjectController;
@@ -36,6 +38,7 @@ class _QuestionBuilderScreenState extends State<QuestionBuilderScreen> {
   @override
   void initState() {
     super.initState();
+    teacherId = Supabase.instance.client.auth.currentUser?.id;
     _titleController = TextEditingController();
     _subjectController = TextEditingController();
     _durationController = TextEditingController();
@@ -217,6 +220,7 @@ class _QuestionBuilderScreenState extends State<QuestionBuilderScreen> {
     final durationMinutes = int.parse(_durationController.text.trim());
 
     context.read<ExamCubit>().createExam(
+      teacherId: teacherId!,
       title: title,
       subject: subject,
       durationMinutes: durationMinutes,

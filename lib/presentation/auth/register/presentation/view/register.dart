@@ -2,6 +2,7 @@
 import 'package:edura/core/localization/error_messages.dart';
 import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/resources/routes/route_manger.dart';
+import 'package:edura/presentation/auth/login/data/data_source/local/login_hive_data_source.dart';
 import 'package:edura/core/widgets/custom_elevated_button.dart';
 import 'package:edura/core/widgets/custom_text.dart';
 import 'package:edura/core/widgets/custom_text_button.dart';
@@ -23,6 +24,7 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  final LoginHiveDataSource _localDataSource = LoginHiveDataSource();
   String? _selectedGrade;
   bool _isPasswordVisible = false;
   bool _isConfirmPasswordVisible = false;
@@ -165,7 +167,7 @@ class _RegisterState extends State<Register> {
             ),
           );
         },
-        listener: (context, state) {
+        listener: (context, state) async {
           if (state is RegisterLoading) {
             Fluttertoast.showToast(
               msg: l10.registering,
@@ -174,6 +176,11 @@ class _RegisterState extends State<Register> {
             );
           }
           if (state is RegisterSuccess) {
+            await _localDataSource.saveSession(
+              userId: state.data.id,
+              role: 'student',
+              email: state.data.email,
+            );
             Fluttertoast.showToast(
               msg: l10.registerSuccess,
               backgroundColor: ColorManager.green,

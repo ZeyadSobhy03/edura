@@ -135,7 +135,7 @@ class UpNextCard extends StatelessWidget {
                     ),
                     padding: const EdgeInsets.symmetric(vertical: 12),
                   ),
-                  onPressed: () {},
+                  onPressed: onTap,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

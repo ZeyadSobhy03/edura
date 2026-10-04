@@ -68,14 +68,22 @@ class _LoginSectionState extends State<LoginSection> {
                 backgroundColor: ColorManager.green,
                 gravity: ToastGravity.BOTTOM,
               );
-              Navigator.pushNamed(context, RouteManger.studentMainLayoutRoute);
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                RouteManger.studentMainLayoutRoute,
+                (route) => false,
+              );
             } else {
               Fluttertoast.showToast(
                 msg: l10.messageLoginSuccess,
                 backgroundColor: ColorManager.green,
                 gravity: ToastGravity.BOTTOM,
               );
-              Navigator.pushNamed(context, RouteManger.teacherMainLayoutRoute);
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                RouteManger.teacherMainLayoutRoute,
+                (route) => false,
+              );
             }
           } else if (state is LoginFailure || state is LoginWithGoogleFailure) {
 
@@ -207,11 +215,15 @@ class _LoginSectionState extends State<LoginSection> {
     if (!_formKey.currentState!.validate()) return;
     var email = _emailController.text.trim();
     var password = _passwordController.text.trim();
-    context.read<LoginCubit>().login(email, password);
+    context.read<LoginCubit>().login(
+      email,
+      password,
+      role: isStudent ? 'student' : 'teacher',
+    );
   }
 
   void _loginWithGoogle() {
-    context.read<LoginCubit>().loginWithGoogle();
+    context.read<LoginCubit>().loginWithGoogle(role: 'student');
   }
 
   Widget _loginWithGoogleAndCreateAccountSection(
