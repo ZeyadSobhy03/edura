@@ -113,6 +113,10 @@ import '../../presentation/role/student/tabs/profile/data/data_source/leaderboar
     as _i711;
 import '../../presentation/role/student/tabs/profile/data/data_source/leaderboard/leaderboard_supabase_data_source.dart'
     as _i256;
+import '../../presentation/role/student/tabs/profile/data/data_source/schedule/schedule_remote_data_source.dart'
+    as _i54;
+import '../../presentation/role/student/tabs/profile/data/data_source/schedule/schedule_supabase_data_source.dart'
+    as _i3;
 import '../../presentation/role/student/tabs/profile/data/data_source/student_notes/student_notes_remote_data_source.dart'
     as _i168;
 import '../../presentation/role/student/tabs/profile/data/data_source/student_notes/student_supabase_data_source.dart'
@@ -125,6 +129,10 @@ import '../../presentation/role/student/tabs/profile/data/repositories/leaderboa
     as _i236;
 import '../../presentation/role/student/tabs/profile/data/repositories/leaderboard/leaderboard_repositories_imp.dart'
     as _i587;
+import '../../presentation/role/student/tabs/profile/data/repositories/schedule/schedule_repositories.dart'
+    as _i893;
+import '../../presentation/role/student/tabs/profile/data/repositories/schedule/schedule_repositories_imp.dart'
+    as _i321;
 import '../../presentation/role/student/tabs/profile/data/repositories/student_notes/student_notes_repositories.dart'
     as _i113;
 import '../../presentation/role/student/tabs/profile/data/repositories/student_notes/student_notes_repositories_imp.dart'
@@ -135,12 +143,16 @@ import '../../presentation/role/student/tabs/profile/data/repositories/student_p
     as _i1050;
 import '../../presentation/role/student/tabs/profile/domain/use_case/leaderboard/leaderboard_use_case.dart'
     as _i76;
+import '../../presentation/role/student/tabs/profile/domain/use_case/schedule/schedule_use_case.dart'
+    as _i582;
 import '../../presentation/role/student/tabs/profile/domain/use_case/student_notes/student_notes_use_case.dart'
     as _i1061;
 import '../../presentation/role/student/tabs/profile/domain/use_case/student_profile/student_profile_use_case.dart'
     as _i539;
 import '../../presentation/role/student/tabs/profile/presentation/view_model/leaderboard/leaderboard_view_model.dart'
     as _i1066;
+import '../../presentation/role/student/tabs/profile/presentation/view_model/schedule/schedule_view_model.dart'
+    as _i682;
 import '../../presentation/role/student/tabs/profile/presentation/view_model/student_notes/student_notes_view_model.dart'
     as _i447;
 import '../../presentation/role/student/tabs/profile/presentation/view_model/student_profile/student_profile_view_model.dart'
@@ -362,6 +374,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i749.ActivitiesRemoteDataSource>(
       () => _i967.ActivitiesSupabaseDataSource(),
+    );
+    gh.lazySingleton<_i54.ScheduleRemoteDataSource>(
+      () => _i3.ScheduleSupabaseDataSource(),
     );
     gh.lazySingleton<_i506.ExamRemoteDataSource>(
       () => _i929.ExamSupabaseDataSource(),
@@ -632,6 +647,11 @@ extension GetItInjectableX on _i174.GetIt {
         studentNotesUseCase: gh<_i1061.StudentNotesUseCase>(),
       ),
     );
+    gh.lazySingleton<_i893.ScheduleRepositories>(
+      () => _i321.ScheduleRepositoriesImp(
+        scheduleRemoteDataSource: gh<_i54.ScheduleRemoteDataSource>(),
+      ),
+    );
     gh.factory<_i923.StudentStatsUseCase>(
       () => _i923.StudentStatsUseCase(
         studentStatsRepositories: gh<_i869.StudentStatsRepositories>(),
@@ -701,6 +721,11 @@ extension GetItInjectableX on _i174.GetIt {
         studentStatsUseCase: gh<_i923.StudentStatsUseCase>(),
       ),
     );
+    gh.factory<_i582.ScheduleUseCase>(
+      () => _i582.ScheduleUseCase(
+        scheduleRepositories: gh<_i893.ScheduleRepositories>(),
+      ),
+    );
     gh.factory<_i23.RegisterCubit>(
       () => _i23.RegisterCubit(registerUseCase: gh<_i266.RegisterUseCase>()),
     );
@@ -757,6 +782,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i661.ActivitiesUseCase>(
       () => _i661.ActivitiesUseCase(
         activitiesRepositories: gh<_i497.ActivitiesRepositories>(),
+      ),
+    );
+    gh.factory<_i682.StudentScheduleCubit>(
+      () => _i682.StudentScheduleCubit(
+        scheduleUseCase: gh<_i582.ScheduleUseCase>(),
       ),
     );
     gh.factory<_i113.AnalyticsUseCase>(

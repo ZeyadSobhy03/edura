@@ -3,7 +3,6 @@ import 'package:edura/core/resources/routes/route_manger.dart';
 import 'package:edura/core/widgets/custom_list_tail.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../../../core/model/class_schedule_model.dart';
 import '../../../../../../../../l10n/app_localizations.dart';
 
 
@@ -45,7 +44,6 @@ class ProfileBody extends StatelessWidget {
               iconColor: ColorManager.purple,
               onTap: () {
                 Navigator.pushNamed(context, RouteManger.scheduleScreen,
-                arguments: DummyScheduleData.all
                 );
               },
             ),
