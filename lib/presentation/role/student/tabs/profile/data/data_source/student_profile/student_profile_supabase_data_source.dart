@@ -11,13 +11,29 @@ class StudentProfileSupabaseDataSource
   @override
   Future<StudentModel> getStudentProfile({required String studentId}) async {
     try {
-      final response = await supabase
+      final current = supabase.auth.currentUser?.id;
+      if (current == null || current != studentId) {
+        throw const AuthException('Student id does not match the session');
+      }
+
+      final profile = await supabase
           .from('students')
           .select()
           .eq('id', studentId)
           .single();
 
-      return StudentModel.fromJson(response);
+      final rows = await supabase.rpc('get_my_stats') as List;
+      final stats = rows.isNotEmpty
+          ? Map<String, dynamic>.from(rows.first as Map)
+          : <String, dynamic>{};
+
+      return StudentModel.fromJson({
+        ...profile,
+        'lessons': stats['lessons'] ?? profile['lessons'],
+        'average_score': stats['average_score'] ?? profile['average_score'],
+        'points': stats['points'],
+        'rank': stats['rank'],
+      });
     } catch (e) {
       throw Exception('Failed to fetch student profile: $e');
     }

@@ -11,7 +11,7 @@ class StatCard extends StatelessWidget {
   });
 
   final String title;
-  final int value;
+  final num value;
   final Color valueColor;
 
   @override

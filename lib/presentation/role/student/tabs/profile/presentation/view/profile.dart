@@ -102,8 +102,8 @@ class _ProfileState extends State<Profile> {
                         ProfileStateRow(
                           numberOfLessons: student.lessons,
                           averageScore: student.averageScore,
-                          rank: 0,
-                          points: 0,
+                          rank: student.rank,
+                          points: student.points,
                         ),
                         const ProfileBody(),
                         const SizedBox(height: 16),

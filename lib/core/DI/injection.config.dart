@@ -109,6 +109,10 @@ import '../../presentation/role/student/tabs/lessons/presentation/view_model/les
     as _i1022;
 import '../../presentation/role/student/tabs/lessons/presentation/view_model/student_home_work/student_home_work_view_model.dart'
     as _i489;
+import '../../presentation/role/student/tabs/profile/data/data_source/leaderboard/leaderboard_remote_data_source.dart'
+    as _i711;
+import '../../presentation/role/student/tabs/profile/data/data_source/leaderboard/leaderboard_supabase_data_source.dart'
+    as _i256;
 import '../../presentation/role/student/tabs/profile/data/data_source/student_notes/student_notes_remote_data_source.dart'
     as _i168;
 import '../../presentation/role/student/tabs/profile/data/data_source/student_notes/student_supabase_data_source.dart'
@@ -117,6 +121,10 @@ import '../../presentation/role/student/tabs/profile/data/data_source/student_pr
     as _i548;
 import '../../presentation/role/student/tabs/profile/data/data_source/student_profile/student_profile_supabase_data_source.dart'
     as _i11;
+import '../../presentation/role/student/tabs/profile/data/repositories/leaderboard/leaderboard_repositories.dart'
+    as _i236;
+import '../../presentation/role/student/tabs/profile/data/repositories/leaderboard/leaderboard_repositories_imp.dart'
+    as _i587;
 import '../../presentation/role/student/tabs/profile/data/repositories/student_notes/student_notes_repositories.dart'
     as _i113;
 import '../../presentation/role/student/tabs/profile/data/repositories/student_notes/student_notes_repositories_imp.dart'
@@ -125,10 +133,14 @@ import '../../presentation/role/student/tabs/profile/data/repositories/student_p
     as _i626;
 import '../../presentation/role/student/tabs/profile/data/repositories/student_profile/student_profile_repositories_imp.dart'
     as _i1050;
+import '../../presentation/role/student/tabs/profile/domain/use_case/leaderboard/leaderboard_use_case.dart'
+    as _i76;
 import '../../presentation/role/student/tabs/profile/domain/use_case/student_notes/student_notes_use_case.dart'
     as _i1061;
 import '../../presentation/role/student/tabs/profile/domain/use_case/student_profile/student_profile_use_case.dart'
     as _i539;
+import '../../presentation/role/student/tabs/profile/presentation/view_model/leaderboard/leaderboard_view_model.dart'
+    as _i1066;
 import '../../presentation/role/student/tabs/profile/presentation/view_model/student_notes/student_notes_view_model.dart'
     as _i447;
 import '../../presentation/role/student/tabs/profile/presentation/view_model/student_profile/student_profile_view_model.dart'
@@ -376,6 +388,9 @@ extension GetItInjectableX on _i174.GetIt {
         remoteDataSource: gh<_i968.StudentHomeWorkRemoteDataSource>(),
       ),
     );
+    gh.lazySingleton<_i711.LeaderboardRemoteDataSource>(
+      () => _i256.LeaderboardSupabaseDataSource(),
+    );
     gh.lazySingleton<_i77.TeacherProfileRemoteDataSource>(
       () => _i176.TeacherProfileSupabaseDataSource(),
     );
@@ -601,6 +616,11 @@ extension GetItInjectableX on _i174.GetIt {
         remoteDataSource: gh<_i749.ActivitiesRemoteDataSource>(),
       ),
     );
+    gh.lazySingleton<_i236.LeaderboardRepositories>(
+      () => _i587.LeaderboardRepositoriesImp(
+        leaderboardRemoteDataSource: gh<_i711.LeaderboardRemoteDataSource>(),
+      ),
+    );
     gh.factory<_i668.ExamCubit>(
       () => _i668.ExamCubit(examUseCase: gh<_i817.ExamUseCase>()),
     );
@@ -633,6 +653,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i594.ChatsRepositories>(
       () => _i696.ChatsRepositoriesImp(
         remoteDataSource: gh<_i53.ChatsRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i76.LeaderboardUseCase>(
+      () => _i76.LeaderboardUseCase(
+        leaderboardRepositories: gh<_i236.LeaderboardRepositories>(),
       ),
     );
     gh.factory<_i999.LoginUseCase>(
@@ -716,6 +741,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1022.LessonProgressCubit>(
       () => _i1022.LessonProgressCubit(
         lessonProgressUseCase: gh<_i620.LessonProgressUseCase>(),
+      ),
+    );
+    gh.factory<_i1066.LeaderboardCubit>(
+      () => _i1066.LeaderboardCubit(
+        leaderboardUseCase: gh<_i76.LeaderboardUseCase>(),
       ),
     );
     gh.factory<_i964.ChatsCubit>(

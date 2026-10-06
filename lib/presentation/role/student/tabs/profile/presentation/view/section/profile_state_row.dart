@@ -16,8 +16,8 @@ class ProfileStateRow extends StatelessWidget {
 
   final int numberOfLessons;
   final int averageScore;
-  final int rank;
-  final int points;
+  final double rank;
+  final double points;
 
   @override
   Widget build(BuildContext context) {

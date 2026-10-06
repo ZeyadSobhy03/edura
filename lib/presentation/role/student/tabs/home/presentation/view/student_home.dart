@@ -27,13 +27,19 @@ class StudentHome extends StatefulWidget {
 class _StudentHomeState extends State<StudentHome> {
   String? studentId;
   String? studentName;
+  String? grade;
 
   @override
   void initState() {
     super.initState();
 
     studentId = Supabase.instance.client.auth.currentUser?.id;
-    studentName = Supabase.instance.client.auth.currentUser?.userMetadata?['name'] as String?;
+    studentName =
+        Supabase.instance.client.auth.currentUser?.userMetadata?['name']
+            as String?;
+    grade =
+        Supabase.instance.client.auth.currentUser?.userMetadata?['grade']
+            as String?;
 
     if (studentId == null) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -42,6 +48,7 @@ class _StudentHomeState extends State<StudentHome> {
         }
       });
     }
+    context.read<TeacherLessonsCubit>().fetchLessonByGrade(grade!);
   }
 
   @override
@@ -50,7 +57,6 @@ class _StudentHomeState extends State<StudentHome> {
     final id = studentId;
 
     if (id == null) {
-
       return Scaffold(backgroundColor: ColorManager.white);
     }
 
@@ -63,7 +69,7 @@ class _StudentHomeState extends State<StudentHome> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               HomeHeader(
-                userName: studentName?? '',
+                userName: studentName ?? '',
                 onTap: () {
                   Navigator.pushNamed(
                     context,
@@ -79,7 +85,8 @@ class _StudentHomeState extends State<StudentHome> {
 
               BlocBuilder<TeacherLessonsCubit, TeacherLessonsState>(
                 builder: (context, state) {
-                  if (state is TeacherLessonsLoading || state is TeacherLessonsInitial) {
+                  if (state is TeacherLessonsLoading ||
+                      state is TeacherLessonsInitial) {
                     return const Center(
                       child: CircularProgressIndicator(
                         color: ColorManager.primary,
@@ -281,4 +288,3 @@ class _StudentHomeState extends State<StudentHome> {
     );
   }
 }
-
