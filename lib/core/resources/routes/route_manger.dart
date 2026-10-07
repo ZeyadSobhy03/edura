@@ -346,11 +346,13 @@ class RouteManger {
       case editProfileScreen:
         final args = settings.arguments as EditProfileArguments;
         final currentName = args.currentName;
-        final currentEmail = args.currentEmail;
+        final phone = args.phone;
         return MaterialPageRoute(
           builder: (context) => EditProfileScreen(
+            studentId: args.studentId,
             currentName: currentName,
-            currentEmail: currentEmail,
+            currentPhone: phone,
+
           ),
         );
 

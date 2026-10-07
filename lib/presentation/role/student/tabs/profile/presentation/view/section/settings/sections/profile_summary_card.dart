@@ -10,13 +10,13 @@ class ProfileSummaryCard extends StatelessWidget {
   const ProfileSummaryCard({
     super.key,
     required this.name,
-    required this.email,
+    required this.phone,
     this.avatarUrl,
     required this.onTap,
   });
 
   final String name;
-  final String email;
+  final String phone;
   final String? avatarUrl;
   final VoidCallback onTap;
 
@@ -60,7 +60,7 @@ class ProfileSummaryCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 2),
                   CustomText(
-                    text: email,
+                    text: phone,
                     style: TextStyle(
                       color: ColorManager.black.withValues(alpha: 0.5),
                       fontSize: 13,

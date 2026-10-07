@@ -9,6 +9,7 @@ import 'package:edura/presentation/role/student/tabs/home/presentation/view/sect
 import 'package:edura/presentation/role/student/tabs/home/presentation/view/section/stats/up_next_lesson.dart';
 import 'package:edura/presentation/role/student/tabs/home/presentation/view/widgets/home_header.dart';
 import 'package:edura/presentation/role/student/tabs/home/presentation/view/widgets/quick_action_card.dart';
+import 'package:edura/presentation/role/student/tabs/profile/presentation/view_model/student_profile/student_profile_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view_model/lessons/teacher_lessons_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,9 +35,7 @@ class _StudentHomeState extends State<StudentHome> {
     super.initState();
 
     studentId = Supabase.instance.client.auth.currentUser?.id;
-    studentName =
-        Supabase.instance.client.auth.currentUser?.userMetadata?['name']
-            as String?;
+
     grade =
         Supabase.instance.client.auth.currentUser?.userMetadata?['grade']
             as String?;
@@ -68,15 +67,39 @@ class _StudentHomeState extends State<StudentHome> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              HomeHeader(
-                userName: studentName ?? '',
-                onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    RouteManger.studentNotificationScreen,
-                  );
+              BlocBuilder<StudentProfileCubit, StudentProfileState>(
+                builder: (context, state) {
+                  if (state is StudentProfileLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(
+                        color: ColorManager.primary,
+                      ),
+                    );
+                  }
+                  if (state is StudentProfileError) {
+                    return Center(
+                      child: Text(
+                        state.message,
+                        style: const TextStyle(color: ColorManager.red),
+                      ),
+                    );
+                  }
+                  if (state is StudentProfileLoaded) {
+                    studentName = state.student.name;
+                    return HomeHeader(
+                      userName: studentName ?? '',
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          RouteManger.studentNotificationScreen,
+                        );
+                      },
+                    );
+                  }
+                  return const SizedBox.shrink();
                 },
               ),
+
               const SizedBox(height: 8),
 
               StatsSection(studentId: id),

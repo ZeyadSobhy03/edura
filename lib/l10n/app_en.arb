@@ -40,6 +40,7 @@
   "home": "Home",
   "profile": "Profile",
   "lessons": "Lessons",
+  "profileUpdatedSuccessfully": "Profile updated successfully",
   "chat": "Chat",
   "eachFirstExamTitle": "First Exam",
   "eachFirstExamDesc": "Submit your first exam",

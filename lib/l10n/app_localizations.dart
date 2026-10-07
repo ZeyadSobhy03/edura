@@ -338,6 +338,12 @@ abstract class AppLocalizations {
   /// **'Lessons'**
   String get lessons;
 
+  /// No description provided for @profileUpdatedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile updated successfully'**
+  String get profileUpdatedSuccessfully;
+
   /// No description provided for @chat.
   ///
   /// In en, this message translates to:

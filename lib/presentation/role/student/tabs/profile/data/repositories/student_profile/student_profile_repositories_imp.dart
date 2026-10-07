@@ -13,4 +13,9 @@ class StudentProfileRepositoriesImp implements StudentProfileRepositories {
     return remoteDataSource.getStudentProfile(studentId: studentId);
   }
 
+  @override
+  Future<StudentModel> updateStudentProfile({required String studentId, required String name, required String phone}) {
+    return remoteDataSource.updateStudentProfile(studentId: studentId, name: name, phone: phone);
+  }
+
 }

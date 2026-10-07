@@ -38,4 +38,29 @@ class StudentProfileSupabaseDataSource
       throw Exception('Failed to fetch student profile: $e');
     }
   }
+
+  @override
+  Future<StudentModel> updateStudentProfile({
+    required String studentId,
+    required String name,
+    required String phone,
+  }) async {
+    try {
+      final current = supabase.auth.currentUser?.id;
+      if (current == null || current != studentId) {
+        throw const AuthException('Student id does not match the session');
+      }
+
+      final updatedProfile = await supabase
+          .from('students')
+          .update({'name': name, 'phone': phone})
+          .eq('id', studentId)
+          .select()
+          .single();
+
+      return StudentModel.fromJson(Map<String, dynamic>.from(updatedProfile));
+    } catch (e) {
+      throw Exception('Failed to update student profile: $e');
+    }
+  }
 }

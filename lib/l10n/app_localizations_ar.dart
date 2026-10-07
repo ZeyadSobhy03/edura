@@ -130,6 +130,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get lessons => 'الدروس';
 
   @override
+  String get profileUpdatedSuccessfully => 'تم تحديث الملف الشخصي بنجاح';
+
+  @override
   String get chat => 'الدردشة';
 
   @override

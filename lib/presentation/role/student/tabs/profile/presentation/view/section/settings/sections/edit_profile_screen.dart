@@ -1,22 +1,23 @@
 import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:edura/presentation/role/student/tabs/profile/presentation/view_model/student_profile/student_profile_view_model.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../../../../../../../../l10n/app_localizations.dart';
-
 
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({
     super.key,
+    required this.studentId,
     required this.currentName,
-    required this.currentEmail,
-    this.currentAvatarUrl,
     this.currentPhone,
   });
 
+  final String studentId;
   final String currentName;
-  final String currentEmail;
-  final String? currentAvatarUrl;
   final String? currentPhone;
 
   @override
@@ -25,7 +26,6 @@ class EditProfileScreen extends StatefulWidget {
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
   late final TextEditingController _nameController;
-  late final TextEditingController _emailController;
   late final TextEditingController _phoneController;
   bool _isSaving = false;
 
@@ -33,14 +33,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   void initState() {
     super.initState();
     _nameController = TextEditingController(text: widget.currentName);
-    _emailController = TextEditingController(text: widget.currentEmail);
     _phoneController = TextEditingController(text: widget.currentPhone ?? '');
   }
 
   @override
   void dispose() {
     _nameController.dispose();
-    _emailController.dispose();
     _phoneController.dispose();
     super.dispose();
   }
@@ -55,18 +53,34 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     }
 
     setState(() => _isSaving = true);
+    try {
+      final cubit = context.read<StudentProfileCubit>();
+      await cubit.updateStudentProfile(
+        studentId: widget.studentId,
+        name: _nameController.text.trim(),
+        phone: _phoneController.text.trim(),
+      );
 
-    // TODO: call your Supabase update (auth.updateUser / profiles table update)
-    await Future.delayed(const Duration(milliseconds: 600)); // simulated save
+      if (!mounted) return;
+      Fluttertoast.showToast(
+        msg: l10.profileUpdatedSuccessfully,
+        backgroundColor: ColorManager.green,
+        textColor: ColorManager.white,
+      );
 
-    if (!mounted) return;
-    setState(() => _isSaving = false);
+      setState(() => _isSaving = false);
 
-    Navigator.pop(context, {
-      'name': _nameController.text.trim(),
-      'email': _emailController.text.trim(),
-      'phone': _phoneController.text.trim(),
-    });
+      Navigator.pop(context, {
+        'name': _nameController.text.trim(),
+        'phone': _phoneController.text.trim(),
+      });
+    } catch (e) {
+      if (!mounted) return;
+      setState(() => _isSaving = false);
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.toString())));
+    }
   }
 
   Widget _fieldLabel(String text) {
@@ -120,66 +134,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
-                child: Stack(
-                  children: [
-                    CircleAvatar(
-                      radius: 44,
-                      backgroundColor: ColorManager.primary.withValues(
-                        alpha: 0.1,
-                      ),
-                      backgroundImage: widget.currentAvatarUrl != null
-                          ? NetworkImage(widget.currentAvatarUrl!)
-                          : null,
-                      child: widget.currentAvatarUrl == null
-                          ? Icon(
-                              Icons.person,
-                              color: ColorManager.primary,
-                              size: 44,
-                            )
-                          : null,
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      right: 0,
-                      child: InkWell(
-                        onTap: () {
-                          // TODO: image_picker + upload to Supabase storage
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.all(6),
-                          decoration: BoxDecoration(
-                            color: ColorManager.primary,
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: ColorManager.white,
-                              width: 2,
-                            ),
-                          ),
-                          child: const Icon(
-                            Icons.camera_alt,
-                            color: Colors.white,
-                            size: 16,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 28),
-
               _fieldLabel(l10.fullName),
               TextField(
                 controller: _nameController,
-                decoration: _fieldDecoration(),
-              ),
-              const SizedBox(height: 16),
-
-              _fieldLabel(l10.email),
-              TextField(
-                controller: _emailController,
-                keyboardType: TextInputType.emailAddress,
                 decoration: _fieldDecoration(),
               ),
               const SizedBox(height: 16),

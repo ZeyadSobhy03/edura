@@ -21,6 +21,24 @@ class StudentProfileCubit extends Cubit<StudentProfileState> {
       emit(StudentProfileError(e.toString()));
     }
   }
+
+  Future<void> updateStudentProfile({
+    required String studentId,
+    required String name,
+    required String phone,
+  }) async {
+    try {
+      emit(StudentProfileLoading());
+      final result = await studentProfileUseCase.updateStudentProfile(
+        studentId: studentId,
+        name: name,
+        phone: phone,
+      );
+      emit(StudentProfileLoaded(result));
+    } catch (e) {
+      emit(StudentProfileError(e.toString()));
+    }
+  }
 }
 
 sealed class StudentProfileState {}

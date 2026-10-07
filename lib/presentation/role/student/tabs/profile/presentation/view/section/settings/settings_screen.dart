@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:edura/core/model/edit_profile_arguments.dart';
 import 'package:edura/core/model/web_view_arguments.dart';
 import 'package:edura/core/resources/colors/color_manger.dart';
@@ -9,9 +11,11 @@ import 'package:edura/presentation/role/student/tabs/profile/presentation/view/s
 import 'package:edura/presentation/role/student/tabs/profile/presentation/view/section/settings/widgets/language_picker_sheet.dart';
 import 'package:edura/presentation/role/student/tabs/profile/presentation/view/section/settings/widgets/settings_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../../../../../../l10n/app_localizations.dart';
-
+import '../../../view_model/student_profile/student_profile_view_model.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -23,8 +27,25 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   bool _pushNotifications = true;
   bool _emailNotifications = false;
+  String? studentId;
 
   String _languageCode = 'en';
+
+  @override
+  void initState() {
+    super.initState();
+    studentId = Supabase.instance.client.auth.currentUser?.id;
+    if (studentId == null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          Navigator.pushReplacementNamed(context, RouteManger.loginRoute);
+        }
+      });
+    }
+    context.read<StudentProfileCubit>().getStudentProfile(
+      studentId: studentId!,
+    );
+  }
 
   void _showLanguagePicker() {
     showModalBottomSheet(
@@ -92,20 +113,56 @@ class _SettingsScreenState extends State<SettingsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ProfileSummaryCard(
-                name: 'Ziyad Sobhy',
-                email: 'ziyad.sobhy@example.com',
-                onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    RouteManger.editProfileScreen,
-                    arguments: EditProfileArguments(
-                      currentName: "Ziyad",
-                      currentEmail: 'Ziyad@gmail.com',
-                    ),
-                  );
+              BlocBuilder<StudentProfileCubit, StudentProfileState>(
+                builder: (context, state) {
+                  if (state is StudentProfileLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(
+                        color: ColorManager.primary,
+                      ),
+                    );
+                  }
+                  if (state is StudentProfileError) {
+                    log('Error loading student profile: ${state.message}');
+                    return Center(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(state.message, textAlign: TextAlign.center),
+                          TextButton(
+                            onPressed: () {
+                              context
+                                  .read<StudentProfileCubit>()
+                                  .getStudentProfile(studentId: studentId!);
+                            },
+                            child: Text(l10.retry),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+                  if (state is StudentProfileLoaded) {
+                    final student = state.student;
+                    return ProfileSummaryCard(
+                      name: student.name,
+                      phone: student.phone,
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          RouteManger.editProfileScreen,
+                          arguments: EditProfileArguments(
+                            studentId: student.id,
+                            phone: student.phone,
+                            currentName: student.name,
+                          ),
+                        );
+                      },
+                    );
+                  }
+                  return const SizedBox.shrink();
                 },
               ),
+
               const SizedBox(height: 20),
 
               SettingsSectionHeader(title: l10.preferences),

@@ -1,8 +1,11 @@
 class EditProfileArguments {
+  final String studentId;
   final String currentName;
-  final String currentEmail;
+  final String phone;
+
   EditProfileArguments({
     required this.currentName,
-    required this.currentEmail,
+    required this.phone,
+    required this.studentId,
   });
 }
