@@ -1,11 +1,10 @@
 import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-import '../../../../../../../../../../core/model/attendance_model.dart';
+import '../../../../../data/model/attendance/attendance_model.dart';
 import '../../../../../../../../../../l10n/app_localizations.dart';
-
-
 
 class MonthlyTrendChart extends StatelessWidget {
   const MonthlyTrendChart({super.key, required this.months});
@@ -50,7 +49,8 @@ class MonthlyTrendChart extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
-                      height: (_maxBarHeight * month.attendanceRate).clamp(6, _maxBarHeight),
+                      height: (_maxBarHeight * month.rate / 100)
+                          .clamp(6.0, _maxBarHeight),
                       width: 22,
                       margin: const EdgeInsets.symmetric(horizontal: 4),
                       decoration: BoxDecoration(
@@ -62,13 +62,14 @@ class MonthlyTrendChart extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     CustomText(
-                      text: month.monthLabel,
+                      text: DateFormat('MMM').format(month.month),
                       style: TextStyle(
                         color: isLast
                             ? ColorManager.primary
                             : ColorManager.black.withValues(alpha: 0.5),
                         fontSize: 11,
-                        fontWeight: isLast ? FontWeight.bold : FontWeight.normal,
+                        fontWeight:
+                        isLast ? FontWeight.bold : FontWeight.normal,
                       ),
                     ),
                   ],

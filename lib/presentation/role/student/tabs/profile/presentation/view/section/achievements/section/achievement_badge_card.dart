@@ -1,11 +1,12 @@
+
 import 'package:edura/core/resources/colors/color_manger.dart';
+import 'package:edura/core/resources/localization/achievement_l10n.dart';
 import 'package:edura/core/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../../../../../../../core/model/achievement_model.dart';
+import '../../../../../data/model/achievements/achievement_model.dart';
 import '../../../../../../../../../../l10n/app_localizations.dart';
-
 
 class AchievementBadgeCard extends StatelessWidget {
   const AchievementBadgeCard({super.key, required this.achievement});
@@ -16,6 +17,7 @@ class AchievementBadgeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10 = AppLocalizations.of(context)!;
     final isEarned = achievement.isEarned;
+
 
     return Opacity(
       opacity: isEarned ? 1.0 : 0.55,
@@ -34,7 +36,7 @@ class AchievementBadgeCard extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             CustomText(
-              text: achievement.title,
+              text: AchievementL10n.localizedTitle(l10, achievement.code),
               textAlign: TextAlign.center,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
@@ -46,7 +48,10 @@ class AchievementBadgeCard extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             CustomText(
-              text: achievement.description,
+              text: AchievementL10n.localizedDescription(
+                l10,
+                achievement.code,
+              ),
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: ColorManager.black.withValues(alpha: 0.5),

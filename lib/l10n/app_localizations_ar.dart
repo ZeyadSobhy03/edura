@@ -133,6 +133,30 @@ class AppLocalizationsAr extends AppLocalizations {
   String get chat => 'الدردشة';
 
   @override
+  String get eachFirstExamTitle => 'أول امتحان';
+
+  @override
+  String get eachFirstExamDesc => 'قم بتسليم أول امتحان لك';
+
+  @override
+  String get eachHighScorerTitle => 'متفوق';
+
+  @override
+  String get eachHighScorerDesc => 'احصل على 90% أو أكثر في امتحان';
+
+  @override
+  String get eachPerfectExamTitle => 'امتحان كامل';
+
+  @override
+  String get eachPerfectExamDesc => 'احصل على 100% في أي امتحان';
+
+  @override
+  String get eachFiveLessonsTitle => 'خبير الدروس';
+
+  @override
+  String get eachFiveLessonsDesc => 'أكمل 5 دروس';
+
+  @override
   String get exams => 'الامتحانات';
 
   @override

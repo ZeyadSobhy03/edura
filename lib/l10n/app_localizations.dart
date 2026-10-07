@@ -344,6 +344,54 @@ abstract class AppLocalizations {
   /// **'Chat'**
   String get chat;
 
+  /// No description provided for @eachFirstExamTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'First Exam'**
+  String get eachFirstExamTitle;
+
+  /// No description provided for @eachFirstExamDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit your first exam'**
+  String get eachFirstExamDesc;
+
+  /// No description provided for @eachHighScorerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'High Scorer'**
+  String get eachHighScorerTitle;
+
+  /// No description provided for @eachHighScorerDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Score 90%+ on an exam'**
+  String get eachHighScorerDesc;
+
+  /// No description provided for @eachPerfectExamTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Perfect Exam'**
+  String get eachPerfectExamTitle;
+
+  /// No description provided for @eachPerfectExamDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Score 100% on any exam'**
+  String get eachPerfectExamDesc;
+
+  /// No description provided for @eachFiveLessonsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Lesson Master'**
+  String get eachFiveLessonsTitle;
+
+  /// No description provided for @eachFiveLessonsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish 5 lessons'**
+  String get eachFiveLessonsDesc;
+
   /// No description provided for @exams.
   ///
   /// In en, this message translates to:

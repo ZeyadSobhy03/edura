@@ -8,6 +8,8 @@ import 'package:edura/presentation/role/student/tabs/home/presentation/view_mode
 import 'package:edura/presentation/role/student/tabs/home/presentation/view_model/student_stats/student_stats_view_model.dart';
 import 'package:edura/presentation/role/student/tabs/lessons/presentation/view_model/lesson_progress/lesson_progress_view_model.dart';
 import 'package:edura/presentation/role/student/tabs/lessons/presentation/view_model/student_home_work/student_home_work_view_model.dart';
+import 'package:edura/presentation/role/student/tabs/profile/presentation/view_model/achievements/achievements_view_model.dart';
+import 'package:edura/presentation/role/student/tabs/profile/presentation/view_model/attendance/attendance_view_model.dart';
 import 'package:edura/presentation/role/student/tabs/profile/presentation/view_model/leaderboard/leaderboard_view_model.dart';
 import 'package:edura/presentation/role/student/tabs/profile/presentation/view_model/schedule/schedule_view_model.dart';
 import 'package:edura/presentation/role/student/tabs/profile/presentation/view_model/student_notes/student_notes_view_model.dart';
@@ -97,6 +99,8 @@ void main() async {
         BlocProvider(create: (context) => getIt<LeaderboardCubit>(),),
         BlocProvider(create: (context) => getIt<StudentNotificationCubit>(),),
         BlocProvider(create: (context) => getIt<StudentScheduleCubit>(),),
+        BlocProvider(create: (context) => getIt<AchievementsCubit>(),),
+        BlocProvider(create: (context) => getIt<AttendanceCubit>(),),
         BlocProvider(create: (context) => getIt<StudentStatsCubit>()),
         BlocProvider(create: (context) => getIt<StudentProfileCubit>(),),
         BlocProvider(create: (context) => getIt<StudentExamCubit>(),),

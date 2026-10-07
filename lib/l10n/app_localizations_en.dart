@@ -133,6 +133,30 @@ class AppLocalizationsEn extends AppLocalizations {
   String get chat => 'Chat';
 
   @override
+  String get eachFirstExamTitle => 'First Exam';
+
+  @override
+  String get eachFirstExamDesc => 'Submit your first exam';
+
+  @override
+  String get eachHighScorerTitle => 'High Scorer';
+
+  @override
+  String get eachHighScorerDesc => 'Score 90%+ on an exam';
+
+  @override
+  String get eachPerfectExamTitle => 'Perfect Exam';
+
+  @override
+  String get eachPerfectExamDesc => 'Score 100% on any exam';
+
+  @override
+  String get eachFiveLessonsTitle => 'Lesson Master';
+
+  @override
+  String get eachFiveLessonsDesc => 'Finish 5 lessons';
+
+  @override
   String get exams => 'Exams';
 
   @override

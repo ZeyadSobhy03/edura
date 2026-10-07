@@ -3,7 +3,7 @@ import 'package:edura/core/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../../../../../../../core/model/attendance_model.dart';
+import '../../../../../data/model/attendance/attendance_model.dart';
 import '../../../../../../../../../../l10n/app_localizations.dart';
 import 'attendance_status_style.dart';
 
@@ -16,6 +16,9 @@ class AttendanceRecordTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10 = AppLocalizations.of(context)!;
     final style = AttendanceStatusStyle.of(record.status, l10);
+    final details = [record.subject, record.teacherName]
+        .where((s) => s.isNotEmpty)
+        .join(' · ');
 
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
@@ -48,14 +51,16 @@ class AttendanceRecordTile extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 2),
-                CustomText(
-                  text: '${record.subject} · ${record.room}',
-                  style: TextStyle(
-                    color: ColorManager.black.withValues(alpha: 0.55),
-                    fontSize: 12,
+                if (details.isNotEmpty) ...[
+                  const SizedBox(height: 2),
+                  CustomText(
+                    text: details,
+                    style: TextStyle(
+                      color: ColorManager.black.withValues(alpha: 0.55),
+                      fontSize: 12,
+                    ),
                   ),
-                ),
+                ],
               ],
             ),
           ),

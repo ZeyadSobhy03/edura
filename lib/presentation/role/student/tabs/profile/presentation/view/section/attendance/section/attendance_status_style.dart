@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../../../../../core/model/attendance_model.dart';
+import '../../../../../data/model/attendance/attendance_model.dart';
 import '../../../../../../../../../../l10n/app_localizations.dart';
 
 
