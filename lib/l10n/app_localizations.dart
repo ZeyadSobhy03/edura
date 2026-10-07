@@ -404,6 +404,66 @@ abstract class AppLocalizations {
   /// **'Exams'**
   String get exams;
 
+  /// No description provided for @faqResetPasswordQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'How do I reset my password?'**
+  String get faqResetPasswordQuestion;
+
+  /// No description provided for @faqResetPasswordAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to Settings > Change Password, or use \"Forgot Password\" on the login screen if you\'re signed out.'**
+  String get faqResetPasswordAnswer;
+
+  /// No description provided for @faqDownloadMaterialsQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'How do I download lesson materials?'**
+  String get faqDownloadMaterialsQuestion;
+
+  /// No description provided for @faqDownloadMaterialsAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'Open any lesson and go to the Materials tab. Tap the download icon next to each file.'**
+  String get faqDownloadMaterialsAnswer;
+
+  /// No description provided for @faqRetakeExamQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Can I retake an exam?'**
+  String get faqRetakeExamQuestion;
+
+  /// No description provided for @faqRetakeExamAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'This depends on your teacher\'s settings for that exam. Check the exam details screen for retake availability.'**
+  String get faqRetakeExamAnswer;
+
+  /// No description provided for @faqAttendanceQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'How is my attendance calculated?'**
+  String get faqAttendanceQuestion;
+
+  /// No description provided for @faqAttendanceAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'Attendance is marked automatically when a teacher takes attendance during a live or in-person session.'**
+  String get faqAttendanceAnswer;
+
+  /// No description provided for @faqSwitchLanguageQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'How do I switch the app language?'**
+  String get faqSwitchLanguageQuestion;
+
+  /// No description provided for @faqSwitchLanguageAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to Settings > Language and choose your preferred language.'**
+  String get faqSwitchLanguageAnswer;
+
   /// No description provided for @noteSavedSuccessfully.
   ///
   /// In en, this message translates to:

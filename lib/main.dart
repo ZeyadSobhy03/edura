@@ -42,6 +42,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'core/DI/injection.dart';
 import 'presentation/auth/login/data/data_source/local/login_hive_data_source.dart';
+import 'core/cubit/language_cubit.dart';
 
 Future<void> _initializeHive() async {
   final appDocumentDirectory = await getApplicationDocumentsDirectory();
@@ -73,6 +74,7 @@ void main() async {
   runApp(
     MultiBlocProvider(
       providers: [
+        BlocProvider(create: (_) => LanguageCubit()),
         BlocProvider(create: (context) => getIt<LoginCubit>()),
         BlocProvider(create: (context) => getIt<TeacherLessonsCubit>()),
         BlocProvider(create: (context) => getIt<ExamCubit>()),

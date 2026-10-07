@@ -6,7 +6,6 @@ import '../../../../../../../../../../core/model/faq_model.dart';
 import '../../../../../../../../../../l10n/app_localizations.dart';
 import '../widgets/faq_expansion_tile.dart';
 
-
 class HelpFaqScreen extends StatefulWidget {
   const HelpFaqScreen({super.key});
 
@@ -17,49 +16,46 @@ class HelpFaqScreen extends StatefulWidget {
 class _HelpFaqScreenState extends State<HelpFaqScreen> {
   String _searchQuery = '';
 
-  List<FaqModel> get _faqs => [
+  List<FaqModel> _buildFaqs(AppLocalizations l10) => [
     FaqModel(
       id: '1',
-      question: 'How do I reset my password?',
-      answer:
-      'Go to Settings > Change Password, or use "Forgot Password" on the login screen if you\'re signed out.',
+      question: l10.faqResetPasswordQuestion,
+      answer: l10.faqResetPasswordAnswer,
     ),
     FaqModel(
       id: '2',
-      question: 'How do I download lesson materials?',
-      answer:
-      'Open any lesson and go to the Materials tab. Tap the download icon next to each file.',
+      question: l10.faqDownloadMaterialsQuestion,
+      answer: l10.faqDownloadMaterialsAnswer,
     ),
     FaqModel(
       id: '3',
-      question: 'Can I retake an exam?',
-      answer:
-      'This depends on your teacher\'s settings for that exam. Check the exam details screen for retake availability.',
+      question: l10.faqRetakeExamQuestion,
+      answer: l10.faqRetakeExamAnswer,
     ),
     FaqModel(
       id: '4',
-      question: 'How is my attendance calculated?',
-      answer:
-      'Attendance is marked automatically when a teacher takes attendance during a live or in-person session.',
+      question: l10.faqAttendanceQuestion,
+      answer: l10.faqAttendanceAnswer,
     ),
     FaqModel(
       id: '5',
-      question: 'How do I switch the app language?',
-      answer: 'Go to Settings > Language and choose your preferred language.',
+      question: l10.faqSwitchLanguageQuestion,
+      answer: l10.faqSwitchLanguageAnswer,
     ),
   ];
 
-  List<FaqModel> get _filteredFaqs {
-    if (_searchQuery.isEmpty) return _faqs;
-    return _faqs
-        .where((f) => f.question.toLowerCase().contains(_searchQuery.toLowerCase()))
+  List<FaqModel> _filterFaqs(List<FaqModel> faqs) {
+    if (_searchQuery.isEmpty) return faqs;
+    final query = _searchQuery.toLowerCase();
+    return faqs
+        .where((f) => f.question.toLowerCase().contains(query))
         .toList();
   }
 
   @override
   Widget build(BuildContext context) {
     final l10 = AppLocalizations.of(context)!;
-    final faqs = _filteredFaqs;
+    final faqs = _filterFaqs(_buildFaqs(l10));
 
     return Scaffold(
       backgroundColor: ColorManager.white,

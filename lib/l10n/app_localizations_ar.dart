@@ -163,6 +163,41 @@ class AppLocalizationsAr extends AppLocalizations {
   String get exams => 'الامتحانات';
 
   @override
+  String get faqResetPasswordQuestion => 'كيف يمكنني إعادة تعيين كلمة المرور؟';
+
+  @override
+  String get faqResetPasswordAnswer =>
+      'اذهب إلى الإعدادات > تغيير كلمة المرور، أو استخدم \"نسيت كلمة المرور\" في شاشة تسجيل الدخول إذا كنت قد سجلت الخروج.';
+
+  @override
+  String get faqDownloadMaterialsQuestion => 'كيف يمكنني تنزيل مواد الدرس؟';
+
+  @override
+  String get faqDownloadMaterialsAnswer =>
+      'افتح أي درس واذهب إلى تبويب المواد. اضغط على أيقونة التنزيل بجوار كل ملف.';
+
+  @override
+  String get faqRetakeExamQuestion => 'هل يمكنني إعادة الامتحان؟';
+
+  @override
+  String get faqRetakeExamAnswer =>
+      'يعتمد ذلك على إعدادات المعلم لهذا الامتحان. تحقق من شاشة تفاصيل الامتحان لمعرفة إمكانية إعادته.';
+
+  @override
+  String get faqAttendanceQuestion => 'كيف يتم احتساب حضوري؟';
+
+  @override
+  String get faqAttendanceAnswer =>
+      'يتم تسجيل الحضور تلقائيًا عندما يأخذ المعلم الحضور أثناء حصة مباشرة أو حضورية.';
+
+  @override
+  String get faqSwitchLanguageQuestion => 'كيف يمكنني تغيير لغة التطبيق؟';
+
+  @override
+  String get faqSwitchLanguageAnswer =>
+      'اذهب إلى الإعدادات > اللغة واختر اللغة المفضلة لديك.';
+
+  @override
   String get noteSavedSuccessfully => 'تم حفظ الملاحظة بنجاح';
 
   @override

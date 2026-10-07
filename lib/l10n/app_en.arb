@@ -51,6 +51,23 @@
   "eachFiveLessonsTitle": "Lesson Master",
   "eachFiveLessonsDesc": "Finish 5 lessons",
   "exams": "Exams",
+
+
+  "faqResetPasswordQuestion": "How do I reset my password?",
+  "faqResetPasswordAnswer": "Go to Settings > Change Password, or use \"Forgot Password\" on the login screen if you're signed out.",
+
+  "faqDownloadMaterialsQuestion": "How do I download lesson materials?",
+  "faqDownloadMaterialsAnswer": "Open any lesson and go to the Materials tab. Tap the download icon next to each file.",
+
+  "faqRetakeExamQuestion": "Can I retake an exam?",
+  "faqRetakeExamAnswer": "This depends on your teacher's settings for that exam. Check the exam details screen for retake availability.",
+
+  "faqAttendanceQuestion": "How is my attendance calculated?",
+  "faqAttendanceAnswer": "Attendance is marked automatically when a teacher takes attendance during a live or in-person session.",
+
+  "faqSwitchLanguageQuestion": "How do I switch the app language?",
+  "faqSwitchLanguageAnswer": "Go to Settings > Language and choose your preferred language.",
+
   "noteSavedSuccessfully": "Note saved successfully",
   "noteTitle": "Note Title",
   "noteContent": "Note Content",

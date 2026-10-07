@@ -50,14 +50,16 @@ class QuickActionCard extends StatelessWidget {
                   child: Icon(icon, color: color, size: 24),
                 ),
                 const SizedBox(height: 8),
-                CustomText(
-                  text: label,
-                  maxLines: 2,
-                  style: TextStyle(
-                    overflow: TextOverflow.ellipsis,
-                    color: ColorManager.black,
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500,
+                Flexible(
+                  child: CustomText(
+                    text: label,
+                    maxLines: 2,
+                    style: TextStyle(
+                      overflow: TextOverflow.ellipsis,
+                      color: ColorManager.black,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
               ],

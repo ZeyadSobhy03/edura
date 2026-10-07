@@ -71,7 +71,24 @@
   "eachPerfectExamDesc": "احصل على 100% في أي امتحان",
   "eachFiveLessonsTitle": "خبير الدروس",
   "eachFiveLessonsDesc": "أكمل 5 دروس",
+
+  "faqResetPasswordQuestion": "كيف يمكنني إعادة تعيين كلمة المرور؟",
+  "faqResetPasswordAnswer": "اذهب إلى الإعدادات > تغيير كلمة المرور، أو استخدم \"نسيت كلمة المرور\" في شاشة تسجيل الدخول إذا كنت قد سجلت الخروج.",
+
+  "faqDownloadMaterialsQuestion": "كيف يمكنني تنزيل مواد الدرس؟",
+  "faqDownloadMaterialsAnswer": "افتح أي درس واذهب إلى تبويب المواد. اضغط على أيقونة التنزيل بجوار كل ملف.",
+
+  "faqRetakeExamQuestion": "هل يمكنني إعادة الامتحان؟",
+  "faqRetakeExamAnswer": "يعتمد ذلك على إعدادات المعلم لهذا الامتحان. تحقق من شاشة تفاصيل الامتحان لمعرفة إمكانية إعادته.",
+
+  "faqAttendanceQuestion": "كيف يتم احتساب حضوري؟",
+  "faqAttendanceAnswer": "يتم تسجيل الحضور تلقائيًا عندما يأخذ المعلم الحضور أثناء حصة مباشرة أو حضورية.",
+
+  "faqSwitchLanguageQuestion": "كيف يمكنني تغيير لغة التطبيق؟",
+  "faqSwitchLanguageAnswer": "اذهب إلى الإعدادات > اللغة واختر اللغة المفضلة لديك."
+,
   "profileUpdatedSuccessfully": "تم تحديث الملف الشخصي بنجاح",
+
   "enterPhoneNumber": "أدخل رقم الهاتف",
   "enterBio": "أدخل سيرتك الذاتية",
   "bio": "السيرة الذاتية",

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:edura/core/model/edit_profile_arguments.dart';
 import 'package:edura/core/model/web_view_arguments.dart';
 import 'package:edura/core/resources/colors/color_manger.dart';
@@ -8,12 +6,12 @@ import 'package:edura/core/widgets/custom_text.dart';
 import 'package:edura/presentation/role/student/tabs/profile/presentation/view/section/settings/sections/profile_summary_card.dart';
 import 'package:edura/presentation/role/student/tabs/profile/presentation/view/section/settings/sections/settings_group_card.dart';
 import 'package:edura/presentation/role/student/tabs/profile/presentation/view/section/settings/sections/settings_section_header.dart';
-import 'package:edura/presentation/role/student/tabs/profile/presentation/view/section/settings/widgets/language_picker_sheet.dart';
 import 'package:edura/presentation/role/student/tabs/profile/presentation/view/section/settings/widgets/settings_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../../../../../../../../core/widgets/change_language_card.dart';
 import '../../../../../../../../../l10n/app_localizations.dart';
 import '../../../view_model/student_profile/student_profile_view_model.dart';
 
@@ -25,66 +23,24 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  bool _pushNotifications = true;
-  bool _emailNotifications = false;
   String? studentId;
-
-  String _languageCode = 'en';
 
   @override
   void initState() {
     super.initState();
     studentId = Supabase.instance.client.auth.currentUser?.id;
+
     if (studentId == null) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) {
           Navigator.pushReplacementNamed(context, RouteManger.loginRoute);
         }
       });
+      return;
     }
+
     context.read<StudentProfileCubit>().getStudentProfile(
       studentId: studentId!,
-    );
-  }
-
-  void _showLanguagePicker() {
-    showModalBottomSheet(
-      context: context,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      builder: (_) => LanguagePickerSheet(
-        currentLanguageCode: _languageCode,
-        onSelected: (code) {
-          setState(() => _languageCode = code);
-          // TODO: call your app's locale-switching logic here
-          // e.g. context.read<LocaleCubit>().setLocale(Locale(code));
-        },
-      ),
-    );
-  }
-
-  void _confirmLogout() {
-    final l10 = AppLocalizations.of(context)!;
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(l10.logout),
-        content: Text(l10.logoutConfirmation),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(l10.cancel),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context); // close dialog
-              // TODO: call your sign-out logic + navigate to Login
-            },
-            child: Text(l10.logout, style: const TextStyle(color: Colors.red)),
-          ),
-        ],
-      ),
     );
   }
 
@@ -123,7 +79,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     );
                   }
                   if (state is StudentProfileError) {
-                    log('Error loading student profile: ${state.message}');
                     return Center(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -131,6 +86,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           Text(state.message, textAlign: TextAlign.center),
                           TextButton(
                             onPressed: () {
+                              if (studentId == null) return;
                               context
                                   .read<StudentProfileCubit>()
                                   .getStudentProfile(studentId: studentId!);
@@ -146,8 +102,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     return ProfileSummaryCard(
                       name: student.name,
                       phone: student.phone,
-                      onTap: () {
-                        Navigator.pushNamed(
+                      onTap: () async {
+                        final cubit = context.read<StudentProfileCubit>();
+                        await Navigator.pushNamed(
                           context,
                           RouteManger.editProfileScreen,
                           arguments: EditProfileArguments(
@@ -156,6 +113,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             currentName: student.name,
                           ),
                         );
+                        if (!mounted || studentId == null) return;
+                        cubit.getStudentProfile(studentId: studentId!);
                       },
                     );
                   }
@@ -166,36 +125,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               const SizedBox(height: 20),
 
               SettingsSectionHeader(title: l10.preferences),
-              SettingsGroupCard(
-                children: [
-                  SettingsTile(
-                    icon: Icons.language,
-                    title: l10.language,
-                    trailingText: _languageCode == 'en' ? 'English' : 'العربية',
-                    onTap: _showLanguagePicker,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              SettingsSectionHeader(title: l10.notifications),
-              SettingsGroupCard(
-                children: [
-                  SettingsTile(
-                    icon: Icons.notifications_outlined,
-                    title: l10.pushNotifications,
-                    toggleValue: _pushNotifications,
-                    onToggleChanged: (value) =>
-                        setState(() => _pushNotifications = value),
-                  ),
-                  SettingsTile(
-                    icon: Icons.email_outlined,
-                    title: l10.emailNotifications,
-                    toggleValue: _emailNotifications,
-                    onToggleChanged: (value) =>
-                        setState(() => _emailNotifications = value),
-                  ),
-                ],
-              ),
+              ChangeLanguageCard(),
               const SizedBox(height: 20),
 
               SettingsSectionHeader(title: l10.account),
@@ -274,18 +204,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
 
-              SettingsGroupCard(
-                children: [
-                  SettingsTile(
-                    icon: Icons.logout,
-                    title: l10.logout,
-                    isDestructive: true,
-                    onTap: _confirmLogout,
-                  ),
-                ],
-              ),
               const SizedBox(height: 20),
             ],
           ),

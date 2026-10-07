@@ -163,6 +163,42 @@ class AppLocalizationsEn extends AppLocalizations {
   String get exams => 'Exams';
 
   @override
+  String get faqResetPasswordQuestion => 'How do I reset my password?';
+
+  @override
+  String get faqResetPasswordAnswer =>
+      'Go to Settings > Change Password, or use \"Forgot Password\" on the login screen if you\'re signed out.';
+
+  @override
+  String get faqDownloadMaterialsQuestion =>
+      'How do I download lesson materials?';
+
+  @override
+  String get faqDownloadMaterialsAnswer =>
+      'Open any lesson and go to the Materials tab. Tap the download icon next to each file.';
+
+  @override
+  String get faqRetakeExamQuestion => 'Can I retake an exam?';
+
+  @override
+  String get faqRetakeExamAnswer =>
+      'This depends on your teacher\'s settings for that exam. Check the exam details screen for retake availability.';
+
+  @override
+  String get faqAttendanceQuestion => 'How is my attendance calculated?';
+
+  @override
+  String get faqAttendanceAnswer =>
+      'Attendance is marked automatically when a teacher takes attendance during a live or in-person session.';
+
+  @override
+  String get faqSwitchLanguageQuestion => 'How do I switch the app language?';
+
+  @override
+  String get faqSwitchLanguageAnswer =>
+      'Go to Settings > Language and choose your preferred language.';
+
+  @override
   String get noteSavedSuccessfully => 'Note saved successfully';
 
   @override

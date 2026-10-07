@@ -1,18 +1,12 @@
 import 'package:edura/core/resources/colors/color_manger.dart';
+import 'package:edura/core/widgets/change_language_card.dart';
 import 'package:edura/core/widgets/custom_text.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/section/account_section.dart';
-import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/section/notifications_section.dart';
-import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/section/preferences_section.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/section/support_section.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../student/tabs/profile/presentation/view/section/settings/sections/settings_group_card.dart';
-import '../../../../../../student/tabs/profile/presentation/view/section/settings/widgets/language_picker_sheet.dart';
-import '../../../../../../student/tabs/profile/presentation/view/section/settings/widgets/settings_tile.dart';
 import '../../../data/model/teacher_profile_model.dart';
 import '../../../../../../../../l10n/app_localizations.dart';
-
-
 
 class TeacherSettingScreen extends StatefulWidget {
   const TeacherSettingScreen({super.key, required this.teacher});
@@ -24,49 +18,6 @@ class TeacherSettingScreen extends StatefulWidget {
 }
 
 class _TeacherSettingScreenState extends State<TeacherSettingScreen> {
-  bool _pushNotifications = true;
-  bool _emailNotifications = true;
-  bool _studentMessageNotifications = true;
-  String _languageCode = 'en';
-
-  void _showLanguagePicker() {
-    showModalBottomSheet(
-      context: context,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      builder: (_) => LanguagePickerSheet(
-        currentLanguageCode: _languageCode,
-        onSelected: (code) {
-          setState(() => _languageCode = code);
-        },
-      ),
-    );
-  }
-
-  void _confirmLogout() {
-    final l10 = AppLocalizations.of(context)!;
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(l10.logout),
-        content: Text(l10.logoutConfirmation),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(l10.cancel),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text(l10.logout, style: const TextStyle(color: Colors.red)),
-          ),
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final l10 = AppLocalizations.of(context)!;
@@ -95,42 +46,13 @@ class _TeacherSettingScreenState extends State<TeacherSettingScreen> {
               AccountSection(teacher: widget.teacher),
               const SizedBox(height: 20),
 
-              PreferencesSection(
-                languageCode: _languageCode,
-                showLanguagePicker: _showLanguagePicker,
-              ),
+              ChangeLanguageCard(),
               const SizedBox(height: 20),
 
-              NotificationsSection(
-                pushNotifications: _pushNotifications,
-                emailNotifications: _emailNotifications,
-                studentMessageNotifications: _studentMessageNotifications,
-
-                onEmailNotificationsChanged: (value) {
-                  setState(() => _emailNotifications = value);
-                },
-                onPushNotificationsChanged: (value) {
-                  setState(() => _pushNotifications = value);
-                },
-                onStudentMessageNotificationsChanged: (value) {
-                  setState(() => _studentMessageNotifications = value);
-                },
-              ),
               const SizedBox(height: 20),
 
               SupportSection(),
-              const SizedBox(height: 20),
 
-              SettingsGroupCard(
-                children: [
-                  SettingsTile(
-                    icon: Icons.logout,
-                    title: l10.logout,
-                    isDestructive: true,
-                    onTap: _confirmLogout,
-                  ),
-                ],
-              ),
               const SizedBox(height: 20),
             ],
           ),
