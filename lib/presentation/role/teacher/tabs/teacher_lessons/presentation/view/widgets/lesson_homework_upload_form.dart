@@ -45,12 +45,12 @@ class _LessonHomeworkUploadFormState extends State<LessonHomeworkUploadForm> {
   }
 
   Future<void> _pickAttachments() async {
-    final result = await FilePicker.pickFiles(type: FileType.any);
-    if (result == null) return;
+    final files = await FilePicker.pickFiles(type: FileType.any);
+    if( files.isEmpty) return;
 
     setState(() {
       _attachments.addAll(
-        result.paths.whereType<String>().map((path) => File(path)),
+        files.map((file) => File(file.path!)),
       );
     });
   }

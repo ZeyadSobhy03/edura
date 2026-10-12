@@ -14,5 +14,10 @@ class ActivitiesRepositoriesImp implements ActivitiesRepositories {
     return remoteDataSource.getRecentActivities(limit: limit);
   }
 
+  @override
+  Future<void> deleteActivity({required String activityId}) {
+    return remoteDataSource.deleteActivity(activityId: activityId);
+  }
+
 
 }

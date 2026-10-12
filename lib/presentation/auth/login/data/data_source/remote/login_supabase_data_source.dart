@@ -14,29 +14,41 @@ class LoginSupabaseDataSource implements LoginRemoteDataSource {
 
   AppError _mapAuthException(AuthException exception) {
     final text = exception.message.toLowerCase();
+    final code = exception.code?.toLowerCase() ?? '';
 
-    if (text.contains('invalid_credentials') ||
+    // Invalid email or password
+    if (code == 'invalid_credentials' ||
+        text.contains('invalid login credentials') ||
+        text.contains('invalid_credentials') ||
         text.contains('invalid credentials')) {
       return const InvalidCredentialsError();
     }
 
-    if (text.contains('email_not_confirmed') ||
+    // Email is not confirmed
+    if (code == 'email_not_confirmed' ||
+        text.contains('email_not_confirmed') ||
         text.contains('email not confirmed')) {
       return const EmailNotConfirmedError();
     }
 
-    if (text.contains('over_request_rate_limit') ||
+    // Too many login attempts
+    if (code == 'over_request_rate_limit' ||
         text.contains('too many requests') ||
         text.contains('rate limit')) {
       return const TooManyRequestsError();
     }
 
-    if (text.contains('weak password') || text.contains('weak_password')) {
+    // Weak password
+    if (code == 'weak_password' ||
+        text.contains('weak password') ||
+        text.contains('weak_password')) {
       return const WeakPasswordError();
     }
 
+    // Email already registered
     if (text.contains('email already exists') ||
-        text.contains('already registered')) {
+        text.contains('already registered') ||
+        text.contains('user already registered')) {
       return const EmailAlreadyExistsError();
     }
 

@@ -32,9 +32,9 @@ class _LessonPdfUploadFormState extends State<LessonPdfUploadForm> {
       type: FileType.custom,
       allowedExtensions: ['pdf'],
     );
-    if (result != null && result.files.single.path != null) {
+    if (result.single.path != null) {
       setState(() {
-        widget.draft.pdfFile = File(result.files.single.path!);
+        widget.draft.pdfFile = File(result.single.path!);
       });
     }
   }

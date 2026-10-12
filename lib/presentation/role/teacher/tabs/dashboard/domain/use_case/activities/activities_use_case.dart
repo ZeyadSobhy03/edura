@@ -9,6 +9,9 @@ class ActivitiesUseCase {
   Future<List<RecentActivityModel>> getRecentActivities({int limit = 10}){
     return activitiesRepositories.getRecentActivities(limit: limit);
   }
+  Future<void> deleteActivity({required String activityId}){
+    return activitiesRepositories.deleteActivity(activityId: activityId);
+  }
 
 
 }

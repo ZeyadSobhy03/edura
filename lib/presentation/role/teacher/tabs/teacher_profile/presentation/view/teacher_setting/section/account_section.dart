@@ -77,6 +77,13 @@ class AccountSection extends StatelessWidget {
                 Navigator.pushNamed(context, RouteManger.scheduleClassScreen);
               },
             ),
+            SettingsTile(
+              icon: Icons.assignment_outlined,
+              title: l10.homework,
+              onTap: () {
+                Navigator.pushNamed(context, RouteManger.teacherHomeworkScreen);
+              },
+            ),
           ],
         ),
       ],

@@ -1,3 +1,5 @@
+
+
 import 'package:edura/core/error/app_error.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -20,6 +22,17 @@ class ActivitiesSupabaseDataSource implements ActivitiesRemoteDataSource {
       return (response as List)
           .map((j) => RecentActivityModel.fromJson(j as Map<String, dynamic>))
           .toList();
+    } on AppError {
+      rethrow;
+    } catch (e) {
+      throw ServerError();
+    }
+  }
+
+  @override
+  Future<void> deleteActivity({required String activityId}) async {
+    try {
+      await supabase.rpc('dismiss_activity', params: {'p_activity_id': activityId});
     } on AppError {
       rethrow;
     } catch (e) {

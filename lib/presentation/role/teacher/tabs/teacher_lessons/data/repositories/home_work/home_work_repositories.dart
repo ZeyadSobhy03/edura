@@ -1,3 +1,4 @@
+import '../../../../../../student/tabs/lessons/data/model/student_home_work/homework_submission_model.dart';
 import '../../model/home_work/new_homework_model.dart';
 
 abstract class HomeWorkRepositories {
@@ -9,7 +10,9 @@ abstract class HomeWorkRepositories {
 
   Future<List<NewHomeworkModel>> getHomeworksByLesson(String lessonId);
   Future<void> publishHomework(String homeworkId);
-
+  Future<List<HomeworkSubmissionModel>> getSubmissionsByHomework(
+      String homeworkId,
+      );
   Future<void> deleteHomework(String homeworkId);
   Future<void> reviewHomework(String submissionId, int grade, String feedback);
 }

@@ -59,11 +59,10 @@ class RecentActivityModel {
     }
 
     return RecentActivityModel(
-      id: '$type-${createdAt.microsecondsSinceEpoch}',
+      id: json['id'] as String,
       title: title,
       description: description,
       timestamp: createdAt,
       icon: icon,
-    );
-  }
+    );  }
 }

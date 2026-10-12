@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:edura/core/error/app_error.dart';
 import 'package:edura/core/model/chat_conversation_model.dart';
@@ -84,7 +83,6 @@ class ChatsSupabaseDataSource implements ChatsRemoteDataSource {
     } on AppError {
       rethrow;
     } catch (e) {
-      log('getOrCreateConversation error: $e');
 
       throw ServerError();
     }
@@ -115,11 +113,9 @@ class ChatsSupabaseDataSource implements ChatsRemoteDataSource {
           })
           .eq('id', conversationId);
       return ChatMessageModel.fromJson(response);
-    } on AppError catch (e) {
-      log("Error in sendMessage: ${e.toString()}");
+    } on AppError{
       rethrow;
     } catch (e) {
-      log('Error in sendMessage: ${e.toString()}');
       throw ServerError();
     }
   }
@@ -135,11 +131,9 @@ class ChatsSupabaseDataSource implements ChatsRemoteDataSource {
           .order('time', ascending: true);
 
       return response.map((json) => ChatMessageModel.fromJson(json)).toList();
-    } on AppError catch (e) {
-      log("Error in loadMessages: ${e.toString()}");
+    } on AppError {
       rethrow;
     } catch (e) {
-      log('Error in loadMessages: $e');
       throw ServerError();
     }
   }

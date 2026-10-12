@@ -43,12 +43,10 @@ class StudentModel {
       grade: json['grade'] as String? ?? '',
       school: json['school'] as String? ?? '',
 
-      // Supabase columns
       averageScore: json['average_score'] as int? ?? 0,
       lessons: json['lessons'] as int? ?? 0,
       attendance: json['attendance'] as int? ?? 0,
 
-      // Details are not returned from students table yet
       lessonProgress: (json['lessonProgress'] as List?)
           ?.map(
             (e) => LessonProgress.fromJson(
@@ -87,18 +85,19 @@ class StudentModel {
           const [],
     );
   }
-  factory StudentModel.fromDetailsJson(Map<String, dynamic> json) {
+
+  factory StudentModel.fromDetailsJson(Map<String, dynamic> json,{
+    List<LessonProgress>? lessonProgress,
+    List<ExamResult>? examResults,
+
+
+  }) {
     final contacts = json['student_contacts'] as List? ?? [];
 
     final contact = contacts.isNotEmpty
         ? contacts.first as Map<String, dynamic>
         : <String, dynamic>{};
 
-    final lessonProgressJson =
-        json['student_lesson_progress'] as List? ?? [];
-
-    final examResultsJson =
-        json['exam_results'] as List? ?? [];
 
     final attendanceJson =
         json['student_attendance'] as List? ?? [];
@@ -123,30 +122,8 @@ class StudentModel {
         email: contact['email'] as String? ?? '',
       ),
 
-      lessonProgress: lessonProgressJson.map((item) {
-        final data = item as Map<String, dynamic>;
-
-        final lesson = data['lessons'] as Map<String, dynamic>?;
-
-        return LessonProgress(
-          name: lesson?['name'] as String? ?? '',
-          progress: data['progress'] as int? ?? 0,
-        );
-      }).toList(),
-
-      examResults: examResultsJson.map((item) {
-        final data = item as Map<String, dynamic>;
-
-        return ExamResult(
-          title: data['title'] as String? ?? '',
-          score: data['score'] as int? ?? 0,
-          avgPercent:
-          (data['avg_percent'] as num?)?.toDouble() ?? 0,
-          passRatePercent:
-          (data['pass_rate_percent'] as num?)?.toDouble() ?? 0,
-        );
-      }).toList(),
-
+      lessonProgress: lessonProgress ?? const [],
+      examResults: examResults ?? const [],
       attendanceRecords: attendanceJson.map((item) {
         final data = item as Map<String, dynamic>;
 

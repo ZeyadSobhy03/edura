@@ -53,7 +53,7 @@ class StudentDetailsHeader extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 36), // balances the back button so title stays centered
+              const SizedBox(width: 36),
             ],
           ),
           const SizedBox(height: 20),

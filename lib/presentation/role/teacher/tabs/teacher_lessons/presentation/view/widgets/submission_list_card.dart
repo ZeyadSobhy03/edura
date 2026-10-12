@@ -75,7 +75,8 @@ class SubmissionListCard extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 2),
-                    Row(
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomText(
                           text:
@@ -85,19 +86,25 @@ class SubmissionListCard extends StatelessWidget {
                             fontSize: 11.5,
                           ),
                         ),
+                        const SizedBox(height: 2),
                         if (!isPending && submission.grade != null) ...[
-                          CustomText(
-                            text: '  ·  ',
-                            style: TextStyle(
-                              color: ColorManager.black.withValues(alpha: 0.3),
+
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 2,
                             ),
-                          ),
-                          CustomText(
-                            text: l10.gradeValue(submission.grade!),
-                            style: TextStyle(
-                              color: Colors.green,
-                              fontSize: 11.5,
-                              fontWeight: FontWeight.w600,
+                            decoration: BoxDecoration(
+                              color: Colors.green.withValues(alpha: 0.1),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: CustomText(
+                              text: l10.gradeValue(submission.grade!),
+                              style: TextStyle(
+                                color: Colors.green,
+                                fontSize: 11.5,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
                         ],

@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:edura/core/model/chat_args.dart';
 import 'package:edura/core/resources/colors/color_manger.dart';
@@ -65,7 +64,6 @@ class _ChatState extends State<Chat> {
                   );
                 }
                 if (state is MessagesError) {
-                  log("Error: ${state.error}");
                   return Center(
                     child: Text(
                       ErrorMessages.get(context, state.error),

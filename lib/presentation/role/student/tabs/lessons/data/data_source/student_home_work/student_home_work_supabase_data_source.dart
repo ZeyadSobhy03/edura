@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:edura/presentation/role/student/tabs/lessons/data/data_source/student_home_work/student_home_work_remote_data_source.dart';
@@ -98,7 +97,6 @@ class StudentHomeWorkSupabaseDataSource
 
       return HomeworkSubmissionModel.fromJson(row);
     } catch (e) {
-      log('Error submitting homework: $e');
       throw ServerError();
     }
   }

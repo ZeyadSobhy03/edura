@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:edura/core/model/chat_args.dart';
 import 'package:edura/core/model/chat_message_model.dart';
@@ -213,7 +212,6 @@ class _StudentDetailsState extends State<StudentDetails> {
               }
 
               if (state is StudentError) {
-                log("Error: ${state.error}");
                 return Center(
                   child: CustomText(
                     text: l10.errorOccurred,

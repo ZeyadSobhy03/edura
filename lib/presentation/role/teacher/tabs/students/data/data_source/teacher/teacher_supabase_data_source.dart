@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:edura/core/error/app_error.dart';
 import 'package:injectable/injectable.dart';
@@ -15,7 +14,6 @@ class TeacherSupabaseDataSource implements TeacherRemoteDataSource {
     try {
       final response = await supabase.from('teacher').select();
 
-      log('getTeachers response: $response');
 
       return response.map((json) => TeacherModel.fromJson(json)).toList();
     } on AppError {
@@ -55,11 +53,9 @@ class TeacherSupabaseDataSource implements TeacherRemoteDataSource {
           .single();
 
       return inserted['id'].toString();
-    } on AppError catch (e) {
-      log('AppError in getOrCreateConversation: ${e.toString()}');
+    } on AppError {
       rethrow;
     } catch (e) {
-      log('Error in getOrCreateConversation: ${e.toString()}');
       throw ServerError();
     }
   }

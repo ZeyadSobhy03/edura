@@ -67,6 +67,7 @@
 
   "faqSwitchLanguageQuestion": "How do I switch the app language?",
   "faqSwitchLanguageAnswer": "Go to Settings > Language and choose your preferred language.",
+  "noHomeworkYet": "No homework assigned yet",
 
   "noteSavedSuccessfully": "Note saved successfully",
   "noteTitle": "Note Title",

@@ -48,6 +48,9 @@ class _StudentHomeState extends State<StudentHome> {
       });
     }
     context.read<TeacherLessonsCubit>().fetchLessonByGrade(grade!);
+    context.read<StudentProfileCubit>().getStudentProfile(
+      studentId: studentId!,
+    );
   }
 
   @override
@@ -200,8 +203,8 @@ class _StudentHomeState extends State<StudentHome> {
                       onTap: () {
                         Navigator.pushNamed(
                           context,
-                          RouteManger.studentMainLayoutRoute,
-                          arguments: 4,
+                          RouteManger.scheduleScreen,
+
                         );
                       },
                     ),

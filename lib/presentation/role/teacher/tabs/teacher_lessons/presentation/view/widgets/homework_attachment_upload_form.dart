@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/widgets/custom_text.dart';
@@ -29,32 +30,31 @@ class HomeworkAttachmentUploadForm extends StatefulWidget {
 class _HomeworkAttachmentUploadFormState
     extends State<HomeworkAttachmentUploadForm> {
   Future<void> _pickFiles() async {
+    debugPrint('PICK: tapped');
     try {
-      final result = await FilePicker.pickFiles(
-        type: FileType.any,
-      );
+     final List<PlatformFile> files = await FilePicker.pickFiles(
+       type: FileType.any,
 
-      if (result == null) return;
+     );
 
-      final newFiles = result.files
-          .where((file) => file.path != null)
-          .map((file) => File(file.path!))
-          .toList();
+
+
+
+
+      debugPrint('picked ${files.length} files');
+
+      if (files.isEmpty || !mounted) return;
 
       setState(() {
-        widget.draft.attachments = [
-          ...widget.draft.attachments,
-          ...newFiles,
-        ];
+        widget.draft.attachments.addAll(
+          files.map((file) => File(file.path!)),
+        );
+
       });
     } catch (e) {
-
       if (!mounted) return;
-
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Error picking files: $e'),
-        ),
+        SnackBar(content: Text('Error picking files: $e')),
       );
     }
   }
@@ -72,6 +72,7 @@ class _HomeworkAttachmentUploadFormState
 
   @override
   Widget build(BuildContext context) {
+    log("${widget.isPublishing}");
     final l10 = AppLocalizations.of(context)!;
 
     return Column(

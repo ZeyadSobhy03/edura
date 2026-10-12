@@ -9,9 +9,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../../../../../../core/utils/push_service.dart';
 import '../../../../../../../l10n/app_localizations.dart';
 import '../../../../../student/tabs/profile/presentation/view/section/settings/sections/settings_group_card.dart';
 import '../../../../../student/tabs/profile/presentation/view/section/settings/widgets/settings_tile.dart';
+
 class TeacherProfile extends StatefulWidget {
   const TeacherProfile({super.key});
 
@@ -50,7 +52,7 @@ class _TeacherProfileState extends State<TeacherProfile> {
             (route) => false,
           );
         } else if (state is LogOutFailure) {
-         Fluttertoast.showToast(
+          Fluttertoast.showToast(
             msg: state.message,
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM,
@@ -67,7 +69,9 @@ class _TeacherProfileState extends State<TeacherProfile> {
               builder: (context, state) {
                 if (state is TeacherProfileLoading) {
                   return const Center(
-                    child: CircularProgressIndicator(color: ColorManager.primary),
+                    child: CircularProgressIndicator(
+                      color: ColorManager.primary,
+                    ),
                   );
                 } else if (state is TeacherProfileError) {
                   return Center(
@@ -105,6 +109,17 @@ class _TeacherProfileState extends State<TeacherProfile> {
                           homeworkCount: teacher.homeworkCount.toString(),
                         ),
                         const SizedBox(height: 44),
+                        /*
+                             LogoutButton(
+                          onPressed: logoutState is LogOutLoading
+                              ? null
+                              : () async {
+                                  await PushService.clear();
+                                  if (!context.mounted) return;
+                                  context.read<LogOutCubit>().logOut();
+                                },
+                        ),
+                         */
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: SettingsGroupCard(
@@ -115,7 +130,11 @@ class _TeacherProfileState extends State<TeacherProfile> {
                                 isDestructive: true,
                                 onTap: logoutState is LogOutLoading
                                     ? null
-                                    : () => context.read<LogOutCubit>().logOut(),
+                                    : () async {
+                                        await PushService.clear();
+                                        if (!context.mounted) return;
+                                        context.read<LogOutCubit>().logOut();
+                                      },
                               ),
                             ],
                           ),

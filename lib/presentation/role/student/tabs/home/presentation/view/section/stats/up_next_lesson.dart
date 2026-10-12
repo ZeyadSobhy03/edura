@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -53,7 +52,6 @@ class UpNextLessonState extends State<UpNextLesson> {
           subject: widget.lesson.subject,
           progress: progress,
           onTap: () async {
-            log('UpNextLesson: Navigating to lesson details for lesson ID: ${widget.lesson.id}');
             await Navigator.pushNamed(
               context,
               RouteManger.lessonDetails,

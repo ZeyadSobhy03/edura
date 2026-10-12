@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/data/data_source/home_work/home_work_remote_data_source.dart';
@@ -7,6 +6,7 @@ import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../../../../../core/error/rethrow_as_app_error.dart';
+import '../../../../../../student/tabs/lessons/data/model/student_home_work/homework_submission_model.dart';
 
 @LazySingleton(as: HomeWorkRemoteDataSource)
 class HomeWorkSupabaseDataSource implements HomeWorkRemoteDataSource {
@@ -15,6 +15,7 @@ class HomeWorkSupabaseDataSource implements HomeWorkRemoteDataSource {
   static const String _table = 'homeworks';
   static const String _bucket = 'homework-attachments';
   static const String homeworkSubmissions = "homework_submissions";
+  static const String _submissionsBucket = 'homework-submissions';
 
   @override
   Future<void> createHomework({
@@ -49,8 +50,8 @@ class HomeWorkSupabaseDataSource implements HomeWorkRemoteDataSource {
         'teacher_id': teacherId,
         'description': homework.description,
         'subject': homework.subject,
-        'status': homework.status,
-        'due_date': homework.dueDate?.toIso8601String(),
+        'status': homework.isPublished ? 'published' : 'draft',
+        'due_date': homework.dueDate?.toUtc().toIso8601String(),
         'is_published': homework.isPublished,
         'attachments': attachmentUrls,
       });
@@ -90,7 +91,7 @@ class HomeWorkSupabaseDataSource implements HomeWorkRemoteDataSource {
     try {
       await supabase
           .from(_table)
-          .update({'is_published': true})
+          .update({'is_published': true, 'status': 'published'})
           .eq('id', homeworkId);
     } catch (e) {
       rethrowAsAppError(e);
@@ -104,12 +105,15 @@ class HomeWorkSupabaseDataSource implements HomeWorkRemoteDataSource {
     String feedback,
   ) async {
     try {
+      final now = DateTime.now().toUtc().toIso8601String();
       await supabase
           .from(homeworkSubmissions)
           .update({
             'grade': grade,
             'feedback': feedback,
-            'graded_at': DateTime.now().toIso8601String(),
+            'graded_at': now,
+            'updated_at': now,
+            'status': 'graded',
           })
           .eq('id', submissionId);
     } catch (e) {
@@ -118,7 +122,7 @@ class HomeWorkSupabaseDataSource implements HomeWorkRemoteDataSource {
   }
 
   @override
-  Future<List<NewHomeworkModel>> getAllHomeworks()async {
+  Future<List<NewHomeworkModel>> getAllHomeworks() async {
     try {
       final response = await supabase
           .from(_table)
@@ -129,7 +133,41 @@ class HomeWorkSupabaseDataSource implements HomeWorkRemoteDataSource {
           .map((row) => NewHomeworkModel.fromJson(row as Map<String, dynamic>))
           .toList();
     } catch (e) {
-      log('Error fetching homeworks of student: $e');
+      rethrowAsAppError(e);
+    }
+  }
+
+  @override
+  Future<List<HomeworkSubmissionModel>> getSubmissionsByHomework(
+    String homeworkId,
+  ) async {
+    try {
+      final response =
+          await supabase.rpc(
+                'get_homework_submissions',
+                params: {'p_homework_id': homeworkId},
+              )
+              as List;
+
+      final result = <HomeworkSubmissionModel>[];
+      for (final r in response) {
+        final data = Map<String, dynamic>.from(r);
+
+        final filePath = data['file_url'] as String?;
+        if (filePath != null && filePath.isNotEmpty) {
+          try {
+            data['file_url'] = await supabase.storage
+                .from(_submissionsBucket)
+                .createSignedUrl(filePath, 3600);
+          } catch (e) {
+            data['file_url'] = '';
+          }
+        }
+
+        result.add(HomeworkSubmissionModel.fromJson(data));
+      }
+      return result;
+    } catch (e) {
       rethrowAsAppError(e);
     }
   }

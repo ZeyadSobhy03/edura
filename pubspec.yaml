@@ -49,7 +49,7 @@ dependencies:
 
 
   chewie: ^1.14.1
-  file_picker: ^12.0.0-beta.7
+  file_picker: ^13.1.0
   wakelock_plus: ^1.7.0
   fl_chart: ^1.2.0
   supabase_flutter: ^2.17.2
@@ -64,6 +64,11 @@ dependencies:
   path_provider: ^2.1.6
   video_thumbnail: ^0.5.6
   hive_ce: ^2.20.1
+  syncfusion_flutter_pdfviewer: 35.1.39
+  open_filex: ^4.7.0
+  firebase_core: ^4.15.0
+  firebase_messaging: ^16.7.0
+
 
 dev_dependencies:
   flutter_test:

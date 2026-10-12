@@ -180,7 +180,7 @@ class _TeacherLessonsState extends State<TeacherLessons> {
     Navigator.pushNamed(
       context,
       RouteManger.teacherHomeworkScreen,
-      arguments: lesson.homeworkSubmissions,
+      arguments: lesson.id,
     );
   }
 

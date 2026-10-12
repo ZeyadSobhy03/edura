@@ -29,8 +29,8 @@ class _ChangeVideoCardState extends State<ChangeVideoCard> {
   Future<void> _pickVideo() async {
     final result = await FilePicker.pickFiles(type: FileType.video);
 
-    if (result != null && result.files.single.path != null) {
-      final file = File(result.files.single.path!);
+    if (result.single.path != null) {
+      final file = File(result.single.path!);
       setState(() => _selectedVideo = file);
       widget.onVideoSelected?.call(file);
     }

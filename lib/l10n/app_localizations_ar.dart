@@ -198,6 +198,9 @@ class AppLocalizationsAr extends AppLocalizations {
       'اذهب إلى الإعدادات > اللغة واختر اللغة المفضلة لديك.';
 
   @override
+  String get noHomeworkYet => 'لا توجد واجبات منزلية بعد';
+
+  @override
   String get noteSavedSuccessfully => 'تم حفظ الملاحظة بنجاح';
 
   @override

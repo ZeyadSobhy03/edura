@@ -94,12 +94,18 @@ class _AddNewLessonScreenState extends State<AddNewLessonScreen> {
         BlocListener<HomeWorkCubit, HomeWorkState>(
           listener: (context, state) {
             if (state is CreateHomeworkSuccess) {
-              Fluttertoast.showToast(msg: l10.lessonPublishedSuccessfully);
+              Fluttertoast.showToast(
+                msg: l10.lessonPublishedSuccessfully,
+                backgroundColor: ColorManager.green,
+                textColor: ColorManager.white,
+              );
 
               Navigator.pop(context);
             } else if (state is CreateHomeworkFailure) {
               Fluttertoast.showToast(
                 msg: ErrorMessages.get(context, state.error),
+                backgroundColor: ColorManager.red,
+                textColor: ColorManager.white,
               );
 
               Navigator.pop(context);
@@ -184,7 +190,6 @@ class _AddNewLessonScreenState extends State<AddNewLessonScreen> {
                             onSaveDraft: _saveDraft,
                             isPublishing: isSubmitting,
                           )
-
                         else if (_step == LessonFormStep.homework)
                           LessonHomeworkUploadForm(
                             onNext: _publishWithHomework,

@@ -3,6 +3,7 @@ import 'package:edura/core/resources/localization/error_messages.dart';
 import 'package:edura/core/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import '../../../../../../student/tabs/lessons/data/model/student_home_work/homework_submission_model.dart';
 import '../../../../../../../../l10n/app_localizations.dart';
 import '../../view_model/home_work/home_work_view_model.dart';
@@ -22,6 +23,7 @@ class ReviewHomeworkScreen extends StatefulWidget {
 class _ReviewHomeworkScreenState extends State<ReviewHomeworkScreen> {
   late final TextEditingController _gradeController;
   late final TextEditingController _feedbackController;
+
   @override
   void initState() {
     super.initState();
@@ -71,13 +73,17 @@ class _ReviewHomeworkScreenState extends State<ReviewHomeworkScreen> {
     return BlocConsumer<HomeWorkCubit, HomeWorkState>(
       listener: (context, state) {
         if (state is ReviewHomeworkSuccess) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(l10.gradeSubmittedSuccessfully)),
+          Fluttertoast.showToast(
+            msg: l10.gradeSubmittedSuccessfully,
+            backgroundColor: ColorManager.green,
+            textColor: ColorManager.white,
           );
           Navigator.pop(context, true);
         } else if (state is ReviewHomeworkFailure) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(ErrorMessages.get(context, state.error))),
+          Fluttertoast.showToast(
+            msg: ErrorMessages.get(context, state.error),
+            backgroundColor: ColorManager.red,
+            textColor: ColorManager.white,
           );
         }
       },
@@ -150,7 +156,6 @@ class _ReviewHomeworkScreenState extends State<ReviewHomeworkScreen> {
                   ),
                 ),
 
-                // Submit button pinned at the bottom
                 Padding(
                   padding: const EdgeInsets.all(16),
                   child: SizedBox(

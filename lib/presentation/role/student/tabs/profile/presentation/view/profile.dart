@@ -11,6 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../../../../../../core/utils/push_service.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -37,7 +38,9 @@ class _ProfileState extends State<Profile> {
     }
 
     studentId = currentUser.id;
-    context.read<StudentProfileCubit>().getStudentProfile(studentId: studentId!);
+    context.read<StudentProfileCubit>().getStudentProfile(
+      studentId: studentId!,
+    );
   }
 
   @override
@@ -51,7 +54,7 @@ class _ProfileState extends State<Profile> {
             (route) => false,
           );
         } else if (state is LogOutFailure) {
-         Fluttertoast.showToast(
+          Fluttertoast.showToast(
             msg: state.message,
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM,
@@ -66,9 +69,12 @@ class _ProfileState extends State<Profile> {
           body: SafeArea(
             child: BlocBuilder<StudentProfileCubit, StudentProfileState>(
               builder: (context, state) {
-                if (state is StudentProfileLoading || state is StudentProfileInitial) {
+                if (state is StudentProfileLoading ||
+                    state is StudentProfileInitial) {
                   return const Center(
-                    child: CircularProgressIndicator(color: ColorManager.primary),
+                    child: CircularProgressIndicator(
+                      color: ColorManager.primary,
+                    ),
                   );
                 }
 
@@ -90,7 +96,10 @@ class _ProfileState extends State<Profile> {
                   final student = state.student;
 
                   return SingleChildScrollView(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 16,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -110,7 +119,11 @@ class _ProfileState extends State<Profile> {
                         LogoutButton(
                           onPressed: logoutState is LogOutLoading
                               ? null
-                              : () => context.read<LogOutCubit>().logOut(),
+                              : () async {
+                                  await PushService.clear();
+                                  if (!context.mounted) return;
+                                  context.read<LogOutCubit>().logOut();
+                                },
                         ),
                       ],
                     ),

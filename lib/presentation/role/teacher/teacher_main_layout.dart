@@ -18,13 +18,16 @@ class TeacherMainLayout extends StatefulWidget {
 }
 
 class _TeacherMainLayoutState extends State<TeacherMainLayout> {
-  int _currentIndex = 0;
-  late PageController _pageController;
+
+  late final PageController _pageController;
+  late int _currentIndex;
 
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(initialPage: _currentIndex);
+    _currentIndex = widget.initialIndex;
+
+    _pageController = PageController(initialPage: widget.initialIndex);
   }
 
   @override

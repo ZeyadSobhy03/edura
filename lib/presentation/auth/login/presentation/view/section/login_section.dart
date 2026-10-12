@@ -1,5 +1,4 @@
 
-import 'dart:developer';
 
 import 'package:edura/core/extensions/text_ex.dart';
 import 'package:edura/core/resources/localization/error_messages.dart';
@@ -17,6 +16,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../../../../core/resources/colors/color_manger.dart';
+import '../../../../../../core/utils/push_service.dart';
 import '../../../../../../core/widgets/custom_text.dart';
 import '../../../../register/presentation/view/widgets/build_label.dart';
 import '../../../../register/presentation/view/widgets/google_login_button.dart';
@@ -62,6 +62,7 @@ class _LoginSectionState extends State<LoginSection> {
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state is LoginSuccess || state is LoginWithGoogleSuccess) {
+            PushService.init();
             if (isStudent) {
               Fluttertoast.showToast(
                 msg: l10.messageLoginSuccess,
@@ -88,7 +89,6 @@ class _LoginSectionState extends State<LoginSection> {
           } else if (state is LoginFailure || state is LoginWithGoogleFailure) {
 
 
-            log("Login Error: ${state is LoginFailure ? state.error : (state as LoginWithGoogleFailure).error}");
             Fluttertoast.showToast(
               msg: ErrorMessages.get(
                 context,
@@ -220,6 +220,7 @@ class _LoginSectionState extends State<LoginSection> {
       password,
       role: isStudent ? 'student' : 'teacher',
     );
+
   }
 
   void _loginWithGoogle() {

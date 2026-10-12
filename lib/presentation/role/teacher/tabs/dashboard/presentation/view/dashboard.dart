@@ -16,6 +16,7 @@ import '../../../../../../../core/widgets/custom_text.dart';
 import '../../../../../student/tabs/home/presentation/view/widgets/home_header.dart';
 import '../../../teacher_profile/presentation/view_model/teacher_profile/teacher_profile_view_model.dart';
 import '../view_model/activities/activities_view_model.dart';
+import '../view_model/analytics/analytics_view_model.dart';
 import '../view_model/dashboard/dashboard_view_model.dart';
 
 class Dashboard extends StatefulWidget {
@@ -32,6 +33,8 @@ class _DashboardState extends State<Dashboard> {
   void initState() {
     super.initState();
     context.read<DashboardCubit>().load();
+    context.read<AnalyticsCubit>().load('week');
+
     final currentUser = Supabase.instance.client.auth.currentUser;
 
     if (currentUser == null) {
@@ -45,7 +48,6 @@ class _DashboardState extends State<Dashboard> {
     context.read<TeacherProfileCubit>().getTeacherProfile(teacherId!);
     context.read<ActivitiesCubit>().load();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -62,16 +64,24 @@ class _DashboardState extends State<Dashboard> {
             children: [
               BlocBuilder<TeacherProfileCubit, TeacherProfileState>(
                 builder: (context, state) {
-                  final name = state is TeacherProfileLoaded ? state.profile.name : null;
+                  final name = state is TeacherProfileLoaded
+                      ? state.profile.name
+                      : null;
 
                   return HomeHeader(
-                    userName: (name == null || name.isEmpty) ? l10.teacher : name,
+                    userName: (name == null || name.isEmpty)
+                        ? l10.teacher
+                        : name,
                     onTap: () {
-                      Navigator.pushNamed(context, RouteManger.teacherNotificationScreen);
+                      Navigator.pushNamed(
+                        context,
+                        RouteManger.teacherNotificationScreen,
+                      );
                     },
                   );
                 },
-              ),              const SizedBox(height: 8),
+              ),
+              const SizedBox(height: 8),
               BlocBuilder<DashboardCubit, DashboardState>(
                 builder: (context, state) {
                   final stats = state is DashboardLoaded ? state.stats : null;
@@ -80,7 +90,8 @@ class _DashboardState extends State<Dashboard> {
                     {
                       'icon': Icons.person,
                       'color': ColorManager.primary,
-                      'navigateTo': RouteManger.teacherStudentsScreen,
+                      'navigateTo': RouteManger.teacherMainLayoutRoute,
+                      'arguments': 2,
                       'value': stats?.totalStudents ?? 0,
                       'label': l10.totalOfStudents,
                       'description': l10.totalNumberOfStudents(
@@ -90,7 +101,8 @@ class _DashboardState extends State<Dashboard> {
                     {
                       'icon': Icons.flash_on,
                       'color': ColorManager.green,
-                      'navigateTo': RouteManger.teacherStudentsScreen,
+                      'navigateTo': RouteManger.teacherMainLayoutRoute,
+                      'arguments': 2,
                       'value': stats?.activeStudents ?? 0,
                       'label': l10.activeStudents,
                       'description': l10.totalNumberOfActiveStudents(
@@ -100,7 +112,8 @@ class _DashboardState extends State<Dashboard> {
                     {
                       'icon': Icons.attach_money_rounded,
                       'color': ColorManager.orange,
-                      'navigateTo': RouteManger.teacherChatsScreen,
+                      'navigateTo': RouteManger.paymentScreen,
+                      'arguments': 3,
                       'value': (stats?.monthlyRevenue ?? 0).toInt(),
                       'label': l10.revenue,
                       'description': l10.totalRevenue(
@@ -110,7 +123,8 @@ class _DashboardState extends State<Dashboard> {
                     {
                       'icon': Icons.calendar_today_outlined,
                       'color': ColorManager.purple,
-                      'navigateTo': RouteManger.teacherProfileScreen,
+                      'navigateTo': RouteManger.teacherMainLayoutRoute,
+                      'arguments': 4,
                       'value': stats?.todaysClasses ?? 0,
                       'label': l10.todaysClasses,
                       'description': l10.totalNumberOfTodaysClasses(
@@ -131,6 +145,7 @@ class _DashboardState extends State<Dashboard> {
                     itemBuilder: (context, index) {
                       final data = statCardData[index];
                       return StatCard(
+                        arguments: data['arguments'] as int,
                         icon: data['icon'] as IconData,
                         color: data['color'] as Color,
                         navigateTo: data['navigateTo'] as String,
@@ -143,11 +158,39 @@ class _DashboardState extends State<Dashboard> {
                 },
               ),
               const SizedBox(height: 8),
-              StudentGrowthCard(
-                totalStudents: 30,
-                weeklyData: DummyAnalyticsData.weeklyStudentGrowth,
-                onViewAnalytics: () {
-                  Navigator.pushNamed(context, RouteManger.analyticsScreen);
+              BlocBuilder<AnalyticsCubit, AnalyticsState>(
+                builder: (context, state) {
+                  if (state is! AnalyticsLoaded) {
+                    return const SizedBox(
+                      height: 160,
+                      child: Center(
+                        child: CircularProgressIndicator(
+                          color: ColorManager.primary,
+                        ),
+                      ),
+                    );
+                  }
+
+                  final data = state.data;
+                  final weekly = data.weeklyGrowth
+                      .map(
+                        (p) => WeeklyPointModel(label: p.label, value: p.value),
+                      )
+                      .toList();
+
+                  return StudentGrowthCard(
+                    totalStudents: data.totalStudents,
+                    weeklyData: weekly,
+                    onViewAnalytics: () async {
+                      await Navigator.pushNamed(
+                        context,
+                        RouteManger.analyticsScreen,
+                      );
+                      if (context.mounted) {
+                        context.read<AnalyticsCubit>().load('week');
+                      }
+                    },
+                  );
                 },
               ),
               const SizedBox(height: 8),
@@ -197,10 +240,15 @@ class _DashboardState extends State<Dashboard> {
               const SizedBox(height: 8),
               BlocBuilder<ActivitiesCubit, ActivitiesState>(
                 builder: (context, state) {
-                  if (state is ActivitiesLoading || state is ActivitiesInitial) {
+                  if (state is ActivitiesLoading ||
+                      state is ActivitiesInitial) {
                     return const Padding(
                       padding: EdgeInsets.symmetric(vertical: 16),
-                      child: Center(child: CircularProgressIndicator()),
+                      child: Center(
+                        child: CircularProgressIndicator(
+                          color: ColorManager.primary,
+                        ),
+                      ),
                     );
                   }
                   if (state is ActivitiesError) {
@@ -213,7 +261,9 @@ class _DashboardState extends State<Dashboard> {
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       child: CustomText(
                         text: l10.noRecentActivities,
-                        style: TextStyle(color: ColorManager.black.withValues(alpha: 0.5)),
+                        style: TextStyle(
+                          color: ColorManager.black.withValues(alpha: 0.5),
+                        ),
                       ),
                     );
                   }
@@ -222,10 +272,21 @@ class _DashboardState extends State<Dashboard> {
                     itemCount: activities.length,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, index) => ActivityCard(activity: activities[index]),
+                    itemBuilder: (context, index) {
+                      final activity = activities[index];
+                      return ActivityCard(
+                        activity: activity,
+                        confirmDismiss: (direction) async =>
+                            direction == DismissDirection.endToStart,
+                        onDismissed: (_) => context
+                            .read<ActivitiesCubit>()
+                            .deleteActivity(activityId: activity.id),
+                      );
+                    },
                   );
                 },
-              ),            ],
+              ),
+            ],
           ),
         ),
       ),

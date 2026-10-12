@@ -199,6 +199,9 @@ class AppLocalizationsEn extends AppLocalizations {
       'Go to Settings > Language and choose your preferred language.';
 
   @override
+  String get noHomeworkYet => 'No homework assigned yet';
+
+  @override
   String get noteSavedSuccessfully => 'Note saved successfully';
 
   @override

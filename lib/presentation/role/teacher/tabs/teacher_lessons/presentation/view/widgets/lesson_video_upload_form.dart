@@ -39,8 +39,8 @@ class _LessonVideoUploadFormState extends State<LessonVideoUploadForm> {
         type: FileType.video,
       );
 
-      if (result != null && result.files.single.path != null) {
-        final videoFile = File(result.files.single.path!);
+      if (result.single.path != null) {
+        final videoFile = File(result.single.path!);
 
         final controller = VideoPlayerController.file(videoFile);
 
@@ -50,8 +50,8 @@ class _LessonVideoUploadFormState extends State<LessonVideoUploadForm> {
         final videoThumbnailUrl= await VideoThumbnail.thumbnailFile(
           video: videoFile.path,
           imageFormat: ImageFormat.JPEG,
-          maxWidth: 128,
-          quality: 100,
+          maxWidth: 512,
+          quality: 95,
     );
 
         await controller.dispose();

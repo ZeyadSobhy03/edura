@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:edura/core/localization/error_messages.dart';
 import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/widgets/custom_text.dart';
@@ -65,7 +63,6 @@ class _HomeworkScreenState extends State<HomeworkScreen> {
       body: SafeArea(
         child: BlocBuilder<HomeWorkCubit, HomeWorkState>(
           builder: (context, state) {
-            log('HomeworkScreen: Current state: $state');
             if (state is HomeWorkLoading) {
               return const Center(
                 child: CircularProgressIndicator(color: ColorManager.primary),
@@ -95,16 +92,29 @@ class _HomeworkScreenState extends State<HomeworkScreen> {
                   ),
                 );
               }
-              return ListView.builder(
-                itemCount: homeworks.length,
-                itemBuilder: (context, index) {
-                  final homework = homeworks[index];
-
-                  return HomeWorkCard(
-                    key: ValueKey(homework.id),
-                    homework: homework,
-                  );
+              return RefreshIndicator(
+                onRefresh: () async {
+                  if (widget.lessonId == null) {
+                    await context.read<HomeWorkCubit>().getAllHomeworks();
+                  } else {
+                    await context.read<HomeWorkCubit>().fetchHomeworks(
+                      widget.lessonId!,
+                    );
+                  }
                 },
+                child: ListView.builder(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  itemCount: homeworks.length,
+                  itemBuilder: (context, index) {
+                    final homework = homeworks[index];
+                    return HomeWorkCard(
+                      key: ValueKey(
+                        '${homework.id}-${DateTime.now().millisecondsSinceEpoch}',
+                      ),
+                      homework: homework,
+                    );
+                  },
+                ),
               );
             }
             return const SizedBox.shrink();

@@ -76,8 +76,8 @@ class _HomeWorkCardState extends State<HomeWorkCard> {
       type: FileType.custom,
       allowedExtensions: ['pdf', 'jpg', 'jpeg', 'png'],
     );
-    if (result != null && result.files.single.path != null && mounted) {
-      setState(() => _pickedFile = File(result.files.single.path!));
+    if (result.single.path != null && mounted) {
+      setState(() => _pickedFile = File(result.single.path!));
     }
   }
 
@@ -222,9 +222,11 @@ class _HomeWorkCardState extends State<HomeWorkCard> {
 
                 if (alreadySubmitted && !_resubmitting) {
                   return BuildSubmittedView(
+                    submission: (state).submission,
                     onResubmit: () => setState(() => _resubmitting = true),
                   );
                 }
+
 
                 return BuildPickerView(
                   isSubmitting: isSubmitting,

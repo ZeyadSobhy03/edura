@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/resources/routes/route_manger.dart';
@@ -41,7 +40,6 @@ class _LessonsState extends State<Lessons> {
         .single();
 
     final grade = student['grade'] as String?;
-    log('Fetched student grade: $grade');
     if (grade == null || !mounted) return;
 
     context.read<TeacherLessonsCubit>().fetchLessonByGrade(grade);
@@ -91,12 +89,7 @@ class _LessonsState extends State<Lessons> {
               ),
               const SizedBox(height: 12),
 
-              // CustomCategoryFilter(
-              //   categories: categories,
-              //   selected: _selectedCategory,
-              //   onSelected: (category) =>
-              //       setState(() => _selectedCategory = category),
-              // ),
+
               const SizedBox(height: 16),
 
               Expanded(

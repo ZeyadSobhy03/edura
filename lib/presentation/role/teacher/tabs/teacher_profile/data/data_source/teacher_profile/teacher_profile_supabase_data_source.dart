@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/data/data_source/teacher_profile/teacher_profile_remote_data_source.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/data/model/teacher_profile_model.dart';
@@ -62,12 +61,10 @@ class TeacherProfileSupabaseDataSource
           .eq('id', teacherId)
           .single();
 
-      log('updateTeacherProfile response: $response');
       return TeacherProfileModel.fromJson(response);
     } on AppError {
       rethrow;
     } catch (e) {
-      log('Error in updateTeacherProfile: ${e.toString()}');
       throw ServerError();
     }
   }

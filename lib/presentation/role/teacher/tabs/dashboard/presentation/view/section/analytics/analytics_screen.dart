@@ -28,7 +28,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<AnalyticsCubit>().load(_range.name); // 'week' | 'month' | 'year'
+    context.read<AnalyticsCubit>().load(_range.name);
   }
 
   void _onRangeChanged(AnalyticsRange range) {

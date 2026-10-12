@@ -1,5 +1,4 @@
 
-import 'dart:developer';
 
 import 'package:edura/presentation/role/student/tabs/lessons/data/data_source/lesson_progress/lesson_progress_remote_data_source.dart';
 import 'package:edura/presentation/role/student/tabs/lessons/data/model/lesson_progress/lesson_progress.dart';
@@ -26,7 +25,6 @@ class LessonProgressSupabaseDataSource
     } on AppError{
       rethrow;
     } catch (e) {
-      log('Error creating lesson progress: $e');
       throw ServerError();
     }
   }
@@ -70,7 +68,6 @@ class LessonProgressSupabaseDataSource
     } on AppError {
       rethrow;
     } catch (e) {
-      log('Error updating lesson progress: $e');
       throw ServerError();
     }
   }

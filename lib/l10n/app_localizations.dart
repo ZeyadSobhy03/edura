@@ -464,6 +464,12 @@ abstract class AppLocalizations {
   /// **'Go to Settings > Language and choose your preferred language.'**
   String get faqSwitchLanguageAnswer;
 
+  /// No description provided for @noHomeworkYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No homework assigned yet'**
+  String get noHomeworkYet;
+
   /// No description provided for @noteSavedSuccessfully.
   ///
   /// In en, this message translates to:

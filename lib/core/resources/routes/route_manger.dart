@@ -6,6 +6,7 @@ import 'package:edura/presentation/role/student/student_main_layout.dart';
 import 'package:edura/presentation/role/student/tabs/lessons/presentation/view/lessons.dart';
 import 'package:edura/presentation/role/teacher/tabs/students/presentation/view/students.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_chats/presentation/view/teacher_chats.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view/section/file_viewer_screen.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view/teacher_lessons.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_profile.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/attendance_report_screen/attendance_report_screen.dart';
@@ -44,9 +45,11 @@ import '../../../presentation/role/teacher/tabs/teacher_chats/data/data_source/c
 import '../../../presentation/role/teacher/tabs/teacher_chats/data/repositories/chats_repositories_imp.dart';
 import '../../../presentation/role/teacher/tabs/teacher_chats/domain/use_case/chats_use_case.dart';
 import '../../../presentation/role/teacher/tabs/teacher_chats/presentation/view_model/chats_view_model.dart';
+import '../../../presentation/role/teacher/tabs/teacher_lessons/data/model/home_work/new_homework_model.dart';
 import '../../../presentation/role/teacher/tabs/teacher_lessons/presentation/view/section/add_new_lesson_screen.dart';
 import '../../../presentation/role/teacher/tabs/teacher_lessons/presentation/view/section/create_homework_screen.dart';
 import '../../../presentation/role/teacher/tabs/teacher_lessons/presentation/view/section/edit_lesson_screen.dart';
+import '../../../presentation/role/teacher/tabs/teacher_lessons/presentation/view/section/homework_submissions_screen.dart';
 import '../../../presentation/role/teacher/tabs/teacher_lessons/presentation/view/section/review_homework_screen.dart';
 import '../../../presentation/role/teacher/tabs/teacher_lessons/presentation/view/section/teacher_homework_screen.dart';
 import '../../../presentation/role/teacher/tabs/teacher_profile/presentation/view/class_schedules/presentation/view/class_schedules_screen.dart';
@@ -59,6 +62,7 @@ import '../../../presentation/role/teacher/teacher_main_layout.dart';
 import '../../../presentation/splash_screen/splash_screen.dart';
 import '../../model/edit_profile_arguments.dart';
 import '../../model/exam_model.dart';
+import '../../model/file_viewer_arguments.dart';
 import '../../model/lesson_model.dart';
 import '../../../presentation/role/teacher/tabs/teacher_profile/data/model/teacher_profile_model.dart';
 import '../../model/web_view_arguments.dart';
@@ -112,11 +116,12 @@ class RouteManger {
   static const String teacherGradesScreen = '/teacherGradesScreen';
   static const String subjectsClassesScreen = '/subjectsClassesScreen';
   static const String paymentScreen = '/paymentScreen';
-
+   static const String fileViewerScreen = '/fileViewerScreen';
   static const String scheduleClassScreen = '/scheduleClassScreen';
 
   static const String attendanceForAllClasses = '/attendanceForAllClasses';
   static const String createHomeworkScreen = '/createHomeworkScreen';
+  static const String homeworkSubmissionsScreen = '/homeworkSubmissionsScreen';
 
   static Route router(RouteSettings settings) {
     switch (settings.name) {
@@ -135,15 +140,19 @@ class RouteManger {
         );
       case noteEditorScreen:
         final existingNote = settings.arguments as NoteModel?;
-        return MaterialPageRoute(builder: (context) => NoteEditorScreen(
-          existingNote: existingNote,
-        ));
+        return MaterialPageRoute(
+          builder: (context) => NoteEditorScreen(existingNote: existingNote),
+        );
       case homeWorkScreen:
         final lessonId = settings.arguments as String?;
         return MaterialPageRoute(
           builder: (context) => HomeworkScreen(lessonId: lessonId),
         );
-
+      case fileViewerScreen:
+        final args = settings.arguments as FileViewerArguments;
+        return MaterialPageRoute(builder: (context) {
+          return FileViewerScreen(args: args);
+        },);
       case loginRoute:
         return MaterialPageRoute(
           builder: (context) {
@@ -221,7 +230,13 @@ class RouteManger {
             return TeacherEditProfileScreen(teacher: teacher);
           },
         );
-
+      case homeworkSubmissionsScreen:
+        return MaterialPageRoute(
+          builder: (context) {
+            final homework = settings.arguments as NewHomeworkModel;
+            return HomeworkSubmissionsScreen(homework: homework);
+          },
+        );
       case createHomeworkScreen:
         final lessonId = settings.arguments as String?;
         return MaterialPageRoute(
@@ -270,10 +285,9 @@ class RouteManger {
         return MaterialPageRoute(builder: (context) => Lessons());
 
       case examAttemptScreen:
-        final args =settings.arguments as ExamModel;
+        final args = settings.arguments as ExamModel;
         return MaterialPageRoute(
-          builder: (context) =>
-              ExamAttemptScreen(exam: args),
+          builder: (context) => ExamAttemptScreen(exam: args),
         );
 
       case questionBuilderScreen:
@@ -281,9 +295,9 @@ class RouteManger {
           builder: (context) => const QuestionBuilderScreen(),
         );
       case teacherHomeworkScreen:
-        final submissions = settings.arguments as List<HomeworkSubmissionModel>;
+        final lessonId = settings.arguments as String?;
         return MaterialPageRoute(
-          builder: (context) => TeacherHomeworkScreen(submissions: submissions),
+          builder: (context) => TeacherHomeworkScreen(lessonId: lessonId),
         );
       case announcementsScreen:
         return MaterialPageRoute(builder: (context) => AnnouncementsScreen());
@@ -352,7 +366,6 @@ class RouteManger {
             studentId: args.studentId,
             currentName: currentName,
             currentPhone: phone,
-
           ),
         );
 

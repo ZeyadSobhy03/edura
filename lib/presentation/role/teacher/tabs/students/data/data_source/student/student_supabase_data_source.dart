@@ -28,14 +28,39 @@ class StudentSupabaseDataSource implements StudentRemoteDataSource {
       final response = await supabase
           .from('students')
           .select('''
-      *,
-      student_lesson_progress (*),
-      student_attendance (*)
-    ''')
+          *,
+          student_attendance (*)
+        ''')
           .eq('id', studentId)
           .single();
 
-      return StudentModel.fromDetailsJson(response);
+      final lessonsResponse = await supabase.rpc(
+        'student_lessons_with_progress',
+        params: {'p_student_id': studentId},
+      );
+
+      final lessonProgress = (lessonsResponse as List)
+          .map((e) => LessonProgress.fromJson(e as Map<String, dynamic>))
+          .toList();
+      final examsResponse = await supabase.rpc(
+        'student_exam_results',
+        params: {'p_student_id': studentId},
+      );
+
+      final examResults = (examsResponse as List)
+          .map((e) => ExamResult.fromJson(e as Map<String, dynamic>))
+          .toList();
+      final statsResponse = await supabase.rpc(
+        'student_header_stats',
+        params: {'p_student_id': studentId},
+      );
+
+      final stats = (statsResponse as Map<String, dynamic>?) ?? {};
+      return StudentModel.fromDetailsJson(
+        {...response, ...stats},
+        lessonProgress: lessonProgress,
+        examResults: examResults,
+      );
     } on AppError {
       rethrow;
     } catch (e) {

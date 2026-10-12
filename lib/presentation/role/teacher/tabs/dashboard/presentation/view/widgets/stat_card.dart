@@ -11,6 +11,7 @@ class StatCard extends StatelessWidget {
     required this.value,
     required this.label,
     required this.description,
+    required this.arguments,
   });
 
   final IconData icon;
@@ -19,75 +20,84 @@ class StatCard extends StatelessWidget {
   final int value;
   final String label;
   final String description;
+  final int arguments;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-        side: BorderSide(
-          color: ColorManager.black.withValues(alpha: 0.1),
-          width: 1,
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, navigateTo, arguments: arguments);
+      },
+      child: Card(
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+          side: BorderSide(
+            color: ColorManager.black.withValues(alpha: 0.1),
+            width: 1,
+          ),
         ),
-      ),
-      color: ColorManager.white,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-        child: Column(
+        color: ColorManager.white,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: color.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(12),
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: color.withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Icon(icon, color: color, size: 22),
                   ),
-                  child: Icon(icon, color: color, size: 22),
-                ),
 
-                IconButton(
-                  onPressed: (){
-                    Navigator.pushNamed(context, navigateTo);
-                  },
-                  icon: Icon(
-                    Icons.arrow_forward_ios,
-                    color: ColorManager.gray.withValues(alpha: 0.5),
-                    size: 18,
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        navigateTo,
+                        arguments: arguments,
+                      );
+                    },
+                    icon: Icon(
+                      Icons.arrow_forward_ios,
+                      color: ColorManager.gray.withValues(alpha: 0.5),
+                      size: 18,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            CustomText(
-              text: '$value',
-              style: TextStyle(
-                color: color,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+                ],
               ),
-            ),
-            const SizedBox(height: 8),
-            CustomText(
-              text: label,
-              style: TextStyle(color: ColorManager.black, fontSize: 14),
-            ),
-            const SizedBox(height: 8),
-            Flexible(
-              child: CustomText(
-                text: description,
-                maxLines: 2,
+              CustomText(
+                text: '$value',
                 style: TextStyle(
-                  color: ColorManager.black.withValues(alpha: 0.6),
-                  fontSize: 12,
+                  color: color,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
-          ],
+              const SizedBox(height: 8),
+              CustomText(
+                text: label,
+                style: TextStyle(color: ColorManager.black, fontSize: 14),
+              ),
+              const SizedBox(height: 8),
+              Flexible(
+                child: CustomText(
+                  text: description,
+                  maxLines: 2,
+                  style: TextStyle(
+                    color: ColorManager.black.withValues(alpha: 0.6),
+                    fontSize: 12,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

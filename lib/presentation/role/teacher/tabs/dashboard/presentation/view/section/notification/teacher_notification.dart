@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/widgets/custom_text.dart';
@@ -13,6 +12,7 @@ import 'package:edura/presentation/role/teacher/tabs/dashboard/presentation/view
 import 'package:edura/presentation/role/teacher/tabs/students/presentation/view_model/student/student_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../../../../../../l10n/app_localizations.dart';
@@ -171,8 +171,9 @@ class _TeacherNotificationState extends State<TeacherNotification> {
         if (state is TeacherNotificationCreated) {
           setState(() => _isSending = false);
           _clearForm();
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(l10.notificationSentSuccessfully)),
+          Fluttertoast.showToast(msg: l10.notificationSentSuccessfully,
+          backgroundColor: ColorManager.green,
+            textColor: ColorManager.white
           );
         } else if (state is TeacherNotificationLoaded) {
           setState(() {
@@ -193,10 +194,11 @@ class _TeacherNotificationState extends State<TeacherNotification> {
           if (_isSending) {
             setState(() => _isSending = false);
           }
-          log('Error: ${state.message}');
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(state.message)));
+          Fluttertoast.showToast(
+            msg: state.message,
+            backgroundColor: ColorManager.red,
+            textColor: ColorManager.white,
+          );
         }
       },
       builder: (context, state) {

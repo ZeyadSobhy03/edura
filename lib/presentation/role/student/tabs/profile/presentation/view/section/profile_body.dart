@@ -29,7 +29,7 @@ class ProfileBody extends StatelessWidget {
           children: [
             CustomListTail(
               text: l10.leaderboard,
-              subTitle: l10.rank,
+              subTitle: '',
               icon: Icons.emoji_events_outlined,
               iconColor: ColorManager.primary,
               onTap: () {
@@ -39,7 +39,7 @@ class ProfileBody extends StatelessWidget {
             Divider(color: ColorManager.gray.withValues(alpha: 0.2)),
             CustomListTail(
               text: l10.schedule,
-              subTitle: l10.numberOfClassToday(3),
+              subTitle: '',
               icon: Icons.calendar_today_outlined,
               iconColor: ColorManager.purple,
               onTap: () {
@@ -51,7 +51,7 @@ class ProfileBody extends StatelessWidget {
 
             CustomListTail(
               text: l10.homework,
-              subTitle: l10.numberOfHomework(2),
+              subTitle:'',
               icon: Icons.description_outlined,
               iconColor: ColorManager.red,
               onTap: () {
@@ -68,7 +68,7 @@ class ProfileBody extends StatelessWidget {
                 Navigator.pushNamed(context, RouteManger.achievementScreen);
               },
               text: l10.achievements,
-              subTitle: l10.numberOfAchievements(5),
+              subTitle :'',
               icon: Icons.emoji_events_outlined,
               iconColor: ColorManager.green,
             ),
@@ -89,7 +89,7 @@ class ProfileBody extends StatelessWidget {
                 Navigator.pushNamed(context, RouteManger.attendanceScreen);
               },
               text: l10.attendance,
-              subTitle: l10.attendanceScore(95),
+              subTitle: '',
               icon: Icons.insert_chart_outlined,
               iconColor: ColorManager.green,
             ),
@@ -97,7 +97,7 @@ class ProfileBody extends StatelessWidget {
 
             CustomListTail(
               text: l10.announcements,
-              subTitle: l10.numberOfAnnouncements(3),
+              subTitle: '',
               icon: Icons.location_on_outlined,
               iconColor: ColorManager.blue,
               onTap: () {

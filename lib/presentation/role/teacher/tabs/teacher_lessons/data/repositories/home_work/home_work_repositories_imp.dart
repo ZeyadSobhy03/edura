@@ -1,3 +1,4 @@
+import 'package:edura/presentation/role/student/tabs/lessons/data/model/student_home_work/homework_submission_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/data/model/home_work/new_homework_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/data/repositories/home_work/home_work_repositories.dart';
 import 'package:injectable/injectable.dart';
@@ -43,5 +44,10 @@ class HomeWorkRepositoriesImp implements HomeWorkRepositories {
   @override
   Future<List<NewHomeworkModel>> getAllHomeworks() {
     return remoteDataSource.getAllHomeworks();
+  }
+
+  @override
+  Future<List<HomeworkSubmissionModel>> getSubmissionsByHomework(String homeworkId) {
+    return remoteDataSource.getSubmissionsByHomework(homeworkId);
   }
 }

@@ -26,6 +26,8 @@ import 'package:edura/presentation/role/teacher/tabs/students/presentation/view_
 
 import 'package:edura/presentation/role/teacher/tabs/teacher_chats/presentation/view_model/chats_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view_model/home_work/home_work_view_model.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view_model/home_work/lesson_homeworks_view_model.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view_model/home_work/submissions_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view_model/lessons/teacher_lessons_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/class_schedules/presentation/view_model/class_schedules_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_grades/presentation/view_model/grade_view_model.dart';
@@ -33,13 +35,15 @@ import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentatio
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/subjects_classes/presentation/view_model/subject_classes_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view_model/change_password/change_password_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view_model/teacher_profile/teacher_profile_view_model.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hive_ce/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
+import 'firebase_options.dart';
 import 'core/DI/injection.dart';
 import 'presentation/auth/login/data/data_source/local/login_hive_data_source.dart';
 import 'core/cubit/language_cubit.dart';
@@ -48,6 +52,11 @@ Future<void> _initializeHive() async {
   final appDocumentDirectory = await getApplicationDocumentsDirectory();
   Hive.init(appDocumentDirectory.path);
   await Hive.openBox<dynamic>(LoginHiveDataSource.boxName);
+}
+
+@pragma('vm:entry-point')
+Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 }
 
 void main() async {
@@ -70,6 +79,8 @@ void main() async {
   );
   await _initializeHive();
   configureDependencies();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
 
   runApp(
     MultiBlocProvider(
@@ -97,15 +108,17 @@ void main() async {
         BlocProvider(create: (context) => getIt<StudentHomeWorkCubit>()),
         BlocProvider(create: (context) => getIt<ChangePasswordCubit>()),
         BlocProvider(create: (context) => getIt<AnalyticsCubit>()),
-        BlocProvider(create: (context) => getIt<LogOutCubit>(),),
-        BlocProvider(create: (context) => getIt<LeaderboardCubit>(),),
-        BlocProvider(create: (context) => getIt<StudentNotificationCubit>(),),
-        BlocProvider(create: (context) => getIt<StudentScheduleCubit>(),),
-        BlocProvider(create: (context) => getIt<AchievementsCubit>(),),
-        BlocProvider(create: (context) => getIt<AttendanceCubit>(),),
+        BlocProvider(create: (context) => getIt<LogOutCubit>()),
+        BlocProvider(create: (context) => getIt<LeaderboardCubit>()),
+        BlocProvider(create: (context) => getIt<StudentNotificationCubit>()),
+        BlocProvider(create: (context) => getIt<StudentScheduleCubit>()),
+        BlocProvider(create: (context) => getIt<AchievementsCubit>()),
+        BlocProvider(create: (context) => getIt<AttendanceCubit>()),
+        BlocProvider(create: (context) => getIt<HomeworkSubmissionsCubit>()),
+        BlocProvider(create: (context) => getIt<LessonHomeworksCubit>()),
         BlocProvider(create: (context) => getIt<StudentStatsCubit>()),
-        BlocProvider(create: (context) => getIt<StudentProfileCubit>(),),
-        BlocProvider(create: (context) => getIt<StudentExamCubit>(),),
+        BlocProvider(create: (context) => getIt<StudentProfileCubit>()),
+        BlocProvider(create: (context) => getIt<StudentExamCubit>()),
       ],
 
       child: const EduraApp(),
