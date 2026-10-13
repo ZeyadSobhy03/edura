@@ -1,4 +1,5 @@
 import 'package:edura/edura_app.dart';
+import 'package:edura/presentation/auth/forget_password/presentation/view_model/forget_password_view_model.dart';
 import 'package:edura/presentation/auth/log_out/presentation/view_model/log_out_view_model.dart';
 
 import 'package:edura/presentation/auth/login/presentation/view_model/login_view_model.dart';
@@ -117,6 +118,7 @@ void main() async {
         BlocProvider(create: (context) => getIt<HomeworkSubmissionsCubit>()),
         BlocProvider(create: (context) => getIt<LessonHomeworksCubit>()),
         BlocProvider(create: (context) => getIt<StudentStatsCubit>()),
+        BlocProvider(create: (context) => getIt<ForgetPasswordCubit>(),),
         BlocProvider(create: (context) => getIt<StudentProfileCubit>()),
         BlocProvider(create: (context) => getIt<StudentExamCubit>()),
       ],

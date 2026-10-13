@@ -13,6 +13,18 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../../presentation/auth/forget_password/data/data_source/forget_password_remote_data_source.dart'
+    as _i200;
+import '../../presentation/auth/forget_password/data/data_source/forget_password_supabase_data_source.dart'
+    as _i238;
+import '../../presentation/auth/forget_password/data/repositories/forget_password_repositories.dart'
+    as _i1012;
+import '../../presentation/auth/forget_password/data/repositories/forget_password_repositories_imp.dart'
+    as _i828;
+import '../../presentation/auth/forget_password/domain/use_case/forget_password_use_case.dart'
+    as _i638;
+import '../../presentation/auth/forget_password/presentation/view_model/forget_password_view_model.dart'
+    as _i960;
 import '../../presentation/auth/log_out/data/data_source/log_out_remote_data_source.dart'
     as _i920;
 import '../../presentation/auth/log_out/data/data_source/log_out_supabase_data_source.dart'
@@ -254,7 +266,7 @@ import '../../presentation/role/teacher/tabs/students/data/repositories/student/
 import '../../presentation/role/teacher/tabs/students/data/repositories/student/student_repositories_imp.dart'
     as _i593;
 import '../../presentation/role/teacher/tabs/students/data/repositories/teacher/teacher_repositories.dart'
-    as _i200;
+    as _i201;
 import '../../presentation/role/teacher/tabs/students/data/repositories/teacher/teacher_repositories_imp.dart'
     as _i466;
 import '../../presentation/role/teacher/tabs/students/domain/use_case/student/student_use_case.dart'
@@ -274,7 +286,7 @@ import '../../presentation/role/teacher/tabs/teacher_chats/data/repositories/cha
 import '../../presentation/role/teacher/tabs/teacher_chats/data/repositories/chats_repositories_imp.dart'
     as _i696;
 import '../../presentation/role/teacher/tabs/teacher_chats/domain/use_case/chats_use_case.dart'
-    as _i828;
+    as _i830;
 import '../../presentation/role/teacher/tabs/teacher_chats/presentation/view_model/chats_view_model.dart'
     as _i964;
 import '../../presentation/role/teacher/tabs/teacher_lessons/data/data_source/home_work/home_work_remote_data_source.dart'
@@ -556,6 +568,9 @@ extension GetItInjectableX on _i174.GetIt {
         repositories: gh<_i1063.StudentHomeWorkRepositories>(),
       ),
     );
+    gh.lazySingleton<_i200.ForgetPasswordRemoteDataSource>(
+      () => _i238.ForgetPasswordSupabaseDataSource(),
+    );
     gh.lazySingleton<_i693.AnalyticsRemoteDataSource>(
       () => _i995.AnalyticsSupabaseDataSource(),
     );
@@ -583,7 +598,7 @@ extension GetItInjectableX on _i174.GetIt {
         remoteDataSource: gh<_i548.StudentProfileRemoteDataSource>(),
       ),
     );
-    gh.lazySingleton<_i200.TeacherRepositories>(
+    gh.lazySingleton<_i201.TeacherRepositories>(
       () => _i466.TeacherRepositoriesImp(
         remoteDataSource: gh<_i617.TeacherRemoteDataSource>(),
       ),
@@ -694,7 +709,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i668.ExamCubit(examUseCase: gh<_i817.ExamUseCase>()),
     );
     gh.factory<_i93.TeacherUseCase>(
-      () => _i93.TeacherUseCase(repositories: gh<_i200.TeacherRepositories>()),
+      () => _i93.TeacherUseCase(repositories: gh<_i201.TeacherRepositories>()),
     );
     gh.factory<_i447.StudentNotesCubit>(
       () => _i447.StudentNotesCubit(
@@ -739,6 +754,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i79.LeaderboardUseCase>(
       () => _i79.LeaderboardUseCase(
         leaderboardRepositories: gh<_i236.LeaderboardRepositories>(),
+      ),
+    );
+    gh.lazySingleton<_i1012.ForgetPasswordRepositories>(
+      () => _i828.ForgetPasswordRepositoriesImp(
+        forgetPasswordRemoteDataSource:
+            gh<_i200.ForgetPasswordRemoteDataSource>(),
       ),
     );
     gh.factory<_i999.LoginUseCase>(
@@ -808,8 +829,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i623.TeacherCubit>(
       () => _i623.TeacherCubit(teacherUseCase: gh<_i93.TeacherUseCase>()),
     );
-    gh.factory<_i828.ChatsUseCase>(
-      () => _i828.ChatsUseCase(repositories: gh<_i594.ChatsRepositories>()),
+    gh.factory<_i830.ChatsUseCase>(
+      () => _i830.ChatsUseCase(repositories: gh<_i594.ChatsRepositories>()),
     );
     gh.factory<_i620.LessonProgressUseCase>(
       () => _i620.LessonProgressUseCase(
@@ -835,10 +856,10 @@ extension GetItInjectableX on _i174.GetIt {
       ),
     );
     gh.factory<_i964.ChatsCubit>(
-      () => _i964.ChatsCubit(chatsUseCase: gh<_i828.ChatsUseCase>()),
+      () => _i964.ChatsCubit(chatsUseCase: gh<_i830.ChatsUseCase>()),
     );
     gh.factory<_i964.MessagesCubit>(
-      () => _i964.MessagesCubit(chatsUseCase: gh<_i828.ChatsUseCase>()),
+      () => _i964.MessagesCubit(chatsUseCase: gh<_i830.ChatsUseCase>()),
     );
     gh.factory<_i661.ActivitiesUseCase>(
       () => _i661.ActivitiesUseCase(
@@ -848,6 +869,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i682.StudentScheduleCubit>(
       () => _i682.StudentScheduleCubit(
         scheduleUseCase: gh<_i582.ScheduleUseCase>(),
+      ),
+    );
+    gh.factory<_i638.ForgetPasswordUseCase>(
+      () => _i638.ForgetPasswordUseCase(
+        forgetPasswordRepositories: gh<_i1012.ForgetPasswordRepositories>(),
       ),
     );
     gh.factory<_i114.AnalyticsUseCase>(
@@ -887,6 +913,11 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i89.AnalyticsCubit>(
       () => _i89.AnalyticsCubit(gh<_i114.AnalyticsUseCase>()),
+    );
+    gh.factory<_i960.ForgetPasswordCubit>(
+      () => _i960.ForgetPasswordCubit(
+        forgetPasswordUseCase: gh<_i638.ForgetPasswordUseCase>(),
+      ),
     );
     gh.factory<_i837.SubjectClassesCubit>(
       () => _i837.SubjectClassesCubit(

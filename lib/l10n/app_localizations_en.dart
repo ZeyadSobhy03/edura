@@ -79,6 +79,40 @@ class AppLocalizationsEn extends AppLocalizations {
   String get phoneNumber => 'Phone Number';
 
   @override
+  String get enterCode => 'Enter Code';
+
+  @override
+  String get verifyCode => 'Verify code';
+
+  @override
+  String get saveNewPassword => 'Save new password';
+
+  @override
+  String enterCodeSentTo(String email) {
+    return 'Enter the code we sent to $email';
+  }
+
+  @override
+  String get chooseNewPassword => 'Choose a new password for your account';
+
+  @override
+  String get verificationCode => 'Code';
+
+  @override
+  String enterOtpCode(int length) {
+    return 'Enter the $length-digit code';
+  }
+
+  @override
+  String get resendCode => 'Resend code';
+
+  @override
+  String get resetCodeSentToast => 'If the email exists, a code was sent';
+
+  @override
+  String get passwordChangedToast => 'Password changed. Please log in.';
+
+  @override
   String get parentPhone => 'Parent Phone';
 
   @override

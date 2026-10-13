@@ -13,7 +13,7 @@ import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentatio
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../presentation/auth/forget_password/forget_password.dart';
+import '../../../presentation/auth/forget_password/presentation/view/forget_password.dart';
 import '../../../presentation/auth/login/presentation/view/login.dart';
 import '../../../presentation/auth/register/presentation/view/register.dart';
 import '../../../presentation/role/student/tabs/chat/student_chats_screen.dart';

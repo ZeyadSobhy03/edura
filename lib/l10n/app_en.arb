@@ -23,6 +23,26 @@
   "contactAdmin": "Contact Admin",
   "fullName": "Full Name",
   "phoneNumber": "Phone Number",
+  "enterCode": "Enter Code",
+  "verifyCode": "Verify code",
+  "saveNewPassword": "Save new password",
+  "enterCodeSentTo": "Enter the code we sent to {email}",
+  "@enterCodeSentTo": {
+    "placeholders": {
+      "email": { "type": "String" }
+    }
+  },
+  "chooseNewPassword": "Choose a new password for your account",
+  "verificationCode": "Code",
+  "enterOtpCode": "Enter the {length}-digit code",
+  "@enterOtpCode": {
+    "placeholders": {
+      "length": { "type": "int" }
+    }
+  },
+  "resendCode": "Resend code",
+  "resetCodeSentToast": "If the email exists, a code was sent",
+  "passwordChangedToast": "Password changed. Please log in.",
   "parentPhone": "Parent Phone",
   "school": "School",
   "grade": "Grade",

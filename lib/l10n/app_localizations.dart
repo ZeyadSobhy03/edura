@@ -236,6 +236,66 @@ abstract class AppLocalizations {
   /// **'Phone Number'**
   String get phoneNumber;
 
+  /// No description provided for @enterCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Code'**
+  String get enterCode;
+
+  /// No description provided for @verifyCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify code'**
+  String get verifyCode;
+
+  /// No description provided for @saveNewPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Save new password'**
+  String get saveNewPassword;
+
+  /// No description provided for @enterCodeSentTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the code we sent to {email}'**
+  String enterCodeSentTo(String email);
+
+  /// No description provided for @chooseNewPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a new password for your account'**
+  String get chooseNewPassword;
+
+  /// No description provided for @verificationCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Code'**
+  String get verificationCode;
+
+  /// No description provided for @enterOtpCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the {length}-digit code'**
+  String enterOtpCode(int length);
+
+  /// No description provided for @resendCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend code'**
+  String get resendCode;
+
+  /// No description provided for @resetCodeSentToast.
+  ///
+  /// In en, this message translates to:
+  /// **'If the email exists, a code was sent'**
+  String get resetCodeSentToast;
+
+  /// No description provided for @passwordChangedToast.
+  ///
+  /// In en, this message translates to:
+  /// **'Password changed. Please log in.'**
+  String get passwordChangedToast;
+
   /// No description provided for @parentPhone.
   ///
   /// In en, this message translates to:

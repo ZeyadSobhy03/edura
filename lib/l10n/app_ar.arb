@@ -17,6 +17,26 @@
   "or": "أو",
   "noteSavedSuccessfully": "تم حفظ الملاحظة بنجاح",
   "noteTitle": "عنوان الملاحظة",
+  "enterCode": "أدخل الرمز",
+  "verifyCode": "تأكيد الرمز",
+  "saveNewPassword": "حفظ كلمة المرور الجديدة",
+  "enterCodeSentTo": "أدخل الرمز الذي أرسلناه إلى {email}",
+  "@enterCodeSentTo": {
+    "placeholders": {
+      "email": { "type": "String" }
+    }
+  },
+  "chooseNewPassword": "اختر كلمة مرور جديدة لحسابك",
+  "verificationCode": "رمز التحقق",
+  "enterOtpCode": "أدخل الرمز المكوّن من {length} أرقام",
+  "@enterOtpCode": {
+    "placeholders": {
+      "length": { "type": "int" }
+    }
+  },
+  "resendCode": "إعادة إرسال الرمز",
+  "resetCodeSentToast": "إذا كان البريد الإلكتروني موجودًا، فقد تم إرسال رمز",
+  "passwordChangedToast": "تم تغيير كلمة المرور. يرجى تسجيل الدخول.",
   "noteContent": "محتوى الملاحظة",
   "noteContentRequired": "محتوى الملاحظة مطلوب",
   "noteDeletedSuccessfully": "تم حذف الملاحظة بنجاح",

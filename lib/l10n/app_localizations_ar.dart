@@ -79,6 +79,41 @@ class AppLocalizationsAr extends AppLocalizations {
   String get phoneNumber => 'رقم الهاتف';
 
   @override
+  String get enterCode => 'أدخل الرمز';
+
+  @override
+  String get verifyCode => 'تأكيد الرمز';
+
+  @override
+  String get saveNewPassword => 'حفظ كلمة المرور الجديدة';
+
+  @override
+  String enterCodeSentTo(String email) {
+    return 'أدخل الرمز الذي أرسلناه إلى $email';
+  }
+
+  @override
+  String get chooseNewPassword => 'اختر كلمة مرور جديدة لحسابك';
+
+  @override
+  String get verificationCode => 'رمز التحقق';
+
+  @override
+  String enterOtpCode(int length) {
+    return 'أدخل الرمز المكوّن من $length أرقام';
+  }
+
+  @override
+  String get resendCode => 'إعادة إرسال الرمز';
+
+  @override
+  String get resetCodeSentToast =>
+      'إذا كان البريد الإلكتروني موجودًا، فقد تم إرسال رمز';
+
+  @override
+  String get passwordChangedToast => 'تم تغيير كلمة المرور. يرجى تسجيل الدخول.';
+
+  @override
   String get parentPhone => 'هاتف الوالد';
 
   @override
