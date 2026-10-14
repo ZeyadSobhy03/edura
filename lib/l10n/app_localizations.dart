@@ -3426,6 +3426,12 @@ abstract class AppLocalizations {
   /// **'Not answered'**
   String get notAnswered;
 
+  /// No description provided for @examGrade.
+  ///
+  /// In en, this message translates to:
+  /// **'Exam Grade'**
+  String get examGrade;
+
   /// No description provided for @examDurationMustBeANumber.
   ///
   /// In en, this message translates to:

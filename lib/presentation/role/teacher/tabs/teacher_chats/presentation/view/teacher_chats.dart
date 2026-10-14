@@ -123,9 +123,6 @@ class _TeacherChatsState extends State<TeacherChats> {
                           itemBuilder: (context, index) {
                             final student = students[index];
 
-                            // Placeholder conversation just to satisfy
-                            // ChatConversationCard's display fields.
-                            // The real conversationId is resolved on tap.
                             final placeholder = ChatConversationModel(
                               id: student.id,
                               studentName: student.name,

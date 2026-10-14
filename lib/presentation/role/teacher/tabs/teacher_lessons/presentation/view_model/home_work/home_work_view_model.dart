@@ -26,10 +26,10 @@ class HomeWorkCubit extends Cubit<HomeWorkState> {
     }
   }
 
-  Future<void> getAllHomeworks( ) async {
+  Future<void> getAllHomeworks({String? gradeId}) async {
     emit(HomeWorkLoading());
     try {
-      final homeworks = await useCase.getAllHomeworks();
+      final homeworks = await useCase.getAllHomeworks(gradeId: gradeId);
       emit(HomeWorkLoaded(homeworks));
     } on AppError catch (error) {
       emit(HomeWorkFailure(error));
@@ -98,7 +98,6 @@ class HomeWorkInitial extends HomeWorkState {}
 class HomeWorkLoading extends HomeWorkState {}
 
 class HomeWorkSubmitting extends HomeWorkState {}
-
 
 class HomeWorkLoaded extends HomeWorkState {
   final List<NewHomeworkModel> homeworks;

@@ -109,17 +109,7 @@ class _TeacherProfileState extends State<TeacherProfile> {
                           homeworkCount: teacher.homeworkCount.toString(),
                         ),
                         const SizedBox(height: 44),
-                        /*
-                             LogoutButton(
-                          onPressed: logoutState is LogOutLoading
-                              ? null
-                              : () async {
-                                  await PushService.clear();
-                                  if (!context.mounted) return;
-                                  context.read<LogOutCubit>().logOut();
-                                },
-                        ),
-                         */
+
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: SettingsGroupCard(

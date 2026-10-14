@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:edura/core/error/app_error.dart';
@@ -70,6 +71,7 @@ class TeacherLessonsSupabaseDataSource
           .select()
           .single();
     } catch (e) {
+      log('Error creating lesson: $e');
       await _rollback(
         videoStoragePath: videoStoragePath,
         pdfStoragePath: pdfStoragePath,

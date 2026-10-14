@@ -15,12 +15,13 @@ class LessonHomeworkUploadForm extends StatefulWidget {
     super.key,
     required this.onNext,
     required this.onSkip,
-    required this.isSubmitting,
+    required this.isSubmitting, required this.gradeId,
   });
 
   final ValueChanged<NewHomeworkModel> onNext;
 
   final VoidCallback onSkip;
+  final String gradeId;
 
   final bool isSubmitting;
 
@@ -96,6 +97,7 @@ class _LessonHomeworkUploadFormState extends State<LessonHomeworkUploadForm> {
       description: _descriptionController.text.trim(),
       subject: _subject,
       dueDate: _dueDate,
+      gradeId: widget.gradeId,
       isPublished: true,
       attachments: _attachments,
     );

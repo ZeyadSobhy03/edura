@@ -9,7 +9,7 @@ abstract class HomeWorkRemoteDataSource {
 
   Future<List<NewHomeworkModel>> getHomeworksByLesson(String lessonId);
 
-  Future<List<NewHomeworkModel>> getAllHomeworks();
+  Future<List<NewHomeworkModel>> getAllHomeworks({String? gradeId});
 
   Future<void> publishHomework(String homeworkId);
 

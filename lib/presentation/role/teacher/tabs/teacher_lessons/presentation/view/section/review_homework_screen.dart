@@ -106,90 +106,95 @@ class _ReviewHomeworkScreenState extends State<ReviewHomeworkScreen> {
             ),
           ),
           body: SafeArea(
-            child: Column(
-              children: [
-                Expanded(
-                  child: SingleChildScrollView(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SubmissionStudentHeader(submission: widget.submission),
-                        const SizedBox(height: 16),
+            child: GestureDetector(
+              onTap: () => FocusScope.of(context).unfocus(),
+              behavior: HitTestBehavior.translucent,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: SingleChildScrollView(
+                      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 120),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SubmissionStudentHeader(submission: widget.submission),
+                          const SizedBox(height: 16),
 
-                        SubmissionFileCard(
-                          fileName: widget.submission.fileName,
-                          fileUrl: widget.submission.fileUrl,
-                        ),
-                        const SizedBox(height: 20),
-
-                        GradeInputField(controller: _gradeController),
-                        const SizedBox(height: 20),
-
-                        CustomText(
-                          text: l10.feedback,
-                          style: TextStyle(
-                            color: ColorManager.black.withValues(alpha: 0.5),
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
+                          SubmissionFileCard(
+                            fileName: widget.submission.fileName,
+                            fileUrl: widget.submission.fileUrl,
                           ),
-                        ),
-                        const SizedBox(height: 8),
-                        TextField(
-                          controller: _feedbackController,
-                          maxLines: 5,
-                          decoration: InputDecoration(
-                            hintText: l10.feedbackHint,
-                            filled: true,
-                            fillColor: ColorManager.gray.withValues(
-                              alpha: 0.06,
-                            ),
-                            contentPadding: const EdgeInsets.all(14),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide.none,
+                          const SizedBox(height: 20),
+
+                          GradeInputField(controller: _gradeController),
+                          const SizedBox(height: 20),
+
+                          CustomText(
+                            text: l10.feedback,
+                            style: TextStyle(
+                              color: ColorManager.black.withValues(alpha: 0.5),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: isSubmitting ? null : _submitGrade,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green,
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
+                          const SizedBox(height: 8),
+                          TextField(
+                            controller: _feedbackController,
+                            maxLines: 5,
+                            decoration: InputDecoration(
+                              hintText: l10.feedbackHint,
+                              filled: true,
+                              fillColor: ColorManager.gray.withValues(
+                                alpha: 0.06,
+                              ),
+                              contentPadding: const EdgeInsets.all(14),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide: BorderSide.none,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      child: isSubmitting
-                          ? const SizedBox(
-                              width: 20,
-                              height: 20,
-                              child: CircularProgressIndicator(
-                                color: Colors.white,
-                                strokeWidth: 2,
-                              ),
-                            )
-                          : Text(
-                              l10.submitGrade,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15,
-                              ),
-                            ),
                     ),
                   ),
-                ),
-              ],
+
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: isSubmitting ? null : _submitGrade,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green,
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        child: isSubmitting
+                            ? const SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: CircularProgressIndicator(
+                                  color: Colors.white,
+                                  strokeWidth: 2,
+                                ),
+                              )
+                            : Text(
+                                l10.submitGrade,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                ),
+                              ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         );

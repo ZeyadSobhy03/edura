@@ -15,18 +15,22 @@ class HomeworkScreen extends StatefulWidget {
 
   final String? lessonId;
 
+
   @override
   State<HomeworkScreen> createState() => _HomeworkScreenState();
 }
 
 class _HomeworkScreenState extends State<HomeworkScreen> {
   String? studentId;
+  String? gradeId;
 
   @override
   void initState() {
     super.initState();
-    studentId = Supabase.instance.client.auth.currentUser?.id;
-    if (studentId == null) {
+    final user = Supabase.instance.client.auth.currentUser;
+    studentId = user?.id;
+
+    if (user == null) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) {
           Navigator.pushReplacementNamed(context, RouteManger.loginRoute);
@@ -34,10 +38,17 @@ class _HomeworkScreenState extends State<HomeworkScreen> {
       });
       return;
     }
-    if (widget.lessonId == null) {
-      context.read<HomeWorkCubit>().getAllHomeworks();
-    } else {
-      context.read<HomeWorkCubit>().fetchHomeworks(widget.lessonId!);
+
+    gradeId = user.userMetadata?['grade_id'] as String?;
+    _load();
+  }
+
+  void _load() {
+    final cubit = context.read<HomeWorkCubit>();
+    if (widget.lessonId != null) {
+      cubit.fetchHomeworks(widget.lessonId!);
+    } else if (gradeId != null && gradeId!.isNotEmpty) {
+      cubit.getAllHomeworks(gradeId: gradeId!);
     }
   }
 
@@ -95,7 +106,9 @@ class _HomeworkScreenState extends State<HomeworkScreen> {
               return RefreshIndicator(
                 onRefresh: () async {
                   if (widget.lessonId == null) {
-                    await context.read<HomeWorkCubit>().getAllHomeworks();
+                    await context.read<HomeWorkCubit>().getAllHomeworks(
+                      gradeId: gradeId!,
+                    );
                   } else {
                     await context.read<HomeWorkCubit>().fetchHomeworks(
                       widget.lessonId!,

@@ -219,67 +219,72 @@ class _TeacherNotificationState extends State<TeacherNotification> {
             ),
           ),
           body: SafeArea(
-            child: Column(
-              children: [
-                Expanded(
-                  child: SingleChildScrollView(
-                    padding: const EdgeInsets.all(16),
-                    child: TeacherNotificationBody(
-                      onAudienceChanged: (audience) =>
-                          setState(() => _audience = audience),
-                      openStudentPicker: _openStudentPicker,
-                      selectedStudentNames: _selectedStudentNames,
-                      audience: _audience,
-                      isLoading: isLoading,
-                      titleController: _titleController,
-                      messageController: _messageController,
-                      titleOnChanged: (_) => setState(() {}),
-                      messageOnChanged: (_) => setState(() {}),
-                      isPinned: _isPinned,
-                      notifications: _notifications,
-                      isPinnedOnChanged: (value) =>
-                          setState(() => _isPinned = value),
-                      onAction: _onAction,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: _canSend && !_isSending ? _send : null,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: ColorManager.primary,
-                        disabledBackgroundColor: ColorManager.gray.withValues(
-                          alpha: .3,
-                        ),
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
+            child: GestureDetector(
+              onTap: () => FocusScope.of(context).unfocus(),
+              behavior: HitTestBehavior.translucent,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: SingleChildScrollView(
+                      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 120),
+                      child: TeacherNotificationBody(
+                        onAudienceChanged: (audience) =>
+                            setState(() => _audience = audience),
+                        openStudentPicker: _openStudentPicker,
+                        selectedStudentNames: _selectedStudentNames,
+                        audience: _audience,
+                        isLoading: isLoading,
+                        titleController: _titleController,
+                        messageController: _messageController,
+                        titleOnChanged: (_) => setState(() {}),
+                        messageOnChanged: (_) => setState(() {}),
+                        isPinned: _isPinned,
+                        notifications: _notifications,
+                        isPinnedOnChanged: (value) =>
+                            setState(() => _isPinned = value),
+                        onAction: _onAction,
                       ),
-                      child: _isSending
-                          ? const SizedBox(
-                              width: 20,
-                              height: 20,
-                              child: CircularProgressIndicator(
-                                color: Colors.white,
-                                strokeWidth: 2,
-                              ),
-                            )
-                          : Text(
-                              l10.sendNotificationButton,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15,
-                              ),
-                            ),
                     ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: _canSend && !_isSending ? _send : null,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: ColorManager.primary,
+                          disabledBackgroundColor: ColorManager.gray.withValues(
+                            alpha: .3,
+                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        child: _isSending
+                            ? const SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: CircularProgressIndicator(
+                                  color: Colors.white,
+                                  strokeWidth: 2,
+                                ),
+                              )
+                            : Text(
+                                l10.sendNotificationButton,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                ),
+                              ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         );

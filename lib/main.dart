@@ -65,21 +65,15 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // const supabaseUrl = String.fromEnvironment('SUPABASE_URL');
-  // const supabasePublishableKey =
-  // String.fromEnvironment('SUPABASE_PUBLISHABLE_KEY');
-  //
-  // const googleServerClientId =
-  // String.fromEnvironment('GOOGLE_SERVER_CLIENT_ID');
 
   final googleSignIn = GoogleSignIn.instance;
   await Supabase.initialize(
-    url: 'https://daxgkzzwfnpyqsjcpnad.supabase.co',
-    publishableKey: 'sb_publishable_nY126vB7GG51e9EW2SOxew_A8wycwJY',
+    url: '-------------------------',
+    publishableKey: '-------------------------',
   );
   await googleSignIn.initialize(
     serverClientId:
-        "253234772403-pn4ubo3k6lkg9tkmaoolps40ruv8fjh4.apps.googleusercontent.com",
+        "-------------------------",
   );
   await _initializeHive();
   configureDependencies();

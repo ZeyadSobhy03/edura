@@ -30,7 +30,8 @@ class NewHomeworkModel {
       id: json['id'] as String? ?? '',
       grade: json['grade'] as String? ?? '',
       status: json['status'] as String? ?? 'pending',
-      gradeId: json['gradeId'] as String? ?? '',
+
+      gradeId: json['grade_id'] as String? ?? '',
       title: json['title'] as String? ?? '',
       description: json['description'] as String? ?? '',
       subject: json['subject'] as String? ?? 'Mathematics',

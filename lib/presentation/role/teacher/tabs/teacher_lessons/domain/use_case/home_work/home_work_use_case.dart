@@ -7,7 +7,9 @@ import '../../../data/model/home_work/new_homework_model.dart';
 @injectable
 class HomeWorkUseCase {
   final HomeWorkRepositories homeWorkRepositories;
+
   HomeWorkUseCase({required this.homeWorkRepositories});
+
   Future<void> createHomework({
     String? lessonId,
     required NewHomeworkModel homework,
@@ -21,9 +23,11 @@ class HomeWorkUseCase {
   Future<List<NewHomeworkModel>> getHomeworksByLesson(String lessonId) {
     return homeWorkRepositories.getHomeworksByLesson(lessonId);
   }
-  Future<List<NewHomeworkModel>> getAllHomeworks(){
-    return homeWorkRepositories.getAllHomeworks();
+
+  Future<List<NewHomeworkModel>> getAllHomeworks({String? gradeId}) {
+    return homeWorkRepositories.getAllHomeworks(gradeId: gradeId);
   }
+
   Future<void> publishHomework(String homeworkId) {
     return homeWorkRepositories.publishHomework(homeworkId);
   }
@@ -31,9 +35,10 @@ class HomeWorkUseCase {
   Future<void> deleteHomework(String homeworkId) {
     return homeWorkRepositories.deleteHomework(homeworkId);
   }
+
   Future<List<HomeworkSubmissionModel>> getSubmissionsByHomework(
-      String homeworkId,
-      ){
+    String homeworkId,
+  ) {
     return homeWorkRepositories.getSubmissionsByHomework(homeworkId);
   }
 

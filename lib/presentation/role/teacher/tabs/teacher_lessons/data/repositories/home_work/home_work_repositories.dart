@@ -6,13 +6,18 @@ abstract class HomeWorkRepositories {
     String? lessonId,
     required NewHomeworkModel homework,
   });
-  Future<List<NewHomeworkModel>> getAllHomeworks();
+
+  Future<List<NewHomeworkModel>> getAllHomeworks({String? gradeId});
 
   Future<List<NewHomeworkModel>> getHomeworksByLesson(String lessonId);
+
   Future<void> publishHomework(String homeworkId);
+
   Future<List<HomeworkSubmissionModel>> getSubmissionsByHomework(
-      String homeworkId,
-      );
+    String homeworkId,
+  );
+
   Future<void> deleteHomework(String homeworkId);
+
   Future<void> reviewHomework(String submissionId, int grade, String feedback);
 }

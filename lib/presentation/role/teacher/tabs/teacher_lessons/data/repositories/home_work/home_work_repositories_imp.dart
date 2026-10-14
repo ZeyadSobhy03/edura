@@ -8,6 +8,7 @@ import '../../data_source/home_work/home_work_remote_data_source.dart';
 @LazySingleton(as: HomeWorkRepositories)
 class HomeWorkRepositoriesImp implements HomeWorkRepositories {
   final HomeWorkRemoteDataSource remoteDataSource;
+
   HomeWorkRepositoriesImp({required this.remoteDataSource});
 
   @override
@@ -42,12 +43,14 @@ class HomeWorkRepositoriesImp implements HomeWorkRepositories {
   }
 
   @override
-  Future<List<NewHomeworkModel>> getAllHomeworks() {
-    return remoteDataSource.getAllHomeworks();
+  Future<List<NewHomeworkModel>> getAllHomeworks({String? gradeId}) {
+    return remoteDataSource.getAllHomeworks(gradeId: gradeId);
   }
 
   @override
-  Future<List<HomeworkSubmissionModel>> getSubmissionsByHomework(String homeworkId) {
+  Future<List<HomeworkSubmissionModel>> getSubmissionsByHomework(
+    String homeworkId,
+  ) {
     return remoteDataSource.getSubmissionsByHomework(homeworkId);
   }
 }

@@ -139,70 +139,73 @@ class _AddNewLessonScreenState extends State<AddNewLessonScreen> {
                   ),
                 ),
                 body: SafeArea(
-                  child: SingleChildScrollView(
-                    padding: EdgeInsets.only(
-                      left: 16,
-                      right: 16,
-                      top: 16,
-                      bottom: MediaQuery.of(context).viewInsets.bottom + 16,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        LessonFormTabSelector(
-                          currentStep: _step,
-                          onStepTapped: isSubmitting ? (_) {} : _goToStep,
-                          videoDone: _videoStepReached,
-                          pdfDone: _pdfStepReached,
-                          homeworkDone: _homeworkStepReached,
-                        ),
-                        const SizedBox(height: 20),
-
-                        if (_step == LessonFormStep.details)
-                          LessonDetailsForm(
-                            draft: _draft,
-                            onNext: () {
-                              setState(() {
-                                _videoStepReached = true;
-                                _step = LessonFormStep.video;
-                              });
-                            },
-                          )
-                        else if (_step == LessonFormStep.video)
-                          LessonVideoUploadForm(
-                            draft: _draft,
-                            onNext: () {
-                              setState(() {
-                                _pdfStepReached = true;
-                                _step = LessonFormStep.pdf;
-                              });
-                            },
-                          )
-                        else if (_step == LessonFormStep.pdf)
-                          LessonPdfUploadForm(
-                            draft: _draft,
-                            onPublish: () {
-                              setState(() {
-                                _homeworkStepReached = true;
-                                _step = LessonFormStep.homework;
-                              });
-                            },
-                            onSaveDraft: _saveDraft,
-                            isPublishing: isSubmitting,
-                          )
-                        else if (_step == LessonFormStep.homework)
-                          LessonHomeworkUploadForm(
-                            onNext: _publishWithHomework,
-                            onSkip: _publishWithoutHomework,
-                            isSubmitting: isSubmitting,
-                          )
-                        else
-                          LessonHomeworkUploadForm(
-                            onNext: _publishWithHomework,
-                            onSkip: _publishWithoutHomework,
-                            isSubmitting: isSubmitting,
+                  child: GestureDetector(
+                    onTap: () => FocusScope.of(context).unfocus(),
+                    behavior: HitTestBehavior.translucent,
+                    child: SingleChildScrollView(
+                      keyboardDismissBehavior:
+                          ScrollViewKeyboardDismissBehavior.onDrag,
+                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 120),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          LessonFormTabSelector(
+                            currentStep: _step,
+                            onStepTapped: isSubmitting ? (_) {} : _goToStep,
+                            videoDone: _videoStepReached,
+                            pdfDone: _pdfStepReached,
+                            homeworkDone: _homeworkStepReached,
                           ),
-                      ],
+                          const SizedBox(height: 20),
+
+                          if (_step == LessonFormStep.details)
+                            LessonDetailsForm(
+                              draft: _draft,
+                              onNext: () {
+                                setState(() {
+                                  _videoStepReached = true;
+                                  _step = LessonFormStep.video;
+                                });
+                              },
+                            )
+                          else if (_step == LessonFormStep.video)
+                            LessonVideoUploadForm(
+                              draft: _draft,
+                              onNext: () {
+                                setState(() {
+                                  _pdfStepReached = true;
+                                  _step = LessonFormStep.pdf;
+                                });
+                              },
+                            )
+                          else if (_step == LessonFormStep.pdf)
+                            LessonPdfUploadForm(
+                              draft: _draft,
+                              onPublish: () {
+                                setState(() {
+                                  _homeworkStepReached = true;
+                                  _step = LessonFormStep.homework;
+                                });
+                              },
+                              onSaveDraft: _saveDraft,
+                              isPublishing: isSubmitting,
+                            )
+                          else if (_step == LessonFormStep.homework)
+                            LessonHomeworkUploadForm(
+                              gradeId: _draft.gradeId,
+                              onNext: _publishWithHomework,
+                              onSkip: _publishWithoutHomework,
+                              isSubmitting: isSubmitting,
+                            )
+                          else
+                            LessonHomeworkUploadForm(
+                              gradeId: _draft.gradeId,
+                              onNext: _publishWithHomework,
+                              onSkip: _publishWithoutHomework,
+                              isSubmitting: isSubmitting,
+                            ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

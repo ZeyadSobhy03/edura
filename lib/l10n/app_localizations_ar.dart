@@ -1772,6 +1772,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get notAnswered => 'لم يتم الرد';
 
   @override
+  String get examGrade => 'صف الاختبار';
+
+  @override
   String get examDurationMustBeANumber => 'يجب أن تكون مدة الاختبار رقمًا';
 
   @override

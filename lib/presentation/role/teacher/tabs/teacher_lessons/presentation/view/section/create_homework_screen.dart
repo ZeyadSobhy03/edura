@@ -93,61 +93,66 @@ class _CreateHomeworkScreenState extends State<CreateHomeworkScreen> {
               ),
             ),
             body: SafeArea(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: _buildStepIndicator(
-                            label: l10.details,
-                            isActive: _step == HomeworkFormStep.details,
-                            isCompleted: _detailsStepReached,
-                            onTap: isSubmitting
-                                ? null
-                                : () => _goToStep(HomeworkFormStep.details),
+              child: GestureDetector(
+                onTap: () => FocusScope.of(context).unfocus(),
+                behavior: HitTestBehavior.translucent,
+                child: SingleChildScrollView(
+                  keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 120),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: _buildStepIndicator(
+                              label: l10.details,
+                              isActive: _step == HomeworkFormStep.details,
+                              isCompleted: _detailsStepReached,
+                              onTap: isSubmitting
+                                  ? null
+                                  : () => _goToStep(HomeworkFormStep.details),
+                            ),
                           ),
-                        ),
-                        Container(
-                          height: 2,
-                          width: 30,
-                          color: _detailsStepReached
-                              ? ColorManager.primary
-                              : ColorManager.gray.withValues(alpha: 0.3),
-                        ),
-                        Expanded(
-                          child: _buildStepIndicator(
-                            label: l10.attachments,
-                            isActive: _step == HomeworkFormStep.attachments,
-                            isCompleted: false,
-                            onTap: _detailsStepReached && !isSubmitting
-                                ? () => _goToStep(HomeworkFormStep.attachments)
-                                : null,
+                          Container(
+                            height: 2,
+                            width: 30,
+                            color: _detailsStepReached
+                                ? ColorManager.primary
+                                : ColorManager.gray.withValues(alpha: 0.3),
                           ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 30),
-                    if (_step == HomeworkFormStep.details)
-                      HomeworkDetailsForm(
-                        draft: _draft,
-                        onNext: () {
-                          setState(() {
-                            _detailsStepReached = true;
-                            _step = HomeworkFormStep.attachments;
-                          });
-                        },
-                      )
-                    else
-                      HomeworkAttachmentUploadForm(
-                        draft: _draft,
-                        onPublish: _publish,
-                        onSaveDraft: _saveDraft,
-                        isPublishing: isSubmitting,
+                          Expanded(
+                            child: _buildStepIndicator(
+                              label: l10.attachments,
+                              isActive: _step == HomeworkFormStep.attachments,
+                              isCompleted: false,
+                              onTap: _detailsStepReached && !isSubmitting
+                                  ? () => _goToStep(HomeworkFormStep.attachments)
+                                  : null,
+                            ),
+                          ),
+                        ],
                       ),
-                  ],
+                      const SizedBox(height: 30),
+                      if (_step == HomeworkFormStep.details)
+                        HomeworkDetailsForm(
+                          draft: _draft,
+                          onNext: () {
+                            setState(() {
+                              _detailsStepReached = true;
+                              _step = HomeworkFormStep.attachments;
+                            });
+                          },
+                        )
+                      else
+                        HomeworkAttachmentUploadForm(
+                          draft: _draft,
+                          onPublish: _publish,
+                          onSaveDraft: _saveDraft,
+                          isPublishing: isSubmitting,
+                        ),
+                    ],
+                  ),
                 ),
               ),
             ),

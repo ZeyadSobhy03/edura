@@ -8,13 +8,15 @@ import '../../../../../../teacher_lessons/presentation/view/widgets/lesson_grade
 import '../../../../../../teacher_lessons/presentation/view/widgets/subject_selector.dart';
 import '../../../../../../teacher_profile/presentation/view/teacher_grades/data/model/grade_model.dart';
 
-
-
 class ExamHeader extends StatelessWidget {
   const ExamHeader({
     super.key,
     required this.titleController,
-    required this.durationController, this.selectedSubject, required this.onSubjectChanged, this.selectedGradeId, required this.onGradeChanged,
+    required this.durationController,
+    this.selectedSubject,
+    required this.onSubjectChanged,
+    this.selectedGradeId,
+    required this.onGradeChanged,
   });
 
   final TextEditingController titleController;
@@ -58,6 +60,14 @@ class ExamHeader extends StatelessWidget {
           onChanged: onSubjectChanged,
         ),
         const SizedBox(height: 6),
+
+        CustomLabel(
+          label: l10.examGrade,
+          color: ColorManager.primary,
+          fontSize: 15,
+        ),
+        const SizedBox(height: 6),
+
         LessonGradeSelector(
           forTeacher: true,
           selectedGradeId: selectedGradeId,

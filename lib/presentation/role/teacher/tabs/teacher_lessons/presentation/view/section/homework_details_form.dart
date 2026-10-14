@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 
 import '../../../data/model/home_work/new_homework_model.dart';
 import '../../../../../../../../l10n/app_localizations.dart';
+import '../widgets/lesson_grade_selector.dart';
 
 class HomeworkDetailsForm extends StatefulWidget {
   const HomeworkDetailsForm({
@@ -26,6 +27,8 @@ class _HomeworkDetailsFormState extends State<HomeworkDetailsForm> {
   late final TextEditingController _titleController;
   late final TextEditingController _descriptionController;
   late final TextEditingController _dueDateController;
+  String? _selectedGradeId;
+  String? _selectedGradeName;
 
   @override
   void initState() {
@@ -51,9 +54,9 @@ class _HomeworkDetailsFormState extends State<HomeworkDetailsForm> {
 
   bool get _canProceed =>
       _titleController.text.trim().isNotEmpty &&
-          (widget.draft.subject.isNotEmpty) &&
-          _descriptionController.text.trim().isNotEmpty &&
-          _dueDateController.text.trim().isNotEmpty;
+      (widget.draft.subject.isNotEmpty) &&
+      _descriptionController.text.trim().isNotEmpty &&
+      _dueDateController.text.trim().isNotEmpty;
 
   Future<void> _selectDate() async {
     final now = DateTime.now();
@@ -97,7 +100,10 @@ class _HomeworkDetailsFormState extends State<HomeworkDetailsForm> {
     if (!_canProceed) return;
     widget.draft
       ..title = _titleController.text.trim()
-      ..description = _descriptionController.text.trim();
+      ..description = _descriptionController.text.trim()
+      ..subject = widget.draft.subject
+      ..gradeId = _selectedGradeId!
+      ..grade = _selectedGradeName!;
     widget.onNext();
   }
 
@@ -129,6 +135,17 @@ class _HomeworkDetailsFormState extends State<HomeworkDetailsForm> {
             });
           },
           selectedSubject: widget.draft.subject,
+        ),
+        const SizedBox(height: 20),
+        CustomLabel(label: l10.grade, fontSize: 14),
+        const SizedBox(height: 20),
+        LessonGradeSelector(
+          forTeacher: true,
+          selectedGradeId: _selectedGradeId,
+          onChanged: (grade) => setState(() {
+            _selectedGradeId = grade.id;
+            _selectedGradeName = grade.name;
+          }),
         ),
         const SizedBox(height: 20),
         CustomLabel(label: l10.description, fontSize: 14),

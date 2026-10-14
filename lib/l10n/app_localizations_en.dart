@@ -1781,6 +1781,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get notAnswered => 'Not answered';
 
   @override
+  String get examGrade => 'Exam Grade';
+
+  @override
   String get examDurationMustBeANumber => 'Exam duration must be a number.';
 
   @override

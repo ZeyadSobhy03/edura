@@ -749,7 +749,7 @@
   "enterExamDuration": "Enter exam duration in minutes",
   "examDurationCannotBeEmpty": "Exam duration cannot be empty.",
   "notAnswered": "Not answered",
-
+"examGrade": "Exam Grade",
   "examDurationMustBeANumber": "Exam duration must be a number.",
 
   "unauthorized": "You are not authorized to perform this action."

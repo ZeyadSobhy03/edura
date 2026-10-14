@@ -89,68 +89,76 @@ class _QuestionBuilderScreenState extends State<QuestionBuilderScreen> {
       body: BlocConsumer<ExamCubit, ExamState>(
         builder: (context, state) {
           return SafeArea(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(16),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ExamHeader(
-                      titleController: _titleController,
-                      durationController: _durationController,
-                      selectedSubject: _selectedSubject,
-                      onSubjectChanged: (subject) => setState(() => _selectedSubject = subject),
-                      selectedGradeId: _selectedGradeId,
-                      onGradeChanged: (grade) => setState(() {
-                        _selectedGradeId = grade.id;
-                        _selectedGradeName = grade.name;
-                      }),
-                    ),
-                    const SizedBox(height: 16),
-
-                    CustomText(
-                      text: l10.availabilityWindow,
-                      style: TextStyle(
-                        color: ColorManager.black.withValues(alpha: 0.5),
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
+            child: GestureDetector(
+              onTap: () => FocusScope.of(context).unfocus(),
+              behavior: HitTestBehavior.translucent,
+              child: SingleChildScrollView(
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
+                padding: const EdgeInsets.fromLTRB(16, 16, 16, 120),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ExamHeader(
+                        titleController: _titleController,
+                        durationController: _durationController,
+                        selectedSubject: _selectedSubject,
+                        onSubjectChanged: (subject) =>
+                            setState(() => _selectedSubject = subject),
+                        selectedGradeId: _selectedGradeId,
+                        onGradeChanged: (grade) => setState(() {
+                          _selectedGradeId = grade.id;
+                          _selectedGradeName = grade.name;
+                        }),
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                    ExamDateRangePicker(
-                      startDate: _startDate,
-                      endDate: _endDate,
-                      onStartDateChanged: (date) {
-                        setState(() {
-                          _startDate = date;
-                          if (_endDate != null && !_endDate!.isAfter(date)) {
-                            _endDate = null;
-                          }
-                        });
-                      },
-                      onEndDateChanged: (date) => setState(() => _endDate = date),
-                    ),
-                    const SizedBox(height: 16),
+                      const SizedBox(height: 16),
 
-                    ...List.generate(_questions.length, (index) {
-                      return QuestionBuilderCard(
-                        questionNumber: index + 1,
-                        draft: _questions[index],
-                        onChanged: () => setState(() {}),
-                        onDelete: _questions.length > 1
-                            ? () => _deleteQuestion(index)
-                            : null,
-                      );
-                    }),
+                      CustomText(
+                        text: l10.availabilityWindow,
+                        style: TextStyle(
+                          color: ColorManager.black.withValues(alpha: 0.5),
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      ExamDateRangePicker(
+                        startDate: _startDate,
+                        endDate: _endDate,
+                        onStartDateChanged: (date) {
+                          setState(() {
+                            _startDate = date;
+                            if (_endDate != null && !_endDate!.isAfter(date)) {
+                              _endDate = null;
+                            }
+                          });
+                        },
+                        onEndDateChanged: (date) =>
+                            setState(() => _endDate = date),
+                      ),
+                      const SizedBox(height: 16),
 
-                    AddQuestionButton(onAddQuestion: _addQuestion),
+                      ...List.generate(_questions.length, (index) {
+                        return QuestionBuilderCard(
+                          questionNumber: index + 1,
+                          draft: _questions[index],
+                          onChanged: () => setState(() {}),
+                          onDelete: _questions.length > 1
+                              ? () => _deleteQuestion(index)
+                              : null,
+                        );
+                      }),
 
-                    CustomElevatedButton(
-                      text: l10.publishExam(_questions.length),
-                      onPressed: state is ExamLoading ? null : _publish,
-                    ),
-                  ],
+                      AddQuestionButton(onAddQuestion: _addQuestion),
+
+                      CustomElevatedButton(
+                        text: l10.publishExam(_questions.length),
+                        onPressed: state is ExamLoading ? null : _publish,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -249,4 +257,5 @@ class _QuestionBuilderScreenState extends State<QuestionBuilderScreen> {
       endDate: _endDate!,
       questions: _questions,
     );
-  }}
+  }
+}

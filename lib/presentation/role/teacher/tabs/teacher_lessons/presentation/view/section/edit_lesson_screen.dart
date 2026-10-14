@@ -134,59 +134,64 @@ class _EditLessonScreenState extends State<EditLessonScreen> {
             ),
           ),
           body: SafeArea(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  ChangeVideoCard(
-                    videoThumbnailUrl: widget.lesson.videoThumbnailUrl,
-                    videoUrl: widget.lesson.videoUrl,
-                    onVideoSelected: (file) => _newVideoFile = file,
-                  ),
-                  const SizedBox(height: 8),
-                  CustomLabel(
-                    label: l10.lessonTitle,
-                    color: ColorManager.salatGray,
-                  ),
-                  const SizedBox(height: 8),
-                  CustomTextFormedField(
-                    hintText: l10.enterLessonTitle,
-                    controller: _titleController,
-                  ),
-                  const SizedBox(height: 8),
-                  CustomLabel(
-                    label: l10.lessonDescription,
-                    color: ColorManager.salatGray,
-                  ),
-                  const SizedBox(height: 8),
-                  CustomTextFormedField(
-                    hintText: l10.enterLessonDescription,
-                    controller: _descriptionController,
-                    maxLines: 4,
-                  ),
-                  const SizedBox(height: 8),
-                  CustomSwitchCard(
-                    title: l10.published,
-                    subtitle: l10.publishedSubtitle,
-                    value: _isPublished,
-                    onChanged: isSubmitting
-                        ? null
-                        : (value) => setState(() => _isPublished = value),
-                  ),
-                  const SizedBox(height: 8),
-                  CustomElevatedButton(
-                    text: l10.saveChanges,
-                    onPressed: isSubmitting ? null : _saveChanges,
-                  ),
-                  const SizedBox(height: 8),
-                  CustomElevatedButton(
-                    text: l10.deleteLesson,
-                    onPressed: isSubmitting ? null : _confirmDelete,
-                    backgroundColor: ColorManager.red.withValues(alpha: 0.1),
-                    foregroundColor: ColorManager.red,
-                  ),
-                ],
+            child: GestureDetector(
+              onTap: () => FocusScope.of(context).unfocus(),
+              behavior: HitTestBehavior.translucent,
+              child: SingleChildScrollView(
+                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                padding: const EdgeInsets.fromLTRB(16, 16, 16, 120),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    ChangeVideoCard(
+                      videoThumbnailUrl: widget.lesson.videoThumbnailUrl,
+                      videoUrl: widget.lesson.videoUrl,
+                      onVideoSelected: (file) => _newVideoFile = file,
+                    ),
+                    const SizedBox(height: 8),
+                    CustomLabel(
+                      label: l10.lessonTitle,
+                      color: ColorManager.salatGray,
+                    ),
+                    const SizedBox(height: 8),
+                    CustomTextFormedField(
+                      hintText: l10.enterLessonTitle,
+                      controller: _titleController,
+                    ),
+                    const SizedBox(height: 8),
+                    CustomLabel(
+                      label: l10.lessonDescription,
+                      color: ColorManager.salatGray,
+                    ),
+                    const SizedBox(height: 8),
+                    CustomTextFormedField(
+                      hintText: l10.enterLessonDescription,
+                      controller: _descriptionController,
+                      maxLines: 4,
+                    ),
+                    const SizedBox(height: 8),
+                    CustomSwitchCard(
+                      title: l10.published,
+                      subtitle: l10.publishedSubtitle,
+                      value: _isPublished,
+                      onChanged: isSubmitting
+                          ? null
+                          : (value) => setState(() => _isPublished = value),
+                    ),
+                    const SizedBox(height: 8),
+                    CustomElevatedButton(
+                      text: l10.saveChanges,
+                      onPressed: isSubmitting ? null : _saveChanges,
+                    ),
+                    const SizedBox(height: 8),
+                    CustomElevatedButton(
+                      text: l10.deleteLesson,
+                      onPressed: isSubmitting ? null : _confirmDelete,
+                      backgroundColor: ColorManager.red.withValues(alpha: 0.1),
+                      foregroundColor: ColorManager.red,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

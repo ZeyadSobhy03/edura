@@ -123,7 +123,7 @@ class _DashboardState extends State<Dashboard> {
                     {
                       'icon': Icons.calendar_today_outlined,
                       'color': ColorManager.purple,
-                      'navigateTo': RouteManger.teacherMainLayoutRoute,
+                      'navigateTo': RouteManger.scheduleClassScreen,
                       'arguments': 4,
                       'value': stats?.todaysClasses ?? 0,
                       'label': l10.todaysClasses,

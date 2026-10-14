@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/data/data_source/home_work/home_work_remote_data_source.dart';
@@ -43,11 +44,12 @@ class HomeWorkSupabaseDataSource implements HomeWorkRemoteDataSource {
             .getPublicUrl(storagePath);
         attachmentUrls.add(publicUrl);
       }
-
+      log("lesson id is $lessonId, teacher id is $teacherId, attachments are $attachmentUrls, title is ${homework.title}, description is ${homework.description}, subject is ${homework.subject}, status is ${homework.isPublished ? 'published' : 'draft'}, due date is ${homework.dueDate?.toUtc().toIso8601String()}, grade id is ${homework.gradeId}");
       await supabase.from(_table).insert({
         'lesson_id': ?lessonId,
         'title': homework.title,
         'teacher_id': teacherId,
+        'grade_id': homework.gradeId,
         'description': homework.description,
         'subject': homework.subject,
         'status': homework.isPublished ? 'published' : 'draft',
@@ -56,6 +58,7 @@ class HomeWorkSupabaseDataSource implements HomeWorkRemoteDataSource {
         'attachments': attachmentUrls,
       });
     } catch (e) {
+      log('Error creating homework: $e');
       rethrowAsAppError(e);
     }
   }
@@ -120,14 +123,16 @@ class HomeWorkSupabaseDataSource implements HomeWorkRemoteDataSource {
       rethrowAsAppError(e);
     }
   }
-
   @override
-  Future<List<NewHomeworkModel>> getAllHomeworks() async {
+  Future<List<NewHomeworkModel>> getAllHomeworks({String? gradeId}) async {
     try {
-      final response = await supabase
-          .from(_table)
-          .select()
-          .order('created_at', ascending: false);
+      var query = supabase.from(_table).select();
+
+      if (gradeId != null) {
+        query = query.eq('grade_id', gradeId);
+      }
+
+      final response = await query.order('created_at', ascending: false);
 
       return (response as List<dynamic>)
           .map((row) => NewHomeworkModel.fromJson(row as Map<String, dynamic>))
