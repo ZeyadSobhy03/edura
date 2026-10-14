@@ -19,6 +19,8 @@ class ExamSupabaseDataSource implements ExamRemoteDataSource {
     required String teacherId,
     required String subject,
     required int durationMinutes,
+    required String gradeName,
+    required String gradeId,
     required List<QuestionDraftModel> questions,
     required DateTime startDate,
     required DateTime endDate,
@@ -29,6 +31,8 @@ class ExamSupabaseDataSource implements ExamRemoteDataSource {
         'p_title': title,
         'p_subject': subject,
         'p_duration_minutes': durationMinutes,
+        'p_grade_id': gradeId,
+        'p_grade_name': gradeName,
         'p_start_date': startDate.toUtc().toIso8601String(),
         'p_end_date': endDate.toUtc().toIso8601String(),
         'p_questions': questions

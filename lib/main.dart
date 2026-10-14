@@ -31,6 +31,9 @@ import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentatio
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view_model/home_work/submissions_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view_model/lessons/teacher_lessons_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/class_schedules/presentation/view_model/class_schedules_view_model.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/exam_summary/presentation/view_model/exam_summary/exam_summary_view_model.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/exam_summary/presentation/view_model/student_exam_review/student_exam_review_view_model.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/exam_summary/presentation/view_model/student_results/student_results_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_grades/presentation/view_model/grade_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/payment/presentation/view_model/payment_view_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/subjects_classes/presentation/view_model/subject_classes_view_model.dart';
@@ -121,6 +124,9 @@ void main() async {
         BlocProvider(create: (context) => getIt<ForgetPasswordCubit>(),),
         BlocProvider(create: (context) => getIt<StudentProfileCubit>()),
         BlocProvider(create: (context) => getIt<StudentExamCubit>()),
+        BlocProvider(create: (context) => getIt<ExamSummaryCubit>()),
+        BlocProvider(create: (context) => getIt<StudentResultsCubit>(),),
+        BlocProvider(create: (context) => getIt<StudentExamReviewCubit>(),)
       ],
 
       child: const EduraApp(),

@@ -1,6 +1,7 @@
 import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/widgets/custom_label.dart';
 import 'package:edura/core/widgets/custom_text_formed_field.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view/widgets/subject_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -24,7 +25,6 @@ class HomeworkDetailsForm extends StatefulWidget {
 class _HomeworkDetailsFormState extends State<HomeworkDetailsForm> {
   late final TextEditingController _titleController;
   late final TextEditingController _descriptionController;
-  late final TextEditingController _subjectController;
   late final TextEditingController _dueDateController;
 
   @override
@@ -34,7 +34,6 @@ class _HomeworkDetailsFormState extends State<HomeworkDetailsForm> {
     _descriptionController = TextEditingController(
       text: widget.draft.description,
     );
-    _subjectController = TextEditingController(text: widget.draft.subject);
     _dueDateController = TextEditingController(
       text: widget.draft.dueDate != null
           ? DateFormat('dd/MM/yyyy').format(widget.draft.dueDate!)
@@ -46,19 +45,17 @@ class _HomeworkDetailsFormState extends State<HomeworkDetailsForm> {
   void dispose() {
     _titleController.dispose();
     _descriptionController.dispose();
-    _subjectController.dispose();
     _dueDateController.dispose();
     super.dispose();
   }
 
-
   bool get _canProceed =>
       _titleController.text.trim().isNotEmpty &&
-      _descriptionController.text.trim().isNotEmpty &&
-      _dueDateController.text.trim().isNotEmpty;
+          (widget.draft.subject.isNotEmpty) &&
+          _descriptionController.text.trim().isNotEmpty &&
+          _dueDateController.text.trim().isNotEmpty;
 
   Future<void> _selectDate() async {
-
     final now = DateTime.now();
     final firstDate = now;
     final lastDate = DateTime(now.year + 1);
@@ -100,8 +97,7 @@ class _HomeworkDetailsFormState extends State<HomeworkDetailsForm> {
     if (!_canProceed) return;
     widget.draft
       ..title = _titleController.text.trim()
-      ..description = _descriptionController.text.trim()
-      ..subject = _subjectController.text.trim();
+      ..description = _descriptionController.text.trim();
     widget.onNext();
   }
 
@@ -112,42 +108,30 @@ class _HomeworkDetailsFormState extends State<HomeworkDetailsForm> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CustomLabel(
-          label: l10.homeworkTitle ,
-          fontSize: 14,
-        ),
+        CustomLabel(label: l10.homeworkTitle, fontSize: 14),
         CustomTextFormedField(
           controller: _titleController,
           onChanged: (_) => setState(() {}),
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return l10.homeworkTitleRequired ;
+              return l10.homeworkTitleRequired;
             }
             return null;
           },
           hintText: l10.enterHomeworkTitle,
         ),
         const SizedBox(height: 20),
-        CustomLabel(
-          label: l10.subject,
-          fontSize: 14,
-        ),
-        CustomTextFormedField(
-          onChanged: (_) => setState(() {}),
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return l10.subjectRequired;
-            }
-            return null;
+        CustomLabel(label: l10.subject, fontSize: 14),
+        SubjectSelector(
+          onChanged: (subject) {
+            setState(() {
+              widget.draft.subject = subject;
+            });
           },
-          hintText: l10.subjectHint,
-          controller: _subjectController,
+          selectedSubject: widget.draft.subject,
         ),
         const SizedBox(height: 20),
-        CustomLabel(
-          label: l10.description,
-          fontSize: 14,
-        ),
+        CustomLabel(label: l10.description, fontSize: 14),
         CustomTextFormedField(
           onChanged: (_) => setState(() {}),
           hintText: l10.descriptionHint,
@@ -164,10 +148,7 @@ class _HomeworkDetailsFormState extends State<HomeworkDetailsForm> {
           controller: _descriptionController,
         ),
         const SizedBox(height: 20),
-        CustomLabel(
-          label: l10.dueDate,
-          fontSize: 14,
-        ),
+        CustomLabel(label: l10.dueDate, fontSize: 14),
         CustomTextFormedField(
           controller: _dueDateController,
           readOnly: true,
@@ -175,7 +156,7 @@ class _HomeworkDetailsFormState extends State<HomeworkDetailsForm> {
           onChanged: (_) => setState(() {}),
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return l10.dueDateRequired ;
+              return l10.dueDateRequired;
             }
             return null;
           },
@@ -209,4 +190,3 @@ class _HomeworkDetailsFormState extends State<HomeworkDetailsForm> {
     );
   }
 }
-

@@ -14,6 +14,8 @@ class ExamRepositoriesImp implements ExamRepositories {
     required String title,
     required String subject,
     required String teacherId,
+    required String gradeName,
+    required String gradeId,
 
     required int durationMinutes,
     required List<QuestionDraftModel> questions,
@@ -21,6 +23,8 @@ class ExamRepositoriesImp implements ExamRepositories {
     required DateTime endDate,
   }) {
     return remoteDataSource.createExam(
+      gradeId: gradeId,
+      gradeName: gradeName,
       title: title,
       subject: subject,
       durationMinutes: durationMinutes,

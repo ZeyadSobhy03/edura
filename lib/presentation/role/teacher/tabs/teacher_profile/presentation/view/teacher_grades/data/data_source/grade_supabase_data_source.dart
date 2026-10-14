@@ -49,4 +49,12 @@ class GradeSupabaseDataSource implements GradeRemoteDataSource {
         .update({'name': name, 'monthly_amount': monthlyAmount})
         .eq('id', id);
   }
+
+  @override
+  Future<List<Grade>> fetchAllGrades() async {
+    final response = await supabse.from('grades').select().order('name');
+    return (response as List)
+        .map((json) => Grade.fromJson(json as Map<String, dynamic>))
+        .toList();
+  }
 }

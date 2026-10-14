@@ -6,6 +6,8 @@ abstract class ExamRepositories {
     required String teacherId,
     required String subject,
     required int durationMinutes,
+    required String gradeName,
+    required String gradeId,
     required List<QuestionDraftModel> questions,
     required DateTime startDate,
     required DateTime endDate,

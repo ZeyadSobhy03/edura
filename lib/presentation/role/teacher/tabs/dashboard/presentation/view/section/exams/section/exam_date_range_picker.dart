@@ -27,6 +27,13 @@ class ExamDateRangePicker extends StatelessWidget {
     DateTime? firstDate,
   }) async {
     final now = DateTime.now();
+
+    final DateTime effectiveFirst = firstDate ?? now;
+    DateTime effectiveInitial = initial ?? now;
+    if (effectiveInitial.isBefore(effectiveFirst)) {
+      effectiveInitial = effectiveFirst;
+    }
+
     final picked = await showDatePicker(
 
       builder: (context, child) {
@@ -48,8 +55,8 @@ class ExamDateRangePicker extends StatelessWidget {
       },
 
       context: context,
-      initialDate: initial ?? now,
-      firstDate: firstDate ?? now,
+      initialDate: effectiveInitial,
+      firstDate: effectiveFirst,
       lastDate: DateTime(now.year + 3),
     );
     if (picked != null) onPicked(picked);

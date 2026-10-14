@@ -26,6 +26,8 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   final LoginHiveDataSource _localDataSource = LoginHiveDataSource();
   String? _selectedGrade;
+  String? _selectedGradeId;
+  String? _selectedGradeName;
   bool _isPasswordVisible = false;
   bool _isConfirmPasswordVisible = false;
   late GlobalKey<FormState> _formKey;
@@ -62,7 +64,6 @@ class _RegisterState extends State<Register> {
     confirmPasswordController = TextEditingController();
   }
 
-  static const _grades = ['Grade 9', 'Grade 10', 'Grade 11', 'Grade 12'];
 
   @override
   Widget build(BuildContext context) {
@@ -126,10 +127,12 @@ class _RegisterState extends State<Register> {
                               !_isConfirmPasswordVisible;
                         });
                       },
-                      grades: _grades,
                       selectedGrade: _selectedGrade,
-                      onGradeChanged: (grade) =>
-                          setState(() => _selectedGrade = grade),
+                      selectedGradeId: _selectedGradeId,
+                      onGradeChanged: (grade) => setState(() {
+                        _selectedGradeId = grade.id;
+                        _selectedGradeName = grade.name;
+                      }),
                     ),
 
                     const SizedBox(height: 16),
@@ -213,7 +216,7 @@ class _RegisterState extends State<Register> {
         parentPhone: parentPhoneController.text.trim(),
         school: schoolController.text.trim(),
         password: passwordController.text,
-        grade: _selectedGrade ?? '',
+        grade: _selectedGradeName ?? '',
       );
 
       await context.read<RegisterCubit>().register(student: registerRequest);

@@ -16,6 +16,9 @@ class GradeUseCase {
   Future<void> addGrade({required String teacherId, required String name, required double monthlyAmount}) {
     return repositories.addGrade(teacherId: teacherId, name: name , monthlyAmount: monthlyAmount);
   }
+  Future<List<Grade>> fetchAllGrades(){
+    return repositories.fetchAllGrades();
+  }
 
   Future<void> updateGrade({
     required String id,

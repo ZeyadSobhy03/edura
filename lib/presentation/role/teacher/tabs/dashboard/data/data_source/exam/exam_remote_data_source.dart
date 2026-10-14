@@ -4,6 +4,8 @@ abstract class ExamRemoteDataSource {
   Future<Map<String, dynamic>> createExam({
     required String title,
     required String subject,
+    required String gradeName,
+    required String gradeId,
     required String teacherId,
     required int durationMinutes,
     required List<QuestionDraftModel> questions,

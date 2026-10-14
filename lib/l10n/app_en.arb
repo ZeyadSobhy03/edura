@@ -43,6 +43,9 @@
   "resendCode": "Resend code",
   "resetCodeSentToast": "If the email exists, a code was sent",
   "passwordChangedToast": "Password changed. Please log in.",
+  "pleaseSelectSubject": "Please select a subject",
+  "pleaseSelectGrade": "Please select a grade",
+  "examsResults": "Exams Results",
   "parentPhone": "Parent Phone",
   "school": "School",
   "grade": "Grade",
@@ -686,6 +689,33 @@
   "registerFailed": "Registration failed. Please try again.",
   "errorOccurred": "An error occurred. Please try again.",
   "noStudentsFound": "No students found",
+  "noStudentsStartedExam": "No student has started this exam",
+  "inProgress": "In progress",
+  "submittedCount": "{count} submitted",
+  "@submittedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "inProgressCount": "{count} in progress",
+  "@inProgressCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "avgPlaceholder": "Avg --",
+  "avgLabel": "Avg {percent}%",
+  "@avgLabel": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
   "lessonTitleRequired": "Please enter a title for your lesson.",
   "homeworkTitle": "Homework Title",
   "homeworkDescription": "Homework Description",
@@ -705,6 +735,7 @@
   "createHomework": "Create Homework",
   "addHomework": "Add Homework",
   "addAttachment": "Add Attachment",
+  "teacherExamResults": "Teacher Exam Results",
   "requiredField": "This field is required",
   "skipAndPublish": "Skip & Publish",
   "addHomeworkAndPublish": "Add Homework & Publish",
@@ -717,6 +748,9 @@
   "selectStartAndEndDate": "Please select both start and end dates",
   "enterExamDuration": "Enter exam duration in minutes",
   "examDurationCannotBeEmpty": "Exam duration cannot be empty.",
+  "notAnswered": "Not answered",
+
   "examDurationMustBeANumber": "Exam duration must be a number.",
+
   "unauthorized": "You are not authorized to perform this action."
 }

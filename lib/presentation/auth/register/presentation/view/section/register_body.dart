@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import '../../../../../../core/resources/colors/color_manger.dart';
 import '../../../../../../core/widgets/custom_text_formed_field.dart';
 import '../../../../../../l10n/app_localizations.dart';
+import '../../../../../role/teacher/tabs/teacher_lessons/presentation/view/widgets/lesson_grade_selector.dart';
+import '../../../../../role/teacher/tabs/teacher_profile/presentation/view/teacher_grades/data/model/grade_model.dart';
 import '../widgets/build_label.dart';
-import '../widgets/grade_selector.dart';
 
 class RegisterBody extends StatelessWidget {
   const RegisterBody({
@@ -21,9 +22,8 @@ class RegisterBody extends StatelessWidget {
     required this.isConfirmPasswordVisible,
     required this.onPasswordVisibilityToggle,
     required this.onConfirmPasswordVisibilityToggle,
-    required this.grades,
     required this.selectedGrade,
-    required this.onGradeChanged,
+    required this.onGradeChanged, this.selectedGradeId,
   });
 
   final TextEditingController fullNameController;
@@ -38,11 +38,9 @@ class RegisterBody extends StatelessWidget {
 
   final VoidCallback onPasswordVisibilityToggle;
   final VoidCallback onConfirmPasswordVisibilityToggle;
-  final List<String> grades;
   final String? selectedGrade;
-
-  final ValueChanged<String> onGradeChanged;
-
+  final String? selectedGradeId;
+  final ValueChanged<Grade> onGradeChanged;
   @override
   Widget build(BuildContext context) {
     final l10 = AppLocalizations.of(context)!;
@@ -160,9 +158,9 @@ class RegisterBody extends StatelessWidget {
         const SizedBox(height: 8),
         BuildLabel(label: l10.grade),
         const SizedBox(height: 4),
-        GradeSelector(
-          grades: grades,
-          selectedGrade: selectedGrade,
+        LessonGradeSelector(
+          forTeacher: false,
+          selectedGradeId: selectedGradeId,
           onChanged: onGradeChanged,
         ),
       ],

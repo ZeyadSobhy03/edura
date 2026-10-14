@@ -296,6 +296,24 @@ abstract class AppLocalizations {
   /// **'Password changed. Please log in.'**
   String get passwordChangedToast;
 
+  /// No description provided for @pleaseSelectSubject.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select a subject'**
+  String get pleaseSelectSubject;
+
+  /// No description provided for @pleaseSelectGrade.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select a grade'**
+  String get pleaseSelectGrade;
+
+  /// No description provided for @examsResults.
+  ///
+  /// In en, this message translates to:
+  /// **'Exams Results'**
+  String get examsResults;
+
   /// No description provided for @parentPhone.
   ///
   /// In en, this message translates to:
@@ -3174,6 +3192,42 @@ abstract class AppLocalizations {
   /// **'No students found'**
   String get noStudentsFound;
 
+  /// No description provided for @noStudentsStartedExam.
+  ///
+  /// In en, this message translates to:
+  /// **'No student has started this exam'**
+  String get noStudentsStartedExam;
+
+  /// No description provided for @inProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'In progress'**
+  String get inProgress;
+
+  /// No description provided for @submittedCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} submitted'**
+  String submittedCount(int count);
+
+  /// No description provided for @inProgressCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} in progress'**
+  String inProgressCount(int count);
+
+  /// No description provided for @avgPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Avg --'**
+  String get avgPlaceholder;
+
+  /// No description provided for @avgLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Avg {percent}%'**
+  String avgLabel(int percent);
+
   /// No description provided for @lessonTitleRequired.
   ///
   /// In en, this message translates to:
@@ -3288,6 +3342,12 @@ abstract class AppLocalizations {
   /// **'Add Attachment'**
   String get addAttachment;
 
+  /// No description provided for @teacherExamResults.
+  ///
+  /// In en, this message translates to:
+  /// **'Teacher Exam Results'**
+  String get teacherExamResults;
+
   /// No description provided for @requiredField.
   ///
   /// In en, this message translates to:
@@ -3359,6 +3419,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Exam duration cannot be empty.'**
   String get examDurationCannotBeEmpty;
+
+  /// No description provided for @notAnswered.
+  ///
+  /// In en, this message translates to:
+  /// **'Not answered'**
+  String get notAnswered;
 
   /// No description provided for @examDurationMustBeANumber.
   ///

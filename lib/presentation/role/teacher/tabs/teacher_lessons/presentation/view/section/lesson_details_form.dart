@@ -129,6 +129,7 @@ class _LessonDetailsFormState extends State<LessonDetailsForm> {
 
         _sectionLabel(l10.grade),
         LessonGradeSelector(
+          forTeacher: true,
           selectedGradeId: _selectedGradeId,
           onChanged: (grade) => setState(() {
             _selectedGradeId = grade.id;

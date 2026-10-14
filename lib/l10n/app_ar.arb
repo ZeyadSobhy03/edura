@@ -35,6 +35,9 @@
     }
   },
   "resendCode": "إعادة إرسال الرمز",
+  "pleaseSelectSubject": "يرجى اختيار المادة",
+  "pleaseSelectGrade": "يرجى اختيار الصف",
+  "examsResults": "نتائج الاختبارات",
   "resetCodeSentToast": "إذا كان البريد الإلكتروني موجودًا، فقد تم إرسال رمز",
   "passwordChangedToast": "تم تغيير كلمة المرور. يرجى تسجيل الدخول.",
   "noteContent": "محتوى الملاحظة",
@@ -526,6 +529,7 @@
   "registerFailed": "فشل التسجيل. يرجى المحاولة مرة أخرى.",
   "errorOccurred": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
   "noStudentsFound": "لم يتم العثور على طلاب",
+  "teacherExamResults": "نتائج اختبار الطلاب",
   "subjectHint": "ادخل المادة التي تدرّسها",
   "durationRequired": "مدة الدرس مطلوبة",
   "lessonTitleRequired": "عنوان الدرس مطلوب",
@@ -537,6 +541,7 @@
   "dueDateRequired": "تاريخ الاستحقاق مطلوب",
   "dueDate": "تاريخ الاستحقاق",
   "dueDateHint": "اختر تاريخ الاستحقاق",
+  "notAnswered": "لم يتم الرد",
   "nextAddAttachments": "التالي: إضافة المرفقات",
   "selectedFiles": "الملفات المحددة",
   "publishing": "جارٍ النشر...",
@@ -568,6 +573,34 @@
   "durationInvalid": "مدة الدرس غير صالحة",
   "endDateMustBeAfterStartDate": "يجب أن يكون تاريخ الانتهاء بعد تاريخ البدء",
   "selectStartAndEndDate": "يرجى اختيار تاريخي البدء والانتهاء",
+
   "examDurationMustBeANumber": "يجب أن تكون مدة الاختبار رقمًا",
+
+  "noStudentsStartedExam": "لم يبدأ أي طالب هذا الاختبار",
+  "inProgress": "قيد التقدم",
+
+  "submittedCount": "تم إرسال {count}",
+  "@submittedCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+
+  "inProgressCount": "{count} قيد التقدم",
+  "@inProgressCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+
+  "avgLabel": "المتوسط {percent}%",
+  "@avgLabel": {
+    "placeholders": {
+      "percent": { "type": "int" }
+    }
+  },
+
+  "avgPlaceholder": "المتوسط --",
+
   "unauthorized": "غير مصرح"
 }

@@ -34,6 +34,7 @@ class _LessonPdfUploadFormState extends State<LessonPdfUploadForm> {
     );
     if (result.single.path != null) {
       setState(() {
+        debugPrint('Picked PDF file: ${result.single.path}');
         widget.draft.pdfFile = File(result.single.path!);
       });
     }

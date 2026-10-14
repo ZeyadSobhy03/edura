@@ -114,6 +114,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get passwordChangedToast => 'تم تغيير كلمة المرور. يرجى تسجيل الدخول.';
 
   @override
+  String get pleaseSelectSubject => 'يرجى اختيار المادة';
+
+  @override
+  String get pleaseSelectGrade => 'يرجى اختيار الصف';
+
+  @override
+  String get examsResults => 'نتائج الاختبارات';
+
+  @override
   String get parentPhone => 'هاتف الوالد';
 
   @override
@@ -1638,6 +1647,30 @@ class AppLocalizationsAr extends AppLocalizations {
   String get noStudentsFound => 'لم يتم العثور على طلاب';
 
   @override
+  String get noStudentsStartedExam => 'لم يبدأ أي طالب هذا الاختبار';
+
+  @override
+  String get inProgress => 'قيد التقدم';
+
+  @override
+  String submittedCount(int count) {
+    return 'تم إرسال $count';
+  }
+
+  @override
+  String inProgressCount(int count) {
+    return '$count قيد التقدم';
+  }
+
+  @override
+  String get avgPlaceholder => 'المتوسط --';
+
+  @override
+  String avgLabel(int percent) {
+    return 'المتوسط $percent%';
+  }
+
+  @override
   String get lessonTitleRequired => 'عنوان الدرس مطلوب';
 
   @override
@@ -1696,6 +1729,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get addAttachment => 'إضافة مرفق';
 
   @override
+  String get teacherExamResults => 'نتائج اختبار الطلاب';
+
+  @override
   String get requiredField => 'هذا الحقل مطلوب';
 
   @override
@@ -1731,6 +1767,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get examDurationCannotBeEmpty => 'لا يمكن أن تكون مدة الاختبار فارغة';
+
+  @override
+  String get notAnswered => 'لم يتم الرد';
 
   @override
   String get examDurationMustBeANumber => 'يجب أن تكون مدة الاختبار رقمًا';

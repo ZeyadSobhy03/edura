@@ -20,6 +20,16 @@ class GardeCubit extends Cubit<GradesState> {
     }
   }
 
+  Future<void> fetchAllGrades() async {
+    emit(GradesLoading());
+    try {
+      final grades = await gradeUseCase.fetchAllGrades();
+      emit(GradesLoaded(grades));
+    } catch (e) {
+      emit(GradesError(e.toString()));
+    }
+  }
+
   Future<void> addGrade({
     required String teacherId,
     required String name,

@@ -113,6 +113,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get passwordChangedToast => 'Password changed. Please log in.';
 
   @override
+  String get pleaseSelectSubject => 'Please select a subject';
+
+  @override
+  String get pleaseSelectGrade => 'Please select a grade';
+
+  @override
+  String get examsResults => 'Exams Results';
+
+  @override
   String get parentPhone => 'Parent Phone';
 
   @override
@@ -1648,6 +1657,30 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noStudentsFound => 'No students found';
 
   @override
+  String get noStudentsStartedExam => 'No student has started this exam';
+
+  @override
+  String get inProgress => 'In progress';
+
+  @override
+  String submittedCount(int count) {
+    return '$count submitted';
+  }
+
+  @override
+  String inProgressCount(int count) {
+    return '$count in progress';
+  }
+
+  @override
+  String get avgPlaceholder => 'Avg --';
+
+  @override
+  String avgLabel(int percent) {
+    return 'Avg $percent%';
+  }
+
+  @override
   String get lessonTitleRequired => 'Please enter a title for your lesson.';
 
   @override
@@ -1705,6 +1738,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get addAttachment => 'Add Attachment';
 
   @override
+  String get teacherExamResults => 'Teacher Exam Results';
+
+  @override
   String get requiredField => 'This field is required';
 
   @override
@@ -1740,6 +1776,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get examDurationCannotBeEmpty => 'Exam duration cannot be empty.';
+
+  @override
+  String get notAnswered => 'Not answered';
 
   @override
   String get examDurationMustBeANumber => 'Exam duration must be a number.';

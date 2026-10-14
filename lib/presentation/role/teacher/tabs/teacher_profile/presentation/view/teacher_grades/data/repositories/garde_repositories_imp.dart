@@ -28,6 +28,11 @@ class GardeRepositoriesImp implements GardeRepositories {
     return remoteDataSource.updateGrade(id: id, name: name, monthlyAmount: monthlyAmount);
   }
 
+  @override
+  Future<List<Grade>> fetchAllGrades() {
+    return remoteDataSource.fetchAllGrades();
+  }
+
 
 
 }

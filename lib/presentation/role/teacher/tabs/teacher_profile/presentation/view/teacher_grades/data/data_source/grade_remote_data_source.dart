@@ -2,6 +2,7 @@ import '../model/grade_model.dart';
 
 abstract class GradeRemoteDataSource {
   Future<List<Grade>> fetchGrades({String? teacherId});
+  Future<List<Grade>> fetchAllGrades();
 
   Future<void> addGrade({
     required String teacherId,

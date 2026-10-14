@@ -27,7 +27,7 @@ class ForgetPassword extends StatefulWidget {
 }
 
 class _ForgetPasswordState extends State<ForgetPassword> {
-  static const int _otpLength = 6; // must match the digits in the email
+  static const int _otpLength = 6;
 
   final _emailController = TextEditingController();
   final _codeController = TextEditingController();

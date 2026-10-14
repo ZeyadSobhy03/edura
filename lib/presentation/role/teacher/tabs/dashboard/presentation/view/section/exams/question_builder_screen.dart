@@ -28,9 +28,11 @@ class _QuestionBuilderScreenState extends State<QuestionBuilderScreen> {
   String? teacherId;
 
   late TextEditingController _titleController;
-  late TextEditingController _subjectController;
   late TextEditingController _durationController;
   late GlobalKey<FormState> _formKey;
+  String? _selectedSubject;
+  String? _selectedGradeId;
+  String? _selectedGradeName;
 
   DateTime? _startDate;
   DateTime? _endDate;
@@ -40,7 +42,6 @@ class _QuestionBuilderScreenState extends State<QuestionBuilderScreen> {
     super.initState();
     teacherId = Supabase.instance.client.auth.currentUser?.id;
     _titleController = TextEditingController();
-    _subjectController = TextEditingController();
     _durationController = TextEditingController();
     _formKey = GlobalKey<FormState>();
   }
@@ -49,7 +50,6 @@ class _QuestionBuilderScreenState extends State<QuestionBuilderScreen> {
   void dispose() {
     super.dispose();
     _titleController.dispose();
-    _subjectController.dispose();
     _durationController.dispose();
   }
 
@@ -98,8 +98,14 @@ class _QuestionBuilderScreenState extends State<QuestionBuilderScreen> {
                   children: [
                     ExamHeader(
                       titleController: _titleController,
-                      subjectController: _subjectController,
                       durationController: _durationController,
+                      selectedSubject: _selectedSubject,
+                      onSubjectChanged: (subject) => setState(() => _selectedSubject = subject),
+                      selectedGradeId: _selectedGradeId,
+                      onGradeChanged: (grade) => setState(() {
+                        _selectedGradeId = grade.id;
+                        _selectedGradeName = grade.name;
+                      }),
                     ),
                     const SizedBox(height: 16),
 
@@ -118,7 +124,6 @@ class _QuestionBuilderScreenState extends State<QuestionBuilderScreen> {
                       onStartDateChanged: (date) {
                         setState(() {
                           _startDate = date;
-                          // clear an end date that's now invalid relative to the new start
                           if (_endDate != null && !_endDate!.isAfter(date)) {
                             _endDate = null;
                           }
@@ -188,6 +193,24 @@ class _QuestionBuilderScreenState extends State<QuestionBuilderScreen> {
       return;
     }
 
+    if (_selectedSubject == null) {
+      Fluttertoast.showToast(
+        msg: l10.pleaseSelectSubject,
+        backgroundColor: ColorManager.red,
+        gravity: ToastGravity.BOTTOM,
+      );
+      return;
+    }
+
+    if (_selectedGradeId == null || _selectedGradeName == null) {
+      Fluttertoast.showToast(
+        msg: l10.pleaseSelectGrade,
+        backgroundColor: ColorManager.red,
+        gravity: ToastGravity.BOTTOM,
+      );
+      return;
+    }
+
     if (!_allQuestionsValid) {
       Fluttertoast.showToast(
         msg: l10.completeAllQuestionsBeforePublishing,
@@ -215,18 +238,15 @@ class _QuestionBuilderScreenState extends State<QuestionBuilderScreen> {
       return;
     }
 
-    final title = _titleController.text.trim();
-    final subject = _subjectController.text.trim();
-    final durationMinutes = int.parse(_durationController.text.trim());
-
     context.read<ExamCubit>().createExam(
       teacherId: teacherId!,
-      title: title,
-      subject: subject,
-      durationMinutes: durationMinutes,
+      title: _titleController.text.trim(),
+      subject: _selectedSubject!,
+      gradeId: _selectedGradeId!,
+      gradeName: _selectedGradeName!,
+      durationMinutes: int.parse(_durationController.text.trim()),
       startDate: _startDate!,
       endDate: _endDate!,
       questions: _questions,
     );
-  }
-}
+  }}

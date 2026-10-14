@@ -1,4 +1,5 @@
 import 'package:edura/core/model/chat_args.dart';
+import 'package:edura/core/model/student_exam_review_args.dart';
 import 'package:edura/presentation/role/student/tabs/lessons/data/model/student_home_work/homework_submission_model.dart';
 import 'package:edura/presentation/role/teacher/tabs/students/data/model/student_detail_model.dart';
 import 'package:edura/core/widgets/chat/chat.dart';
@@ -8,6 +9,9 @@ import 'package:edura/presentation/role/teacher/tabs/students/presentation/view/
 import 'package:edura/presentation/role/teacher/tabs/teacher_chats/presentation/view/teacher_chats.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view/section/file_viewer_screen.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_lessons/presentation/view/teacher_lessons.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/exam_summary/data/model/exam_summary/exam_summary.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/exam_summary/presentation/view/student_exam_review_screen.dart';
+import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/exam_summary/presentation/view/teacher_exam_results_screen.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_profile.dart';
 import 'package:edura/presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/attendance_report_screen/attendance_report_screen.dart';
 import 'package:flutter/material.dart';
@@ -53,6 +57,7 @@ import '../../../presentation/role/teacher/tabs/teacher_lessons/presentation/vie
 import '../../../presentation/role/teacher/tabs/teacher_lessons/presentation/view/section/review_homework_screen.dart';
 import '../../../presentation/role/teacher/tabs/teacher_lessons/presentation/view/section/teacher_homework_screen.dart';
 import '../../../presentation/role/teacher/tabs/teacher_profile/presentation/view/class_schedules/presentation/view/class_schedules_screen.dart';
+import '../../../presentation/role/teacher/tabs/teacher_profile/presentation/view/exam_summary/presentation/view/exam_students_results_screen.dart';
 import '../../../presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_edit_profile/teacher_edit_profile_screen.dart';
 import '../../../presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_grades/presentation/view/teacher_grades_screen.dart';
 import '../../../presentation/role/teacher/tabs/teacher_profile/presentation/view/teacher_setting/payment/presentation/view/payment_screen.dart';
@@ -116,12 +121,15 @@ class RouteManger {
   static const String teacherGradesScreen = '/teacherGradesScreen';
   static const String subjectsClassesScreen = '/subjectsClassesScreen';
   static const String paymentScreen = '/paymentScreen';
-   static const String fileViewerScreen = '/fileViewerScreen';
+  static const String fileViewerScreen = '/fileViewerScreen';
   static const String scheduleClassScreen = '/scheduleClassScreen';
 
   static const String attendanceForAllClasses = '/attendanceForAllClasses';
   static const String createHomeworkScreen = '/createHomeworkScreen';
   static const String homeworkSubmissionsScreen = '/homeworkSubmissionsScreen';
+  static const String teacherExamResultsScreen = '/teacherExamResultsScreen';
+  static const String examStudentsResultsScreen = '/examStudentsResultsScreen';
+  static const String studentExamReviewScreen = '/studentExamReviewScreen';
 
   static Route router(RouteSettings settings) {
     switch (settings.name) {
@@ -150,9 +158,11 @@ class RouteManger {
         );
       case fileViewerScreen:
         final args = settings.arguments as FileViewerArguments;
-        return MaterialPageRoute(builder: (context) {
-          return FileViewerScreen(args: args);
-        },);
+        return MaterialPageRoute(
+          builder: (context) {
+            return FileViewerScreen(args: args);
+          },
+        );
       case loginRoute:
         return MaterialPageRoute(
           builder: (context) {
@@ -171,6 +181,23 @@ class RouteManger {
           builder: (context) {
             return const SplashScreen();
           },
+        );
+
+      case teacherExamResultsScreen:
+        return MaterialPageRoute(
+          builder: (context) => TeacherExamResultsScreen(),
+        );
+
+      case examStudentsResultsScreen:
+        final exam = settings.arguments as ExamSummaryModel;
+        return MaterialPageRoute(
+          builder: (context) => ExamStudentsResultsScreen(exam: exam),
+        );
+
+      case studentExamReviewScreen:
+        final args = settings.arguments as StudentExamReviewArgs;
+        return MaterialPageRoute(
+          builder: (context) => StudentExamReviewScreen(args: args),
         );
       case notesScreen:
         return MaterialPageRoute(builder: (context) => const NotesScreen());

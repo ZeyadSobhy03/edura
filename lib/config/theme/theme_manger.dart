@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 class ThemeManger {
   static ThemeData light = ThemeData.light().copyWith(
-    textSelectionTheme: const TextSelectionThemeData(
+
+textSelectionTheme: const TextSelectionThemeData(
       selectionColor: Color(0xFFBFD3FF),
       cursorColor: Color(0xFF2553EB),
       selectionHandleColor: Color(0xFF2553EB),
@@ -60,6 +61,7 @@ class ThemeManger {
         ),
       ),
     ),
+
 
     inputDecorationTheme: InputDecorationThemeData(
       contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),

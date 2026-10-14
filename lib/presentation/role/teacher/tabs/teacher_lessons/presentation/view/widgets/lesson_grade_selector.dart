@@ -1,4 +1,3 @@
-
 import 'package:edura/core/resources/colors/color_manger.dart';
 import 'package:edura/core/widgets/custom_chip.dart';
 import 'package:edura/core/widgets/custom_text.dart';
@@ -15,9 +14,12 @@ class LessonGradeSelector extends StatefulWidget {
     super.key,
     required this.selectedGradeId,
     required this.onChanged,
+    required this.forTeacher,
   });
 
   final String? selectedGradeId;
+  final bool forTeacher;
+
   final ValueChanged<Grade> onChanged;
 
   @override
@@ -28,9 +30,13 @@ class _LessonGradeSelectorState extends State<LessonGradeSelector> {
   @override
   void initState() {
     super.initState();
-    final teacherId = Supabase.instance.client.auth.currentUser?.id;
-    if (teacherId != null) {
-      context.read<GardeCubit>().fetchGrades(teacherId: teacherId);
+    final cubit = context.read<GardeCubit>();
+    if (widget.forTeacher) {
+      final teacherId = Supabase.instance.client.auth.currentUser?.id;
+      if (teacherId != null) cubit.fetchGrades(teacherId: teacherId);
+    } else {
+      cubit
+          .fetchAllGrades();
     }
   }
 
@@ -40,9 +46,9 @@ class _LessonGradeSelectorState extends State<LessonGradeSelector> {
     return BlocBuilder<GardeCubit, GradesState>(
       builder: (context, state) {
         if (state is GradesLoading || state is GradesInitial) {
-          return const Center(child: CircularProgressIndicator(
-            color : ColorManager.primary,
-          ));
+          return const Center(
+            child: CircularProgressIndicator(color: ColorManager.primary),
+          );
         }
 
         if (state is GradesError) {
@@ -77,5 +83,3 @@ class _LessonGradeSelectorState extends State<LessonGradeSelector> {
     );
   }
 }
-
-

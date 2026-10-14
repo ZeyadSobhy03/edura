@@ -10,6 +10,8 @@ abstract class GardeRepositories {
     required String name,
     required double monthlyAmount,
   });
+  Future<List<Grade>> fetchAllGrades();
+
 
   Future<void> deleteGrade({required String id});
 }

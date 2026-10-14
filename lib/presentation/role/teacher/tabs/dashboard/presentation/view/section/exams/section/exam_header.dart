@@ -4,6 +4,9 @@ import '../../../../../../../../../../core/resources/colors/color_manger.dart';
 import '../../../../../../../../../../core/widgets/custom_label.dart';
 import '../../../../../../../../../../core/widgets/custom_text_formed_field.dart';
 import '../../../../../../../../../../l10n/app_localizations.dart';
+import '../../../../../../teacher_lessons/presentation/view/widgets/lesson_grade_selector.dart';
+import '../../../../../../teacher_lessons/presentation/view/widgets/subject_selector.dart';
+import '../../../../../../teacher_profile/presentation/view/teacher_grades/data/model/grade_model.dart';
 
 
 
@@ -11,13 +14,15 @@ class ExamHeader extends StatelessWidget {
   const ExamHeader({
     super.key,
     required this.titleController,
-    required this.subjectController,
-    required this.durationController,
+    required this.durationController, this.selectedSubject, required this.onSubjectChanged, this.selectedGradeId, required this.onGradeChanged,
   });
 
   final TextEditingController titleController;
-  final TextEditingController subjectController;
   final TextEditingController durationController;
+  final String? selectedSubject;
+  final ValueChanged<String> onSubjectChanged;
+  final String? selectedGradeId;
+  final ValueChanged<Grade> onGradeChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -48,17 +53,16 @@ class ExamHeader extends StatelessWidget {
           fontSize: 15,
         ),
         const SizedBox(height: 6),
-        CustomTextFormedField(
-          hintText: l10.enterExamSubject,
-          controller: subjectController,
-          validator: (value) {
-            if (value == null || value.trim().isEmpty) {
-              return l10.examSubjectCannotBeEmpty;
-            }
-            return null;
-          },
+        SubjectSelector(
+          selectedSubject: selectedSubject,
+          onChanged: onSubjectChanged,
         ),
         const SizedBox(height: 6),
+        LessonGradeSelector(
+          forTeacher: true,
+          selectedGradeId: selectedGradeId,
+          onChanged: onGradeChanged,
+        ),
         CustomLabel(
           label: l10.examDuration,
           color: ColorManager.primary,
